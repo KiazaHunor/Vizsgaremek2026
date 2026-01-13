@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+            <span class="navbar-brand">Dashboard</span>
+            <button class="btn btn-light btn-sm" onclick="logout()">Kijelentkezés</button>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <div id="content">
+            <div class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Betöltés...</span>
+                </div>
+                <p>Adatok betöltése...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost/13C/bejelentkezo/backend/api';
+        const token = localStorage.getItem('token');
+        
+        if (!token) {
+            window.location.href = 'index.html';
+        }
+        
+        fetch(`${API_BASE_URL}/profile.php`, {
+            headers: { 'Authorization': 'Bearer ' + token }
+        })
+        .then(r => {
+            if (r.status === 200) {
+                return r.json();
+            } else {
+                localStorage.removeItem('token');
+                window.location.href = 'index.html';
+                return null;
+            }
+        })
+        .then(d => {
+            if (d && d.success) {
+                document.getElementById('content').innerHTML = `
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Üdvözöljük, ${d.user.username}!</h3>
+                            <p><strong>Regisztráció dátuma:</strong> ${d.user.formatted_date}</p>
+                            <p>${d.message}</p>
+                            <p><small>Token érvényes: ${d.timestamp}</small></p>
+                        </div>
+                    </div>
+                `;
+            }
+        })
+        .catch(error => {
+            localStorage.removeItem('token');
+            window.location.href = 'index.html';
+        });
+        
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
