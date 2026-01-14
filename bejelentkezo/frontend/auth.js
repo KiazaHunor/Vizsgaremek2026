@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost/13C/bejelentkezo/backend/api';
+const API_BASE_URL = 'http://localhost/Vizsgaremek2026/bejelentkezo/backend/api';
 
 function login() {
     const username = document.getElementById('user').value;

@@ -9,3 +9,5 @@ CREATE TABLE users (
     token_expiry DATETIME,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+

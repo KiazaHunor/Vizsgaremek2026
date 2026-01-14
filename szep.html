@@ -1,74 +1,131 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Foci Hírek - Async</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body { padding-top: 70px; background-color: #f8f9fa; }
-    .news-card:hover { transform: scale(1.02); transition: transform 0.2s; cursor: pointer; }
-    img{
-      width: 50px;
-      height: 50px;
+    body {
+      padding-top: 30px;
+      background-color: white;
+      font-family: 'Lucida Sans';
+      font-weight: bold;
+    }
+
+    .news-card:hover {
+      transform: scale(1.02);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    #logo {
+      width: 180px;
+      height: auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      float: right;
+    }
+
+    #logo:hover {
+      transform: scale(1.1);
+    }
+
+    #bejel {
+      transform: scale(1.02);
+      transition: transform 0.2s;
+    }
+    header{
+      background-color:darkgrey;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
-    <div class="row">
-      <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="col-9 p-2">
-          <a class="navbar-brand" href="#">FociHírek</a>
+    <div class="row mb-2 ">
+      <header class="col-12 shadow-lg rounded text-dark">
+        <h1 class="text-center p-3">Fizz Liga
+          <img id="logo" src="Fizz_Liga_NBI.png" alt="Fizz Liga">
+        </h1>
+      </header>
+    </div>
+    <div class="row mb-2">
+      <nav class="navbar navbar-dark bg-dark shadow-lg rounded">
+        <div class="col-5 p-2">
+          <div class="navbar-brand" href="">FociHírek</div>
         </div>
-        <div class="col-1">
+        <div class="col-2 p-2">
           <a class="navbar-brand" href="#">Tabella</a>
         </div>
-        <div class="col-1">
+        <div class="col-2 p-2">
           <a class="navbar-brand" href="#">Kapcsolat</a>
         </div>
-        <div class="col-1">
-          <a class="navbar-brand" href="../bejelentkezo/frontend/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
-  <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
-  <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
-</svg></a>
+        <div class="col-2 p-2">
+          <a class="navbar-brand" href="#">Névjegy</a>
         </div>
-  </nav>
-  
+        <div class="col-1 p-2">
+          <a id="bejel" class="navbar-brand" href="bejelentkezo/frontend/index.html"><svg
+              xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-add"
+              viewBox="0 0 16 16">
+              <path
+                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+              <path
+                d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+            </svg></a>
+        </div>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <section class="shadow-lg rounded p-3 mb-3 bg-dark text-white">
+        </section>
 
-  <div class="container">
-    <div class="row" id="news-container"></div>
+        <article class="shadow-lg rounded p-3 bg-dark text-white">
+        </article>
+      </div>
+      <aside class="shadow-lg rounded col-4 p-3 bg-dark text-white">
+        <div class="row" id="news-container"></div>
+      </aside>
+
+    </div>
+
+
+
+
   </div>
-  </div>
-</div>
-<script>
-  const RSS_URL = "https://www.fociclub.hu/?cat=11&feed=rss2";
 
-  function fetchRSS() {
-    // JAVÍTOTT: helyes proxy URL összeállítás
-    fetch("https://corsproxy.io/?" + RSS_URL)  // Csak a RSS_URL-t kódoljuk, ne a teljes stringet
-      .then(response => response.text())
-      .then(text => {
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(text, "text/xml");
-        const items = xml.querySelectorAll("item");
 
-        const newsContainer = document.getElementById("news-container");
-        newsContainer.innerHTML = "";
 
-        items.forEach((item, i) => {
-          if (i >= 6) return;
-          
-          const title = item.querySelector("title")?.textContent || "Cím nélkül";
-          const link = item.querySelector("link")?.textContent || "#";
-          const description = item.querySelector("description")?.textContent || "";
-          
-          // HTML címkék eltávolítása
-          const cleanDesc = description.replace(/<[^>]*>/g, '').substring(0, 150) + '...';
+  <script>
+    const RSS_URL = "https://www.fociclub.hu/?cat=11&feed=rss2";
 
-          const col = document.createElement("div");
-          col.className = "col-md-4 mb-4";
-          col.innerHTML = `
+    function fetchRSS() {
+      // JAVÍTOTT: helyes proxy URL összeállítás
+      fetch("https://corsproxy.io/?" + RSS_URL)  // Csak a RSS_URL-t kódoljuk, ne a teljes stringet
+        .then(response => response.text())
+        .then(text => {
+          const parser = new DOMParser();
+          const xml = parser.parseFromString(text, "text/xml");
+          const items = xml.querySelectorAll("item");
+
+          const newsContainer = document.getElementById("news-container");
+          newsContainer.innerHTML = "";
+
+          items.forEach((item, i) => {
+            if (i >= 6) return;
+
+            const title = item.querySelector("title")?.textContent || "Cím nélkül";
+            const link = item.querySelector("link")?.textContent || "#";
+            const description = item.querySelector("description")?.textContent || "";
+
+            // HTML címkék eltávolítása
+            const cleanDesc = description.replace(/<[^>]*>/g, '').substring(0, 150) + '...';
+
+            const col = document.createElement("div");
+            col.className = "col-12 mb-4";
+            col.innerHTML = `
             <div class="card news-card h-100" onclick="window.open('${link}', '_blank')">
               <div class="card-body">
                 <h5 class="card-title">${title}</h5>
@@ -76,19 +133,20 @@
               </div>
             </div>
           `;
-          newsContainer.appendChild(col);
+            newsContainer.appendChild(col);
+          });
+        })
+        .catch(err => {
+          console.error("RSS hiba:", err);
+          document.getElementById("news-container").innerHTML =
+            `<div class="alert alert-danger">Hiba a hírek betöltésénél</div>`;
         });
-      })
-      .catch(err => {
-        console.error("RSS hiba:", err);
-        document.getElementById("news-container").innerHTML = 
-          `<div class="alert alert-danger">Hiba a hírek betöltésénél</div>`;
-      });
-  }
+    }
 
-  fetchRSS();
-  setInterval(fetchRSS, 30000);
-</script>
+    fetchRSS();
+    setInterval(fetchRSS, 30000);
+  </script>
 
 </body>
+
 </html>
