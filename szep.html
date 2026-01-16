@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foci Hírek - Async</title>
+  <title>Fizz Liga</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       padding-top: 30px;
-      background-color: white;
-      font-family: 'Lucida Sans';
+      background-image: url(hatter3.jpg);
+      font-family: Georgia;
       font-weight: bold;
     }
 
@@ -36,8 +36,13 @@
       transform: scale(1.02);
       transition: transform 0.2s;
     }
-    header{
-      background-color:darkgrey;
+
+    header {
+      background-image: url(hatter4.jpg);
+    }
+
+    .navbar-brand {
+      font-size: 25px;
     }
   </style>
 </head>
@@ -47,27 +52,27 @@
     <div class="row mb-2 ">
       <header class="col-12 shadow-lg rounded text-dark">
         <h1 class="text-center p-3">Fizz Liga
-          <img id="logo" src="Fizz_Liga_NBI.png" alt="Fizz Liga">
+          <img id="logo" src="Fizz_Liga_NBI-removebg-preview.png" alt="Fizz Liga">
         </h1>
       </header>
     </div>
     <div class="row mb-2">
       <nav class="navbar navbar-dark bg-dark shadow-lg rounded">
-        <div class="col-5 p-2">
+        <div class="col-4 p-2">
           <div class="navbar-brand" href="">FociHírek</div>
         </div>
-        <div class="col-2 p-2">
+        <div class="col-2">
           <a class="navbar-brand" href="#">Tabella</a>
         </div>
-        <div class="col-2 p-2">
+        <div class="col-2">
           <a class="navbar-brand" href="#">Kapcsolat</a>
         </div>
-        <div class="col-2 p-2">
+        <div class="col-2">
           <a class="navbar-brand" href="#">Névjegy</a>
         </div>
-        <div class="col-1 p-2">
+        <div class="col-2">
           <a id="bejel" class="navbar-brand" href="bejelentkezo/frontend/index.html"><svg
-              xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-add"
+              xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-add"
               viewBox="0 0 16 16">
               <path
                 d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
@@ -80,7 +85,10 @@
     <div class="row">
       <div class="col-8">
         <section class="shadow-lg rounded p-3 mb-3 bg-dark text-white">
+          <h3>Fizz Liga – Tabella</h3>
+          <div id="tabella">Betöltés...</div>
         </section>
+
 
         <article class="shadow-lg rounded p-3 bg-dark text-white">
         </article>
@@ -99,11 +107,12 @@
 
 
   <script>
+    // ITT A HIREK VANNAK
     const RSS_URL = "https://www.fociclub.hu/?cat=11&feed=rss2";
 
     function fetchRSS() {
-      // JAVÍTOTT: helyes proxy URL összeállítás
-      fetch("https://corsproxy.io/?" + RSS_URL)  // Csak a RSS_URL-t kódoljuk, ne a teljes stringet
+
+      fetch("https://corsproxy.io/?" + RSS_URL)
         .then(response => response.text())
         .then(text => {
           const parser = new DOMParser();
@@ -120,7 +129,6 @@
             const link = item.querySelector("link")?.textContent || "#";
             const description = item.querySelector("description")?.textContent || "";
 
-            // HTML címkék eltávolítása
             const cleanDesc = description.replace(/<[^>]*>/g, '').substring(0, 150) + '...';
 
             const col = document.createElement("div");
@@ -145,6 +153,60 @@
 
     fetchRSS();
     setInterval(fetchRSS, 30000);
+    //TABELLA
+
+
+
+    function loadTabella() {
+      fetch("tabella_nb1.php")
+        .then(res => res.json())
+        .then(data => {
+          if (data.error) {
+            document.getElementById("tabella").innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+            return;
+          }
+
+          let html = `<table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Csapat</th>
+            <th>M</th>
+            <th>Gy</th>
+            <th>D</th>
+            <th>V</th>
+            <th>Pont</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+          data.forEach(row => {
+            html += `<tr>
+          <td>${row.hely}</td>
+          <td>${row.csapat}</td>
+          <td>${row.meccs}</td>
+          <td>${row.gy}</td>
+          <td>${row.d}</td>
+          <td>${row.v}</td>
+          <td>${row.pont}</td>
+        </tr>`;
+          });
+
+          html += "</tbody></table>";
+          document.getElementById("tabella").innerHTML = html;
+        })
+        .catch(err => {
+          console.error(err);
+          document.getElementById("tabella").innerHTML = `<div class="alert alert-danger">Hiba a tabella betöltésénél</div>`;
+        });
+    }
+
+    // Első betöltés
+    loadTabella();
+
+    // Automatikus frissítés 60 másodpercenként
+    setInterval(loadTabella, 60000);
+
   </script>
 
 </body>
