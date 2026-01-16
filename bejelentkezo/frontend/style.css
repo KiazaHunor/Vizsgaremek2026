@@ -1,0 +1,8 @@
+body{
+    background-image: url(hatter1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#fodiv{
+    margin-top: 200px;
+}
