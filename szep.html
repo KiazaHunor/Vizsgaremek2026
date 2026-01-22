@@ -10,8 +10,9 @@
     body {
       padding-top: 30px;
       background-image: url(hatter3.jpg);
-      font-family: Georgia;
+      font-family:cursive;
       font-weight: bold;
+      font-size: larger;
     }
 
     .news-card:hover {
@@ -21,20 +22,11 @@
     }
 
     #logo {
-      width: 180px;
-      height: auto;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s;
+      height: 60px;
+      width: 200px;
+      vertical-align: top;
       float: right;
-    }
 
-    #logo:hover {
-      transform: scale(1.1);
-    }
-
-    #bejel {
-      transform: scale(1.02);
-      transition: transform 0.2s;
     }
 
     header {
@@ -43,6 +35,9 @@
 
     .navbar-brand {
       font-size: 25px;
+    }
+    footer{
+      height: 50px;
     }
   </style>
 </head>
@@ -97,6 +92,9 @@
         <div class="row" id="news-container"></div>
       </aside>
 
+    </div>
+    <div class="row">
+      <footer class="text-center text-light bg-dark mt-2 mb-4 p-2 shadow-lg rounded">Készitették Mi</footer>
     </div>
 
 
@@ -158,55 +156,51 @@
 
 
     function loadTabella() {
-      fetch("tabella_nb1.php")
-        .then(res => res.json())
+      fetch("tabella.php")
+        .then(r => r.json())
         .then(data => {
           if (data.error) {
-            document.getElementById("tabella").innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+            document.getElementById("tabella").innerHTML =
+              `<div class="alert alert-danger">${data.error}</div>`;
             return;
           }
 
           let html = `<table class="table table-dark table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Csapat</th>
-            <th>M</th>
-            <th>Gy</th>
-            <th>D</th>
-            <th>V</th>
-            <th>Pont</th>
-          </tr>
-        </thead>
-        <tbody>`;
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Csapat</th>
+          <th>M</th>
+          <th>Gy</th>
+          <th>D</th>
+          <th>V</th>
+          <th>Pont</th>
+        </tr>
+      </thead><tbody>`;
 
-          data.forEach(row => {
+          data.forEach(r => {
             html += `<tr>
-          <td>${row.hely}</td>
-          <td>${row.csapat}</td>
-          <td>${row.meccs}</td>
-          <td>${row.gy}</td>
-          <td>${row.d}</td>
-          <td>${row.v}</td>
-          <td>${row.pont}</td>
+          <td>${r.hely}</td>
+          <td>${r.csapat}</td>
+          <td>${r.meccs}</td>
+          <td>${r.gy}</td>
+          <td>${r.d}</td>
+          <td>${r.v}</td>
+          <td>${r.pont}</td>
         </tr>`;
           });
 
           html += "</tbody></table>";
           document.getElementById("tabella").innerHTML = html;
         })
-        .catch(err => {
-          console.error(err);
-          document.getElementById("tabella").innerHTML = `<div class="alert alert-danger">Hiba a tabella betöltésénél</div>`;
+        .catch(() => {
+          document.getElementById("tabella").innerHTML =
+            `<div class="alert alert-danger">Betöltési hiba</div>`;
         });
     }
 
-    // Első betöltés
     loadTabella();
-
-    // Automatikus frissítés 60 másodpercenként
     setInterval(loadTabella, 60000);
-
   </script>
 
 </body>
