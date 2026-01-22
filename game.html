@@ -7,6 +7,83 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Fut Draft</title>
     <style>
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c7744);
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+        }
+
+        .formation-container {
+            margin-top: 50px;
+        }
+
+        .formation-row {
+            margin-bottom: 20px;
+        }
+
+        .player {
+            border: 2px solid black;
+            background-color: white;
+            font-weight: bold;
+            width: 130px;
+            height: 80px;
+            display: inline-block;
+            margin: 0 10px;
+            line-height: 100px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: all 0.5s ease;
+        }
+
+        .player.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        #st {
+            position: relative;
+            top: -20px;
+        }
+
+        #cam433 {
+            position: relative;
+            top: -20px;
+        }
+
+        #rw {
+            position: relative;
+            right: -30px;
+        }
+
+        #lw {
+            position: relative;
+            left: -30px;
+        }
+        #lcm{
+            position: relative;
+            left: -30px;
+        }
+        
+        #rcm{
+            position: relative;
+            right: -30px;
+        }
+
+        .btn {
+            height: 50px;
+            width: 200px;
+            margin-right: 10px;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #28a745;
+            color: white;
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 
@@ -14,9 +91,13 @@
     <div class="container">
         <div class="row mt-4">
             <div>
-                <button onclick="loadFormation()">4-1-2-1-2</button>
-                <button onclick="loadFormation()">4-3-3</button>
-
+                <h1 id="cim" class="text-light mb-4">Válassz pozíciót</h1>
+                <div id="formaciok" class="col-12">
+                    <button class="btn btn-outline-success text-light fw-bold"
+                        onclick="loadFormation('4-1-2-1-2')">4-1-2-1-2</button>
+                    <button class="btn btn-outline-success text-light fw-bold"
+                        onclick="loadFormation('4-3-3')">4-3-3</button>
+                </div>
                 <div id="formation-container"></div>
             </div>
         </div>
@@ -24,12 +105,71 @@
 
 </body>
 <script>
-    function loadFormation(name) {
-        fetch(`formations/${name}.html`)
-            .then(res => res.text())
-            .then(html => {
-                document.getElementById('formation-container').innerHTML = html;
-            });
+    function loadFormation(formation) {
+        document.getElementById("cim").innerHTML = "Állítsd össze a csapatodat";
+        document.getElementById("formaciok").style.display = "none";
+        const container = document.getElementById('formation-container');
+        if (formation === '4-3-3') {
+            container.innerHTML = `
+                <div class="formation-row mt-4">
+                    <div id="lw" class="player">LW</div>
+                    <div id="st" class="player">ST</div>
+                    <div id="rw" class="player">RW</div>
+                </div>
+                <div class="formation-row">
+                    <div class="player">CM</div>
+                    <div id="cam433" class="player">CAM</div>
+                    <div class="player">CM</div>
+                </div>
+                <div class="formation-row">
+                    <div class="player">LB</div>
+                    <div class="player">CB</div>
+                    <div class="player">CB</div>
+                    <div class="player">RB</div>
+                </div>
+                <div class="formation-row">
+                    <div class="player">GK</div>
+                </div>
+            `;
+        }
+        else if (formation === '4-1-2-1-2') {
+            container.innerHTML = `
+                <div class="formation-row">
+                    <div class="col-2 player">ST</div>
+                    <div class="col-2 player">ST</div>
+                </div>
+                <div class="formation-row">
+                    <div class="col-2 player">CAM</div>
+                </div>
+                <div class="formation-row">
+                    <div id="lcm" class="col-2 player">CM</div>
+                    <div id="rcm" class="col-2 player">CM</div>
+                </div>
+                <div class="formation-row">
+                    <div class="col-2 player">CDM</div>
+                </div>
+
+                <div class="formation-row">
+                    <div class="col-2 player">LB</div>
+                    <div class="col-2 player">CB</div>
+                    <div class="col-2 player">CB</div>
+                    <div class="col-2 player">RB</div>
+                </div>
+
+                <div class="formation-row">
+                    <div class="col-2 player">GK</div>
+                </div>
+            `;
+        }
+
+
+
+        const players = container.querySelectorAll('.player');
+        players.forEach(player => {
+            setTimeout(() => {
+                player.classList.add('show');
+            }, 450);
+        });
     }
 </script>
 
