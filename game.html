@@ -60,14 +60,23 @@
             position: relative;
             left: -30px;
         }
-        #lcm{
+
+        #lcm {
             position: relative;
             left: -30px;
         }
-        
-        #rcm{
+
+        #rcm {
             position: relative;
             right: -30px;
+        }
+        #lm{
+            position: relative;
+            top: -20px;
+        }   
+        #rm{
+            position: relative;
+            top: -20px;
         }
 
         .btn {
@@ -97,6 +106,8 @@
                         onclick="loadFormation('4-1-2-1-2')">4-1-2-1-2</button>
                     <button class="btn btn-outline-success text-light fw-bold"
                         onclick="loadFormation('4-3-3')">4-3-3</button>
+                    <button class="btn btn-outline-success text-light fw-bold"
+                        onclick="loadFormation('4-4-2')">4-4-2</button>
                 </div>
                 <div id="formation-container"></div>
             </div>
@@ -161,6 +172,33 @@
                 </div>
             `;
         }
+        else if (formation === '4-4-2') {
+            container.innerHTML = `
+                <div class="formation-row">
+                    <div class="col-2 player">ST</div>
+                    <div class="col-2 player">ST</div>
+                </div>
+
+                <div class="formation-row">
+                    <div id="lm" class="col-2 player">LM</div>
+                    <div class="col-2 player">CM</div>
+                    <div class="col-2 player">CM</div>
+                    <div id="rm" class="col-2 player">RM</div>
+                </div>
+
+                <div class="formation-row">
+                    <div class="col-2 player">LB</div>
+                    <div class="col-2 player">CB</div>
+                    <div class="col-2 player">CB</div>
+                    <div class="col-2 player">RB</div>
+                </div>
+
+                <div class="formation-row">
+                    <div class="col-2 player">GK</div>
+                </div>
+            `;
+        }
+
 
 
 
