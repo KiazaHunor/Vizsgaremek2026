@@ -29,7 +29,7 @@
         const token = localStorage.getItem('token');
         
         if (!token) {
-            window.location.href = 'index.html';
+            window.location.href = 'regisztracio.html';
         }
         
         fetch(`${API_BASE_URL}/profile.php`, {
@@ -40,7 +40,7 @@
                 return r.json();
             } else {
                 localStorage.removeItem('token');
-                window.location.href = 'index.html';
+                window.location.href = 'regisztracio.html';
                 return null;
             }
         })
@@ -60,7 +60,7 @@
         })
         .catch(error => {
             localStorage.removeItem('token');
-            window.location.href = 'index.html';
+            window.location.href = 'regisztracio.html';
         });
         
         function logout() {
