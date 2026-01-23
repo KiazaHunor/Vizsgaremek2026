@@ -1,186 +1,237 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fut Draft</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-body {
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c7744);
-    font-family: 'Segoe UI', sans-serif;
-    text-align: center;
-}
-.formation-container { margin-top: 50px; }
-.formation-row { margin: 40px 0; }
-.player {
-    border: 2px solid black;
-    background-color: white;
-    font-weight: bold;
-    width: 130px;
-    height: 80px;
-    display: inline-block;
-    margin: 10px;
-    line-height: 80px;
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: all 0.5s ease;
-    cursor: pointer;
-    position: relative;
-}
-.player.show { opacity: 1; transform: translateY(0); }
-.player-options {
-    position: absolute;
-    top: 90px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: white;
-    border: 2px solid black;
-    z-index: 10;
-    padding: 5px;
-    display: none;
-}
-.player-options div {
-    padding: 5px 10px;
-    cursor: pointer;
-}
-.player-options div:hover {
-    background-color: #28a745;
-    color: white;
-}
-.btn { margin: 5px; }
-</style>
-</head>
-<body>
-<div class="container">
-    <h1 id="cim" class="text-light mb-4">Válassz pozíciót</h1>
-    <div id="formaciok" class="mb-4">
-        <button class="btn btn-outline-success text-light fw-bold" onclick="loadFormation('4-1-2-1-2')">4-1-2-1-2</button>
-        <button class="btn btn-outline-success text-light fw-bold" onclick="loadFormation('4-3-3')">4-3-3</button>
-        <button class="btn btn-outline-success text-light fw-bold" onclick="loadFormation('4-4-2')">4-4-2</button>
-    </div>
-    <div id="formation-container" class="formation-container"></div>
-</div>
-
-<script>
-function loadPlayers(button, position) {
-    fetch("getPlayers.php?position=" + encodeURIComponent(position))
-    .then(res => res.json())
-    .then(data => {
-        if(data.error) { alert("Hiba: " + data.error); return; }
-        if(data.length === 0) { alert("Nincs játékos ezen a pozíción."); return; }
-
-        // Véletlenszerűen 5 játékos kiválasztása
-        data.sort(() => Math.random() - 0.5);
-        const players = data.slice(0,5);
-
-        // Options div létrehozása
-        let html = '';
-        players.forEach((p, i) => {
-            html += `<div onclick="selectPlayer(this, '${p.name}', '${p.team}', '${p.position}', '${p.nationality}')">
-                        ${p.name} (${p.team})
-                     </div>`;
-        });
-
-        let optionsDiv = button.querySelector('.player-options');
-        if(!optionsDiv) {
-            optionsDiv = document.createElement('div');
-            optionsDiv.className = 'player-options';
-            button.appendChild(optionsDiv);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Fut Draft</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c7744);
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
         }
-        optionsDiv.innerHTML = html;
-        optionsDiv.style.display = 'block';
-    })
-    .catch(err => { console.error(err); alert("Hiba az adatlekérés során."); });
-}
 
-function selectPlayer(div, name, team, position, nationality) {
-    const parentButton = div.parentElement.parentElement;
-    parentButton.innerHTML = `${name}<br>${team}<br>${position}<br>${nationality}`;
-}
+        .formation-container {
+            margin-top: 100px;
+        }
 
-function loadFormation(formation) {
-    document.getElementById("cim").innerHTML = "Állítsd össze a csapatodat";
-    document.getElementById("formaciok").style.display = "none";
-    const container = document.getElementById('formation-container');
-    let html = "";
+        .formation-row {
+            margin-bottom: 40px;
+            margin-top: 40px;
+        }
 
-    const createPlayer = (posLabel, posValue) => {
-        return `<div class="player" onclick="loadPlayers(this, '${posValue}')">${posLabel}</div>`;
-    };
+        .player {
+            border: 2px solid black;
+            background-color: white;
+            font-weight: bold;
+            width: 130px;
+            height: 80px;
+            display: inline-block;
+            margin: 0 50px;
+            line-height: 100px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: all 0.5s ease;
+        }
 
-    if (formation === '4-3-3') {
-        html = `
-        <div class="formation-row">
-            ${createPlayer('LW','left-winger')}
-            ${createPlayer('CF','centre-forward')}
-            ${createPlayer('RW','right-winger')}
+        .player.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        #st {
+            position: relative;
+            top: -20px;
+        }
+
+        #cam433 {
+            position: relative;
+            top: -20px;
+        }
+
+        #rw {
+            position: relative;
+            right: -30px;
+        }
+
+        #lw {
+            position: relative;
+            left: -30px;
+        }
+
+        #lcm {
+            position: relative;
+            left: -30px;
+        }
+
+        #rcm {
+            position: relative;
+            right: -30px;
+        }
+
+        #lm {
+            position: relative;
+            top: -20px;
+        }
+
+        #rm {
+            position: relative;
+            top: -20px;
+        }
+
+        .btn {
+            height: 50px;
+            width: 200px;
+            margin-right: 10px;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #28a745;
+            color: white;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-4">
+            <div>
+                <h1 id="cim" class="text-light mb-4">Válassz pozíciót</h1>
+                <div id="formaciok" class="col-12">
+                    <button class="btn btn-outline-success text-light fw-bold"
+                        onclick="loadFormation('4-1-2-1-2')">4-1-2-1-2</button>
+                    <button class="btn btn-outline-success text-light fw-bold"
+                        onclick="loadFormation('4-3-3')">4-3-3</button>
+                    <button class="btn btn-outline-success text-light fw-bold"
+                        onclick="loadFormation('4-4-2')">4-4-2</button>
+                </div>
+                <div id="formation-container"></div>
+            </div>
         </div>
-        <div class="formation-row">
-            ${createPlayer('CM','central-midfield')}
-            ${createPlayer('CAM','attacking-midfield')}
-            ${createPlayer('CM','central-midfield')}
-        </div>
-        <div class="formation-row">
-            ${createPlayer('LB','left-back')}
-            ${createPlayer('CB','centre-back')}
-            ${createPlayer('CB','centre-back')}
-            ${createPlayer('RB','right-back')}
-        </div>
-        <div class="formation-row">
-            ${createPlayer('GK','goalkeeper')}
-        </div>`;
-    } else if (formation === '4-1-2-1-2') {
-        html = `
-        <div class="formation-row">
-            ${createPlayer('CF','centre-forward')}
-            ${createPlayer('CF','centre-forward')}
-        </div>
-        <div class="formation-row">
-            ${createPlayer('CAM','attacking-midfield')}
-        </div>
-        <div class="formation-row">
-            ${createPlayer('CM','central-midfield')}
-            ${createPlayer('CM','central-midfield')}
-        </div>
-        <div class="formation-row">
-            ${createPlayer('CDM','defensive-midfield')}
-        </div>
-        <div class="formation-row">
-            ${createPlayer('LB','left-back')}
-            ${createPlayer('CB','centre-back')}
-            ${createPlayer('CB','centre-back')}
-            ${createPlayer('RB','right-back')}
-        </div>
-        <div class="formation-row">
-            ${createPlayer('GK','goalkeeper')}
-        </div>`;
-    } else if (formation === '4-4-2') {
-        html = `
-        <div class="formation-row">
-            ${createPlayer('CF','centre-forward')}
-            ${createPlayer('CF','centre-forward')}
-        </div>
-        <div class="formation-row">
-            ${createPlayer('LM','left-midfield')}
-            ${createPlayer('CM','central-midfield')}
-            ${createPlayer('CM','central-midfield')}
-            ${createPlayer('RM','right-midfield')}
-        </div>
-        <div class="formation-row">
-            ${createPlayer('LB','left-back')}
-            ${createPlayer('CB','centre-back')}
-            ${createPlayer('CB','centre-back')}
-            ${createPlayer('RB','right-back')}
-        </div>
-        <div class="formation-row">
-            ${createPlayer('GK','goalkeeper')}
-        </div>`;
+    </div>
+
+</body>
+<script>
+    function loadPlayers(position) {
+        console.log("Lekérdezett pozíció:", position);
+        fetch("getPlayers.php?position=" + encodeURIComponent(position))
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert("Hiba: " + data.error);
+                    return;
+                }
+                if (data.length === 0) {
+                    alert("Nincs játékos ezen a pozíción.");
+                    return;
+                }
+                let names = data.map(p => p.name,p.nationality,p.team).join("\n");
+                alert(names);
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Hiba történt az adatlekérés során.");
+            });
     }
 
-    container.innerHTML = html;
-    container.querySelectorAll('.player').forEach(p => setTimeout(() => p.classList.add('show'), 100));
-}
+    function loadFormation(formation) {
+        document.getElementById("cim").innerHTML = "Állítsd össze a csapatodat";
+        document.getElementById("formaciok").style.display = "none";
+        const container = document.getElementById('formation-container');
+        if (formation === '4-3-3') {
+            container.innerHTML = `
+                <div class="formation-row mt-4">
+                    <button id="lw" class="player" onclick="loadPlayers('left winger')">LW</button>
+                    <button id="st" class="player" onclick="loadPlayers('centre-forward')">CF</button>
+                    <button id="rw" class="player" onclick="loadPlayers('right winger')">RW</button>
+                </div>
+                <div class="formation-row">
+                    <button class="player" onclick="loadPlayers('central midfield')">CM</button>
+                    <button id="cam433" class="player" onclick="loadPlayers('attacking midfield')">CAM</button>
+                    <button class="player" onclick="loadPlayers('central midfield')">CM</button>
+                </div>
+                <div class="formation-row">
+                    <button class="player" onclick="loadPlayers('left-back')">LB</button>
+                    <button class="player" onclick="loadPlayers('centre-back')">CB</button>
+                    <button class="player" onclick="loadPlayers('centre-back')">CB</button>
+                    <button class="player" onclick="loadPlayers('right-back')">RB</button>
+                </div>
+                <div class="formation-row">
+                    <button class="player" onclick="loadPlayers('goalkeeper')">GK</button>
+                </div>
+            `;
+        }
+        else if (formation === '4-1-2-1-2') {
+            container.innerHTML = `
+                <div class="formation-row">
+                    <button class="col-2 player" onclick="loadPlayers('centre-forward')">CF</button>
+                    <button class="col-2 player" onclick="loadPlayers('centre-forward')">CF</button>
+                </div>
+                <div class="formation-row">
+                    <button class="col-2 player" onclick="loadPlayers('attacking midfield')">CAM</button>
+                </div>
+                <div class="formation-row">
+                    <button id="lcm" class="col-2 player" onclick="loadPlayers('central midfield')">CM</button>
+                    <button id="rcm" class="col-2 player" onclick="loadPlayers('central midfield')">CM</button>
+                </div>
+                <div class="formation-row">
+                    <button class="col-2 player" onclick="loadPlayers('defensive midfield')">CDM</button>
+                </div>
+
+                <div class="formation-row">
+                    <button class="col-2 player" onclick="loadPlayers('left-back')">LB</button>
+                    <button class="col-2 player" onclick="loadPlayers('centre-back')">CB</button>
+                    <button class="col-2 player" onclick="loadPlayers('centre-back')">CB</button>
+                    <button class="col-2 player" onclick="loadPlayers('right-back')">RB</button>
+                </div>
+
+                <div class="formation-row">
+                    <button class="col-2 player" onclick="loadPlayers('goalkeeper')">GK</button>
+                </div>
+            `;
+        }
+        else if (formation === '4-4-2') {
+            container.innerHTML = `
+                <div class="formation-row">
+                    <button class="col-2 player" onclick="loadPlayers('centre-forward')">CF</button>
+                    <button class="col-2 player" onclick="loadPlayers('centre-forward')">CF</button>
+                </div>
+
+                <div class="formation-row">
+                    <button id="lm" class="col-2 player" onclick="loadPlayers('left midfield')">LM</button>
+                    <button class="col-2 player" onclick="loadPlayers('central midfield')">CM</button>
+                    <button class="col-2 player" onclick="loadPlayers('central midfield')">CM</button>
+                    <button id="rm" class="col-2 player" onclick="loadPlayers('right midfield')">RM</button>
+                </div>
+
+                <div class="formation-row">
+                    <button class="col-2 player" onclick="loadPlayers('left-back')">LB</button>
+                    <button class="col-2 player" onclick="loadPlayers('centre-back')">CB</button>
+                    <button class="col-2 player" onclick="loadPlayers('centre-back')">CB</button>
+                    <button class="col-2 player" onclick="loadPlayers('right-back')">RB</button>
+                </div>
+
+                <div class="formation-row">
+                    <button class="col-2 player" onclick="loadPlayers('goalkeeper')">GK</button>
+                </div>
+            `;
+        }
+        const players = container.querySelectorAll('.player');
+        players.forEach(player => {
+            setTimeout(() => {
+                player.classList.add('show');
+            }, 450);
+        });
+    }
 </script>
-</body>
+
 </html>
+
+
