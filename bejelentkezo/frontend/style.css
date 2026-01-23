@@ -1,11 +1,8 @@
 body{
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #0f2027, #203a43, #2c7744);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    background-image: url(hatter2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 #fodiv{
     margin-top: 200px;
 }
