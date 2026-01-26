@@ -95,15 +95,20 @@ foreach ($teams as $teamName => $url) {
 
     foreach ($players as $p) {
         $stmt = $pdo->prepare("
-            INSERT INTO players (team, name, position, nationality)
-            VALUES (?, ?, ?, ?)
-        ");
-        $stmt->execute([
-            $p['team'],
-            $p['name'],
-            $p['position'],
-            $p['nationality']
-        ]);
+    INSERT INTO players (team, name, position, nationality)
+    VALUES (?, ?, ?, ?)
+    ON DUPLICATE KEY UPDATE
+        position = VALUES(position),
+        nationality = VALUES(nationality)
+");
+
+$stmt->execute([
+    $p['team'],
+    $p['name'],
+    $p['position'],
+    $p['nationality']
+]);
+
     }
 
     echo "Hozzáadva: " . count($players) . " játékos a $teamName csapatból.\n";
