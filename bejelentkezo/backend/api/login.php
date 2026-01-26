@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
+
 // Adatok ellenőrzése
 if (!$data || !isset($data['username']) || !isset($data['password'])) {
     http_response_code(400);
@@ -26,7 +27,7 @@ $password = hash('sha256', trim($data['password']));
 
 // Felhasználó keresése
 
-$sql = "SELECT id, username, password FROM users WHERE username = '$username'";
+$sql = "SELECT id, username, password, email_verified FROM users WHERE username = '$username'";
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {
@@ -41,19 +42,19 @@ if (mysqli_num_rows($result) !== 1) {
     exit();
 }
 
+
+
+
 $user = mysqli_fetch_assoc($result);
 
-// Jelszó ellenőrzése
-/*if ($user['password'] !== $password) {
-    http_response_code(401);
-    echo json_encode(['success' => false, 'error' => 'Hibás felhasználónév vagy jelszó']);
+if($user["email_verified"]==0){
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'Nem verify-oltad az email címedet!']);
     exit();
 }
-    */
-
 // Token generálása
 $token = bin2hex(random_bytes(32));
-$expiry = date('Y-m-d H:i:s', strtotime('+1 hour'));
+$expiry = date('Y-m-d H:i:s', strtotime('+12 hour'));
 
 // Token frissítése az adatbázisban
 $update_sql = "UPDATE users SET token = '$token', token_expiry = '$expiry' WHERE id = " . $user['id'];
@@ -62,6 +63,9 @@ if (!mysqli_query($conn, $update_sql)) {
     echo json_encode(['success' => false, 'error' => 'Token mentési hiba']);
     exit();
 }
+
+
+
 
 // Sikeres válasz
 echo json_encode([
