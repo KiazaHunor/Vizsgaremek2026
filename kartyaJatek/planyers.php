@@ -79,8 +79,7 @@ $playersJson = json_encode($players);
         const playerCard = document.createElement("div");
         playerCard.className = "card";
         playerCard.innerHTML = `
-            <strong>${playerData.name}</strong><br>
-            Team: ${playerData.team}<br>
+            <strong>${playerData.name}</strong><br>          
             Position: ${playerData.position}<br>
             Attack: ${playerData.attack}<br>
             Controll: ${playerData.controll}<br>
@@ -91,8 +90,7 @@ $playersJson = json_encode($players);
         const enemyCard = document.createElement("div");
         enemyCard.className = "card";
         enemyCard.innerHTML = `
-            <strong>${enemyData.name}</strong><br>
-            Team: ${enemyData.team}<br>
+            <strong>${enemyData.name}</strong><br>           
             Position: ${enemyData.position}<br>
             Attack: ${enemyData.attack}<br>
             Controll: ${enemyData.controll}<br>
