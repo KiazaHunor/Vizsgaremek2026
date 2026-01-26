@@ -18,7 +18,7 @@ function login() {
     .then(d => {
         if (d.success && d.token) {
             localStorage.setItem('token', d.token);
-            window.location.href = 'dashboard.html';
+            window.location.href = '../../szep.html';
         } else {
             alert(d.error || 'Hibás adatok');
         }
@@ -33,7 +33,8 @@ function register() {
     const username = document.getElementById('user').value;
     const password = document.getElementById('pass').value;
     const password_conf=document.getElementById("passconf").value;
-    
+    const email=document.getElementById("email").value;
+
     if (!username || !password) {
         alert('Töltsd ki mindkét mezőt!');
         return;
@@ -47,11 +48,15 @@ function register() {
         alert("A jelszók nem egyeznek meg egymással!");
         return;
     }
+    if(!email.includes("@")){
+        alert("Nem jó az email cím!");
+        return;
+    }
     
     fetch(`${API_BASE_URL}/register.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: username, password: password, password_conf:password_conf })
+        body: JSON.stringify({ username: username, password: password, password_conf:password_conf,email:email })
     })
     .then(r => r.json())
     .then(d => {
@@ -60,6 +65,8 @@ function register() {
             document.getElementById('user').value = '';
             document.getElementById('pass').value = '';
             document.getElementById('passconf').value = '';
+            document.getElementById('email').value = '';
+
             window.location.href = 'index.html';
         } else {
             alert(d.error || 'Sikertelen regisztráció');
