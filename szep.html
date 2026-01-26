@@ -7,24 +7,21 @@
   <title>Fizz Liga</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    /* --- Alapok --- */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #101820;
-      /* sötét háttér a kontrasztért */
       color: #f0f0f0;
       margin: 0;
       padding: 0;
     }
 
-    /* --- Header --- */
     header {
       background: linear-gradient(135deg, #1f418a, #203a43, #688616);
       color: white;
       text-align: center;
       padding: 20px 0;
       border-radius: 0 0 15px 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 -5px 15px rgba(190, 11, 11, 0.2);
     }
 
     header h1 {
@@ -39,7 +36,6 @@
       margin-left: 20px;
     }
 
-    /* --- Navbar --- */
     .navbar {
       display: flex;
       justify-content: center;
@@ -60,40 +56,50 @@
     .navbar .navbar-brand:hover {
       color: #06D6A0;
       transform: translateY(-3px) scale(1.1);
-      text-decoration: none;
+      text-decoration: underline;
     }
 
-    /* --- Section játék --- */
     #section-game {
+      background-image: url(gamehat.jpg);
       background-image: url(gamehat.jpg);
       background-size: cover;
       background-position: center;
-      background-color: rgba(44, 119, 68, 0.5);
       background-blend-mode: multiply;
+      background-color: #1c1c1ca6;
       border-radius: 15px;
       padding: 50px 20px;
       margin: 20px 0;
       text-align: center;
       color: #f0f0f0;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 -5px 15px rgba(20, 156, 3, 0.2);
     }
+
+    aside {
+      background-color: #1c1c1c;
+      border-radius: 15px;
+      padding: 50px 20px;
+      margin-bottom: 50px;
+      text-align: center;
+      color: #f0f0f0;
+      box-shadow: 0 -5px 15px rgba(20, 156, 3, 0.2);
+    }
+
 
     #jatekgomb svg {
       transition: transform 0.3s ease;
     }
 
     #jatekgomb svg:hover {
-      transform: scale(1.2) rotate(5deg);
+      transform: scale(1.2) rotate(8deg);
     }
 
-    /* --- Cikkek & Tabella --- */
-    article,
-    aside {
+    article {
       background-color: #1c1c1c;
       border-radius: 10px;
-      padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      padding: 15px;
+      margin-top: 20px;
+      box-shadow: 0 -5px 15px rgba(20, 156, 3, 0.2);
     }
 
     #tabella table {
@@ -108,29 +114,31 @@
       background-color: #1c1c1c;
     }
 
-    /* --- Hírek --- */
     .news-card {
-      background-color: #2c2c2c;
+      color: white;
+      background: linear-gradient(135deg,  #3f5307, #203a43,#1f418a);
       border-radius: 10px;
       transition: all 0.3s ease;
       cursor: pointer;
     }
 
     .news-card:hover {
-      transform: translateY(-5px) scale(1.02);
-      background-color: #3a3a3a;
+      transform: translateY(-5px) scale(1.01);
+      background-color: #ffffff;
+      color: white;
+      box-shadow: 0 -5px 15px rgba(16, 156, 3, 0.308);
     }
 
-    /* --- Footer --- */
     footer {
-      background-color: #203a43;
+      background-color: #203a4377;
       color: #FFD166;
+      font-weight: bold;
       text-align: center;
       font-size: 1.5rem;
       padding: 15px;
       border-radius: 10px;
       margin-top: 20px;
-      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 -5px 15px rgba(20, 156, 3, 0.2);
     }
   </style>
 </head>
@@ -181,8 +189,11 @@
         </article>
       </div>
       <aside class="col-4">
-        <div class="row" id="news-container">FociHírek</div>
+        <h3>Aktuális hírek</h3>
+        <hr>
+        <div class="row" id="news-container"></div>
       </aside>
+
 
     </div>
     <div class="row">

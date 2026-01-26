@@ -61,11 +61,18 @@ if ($password !== $password_conf) {
 }
 
 // Ellenőrzés, hogy létezik-e már username vagy email
-$stmt = $pdo->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
-$stmt->execute([$username, $email]);
+$stmt = $pdo->prepare("SELECT id FROM users WHERE  email = ?");
+$stmt->execute([ $email]);
 if ($stmt->rowCount() > 0) {
     http_response_code(409);
-    echo json_encode(['success' => false, 'error' => 'A felhasználónév vagy email már foglalt']);
+    echo json_encode(['success' => false, 'error' => 'Ezzel az email címmel már regisztráltál!']);
+    exit();
+}
+$stmt = $pdo->prepare("SELECT id FROM users WHERE  username = ?");
+$stmt->execute([$username]);
+if ($stmt->rowCount() > 0) {
+    http_response_code(409);
+    echo json_encode(['success' => false, 'error' => 'Ez a felhasznalónév foglalt!']);
     exit();
 }
 
@@ -95,7 +102,7 @@ try {
     $mail->addAddress($email, $username);
     $mail->isHTML(true);
     
-    $verify_link = "http://localhost/verify_email.php?token=$email_token";
+    $verify_link = "http://localhost/oliverhtdoc/Vizsgaremek2026/bejelentkezo/backend/api/verify_email.php?token=$email_token";
     $mail->Subject = "Email megerősítés";
     $mail->Body    = "Szia $username!<br><br>Kattints a linkre a fiókod aktiválásához:<br>
                       <a href='$verify_link'>$verify_link</a><br><br>Köszönjük!";
