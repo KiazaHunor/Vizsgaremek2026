@@ -1,7 +1,7 @@
 <?php
 // Adatbázis beállítások
 $host = 'localhost';
-$db   = 'fizzliga_db';
+$db   = 'fizzliga_dbproba';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';

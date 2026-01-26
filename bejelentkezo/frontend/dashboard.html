@@ -20,6 +20,7 @@
                     <span class="visually-hidden">Betöltés...</span>
                 </div>
                 <p>Adatok betöltése...</p>
+                <button onclick="atlep()">Átlépés a főoldara</button>
             </div>
         </div>
     </div>
@@ -53,6 +54,7 @@
                             <p><strong>Regisztráció dátuma:</strong> ${d.user.formatted_date}</p>
                             <p>${d.message}</p>
                             <p><small>Token érvényes: ${d.timestamp}</small></p>
+                            
                         </div>
                     </div>
                 `;
@@ -66,6 +68,10 @@
         function logout() {
             localStorage.removeItem('token');
             window.location.href = 'index.html';
+        }
+
+        function atlep(){
+            window.location.href="../../szep.html";
         }
     </script>
 </body>
