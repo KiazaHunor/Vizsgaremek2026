@@ -36,6 +36,8 @@ $positionRanges = [
     'Right-Back'  => ['attack'=>[45,55], 'controll'=>[55,65], 'defence'=>[65,75]],
     'Centre-Back' => ['attack'=>[35,45], 'controll'=>[45,55], 'defence'=>[75,90]],
     'Defensive Midfield' => ['attack'=>[40,50], 'controll'=>[60,70], 'defence'=>[65,80]],
+    'Right Midfield' => ['attack'=>[60,70], 'controll'=>[70,80], 'defence'=>[50,60]],
+    'Left Midfield'  => ['attack'=>[60,70], 'controll'=>[70,80], 'defence'=>[50,60]],
     'Central Midfield' => ['attack'=>[55,65], 'controll'=>[75,90], 'defence'=>[55,65]],
     'Attacking Midfield' => ['attack'=>[65,75], 'controll'=>[75,90], 'defence'=>[45,55]],
     'Left Winger'   => ['attack'=>[70,85], 'controll'=>[75,85], 'defence'=>[35,45]],

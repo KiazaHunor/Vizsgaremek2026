@@ -34,74 +34,233 @@ $playersJson = json_encode($players);
     <meta charset="UTF-8">
     <title>Kártyajáték</title>
     <style>
-        body { margin: 0; padding: 0; }
-        .deck { border: 1px solid black; width: 120px; height: 180px; position: fixed; top: 50%; transform: translateY(-50%); text-align: center; line-height: 180px; cursor: pointer; }
-        #player-deck { left: 20px; }
-        #enemy-deck { right: 20px; cursor: default; }
-        .table { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; text-align: center; }
-        .hand { display: flex; justify-content: center; margin: 20px 0; }
-        .card { border: 1px solid black; padding: 10px; margin: 5px; width: 120px; height: 180px; text-align: center; line-height: 1.2; font-size: 14px; display: flex; flex-direction: column; justify-content: center; }
+                body {
+                    margin: 0;
+                    padding: 0;
+                    background: #f5f5f5;
+                    font-family: Arial, sans-serif;
+                }
+
+                .game-area {
+                    position: relative;
+                    width: 100vw;
+                    height: 100vh;
+                }
+
+                /* Paklik */
+                .deck {
+                    width: 140px;
+                    height: 200px;
+                    border: 3px solid black;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    background: white;
+                }
+
+                .player-deck {
+                    position: absolute;
+                    left: 40px;
+                    bottom: 40px;
+                    cursor: pointer;
+                }
+
+                .enemy-deck {
+                    position: absolute;
+                    right: 40px;
+                    top: 40px;
+                }
+
+                /* Kezek */
+                .hand {
+                    display: flex;
+                    gap: 15px;
+                    justify-content: center;
+                }
+
+                .enemy-hand {
+                    position: absolute;
+                    top: 80px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+
+                .player-hand {
+                    position: absolute;
+                    bottom: 80px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+
+                /* Kártyák */
+                .card {
+                    width: 120px;
+                    height: 180px;
+                    border: 3px solid black;
+                    background: white;
+                    padding: 8px;
+                    box-sizing: border-box;
+                    font-size: 14px;
+                    text-align: center;
+                }
+
+                .card.back 
+                {
+                    background: #ddd;
+                }
+                .card.selected 
+                {
+                    border: 3px solid red;
+                    box-shadow: 0 0 10px red;
+                    transform: scale(1.05);
+                }
+                .stat-buttons
+                {
+                    position: absolute;
+                    bottom: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    gap: 15px;
+                }
+                .stat-buttons button 
+                {
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    cursor: pointer;
+                }
+
+                .stat-buttons button.selected 
+                {
+                    background: black;
+                    color: white;
+                }
     </style>
 </head>
 <body>
 
-<!-- Ellenfél pakli -->
-<div id="enemy-deck" class="deck">Ellenfél pakli</div>
+<div class="game-area">
 
-<!-- Játékos pakli -->
-<div id="player-deck" class="deck">Játékos pakli</div>
+    <!-- Ellenfél pakli -->
+    <div class="deck enemy-deck">Ellenfél Pakli</div>
 
-<!-- Középső terület -->
-<div class="table">
-    <div id="enemy-hand" class="hand"></div>
-    <hr>
-    <div id="player-hand" class="hand"></div>
+    <!-- Ellenfél lapjai -->
+    <div class="hand enemy-hand" id="enemy-hand"></div>
+
+    <!-- Játékos lapjai -->
+    <div class="hand player-hand" id="player-hand"></div>
+    <div class="stat-buttons">
+        <button data-stat="attack">Attack</button>
+        <button data-stat="controll">Controll</button>
+        <button data-stat="defence">Defence</button>
+    </div>
+
+
+    <!-- Játékos pakli -->
+    <div class="deck player-deck" id="player-deck">Játékos Pakli</div>
+
 </div>
 
 <script>
+    const players = <?php echo $playersJson; ?>;
+</script>
+
+
+
+
+
+
+
+<script>
+    let selectedCardIndex = null;
+    let selectedStat = null;
     const playerDeck = document.getElementById("player-deck");
     const playerHand = document.getElementById("player-hand");
     const enemyHand = document.getElementById("enemy-hand");
 
-    // Adatbázisból jövő játékosok
-    const players = <?php echo $playersJson; ?>;
+    let playerCards = [];
+    let enemyCards = [];
 
     playerDeck.addEventListener("click", dealCards);
 
-    function dealCards() {
-    playerHand.innerHTML = "";
-    enemyHand.innerHTML = "";
-
-    for (let i = 0; i < 5; i++) {
-        const playerData = players[Math.floor(Math.random() * players.length)];
-        const enemyData  = players[Math.floor(Math.random() * players.length)];
-
-        const playerCard = document.createElement("div");
-        playerCard.className = "card";
-        playerCard.innerHTML = `
-            <strong>${playerData.name}</strong><br>          
-            Position: ${playerData.position}<br>
-            Attack: ${playerData.attack}<br>
-            Controll: ${playerData.controll}<br>
-            Defence: ${playerData.defence}
-        `;
-        playerHand.appendChild(playerCard);
-
-        const enemyCard = document.createElement("div");
-        enemyCard.className = "card";
-        enemyCard.innerHTML = `
-            <strong>${enemyData.name}</strong><br>           
-            Position: ${enemyData.position}<br>
-            Attack: ${enemyData.attack}<br>
-            Controll: ${enemyData.controll}<br>
-            Defence: ${enemyData.defence}
-        `;
-        enemyHand.appendChild(enemyCard);
+    function shuffle(array) {
+        return [...array].sort(() => Math.random() - 0.5);
     }
-}
 
-   
+    function dealCards() {
+        playerHand.innerHTML = "";
+        enemyHand.innerHTML = "";
+
+        const shuffled = shuffle(players);
+
+        playerCards = shuffled.slice(0, 5);
+        enemyCards = shuffled.slice(5, 10);
+
+        renderHands();
+    }
+
+    function renderHands() {
+
+        // Ellenfél lapjai (hátoldal)
+        enemyCards.forEach(() => {
+            const card = document.createElement("div");
+            card.className = "card back";
+            enemyHand.appendChild(card);
+        });
+
+        // Játékos lapjai
+        playerCards.forEach((player, index) => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+                <strong>${player.name}</strong><br><br>
+                ATK: ${player.attack}<br>
+                CTRL: ${player.controll}<br>
+                DEF: ${player.defence}
+            `;
+        card.addEventListener("click", () => {
+            selectCard(index);
+    });
+        playerHand.appendChild(card);
+    });
+    }
+    function selectCard(index) 
+    {
+        // Régi kijelölés törlése
+        const allCards = document.querySelectorAll(".player-hand .card");
+        allCards.forEach(card => card.classList.remove("selected"));
+
+        // Új kijelölés
+        selectedCardIndex = index;
+        allCards[index].classList.add("selected");
+
+        console.log("Kiválasztott lap:", playerCards[index]);
+    }
+    document.querySelectorAll(".stat-buttons button").forEach(button => {
+    button.addEventListener("click", () => {
+
+        if (selectedCardIndex === null) {
+            alert("Előbb válassz ki egy kártyát!");
+            return;
+        }
+
+        selectedStat = button.dataset.stat;
+
+        // vizuális kijelölés
+        document.querySelectorAll(".stat-buttons button")
+            .forEach(btn => btn.classList.remove("selected"));
+
+        button.classList.add("selected");
+
+        console.log("Kiválasztott stat:", selectedStat);
+        console.log("Érték:", playerCards[selectedCardIndex][selectedStat]);
+    });
+});
+
+
 </script>
+
 
 </body>
 </html>
