@@ -116,7 +116,7 @@
 
     .news-card {
       color: white;
-      background: linear-gradient(135deg,  #3f5307, #203a43,#1f418a);
+      background: linear-gradient(135deg, #3f5307, #203a43, #052261);
       border-radius: 10px;
       transition: all 0.3s ease;
       cursor: pointer;
@@ -150,23 +150,82 @@
         <h1 class="text-center p-3"><b>Fizz Liga</b>
           <img id="logo" src="Fizz_Liga_NBI.png" alt="Fizz Liga">
         </h1>
-        <nav class="navbar navbar-dark">
-          <div class="col-4 p-2">
-            <div class="navbar-brand" href=""></div>
-          </div>
-          <div class="col-2">
-            <a class="navbar-brand" href="#" id="mutattab">Tabella</a>
-          </div>
-          <div class="col-2">
-            <a class="navbar-brand" href="#">Kapcsolat</a>
-          </div>
-          <div class="col-2">
-            <a class="navbar-brand" href="#">Névjegy</a>
-          </div>
-          <div class="col-2">
-            <a id="bejel" class="navbar-brand" href="bejelentkezo/frontend/index.html">Bejelenkezés</a>
+        <nav class="navbar navbar-expand-lg navbar-dark mt-2"
+          style="background-color: rgba(0,0,0,0.25); border-radius: 12px;">
+          <div class="container-fluid justify-content-center">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#fizzNav">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="fizzNav">
+              <ul class="navbar-nav text-center">
+                <!-- MECCSEK -->
+                <li class="nav-item dropdown mx-2">
+                  <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">
+                    Meccsek
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-center">
+                    <li><a class="dropdown-item" href="#">📅 Következő forduló</a></li>
+                    <li><a class="dropdown-item" href="#">📊 Eredmények</a></li>
+                  </ul>
+                </li>
+
+                <!-- JÁTÉK -->
+                <li class="nav-item dropdown mx-2">
+                  <a class="nav-link dropdown-toggle fw-bold text-success" href="#" role="button"
+                    data-bs-toggle="dropdown">
+                    Játék
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-center">
+                    <li><a class="dropdown-item" href="#">🎯 Kvíz</a></li>
+                    <li><a class="dropdown-item" href="game.html">🎮 Draft</a></li>
+                    <li><a class="dropdown-item" href="#">🃏 Kártya játék</a></li>
+                  </ul>
+                </li>
+
+                <!-- STATISZTIKA -->
+                <li class="nav-item dropdown mx-2">
+                  <a class="nav-link dropdown-toggle fw-bold text-info" href="#" role="button"
+                    data-bs-toggle="dropdown">
+                    Statisztika
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-center">
+                    <li><a class="dropdown-item" href="#">⭐ Tabella</a></li>
+                    <li><a class="dropdown-item" href="#">📈 Gól lövő lista</a></li>
+                    <li><a class="dropdown-item" href="#">🧮 A te statisztikáid</a></li>
+                    
+                  </ul>
+                </li>
+
+                <!-- HÍREK -->
+                <li class="nav-item mx-2">
+                  <a class="nav-link fw-bold" href="#">Hírek</a>
+                </li>
+
+                <!-- KÖZÖSSÉG -->
+                <li class="nav-item dropdown mx-2">
+                  <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">
+                    Névjegy
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-center">
+                    <li><a class="dropdown-item" href="rolunk.html">💬 Rólunk</a></li>
+                    <li><a class="dropdown-item" href="kapcsolat.html">☎️ Kapcsolat</a></li>
+                  </ul>
+                </li>
+
+                <!-- PROFIL -->
+                <li class="nav-item mx-2">
+                  <a id="bejel" class="nav-link fw-bold text-warning" href="bejelentkezo/frontend/index.html">
+                    👤 Profil / Bejelentkezés
+                  </a>
+                </li>
+
+              </ul>
+            </div>
           </div>
         </nav>
+
       </header>
     </div>
     <div class="row">
@@ -305,6 +364,8 @@
     loadTabella();
     setInterval(loadTabella, 60000);
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

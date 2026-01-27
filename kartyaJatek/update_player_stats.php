@@ -32,15 +32,15 @@ $players = $pdo->query("SELECT id, position FROM players")->fetchAll();
 // 3. Pozícióhoz tartozó értéktartományok
 $positionRanges = [
     'Goalkeeper' => ['attack'=>[5,15], 'controll'=>[15,30], 'defence'=>[75,85]],
-    'Left-back'   => ['attack'=>[45,55], 'controll'=>[55,65], 'defence'=>[65,75]],
-    'Right-back'  => ['attack'=>[45,55], 'controll'=>[55,65], 'defence'=>[65,75]],
-    'Centre-back' => ['attack'=>[35,45], 'controll'=>[45,55], 'defence'=>[75,85]],
-    'Defensive Midfielder' => ['attack'=>[40,50], 'controll'=>[60,70], 'defence'=>[65,75]],
-    'Central Midfielder' => ['attack'=>[50,60], 'controll'=>[70,80], 'defence'=>[55,65]],
-    'Attacking Midfielder' => ['attack'=>[60,70], 'controll'=>[75,85], 'defence'=>[45,55]],
-    'Left-Winger'   => ['attack'=>[70,80], 'controll'=>[65,75], 'defence'=>[35,45]],
-    'Right-Winger'  => ['attack'=>[70,80], 'controll'=>[65,75], 'defence'=>[35,45]],
-    'Midfielder'  => ['attack'=>[55,65], 'controll'=>[75,85], 'defence'=>[45,55]],
+    'Left-Back'   => ['attack'=>[45,55], 'controll'=>[55,65], 'defence'=>[65,75]],
+    'Right-Back'  => ['attack'=>[45,55], 'controll'=>[55,65], 'defence'=>[65,75]],
+    'Centre-Back' => ['attack'=>[35,45], 'controll'=>[45,55], 'defence'=>[75,90]],
+    'Defensive Midfield' => ['attack'=>[40,50], 'controll'=>[60,70], 'defence'=>[65,80]],
+    'Central Midfield' => ['attack'=>[55,65], 'controll'=>[75,90], 'defence'=>[55,65]],
+    'Attacking Midfield' => ['attack'=>[65,75], 'controll'=>[75,90], 'defence'=>[45,55]],
+    'Left Winger'   => ['attack'=>[70,85], 'controll'=>[75,85], 'defence'=>[35,45]],
+    'Right Winger'  => ['attack'=>[70,85], 'controll'=>[75,85], 'defence'=>[35,45]],
+    'Midfielder'  => ['attack'=>[55,65], 'controll'=>[75,90], 'defence'=>[45,55]],
     'Centre-Forward' => ['attack'=>[85,95], 'controll'=>[65,75], 'defence'=>[25,35]],
 ];
 
