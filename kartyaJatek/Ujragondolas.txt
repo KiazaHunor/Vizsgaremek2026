@@ -1,0 +1,9 @@
+Kártyajáték újragondolása
+
+A jelenlegi játékmenet: 
+Paklira katiintva kapjuk a lapokat, utána a kiválasztunk egy lapot,
+majd ennek kiválasztjuk hogy a Attack,Controll vagy Defence statjaival szeretnénk játszani.
+Ezek után az ellenfél is választ egy random lapot és az általunk megadott stattal egyezőt méri össze, és akié a nagyobb az nyer
+
+Új játékmenet:
+

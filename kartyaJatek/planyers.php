@@ -136,11 +136,56 @@ $playersJson = json_encode($players);
                     background: black;
                     color: white;
                 }
+                #play-round 
+                {
+                    position: absolute;
+                    bottom: 70px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    padding: 12px 30px;
+                    font-size: 18px;
+                    cursor: pointer;
+                }
+                .battle-area 
+                {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    display: flex;
+                    gap: 80px;  
+                }
+
+                #player-battle .card,
+                #enemy-battle .card 
+                {
+                    width: 140px;
+                    height: 200px;
+                    border: 4px solid black;
+                }
+                .scoreboard 
+                {
+                    position: absolute;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    gap: 40px;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+
+
     </style>
 </head>
 <body>
 
 <div class="game-area">
+    <div class="scoreboard">
+        <div>Játékos: <span id="player-score">0</span></div>
+        <div>Ellenfél: <span id="enemy-score">0</span></div>
+    </div>
 
     <!-- Ellenfél pakli -->
     <div class="deck enemy-deck">Ellenfél Pakli</div>
@@ -148,13 +193,20 @@ $playersJson = json_encode($players);
     <!-- Ellenfél lapjai -->
     <div class="hand enemy-hand" id="enemy-hand"></div>
 
+    <div class="battle-area">
+        <div id="player-battle"></div>
+        <div id="enemy-battle"></div>
+    </div>
+
     <!-- Játékos lapjai -->
     <div class="hand player-hand" id="player-hand"></div>
     <div class="stat-buttons">
         <button data-stat="attack">Attack</button>
         <button data-stat="controll">Controll</button>
-        <button data-stat="defence">Defence</button>
+        <button data-stat="defence">Defence</button>        
     </div>
+    <button id="play-round">Kör lejátszása</button>
+
 
 
     <!-- Játékos pakli -->
@@ -173,6 +225,8 @@ $playersJson = json_encode($players);
 
 
 <script>
+    let playerScore = 0;
+    let enemyScore = 0;
     let selectedCardIndex = null;
     let selectedStat = null;
     const playerDeck = document.getElementById("player-deck");
@@ -201,6 +255,8 @@ $playersJson = json_encode($players);
     }
 
     function renderHands() {
+        playerHand.innerHTML = "";
+        enemyHand.innerHTML = "";
 
         // Ellenfél lapjai (hátoldal)
         enemyCards.forEach(() => {
@@ -255,8 +311,96 @@ $playersJson = json_encode($players);
 
         console.log("Kiválasztott stat:", selectedStat);
         console.log("Érték:", playerCards[selectedCardIndex][selectedStat]);
+        });
     });
-});
+
+
+    document.getElementById("play-round").addEventListener("click", playRound);
+
+    function playRound() 
+    {
+        if (selectedCardIndex === null || !selectedStat) 
+        {
+            alert("Válassz kártyát és statot!");
+            return;
+        }
+
+        const enemyIndex = Math.floor(Math.random() * enemyCards.length);
+
+        const playerCard = playerCards[selectedCardIndex];
+        const enemyCard = enemyCards[enemyIndex];
+
+        const playerValue = playerCard[selectedStat];
+        const enemyValue = enemyCard[selectedStat];
+
+        showBattleCards(playerCard, enemyCard, selectedStat);
+
+        let result = "";
+        if (playerValue > enemyValue) result = "Győztél!";
+        else if (playerValue < enemyValue) result = "Vesztettél!";
+        else result = "Döntetlen!";
+
+        setTimeout(() => 
+        {
+            if (playerValue > enemyValue) {
+                playerScore++;
+                document.getElementById("player-score").textContent = playerScore;
+            } else if (playerValue < enemyValue) {
+                enemyScore++;
+                document.getElementById("enemy-score").textContent = enemyScore;
+            }
+
+            alert(result);
+
+            playerCards.splice(selectedCardIndex, 1);
+            enemyCards.splice(enemyIndex, 1);
+
+            selectedCardIndex = null;
+            selectedStat = null;
+
+            document.querySelectorAll(".stat-buttons button")
+                .forEach(btn => btn.classList.remove("selected"));
+
+            document.getElementById("player-battle").innerHTML = "";
+            document.getElementById("enemy-battle").innerHTML = "";
+
+            renderHands();
+
+            if (playerCards.length === 0) {
+                endGame();
+            }
+
+        }, 800);
+}
+
+
+    function showBattleCards(playerCard, enemyCard, stat) 
+    {
+        const playerBattle = document.getElementById("player-battle");
+        const enemyBattle = document.getElementById("enemy-battle");
+
+        playerBattle.innerHTML = "";
+        enemyBattle.innerHTML = "";
+
+        const pCard = document.createElement("div");
+        pCard.className = "card";
+        pCard.innerHTML = `
+            <strong>${playerCard.name}</strong><br><br>
+            ${stat.toUpperCase()}: ${playerCard[stat]}
+        `;
+
+        const eCard = document.createElement("div");
+        eCard.className = "card";
+        eCard.innerHTML = `
+            <strong>${enemyCard.name}</strong><br><br>
+            ${stat.toUpperCase()}: ${enemyCard[stat]}
+        `;
+
+        playerBattle.appendChild(pCard);
+        enemyBattle.appendChild(eCard);
+    }
+
+
 
 
 </script>
