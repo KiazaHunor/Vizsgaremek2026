@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$db   = 'fizzliga_db';
+$db   = 'fizzliga_database';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
