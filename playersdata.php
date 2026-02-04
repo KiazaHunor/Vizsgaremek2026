@@ -1,7 +1,7 @@
 <?php
 // Adatbázis beállítások
 $host = 'localhost';
-$db   = 'fizzliga_dbproba';
+$db   = 'fizzliga_db';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
@@ -90,25 +90,55 @@ function scrapeTeamPlayers($url, $teamName) {
 
 // Feldolgozás és adatbázisba mentés
 foreach ($teams as $teamName => $url) {
-    echo "Lekérdezés: $teamName...\n";
+
+    echo "Lekérdezés: $teamName\n";
+
     $players = scrapeTeamPlayers($url, $teamName);
 
     foreach ($players as $p) {
+
+        // TEAM
         $stmt = $pdo->prepare("
-    INSERT INTO players (team, name, position, nationality)
-    VALUES (?, ?, ?, ?)
-    ON DUPLICATE KEY UPDATE
-        position = VALUES(position),
-        nationality = VALUES(nationality)
-");
+            INSERT INTO teams (name)
+            VALUES (?)
+            ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)
+        ");
+        $stmt->execute([$p['team']]);
+        $teamId = $pdo->lastInsertId();
 
-$stmt->execute([
-    $p['team'],
-    $p['name'],
-    $p['position'],
-    $p['nationality']
-]);
+        // NATIONALITY
+        if (!$p['nationality']) continue;
 
+        $stmt = $pdo->prepare("
+            INSERT INTO nationalities (name)
+            VALUES (?)
+            ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)
+        ");
+        $stmt->execute([$p['nationality']]);
+        $natId = $pdo->lastInsertId();
+
+        // POSITION
+        if (!$p['position']) continue;
+
+        $stmt = $pdo->prepare("
+            INSERT INTO positions (name)
+            VALUES (?)
+            ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)
+        ");
+        $stmt->execute([$p['position']]);
+        $posId = $pdo->lastInsertId();
+
+        // PLAYER
+        $stmt = $pdo->prepare("
+            INSERT INTO players (name, team_id, nationality_id, position_id)
+            VALUES (?, ?, ?, ?)
+        ");
+        $stmt->execute([
+            $p['name'],
+            $teamId,
+            $natId,
+            $posId
+        ]);
     }
 
     echo "Hozzáadva: " . count($players) . " játékos a $teamName csapatból.\n";
