@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";  
-$dbname = "fizzliga_dbproba";
+$dbname = "fizzliga_db";
 
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
