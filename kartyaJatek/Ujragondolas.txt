@@ -7,3 +7,11 @@ Ezek után az ellenfél is választ egy random lapot és az általunk megadott s
 
 Új játékmenet:
 
+Új játékmenet átalakítva:Előszőr a játékos megkapja a paklira kattintva a lapjait és a gép is, a gépi úgyan úgy lefordítva mint eddig.
+A játék azzal fog kezdődni hogy "random" eldől a a játékos és az ellenfel(gép) között hogy ki fog kezdeni.
+A kezdés azt jelenti hogy ki fogja kihívni a másikat. Értsd ha a játékos kezd, kihívhatja az ellenfelét 3 opció szerint: Attack,Controll,Defence
+Ez a 3 opció ahogy eddig is volt a 3 gomb lesz ami már létezik. Szóval ha én kezdek és kihívom az ellenfelem Attackra azután kell kiválasztanom a kártyámat. Itt változik a játékmenet.
+Illetve amikor en nyerek, akkor a következő kör elején is én hívom ki, de ha az ellenfél nyer akkor a kövtkező körben Ő hív ki engem,
+ő választja ki hogy a 3 opció körül mire hív ki. Így lesz izgalmasabb a játék.
+Illetve a gépi játékosnak is okosabbnak kell lennie, ha én hívom ki pl:Defence-re akkor a saját lapjai közül olyat válasszon, aminek magas a defence-értéke
+ugyan így a másik két opcióval is.

@@ -33,151 +33,7 @@ $playersJson = json_encode($players);
 <head>
     <meta charset="UTF-8">
     <title>Kártyajáték</title>
-    <style>
-                body {
-                    margin: 0;
-                    padding: 0;
-                    background: #f5f5f5;
-                    font-family: Arial, sans-serif;
-                }
-
-                .game-area {
-                    position: relative;
-                    width: 100vw;
-                    height: 100vh;
-                }
-
-                /* Paklik */
-                .deck {
-                    width: 140px;
-                    height: 200px;
-                    border: 3px solid black;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-weight: bold;
-                    background: white;
-                }
-
-                .player-deck {
-                    position: absolute;
-                    left: 40px;
-                    bottom: 40px;
-                    cursor: pointer;
-                }
-
-                .enemy-deck {
-                    position: absolute;
-                    right: 40px;
-                    top: 40px;
-                }
-
-                /* Kezek */
-                .hand {
-                    display: flex;
-                    gap: 15px;
-                    justify-content: center;
-                }
-
-                .enemy-hand {
-                    position: absolute;
-                    top: 80px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                }
-
-                .player-hand {
-                    position: absolute;
-                    bottom: 80px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                }
-
-                /* Kártyák */
-                .card {
-                    width: 120px;
-                    height: 180px;
-                    border: 3px solid black;
-                    background: white;
-                    padding: 8px;
-                    box-sizing: border-box;
-                    font-size: 14px;
-                    text-align: center;
-                }
-
-                .card.back 
-                {
-                    background: #ddd;
-                }
-                .card.selected 
-                {
-                    border: 3px solid red;
-                    box-shadow: 0 0 10px red;
-                    transform: scale(1.05);
-                }
-                .stat-buttons
-                {
-                    position: absolute;
-                    bottom: 20px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    display: flex;
-                    gap: 15px;
-                }
-                .stat-buttons button 
-                {
-                    padding: 10px 20px;
-                    font-size: 16px;
-                    cursor: pointer;
-                }
-
-                .stat-buttons button.selected 
-                {
-                    background: black;
-                    color: white;
-                }
-                #play-round 
-                {
-                    position: absolute;
-                    bottom: 70px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    padding: 12px 30px;
-                    font-size: 18px;
-                    cursor: pointer;
-                }
-                .battle-area 
-                {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    display: flex;
-                    gap: 80px;  
-                }
-
-                #player-battle .card,
-                #enemy-battle .card 
-                {
-                    width: 140px;
-                    height: 200px;
-                    border: 4px solid black;
-                }
-                .scoreboard 
-                {
-                    position: absolute;
-                    top: 20px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    display: flex;
-                    gap: 40px;
-                    font-size: 20px;
-                    font-weight: bold;
-                }
-
-
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -225,6 +81,8 @@ $playersJson = json_encode($players);
 
 
 <script>
+    let currentChallenger = null; // "player" | "enemy"
+    let phase = "waiting";       // waiting | chooseStat | chooseCard | battle
     let playerScore = 0;
     let enemyScore = 0;
     let selectedCardIndex = null;
@@ -252,6 +110,18 @@ $playersJson = json_encode($players);
         enemyCards = shuffled.slice(5, 10);
 
         renderHands();
+        currentChallenger = Math.random() < 0.5 ? "player" : "enemy";
+        phase = "chooseStat";
+
+        if (currentChallenger === "player") 
+        {
+            alert("Te kezdesz! Válassz egy statot!");
+        } 
+        else 
+        {
+            alert("Az ellenfél kezd! Várd meg a kihívást!");
+            enemyChooseStat();
+        }
     }
 
     function renderHands() {
@@ -283,6 +153,22 @@ $playersJson = json_encode($players);
     }
     function selectCard(index) 
     {
+            function selectCard(index) 
+            {
+                if (phase !== "chooseCard") 
+                    {
+                        alert("Előbb statot kell választani!");
+                        return;
+                    }
+
+                const allCards = document.querySelectorAll(".player-hand .card");
+                allCards.forEach(card => card.classList.remove("selected"));
+                selectedCardIndex = index;
+                allCards[index].classList.add("selected");
+
+                alert("Kártya kiválasztva. Kör lejátszható!");
+            }
+
         // Régi kijelölés törlése
         const allCards = document.querySelectorAll(".player-hand .card");
         allCards.forEach(card => card.classList.remove("selected"));
@@ -296,29 +182,50 @@ $playersJson = json_encode($players);
     document.querySelectorAll(".stat-buttons button").forEach(button => {
     button.addEventListener("click", () => {
 
-        if (selectedCardIndex === null) {
-            alert("Előbb válassz ki egy kártyát!");
+        if (phase !== "chooseStat") return;
+
+        if (currentChallenger !== "player") {
+            alert("Most nem te hívsz ki!");
             return;
         }
 
         selectedStat = button.dataset.stat;
 
-        // vizuális kijelölés
         document.querySelectorAll(".stat-buttons button")
             .forEach(btn => btn.classList.remove("selected"));
 
         button.classList.add("selected");
 
-        console.log("Kiválasztott stat:", selectedStat);
-        console.log("Érték:", playerCards[selectedCardIndex][selectedStat]);
+        phase = "chooseCard";
+
+        alert("Stat kiválasztva: " + selectedStat + ". Most válassz kártyát!");
         });
     });
+
 
 
     document.getElementById("play-round").addEventListener("click", playRound);
 
     function playRound() 
     {
+        function playRound() 
+        {
+            if (phase !== "chooseCard") 
+                {
+                    alert("Még nem tartunk ott!");
+                    return;
+                }
+            if (selectedCardIndex === null || !selectedStat) 
+                {
+                    alert("Hiányzik a stat vagy a kártya!");
+                    return;
+                }
+            phase = "battle";
+
+    // IDE JÖN KÉSŐBB A HARCI LOGIKA
+        }
+
+
         if (selectedCardIndex === null || !selectedStat) 
         {
             alert("Válassz kártyát és statot!");
@@ -400,6 +307,14 @@ $playersJson = json_encode($players);
         enemyBattle.appendChild(eCard);
     }
 
+    function enemyChooseStat() 
+    {
+        const stats = ["attack", "controll", "defence"];
+        selectedStat = stats[Math.floor(Math.random() * stats.length)];
+
+        alert("Ellenfél kihívott erre: " + selectedStat.toUpperCase());
+        phase = "chooseCard";
+    }
 
 
 
