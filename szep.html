@@ -7,140 +7,153 @@
   <title>Fizz Liga</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #101820;
-      color: #f0f0f0;
-      margin: 0;
-      padding: 0;
+    :root {
+      --bg-main: #0b0f14;
+      --bg-card: #121821;
+      --bg-soft: #0f141c;
+      --accent: #00ff9d;
+      --accent2: #00b3ff;
+      --text-main: #e6edf3;
+      --text-muted: #9aa7b2;
     }
 
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #0f1722, #0b0f14 70%);
+      color: var(--text-main);
+    }
+
+    /* ===== HEADER ===== */
     header {
-      background: linear-gradient(135deg, #1f418a, #203a43, #688616);
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-      border-radius: 0 0 15px 15px;
-      box-shadow: 0 -5px 15px rgba(190, 11, 11, 0.2);
+      background: linear-gradient(135deg, #0f2027, #203a43, #0f2027);
+      border-bottom: 2px solid var(--accent);
+      box-shadow: 0 0 25px rgba(0, 255, 157, 0.15);
     }
 
     header h1 {
-      font-size: 3rem;
-      margin: 0;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
     #logo {
-      height: 60px;
-      width: 225px;
-      vertical-align: middle;
-      margin-left: 20px;
+      height: 55px;
+      margin-left: 15px;
     }
 
+    /* ===== NAVBAR ===== */
     .navbar {
-      display: flex;
-      justify-content: center;
-      background-color: rgba(0, 0, 0, 0.2);
-      padding: 10px 0;
-      border-radius: 10px;
-      margin-top: 10px;
+      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.35) !important;
+      border-radius: 14px;
     }
 
-    .navbar .navbar-brand {
-      color: #FFD166;
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin: 0 15px;
-      transition: all 0.3s ease;
+    .nav-link {
+      color: var(--text-main) !important;
+      transition: all 0.25s ease;
     }
 
-    .navbar .navbar-brand:hover {
-      color: #06D6A0;
-      transform: translateY(-3px) scale(1.1);
-      text-decoration: underline;
+    .nav-link:hover {
+      color: var(--accent) !important;
+      transform: translateY(-2px);
     }
 
+    .dropdown-menu {
+      background-color: var(--bg-card);
+      border: 1px solid #1f2a36;
+    }
+
+    /* ===== HERO GAME SECTION ===== */
     #section-game {
-      background-image: url(gamehat.jpg);
-      background-image: url(gamehat.jpg);
+      background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(gamehat.jpg);
       background-size: cover;
       background-position: center;
-      background-blend-mode: multiply;
-      background-color: #1c1c1ca6;
-      border-radius: 15px;
-      padding: 50px 20px;
-      margin: 20px 0;
-      text-align: center;
-      color: #f0f0f0;
-      box-shadow: 0 -5px 15px rgba(20, 156, 3, 0.2);
+      border-radius: 18px;
+      padding: 60px 20px;
+      box-shadow: 0 0 30px rgba(0, 255, 157, 0.15);
     }
 
-    aside {
-      background-color: #1c1c1c;
-      border-radius: 15px;
-      padding: 50px 20px;
-      margin-bottom: 50px;
-      text-align: center;
-      color: #f0f0f0;
-      box-shadow: 0 -5px 15px rgba(20, 156, 3, 0.2);
+    #section-game h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
     }
-
 
     #jatekgomb svg {
-      transition: transform 0.3s ease;
+      color: var(--accent);
+      filter: drop-shadow(0 0 10px var(--accent));
+      transition: all 0.3s ease;
     }
 
     #jatekgomb svg:hover {
-      transform: scale(1.2) rotate(8deg);
+      transform: scale(1.2) rotate(5deg);
+      color: var(--accent2);
     }
 
-    article {
-      background-color: #1c1c1c;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      padding: 15px;
-      margin-top: 20px;
-      box-shadow: 0 -5px 15px rgba(20, 156, 3, 0.2);
+    /* ===== CONTENT CARDS ===== */
+    article,
+    aside {
+      background: rgba(18, 24, 33, 0.85);
+      border-radius: 16px;
+      padding: 25px;
+      backdrop-filter: blur(10px);
+      border: 1px solid #1f2a36;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     }
 
-    #tabella table {
-      color: #f0f0f0;
+    h3 {
+      color: var(--accent);
     }
 
-    #tabella th {
-      background-color: #203a43;
+    hr {
+      border-color: #1f2a36;
     }
 
-    #tabella td {
-      background-color: #1c1c1c;
+    /* ===== TABLE ===== */
+    .table {
+      border-radius: 12px;
+      overflow: hidden;
     }
 
+    .table thead {
+      background: #16202c;
+      color: var(--accent);
+    }
+
+    .table-striped>tbody>tr:nth-of-type(odd) {
+      background-color: #111821;
+    }
+
+    /* ===== NEWS CARDS ===== */
     .news-card {
-      color: white;
-      background: linear-gradient(135deg, #3f5307, #203a43, #052261);
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      cursor: pointer;
+      background: linear-gradient(145deg, #141c26, #0e141c);
+      border: 1px solid #1f2a36;
+      border-radius: 14px;
+      transition: all 0.25s ease;
     }
 
     .news-card:hover {
-      transform: translateY(-5px) scale(1.01);
-      background-color: #ffffff;
-      color: white;
-      box-shadow: 0 -5px 15px rgba(16, 156, 3, 0.308);
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
     }
 
+    .card-title {
+      color: var(--accent2);
+    }
+
+    .card-text {
+      color: var(--text-muted);
+    }
+
+    /* ===== FOOTER ===== */
     footer {
-      background-color: #203a4377;
-      color: #FFD166;
-      font-weight: bold;
+      margin-top: 40px;
+      padding: 20px;
       text-align: center;
-      font-size: 1.5rem;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 20px;
-      box-shadow: 0 -5px 15px rgba(20, 156, 3, 0.2);
+      color: var(--text-muted);
+      border-top: 1px solid #1f2a36;
     }
   </style>
+
 </head>
 
 <body>
@@ -180,7 +193,7 @@
                   <ul class="dropdown-menu dropdown-menu-dark text-center">
                     <li><a class="dropdown-item" href="#">🎯 Kvíz</a></li>
                     <li><a class="dropdown-item" href="game.html">🎮 Draft</a></li>
-                    <li><a class="dropdown-item" href="#">🃏 Kártya játék</a></li>
+                    <li><a class="dropdown-item" href="kartyaJatek/planyers.php">🃏 Kártya játék</a></li>
                   </ul>
                 </li>
 
@@ -194,7 +207,7 @@
                     <li><a class="dropdown-item" href="#">⭐ Tabella</a></li>
                     <li><a class="dropdown-item" href="#">📈 Gól lövő lista</a></li>
                     <li><a class="dropdown-item" href="#">🧮 A te statisztikáid</a></li>
-                    
+
                   </ul>
                 </li>
 
@@ -229,7 +242,7 @@
       </header>
     </div>
     <div class="row">
-      <div class="col-8">
+      <div class="col-lg-8 col-md-8 col-12">
         <section id="section-game">
           <h3>Fizz Liga Draft Játék</h3>
           <div id="jatekgomb">
@@ -244,10 +257,11 @@
 
         <article>
           <h3>Fizz Liga Tabella</h3>
+          <hr>
           <div id="tabella">Betöltés...</div>
         </article>
       </div>
-      <aside class="col-4">
+      <aside class="col-4 col-md-4 col-12">
         <h3>Aktuális hírek</h3>
         <hr>
         <div class="row" id="news-container"></div>
@@ -268,51 +282,44 @@
 
   <script>
     // ITT A HIREK VANNAK
-    const RSS_URL = "https://www.fociclub.hu/?cat=11&feed=rss2";
-
-    function fetchRSS() {
-
-      fetch("https://corsproxy.io/?" + RSS_URL)
-        .then(response => response.text())
-        .then(text => {
-          const parser = new DOMParser();
-          const xml = parser.parseFromString(text, "text/xml");
-          const items = xml.querySelectorAll("item");
+    function loadNews() {
+      fetch("hirek.php")
+        .then(r => r.json())
+        .then(data => {
 
           const newsContainer = document.getElementById("news-container");
           newsContainer.innerHTML = "";
 
-          items.forEach((item, i) => {
-            if (i >= 6) return;
+          if (data.error) {
+            newsContainer.innerHTML =
+              `<div class="alert alert-danger">${data.error}</div>`;
+            return;
+          }
 
-            const title = item.querySelector("title")?.textContent || "Cím nélkül";
-            const link = item.querySelector("link")?.textContent || "#";
-            const description = item.querySelector("description")?.textContent || "";
-
-            const cleanDesc = description.replace(/<[^>]*>/g, '').substring(0, 150) + '...';
-
+          data.forEach(item => {
             const col = document.createElement("div");
             col.className = "col-12 mb-4";
             col.innerHTML = `
-            <div class="card news-card h-100" onclick="window.open('${link}', '_blank')">
-              <div class="card-body">
-                <h5 class="card-title">${title}</h5>
-                <p class="card-text">${cleanDesc}</p>
-              </div>
+          <div class="card news-card h-100" onclick="window.open('${item.link}', '_blank')">
+            <div class="card-body">
+              <h5 class="card-title">${item.title}</h5>
+              <p class="card-text">${item.desc}</p>
             </div>
-          `;
+          </div>
+        `;
             newsContainer.appendChild(col);
           });
+
         })
-        .catch(err => {
-          console.error("RSS hiba:", err);
+        .catch(() => {
           document.getElementById("news-container").innerHTML =
             `<div class="alert alert-danger">Hiba a hírek betöltésénél</div>`;
         });
     }
 
-    fetchRSS();
-    setInterval(fetchRSS, 30000);
+    loadNews();
+    setInterval(loadNews, 60000);
+
     //TABELLA
 
 

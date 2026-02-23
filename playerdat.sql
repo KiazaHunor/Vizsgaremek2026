@@ -9,5 +9,4 @@ CREATE TABLE players (
     name VARCHAR(100) NOT NULL,
     position VARCHAR(50),
     nationality VARCHAR(50),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

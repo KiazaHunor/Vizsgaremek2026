@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Betöltés...</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #101820;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: monospace;
+      font-weight: bold;
+      color: #fff;
+      font-size: 40px;
+      text-align: center;
+    }
+
+    body::before {
+      content: "Loading...";
+      text-shadow:
+        0 0 0 rgb(255,0,0),
+        0 0 0 rgb(0,255,0),
+        0 0 0 rgb(0,0,255);
+      animation: loaderAnim 1s infinite cubic-bezier(0.5,-2000,0.5,2000);
+    }
+
+    @keyframes loaderAnim {
+      25%, 100% {
+        text-shadow:
+          0.03px -0.01px 0.01px rgb(255,0,0),
+          0.02px  0.02px 0     rgb(0,255,0),
+          -0.02px 0.02px 0     rgb(0,0,255);
+      }
+    }
+  </style>
+  <script>
+    setTimeout(() => {
+      window.location.href = "game.html";
+    }, 1000);
+  </script>
+</head>
+<body>
+  <div class="loader"></div>
+</body>
+</html>
+
+
+
