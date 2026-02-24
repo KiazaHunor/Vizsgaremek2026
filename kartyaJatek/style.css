@@ -145,4 +145,105 @@ body {
                     font-size: 20px;
                     font-weight: bold;
                 }
-                
+                .game-message 
+                {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) scale(0.9);
+
+                    background: rgba(0,0,0,0.85);
+                    color: white;
+                    padding: 25px 40px;
+                    border-radius: 15px;
+
+                    font-size: 22px;
+                    font-weight: bold;
+                    text-align: center;
+
+                    opacity: 0;
+                    pointer-events: none;
+                    transition: all 0.4s ease;
+
+                    z-index: 9999;
+                }
+                @keyframes popIn 
+                {
+                    0% { transform: translate(-50%, -50%) scale(0.7); opacity: 0; }
+                    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+                }
+                .game-message.show 
+                {
+                    animation: popIn 2.0s ease;
+                }
+                #battle-area
+                {
+                    position: relative;
+                    height: 320px;
+                    margin: 40px 0;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;    
+                }
+                .battle-card 
+                {
+                    width: 200px;
+                    padding: 15px;
+                    background: white;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                    transition: all 0.6s ease;
+                    opacity: 0;
+                }
+                .player-start 
+                {
+                    transform: translateX(-300px);
+                }
+                .enemy-start 
+                {
+                    transform: translateX(300px);
+                }
+                /* KÖZÉPRE CSÚSZÁS */
+                .battle-active 
+                {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                /* STAT VILLOGÁS */
+                @keyframes flashStat 
+                {
+                    0% { background: #fff; }
+                    50% { background: #ffe066; }
+                    100% { background: #fff; }
+                }
+                .stat-highlight 
+                {
+                    animation: flashStat 0.6s ease 2;
+                }
+                /* GYŐZTES PULZÁL */
+                @keyframes winnerPulse 
+                {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.08); }
+                    100% { transform: scale(1); }
+                }
+                .winner 
+                {
+                    animation: winnerPulse 0.6s ease 3;
+                    border: 3px solid #2ecc71;
+                }
+
+                /* VESZTES REZGÉS */
+                @keyframes loserShake 
+                {
+                    0% { transform: translateX(0); }
+                    25% { transform: translateX(-6px); }
+                    50% { transform: translateX(6px); }
+                    75% { transform: translateX(-6px); }
+                    100% { transform: translateX(0); }
+                }
+                .loser 
+                {
+                    animation: loserShake 0.4s ease 3;
+                    border: 3px solid #e74c3c;
+                }
