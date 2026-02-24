@@ -1,83 +1,128 @@
+:root {
+--bg-main: #0b0f14;
+--bg-card: rgba(18, 24, 33, 0.92);
+--accent: #00ff9d;
+--accent2: #00b3ff;
+--text-main: #e6edf3;
+--text-muted: #9aa7b2;
+}
 
-    body{
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #0f2027, #203a43, #2c7744);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+/* ===== BODY CENTER ===== */
+body {
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+background: radial-gradient(circle at top, #0f1722, #0b0f14 70%);
+font-family: 'Segoe UI', sans-serif;
+color: var(--text-main);
+}
 
-    .card{
-        background: #ffffff;
-        border-radius: 18px;
-        border: none;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-        overflow: hidden;
-        animation: fadeIn 0.6s ease;
-    }
+/* ===== CONTAINER FIX ===== */
+.container {
+display: flex;
+justify-content: center;
+}
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+/* ===== CARD ===== */
+.card {
+width: 100%;
+background: var(--bg-card);
+border-radius: 20px;
+border: 1px solid #1f2a36;
+backdrop-filter: blur(14px);
+box-shadow: 0 0 35px rgba(0,0,0,0.45);
+overflow: hidden;
+position: relative;
+}
 
-    .card-header{
-        background: linear-gradient(135deg, #1db954, #159a45);
-        text-align: center;
-        padding: 20px;
-        border: none;
-    }
+/* glow */
+.card::before {
+content: "";
+position: absolute;
+inset: -2px;
+border-radius: 22px;
+background: linear-gradient(120deg, transparent, rgba(0,255,157,0.25), transparent);
+filter: blur(18px);
+opacity: 0.45;
+z-index: -1;
+}
 
-    .card-header h4{
-        font-weight: 700;
-        letter-spacing: 1px;
-    }
+/* ===== HEADER ===== */
+.card-header {
+background: linear-gradient(135deg,#0f2027,#203a43);
+border-bottom: 1px solid #1f2a36;
+text-align: center;
+}
 
-    .card-body{
-        padding: 30px;
-    }
+.card-header h4 {
+color: var(--accent);
+font-weight: 700;
+letter-spacing: 1px;
+}
 
-    .form-label{
-        font-weight: 600;
-        color: #2c3e50;
-    }
+/* ===== LABEL ===== */
+.form-label {
+color: var(--text-muted);
+}
 
-    .form-control{
-        border-radius: 12px;
-        padding: 12px;
-        border: 1px solid #dcdcdc;
-        transition: all 0.3s;
-    }
+/* ===== INPUT ===== */
+.form-control {
+background: #0f141c;
+border: 1px solid #1f2a36;
+color: var(--text-main);
+border-radius: 12px;
+padding: 10px 14px;
+}
 
-    .form-control:focus{
-        border-color: #1db954;
-        box-shadow: 0 0 0 0.2rem rgba(29,185,84,0.25);
-    }
+.form-control::placeholder {
+color: #6c7a86;
+}
 
-    .btn{
-        background: linear-gradient(135deg, #1db954, #159a45);
-        border: none;
-        border-radius: 14px;
-        padding: 12px;
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: white;
-        transition: all 0.3s;
-    }
+.form-control:focus {
+background: #0f141c;
+border-color: var(--accent);
+box-shadow: 0 0 12px rgba(0,255,157,0.3);
+color: var(--text-main);
+}
 
-    .btn:hover{
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(29,185,84,0.4);
-    }
+/* ===== BUTTON ===== */
+.btn {
+border-radius: 30px;
+padding: 11px;
+font-weight: 600;
+background: var(--accent);
+border: none;
+color: #000;
+transition: 0.25s;
+}
 
-    .card a{
-        color: #1db954;
-        font-weight: 600;
-        text-decoration: none;
-    }
+.btn:hover {
+background: var(--accent2);
+box-shadow: 0 0 18px var(--accent2);
+transform: translateY(-1px);
+}
 
-    .card a:hover{
-        text-decoration: underline;
-    }
+/* ===== LINKS ===== */
+a {
+color: var(--accent);
+font-weight: 600;
+text-decoration: none;
+}
 
+a:hover {
+color: var(--accent2);
+text-decoration: underline;
+}
+
+/* ===== TEXT ALIGN ===== */
+.card-body {
+text-align: left;
+}
+
+.card-body p,
+.card-body a {
+text-align: center;
+display: block;
+margin-top: 10px;
+}
