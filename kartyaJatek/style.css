@@ -1,14 +1,20 @@
 body {
+                    background-image: url("hatter1.png");
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
                     margin: 0;
                     padding: 0;
-                    background: #f5f5f5;
                     font-family: Arial, sans-serif;
+                    
                 }
 
                 .game-area {
                     position: relative;
                     width: 100vw;
                     height: 100vh;
+                    background-image: url("hatter1.png");                   
                 }
 
                 /* Paklik */
@@ -20,7 +26,8 @@ body {
                     align-items: center;
                     justify-content: center;
                     font-weight: bold;
-                    background: white;
+                    background-image: url("hatter1.png");
+                    background-size: cover;
                 }
 
                 .player-deck {
@@ -138,3 +145,4 @@ body {
                     font-size: 20px;
                     font-weight: bold;
                 }
+                

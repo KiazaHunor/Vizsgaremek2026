@@ -26,10 +26,10 @@ $positionRanges = [
     'Centre-Forward'=> ['attack'=>[85,95], 'controll'=>[65,75], 'defence'=>[25,35]],
 ];
 
-// 3. Prepared statement – player_stats tábla
+// 3. Prepared statement – players tábla
 $stmt = $pdo->prepare("
-    INSERT INTO player_stats (player_id, attack, controll, defence)
-    VALUES (?, ?, ?, ?)
+    UPDATE players SET attack = ?, controll = ?, defence = ?
+    WHERE id = ?
 ");
 
 // 4. Generáljuk a statokat
@@ -49,7 +49,7 @@ foreach ($players as $player) {
     }
 
     // INSERT player_stats
-    $stmt->execute([$player['player_id'], $attack, $controll, $defence]);
+    $stmt->execute([$attack,$controll,$defence,$player['player_id']]);
 }
 
 echo "Minden játékoshoz generálva lett a stat rekord az új táblában.\n";
