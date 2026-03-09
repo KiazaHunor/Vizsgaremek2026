@@ -81,11 +81,61 @@ function dealCards() {
     startNextTurn();
 }
 
+function getOverall(card) {
+    const atk = Number(card.attack) || 0;
+    const ctrl = Number(card.controll) || 0;
+    const def = Number(card.defence) || 0;
+    return Math.round((atk + ctrl + def) / 3);
+}
+
+function getPositionLabel(card) {
+    return card.position || "N/A";
+}
+
+function getTeamLabel(card) {
+    return card.team || "Ismeretlen csapat";
+}
+
+function getKitImage(card) {
+    return card.shirt_image || "mezek/default.png";
+}
+
+function createCardHTML(card, selectedStat = null) {
+    return `
+        <div class="card-top">
+            <div class="card-rating">${getOverall(card)}</div>
+            <div class="card-position">${getPositionLabel(card)}</div>
+        </div>
+
+        <div class="card-image">
+            <img src="${getKitImage(card)}" alt="${getTeamLabel(card)} mez">
+        </div>
+
+        <div class="card-name">${card.name ?? "Ismeretlen játékos"}</div>
+        <div class="card-team">${getTeamLabel(card)}</div>
+
+        <div class="card-stats">
+            <div class="stat-box ${selectedStat === "attack" ? "selected-stat" : ""}">
+                <span>ATK</span>
+                <strong class="attack">${Number(card.attack) || 0}</strong>
+            </div>
+            <div class="stat-box ${selectedStat === "controll" ? "selected-stat" : ""}">
+                <span>CTRL</span>
+                <strong class="controll">${Number(card.controll) || 0}</strong>
+            </div>
+            <div class="stat-box ${selectedStat === "defence" ? "selected-stat" : ""}">
+                <span>DEF</span>
+                <strong class="defence">${Number(card.defence) || 0}</strong>
+            </div>
+        </div>
+    `;
+}
+
 function renderHands() {
     playerHand.innerHTML = "";
     enemyHand.innerHTML = "";
 
-    // Ellenfél lapjai (hátoldal)
+    // Ellenfél lapjai - hátoldal
     enemyCards.forEach(() => {
         const card = document.createElement("div");
         card.className = "card back";
@@ -96,12 +146,7 @@ function renderHands() {
     playerCards.forEach((player, index) => {
         const card = document.createElement("div");
         card.className = "card";
-        card.innerHTML = `
-            <strong>${player.name ?? "Ismeretlen játékos"}</strong><br><br>
-            ATK: ${safeStat(player.attack)}<br>
-            CTRL: ${safeStat(player.controll)}<br>
-            DEF: ${safeStat(player.defence)}
-        `;
+        card.innerHTML = createCardHTML(player);
 
         card.addEventListener("click", () => {
             selectCard(index);
@@ -110,7 +155,7 @@ function renderHands() {
         playerHand.appendChild(card);
     });
 
-    // Ha volt kijelölt lap, de újrarender után elveszett volna a border
+    // kijelölt lap visszajelölése újrarender után
     if (selectedCardIndex !== null) {
         const allCards = document.querySelectorAll(".player-hand .card");
         if (allCards[selectedCardIndex]) {
@@ -288,7 +333,6 @@ function showBattleCards(playerCard, enemyCard, selectedStat) {
     const playerDiv = document.getElementById("player-battle");
     const enemyDiv = document.getElementById("enemy-battle");
 
-    // régi inline stílusok törlése
     playerDiv.style.opacity = "";
     enemyDiv.style.opacity = "";
     playerDiv.style.transform = "";
@@ -297,8 +341,8 @@ function showBattleCards(playerCard, enemyCard, selectedStat) {
     playerDiv.className = "battle-card player-start";
     enemyDiv.className = "battle-card enemy-start";
 
-    playerDiv.innerHTML = createBattleCardHTML(playerCard, selectedStat);
-    enemyDiv.innerHTML = createBattleCardHTML(enemyCard, selectedStat);
+    playerDiv.innerHTML = createCardHTML(playerCard, selectedStat);
+    enemyDiv.innerHTML = createCardHTML(enemyCard, selectedStat);
 
     setTimeout(() => {
         playerDiv.classList.add("battle-active");
@@ -306,20 +350,7 @@ function showBattleCards(playerCard, enemyCard, selectedStat) {
     }, 50);
 }
 
-function createBattleCardHTML(card, selectedStat) {
-    return `
-        <h3>${card.name ?? "Ismeretlen játékos"}</h3>
-        <div class="stat ${selectedStat === "attack" ? "selected-stat" : ""}">
-            Attack: <span class="stat-value attack">${safeStat(card.attack)}</span>
-        </div>
-        <div class="stat ${selectedStat === "controll" ? "selected-stat" : ""}">
-            Controll: <span class="stat-value controll">${safeStat(card.controll)}</span>
-        </div>
-        <div class="stat ${selectedStat === "defence" ? "selected-stat" : ""}">
-            Defence: <span class="stat-value defence">${safeStat(card.defence)}</span>
-        </div>
-    `;
-}
+
 
 function updateScoreboard() {
     document.getElementById("player-score").textContent = playerScore;
@@ -380,3 +411,4 @@ function showMessage(text, duration = 4000) {
 function safeStat(value) {
     return value ?? 0;
 }
+
