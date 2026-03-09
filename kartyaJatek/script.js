@@ -1,108 +1,42 @@
 let currentChallenger = null; // "player" | "enemy"
-    let phase = "waiting";       // waiting | chooseStat | chooseCard | battle
-    let playerScore = 0;
-    let enemyScore = 0;
-    let selectedCardIndex = null;
-    let selectedStat = null;
-    const playerDeck = document.getElementById("player-deck");
-    const playerHand = document.getElementById("player-hand");
-    const enemyHand = document.getElementById("enemy-hand");
+let phase = "waiting"; // waiting | chooseStat | chooseCard | battle | enemyThinking | finished
+let roundLocked = false;
 
-    let playerCards = [];
-    let enemyCards = [];
+let playerScore = 0;
+let enemyScore = 0;
 
-    playerDeck.addEventListener("click", dealCards);
+let selectedCardIndex = null;
+let selectedStat = null;
 
-    function shuffle(array) {
-        return [...array].sort(() => Math.random() - 0.5);
-    }
+const playerDeck = document.getElementById("player-deck");
+const playerHand = document.getElementById("player-hand");
+const enemyHand = document.getElementById("enemy-hand");
+const playRoundBtn = document.getElementById("play-round");
 
-    function dealCards() {
-        playerHand.innerHTML = "";
-        enemyHand.innerHTML = "";
+let playerCards = [];
+let enemyCards = [];
 
-        const shuffled = shuffle(players);
+// Paklira kattintás
+playerDeck.addEventListener("click", () => {
+    if (phase === "battle" || roundLocked) return;
+    dealCards();
+});
 
-        playerCards = shuffled.slice(0, 5);
-        enemyCards = shuffled.slice(5, 10);
+// Kör lejátszása gomb
+playRoundBtn.addEventListener("click", playRound);
 
-        renderHands();
-        currentChallenger = Math.random() < 0.5 ? "player" : "enemy";
-        phase = "chooseStat";
-
-        if (currentChallenger === "player") 
-        {
-            showMessage("Te kezdesz! Válassz egy statot!");
-        } 
-        else 
-        {
-            showMessage("Az ellenfél kezd! Várd meg a kihívást!");
-            enemyChooseStat();
-        }
-    }
-
-    function renderHands() {
-        playerHand.innerHTML = "";
-        enemyHand.innerHTML = "";
-
-        // Ellenfél lapjai (hátoldal)
-        enemyCards.forEach(() => {
-            const card = document.createElement("div");
-            card.className = "card back";
-            enemyHand.appendChild(card);
-        });
-
-        // Játékos lapjai
-        playerCards.forEach((player, index) => {
-            const card = document.createElement("div");
-            card.className = "card";
-            card.innerHTML = `
-                <strong>${player.name}</strong><br><br>
-                ATK: ${player.attack}<br>
-                CTRL: ${player.controll}<br>
-                DEF: ${player.defence}
-            `;
-        card.addEventListener("click", () => {
-            selectCard(index);
-    });
-        playerHand.appendChild(card);
-    });
-    }
-    function selectCard(index) 
-    {
-            function selectCard(index) 
-            {
-                if (phase !== "chooseCard") 
-                    {
-                        showMessage("Előbb statot kell választani!");
-                        return;
-                    }
-
-                const allCards = document.querySelectorAll(".player-hand .card");
-                allCards.forEach(card => card.classList.remove("selected"));
-                selectedCardIndex = index;
-                allCards[index].classList.add("selected");
-
-                showMessage("Kártya kiválasztva. Kör lejátszható!");
-            }
-
-        // Régi kijelölés törlése
-        const allCards = document.querySelectorAll(".player-hand .card");
-        allCards.forEach(card => card.classList.remove("selected"));
-
-        // Új kijelölés
-        selectedCardIndex = index;
-        allCards[index].classList.add("selected");
-
-        console.log("Kiválasztott lap:", playerCards[index]);
-    }
-    document.querySelectorAll(".stat-buttons button").forEach(button => {
+// Stat gombok
+document.querySelectorAll(".stat-buttons button").forEach(button => {
     button.addEventListener("click", () => {
+        if (roundLocked) return;
 
-        if (phase !== "chooseStat") return;
+        if (phase !== "chooseStat") {
+            showMessage("Most nem választhatsz statot!");
+            return;
+        }
 
         if (currentChallenger !== "player") {
-            showMessage("Most nem te hívsz ki!");
+            showMessage("Ebben a körben az ellenfél hív ki!");
             return;
         }
 
@@ -114,57 +48,200 @@ let currentChallenger = null; // "player" | "enemy"
         button.classList.add("selected");
 
         phase = "chooseCard";
+        showMessage("Stat kiválasztva: " + selectedStat.toUpperCase() + ". Most válassz egy kártyát!");
+    });
+});
 
-        showMessage("Stat kiválasztva: " + selectedStat + ". Most válassz kártyát!");
-        });
+function shuffle(array) {
+    return [...array].sort(() => Math.random() - 0.5);
+}
+
+function dealCards() {
+    resetBattleArea(true);
+
+    const shuffled = shuffle(players);
+
+    playerCards = shuffled.slice(0, 5);
+    enemyCards = shuffled.slice(5, 10);
+
+    playerScore = 0;
+    enemyScore = 0;
+    updateScoreboard();
+
+    selectedCardIndex = null;
+    selectedStat = null;
+    roundLocked = false;
+
+    document.querySelectorAll(".stat-buttons button")
+        .forEach(btn => btn.classList.remove("selected"));
+
+    renderHands();
+
+    currentChallenger = Math.random() < 0.5 ? "player" : "enemy";
+    startNextTurn();
+}
+
+function renderHands() {
+    playerHand.innerHTML = "";
+    enemyHand.innerHTML = "";
+
+    // Ellenfél lapjai (hátoldal)
+    enemyCards.forEach(() => {
+        const card = document.createElement("div");
+        card.className = "card back";
+        enemyHand.appendChild(card);
     });
 
+    // Játékos lapjai
+    playerCards.forEach((player, index) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <strong>${player.name ?? "Ismeretlen játékos"}</strong><br><br>
+            ATK: ${safeStat(player.attack)}<br>
+            CTRL: ${safeStat(player.controll)}<br>
+            DEF: ${safeStat(player.defence)}
+        `;
 
+        card.addEventListener("click", () => {
+            selectCard(index);
+        });
 
-    document.getElementById("play-round").addEventListener("click", playRound);
+        playerHand.appendChild(card);
+    });
 
-    function playRound() 
-    {
-
-        // 1️⃣ Fázis ellenőrzés
-        if (phase !== "chooseCard") {
-            showMessage("Most nem tudsz játszani!");
-            return;
+    // Ha volt kijelölt lap, de újrarender után elveszett volna a border
+    if (selectedCardIndex !== null) {
+        const allCards = document.querySelectorAll(".player-hand .card");
+        if (allCards[selectedCardIndex]) {
+            allCards[selectedCardIndex].classList.add("selected");
         }
+    }
+}
 
-        if (selectedCardIndex === null || !selectedStat) {
-            showMessage("Válassz kártyát és statot!");
-            return;
-        }
+function selectCard(index) {
+    if (roundLocked) return;
 
-        phase = "battle";
+    if (phase !== "chooseCard") {
+        showMessage("Előbb statot kell választani!");
+        return;
+    }
 
-        const enemyIndex = Math.floor(Math.random() * enemyCards.length);
+    const allCards = document.querySelectorAll(".player-hand .card");
+    allCards.forEach(card => card.classList.remove("selected"));
 
-        const playerCard = playerCards[selectedCardIndex];
-        const enemyCard = enemyCards[enemyIndex];
+    selectedCardIndex = index;
+    if (allCards[index]) {
+        allCards[index].classList.add("selected");
+    }
 
-        const playerValue = playerCard[selectedStat];
-        const enemyValue = enemyCard[selectedStat];
+    showMessage("Kártya kiválasztva. Kör lejátszható!");
+}
 
-        // 2️⃣ Kártyák kirajzolása (beúsznak)
-        showBattleCards(playerCard, enemyCard, selectedStat);
+function startNextTurn() {
+    selectedCardIndex = null;
+    selectedStat = null;
 
-        // 3️⃣ STAT VILLOGÁS + WIN/LOSE ANIMÁCIÓ
+    document.querySelectorAll(".stat-buttons button")
+        .forEach(btn => btn.classList.remove("selected"));
+
+    renderHands();
+
+    if (playerCards.length === 0 || enemyCards.length === 0) {
+        endGame();
+        return;
+    }
+
+    roundLocked = false;
+
+    if (currentChallenger === "player") {
+        phase = "chooseStat";
+        showMessage("Te hívsz! Válassz statot!");
+    } else {
+        phase = "enemyThinking";
+        showMessage("Az ellenfél gondolkodik...");
         setTimeout(() => {
+            enemyChooseStat();
+        }, 1200);
+    }
+}
 
+function enemyChooseStat() {
+    if (phase === "finished") return;
+
+    const stats = ["attack", "controll", "defence"];
+    selectedStat = stats[Math.floor(Math.random() * stats.length)];
+
+    document.querySelectorAll(".stat-buttons button")
+        .forEach(btn => btn.classList.remove("selected"));
+
+    phase = "chooseCard";
+    showMessage("Az ellenfél kihívott erre: " + selectedStat.toUpperCase() + ". Válassz egy kártyát!");
+}
+
+// Okosabb enemy lapválasztás: a kiválasztott statban legerősebb lapot játssza ki
+function getBestEnemyCardIndex(stat) {
+    let bestIndex = 0;
+    let bestValue = -Infinity;
+
+    enemyCards.forEach((card, index) => {
+        const value = Number(card[stat]) || 0;
+        if (value > bestValue) {
+            bestValue = value;
+            bestIndex = index;
+        }
+    });
+
+    return bestIndex;
+}
+
+function playRound() {
+    if (roundLocked) return;
+
+    if (phase !== "chooseCard") {
+        showMessage("Előbb statot és kártyát kell választani!");
+        return;
+    }
+
+    if (selectedCardIndex === null || !selectedStat) {
+        showMessage("Válassz kártyát és statot!");
+        return;
+    }
+
+    if (!playerCards[selectedCardIndex]) {
+        showMessage("Érvénytelen játékoslap!");
+        return;
+    }
+
+    roundLocked = true;
+    phase = "battle";
+
+    // Az ellenfél mindig a legjobb lapját választja az adott statra
+    const enemyIndex = getBestEnemyCardIndex(selectedStat);
+
+    const playerCard = playerCards[selectedCardIndex];
+    const enemyCard = enemyCards[enemyIndex];
+
+    const playerValue = Number(playerCard[selectedStat]) || 0;
+    const enemyValue = Number(enemyCard[selectedStat]) || 0;
+
+    showBattleCards(playerCard, enemyCard, selectedStat);
+
+    // Stat highlight
+    setTimeout(() => {
         const playerCardDiv = document.getElementById("player-battle");
         const enemyCardDiv = document.getElementById("enemy-battle");
 
-        const playerStatRow = playerCardDiv.querySelector(`.${selectedStat}`).parentElement;
-        const enemyStatRow = enemyCardDiv.querySelector(`.${selectedStat}`).parentElement;
+        const playerStatValue = playerCardDiv.querySelector(`.${selectedStat}`);
+        const enemyStatValue = enemyCardDiv.querySelector(`.${selectedStat}`);
 
-        // Stat villogás
-        playerStatRow.classList.add("stat-highlight");
-        enemyStatRow.classList.add("stat-highlight");
+        if (playerStatValue && enemyStatValue) {
+            playerStatValue.parentElement.classList.add("stat-highlight");
+            enemyStatValue.parentElement.classList.add("stat-highlight");
+        }
 
-        setTimeout(() => 
-        {
+        // Win / lose animáció
+        setTimeout(() => {
             if (playerValue > enemyValue) {
                 playerCardDiv.classList.add("winner");
                 enemyCardDiv.classList.add("loser");
@@ -175,117 +252,131 @@ let currentChallenger = null; // "player" | "enemy"
         }, 700);
     }, 700);
 
+    // Kör lezárása
+    setTimeout(() => {
+        let resultText = "";
 
-    // 4️⃣ EREDMÉNY + PONTFRISSÍTÉS + KÖR LEZÁRÁS
-        setTimeout(() => 
-        {
-            let resultText = "";
+        if (playerValue > enemyValue) {
+            playerScore++;
+            currentChallenger = "player";
+            resultText = "Győztél! Te hívsz a következő körben.";
+        } else if (playerValue < enemyValue) {
+            enemyScore++;
+            currentChallenger = "enemy";
+            resultText = "Vesztettél! Az ellenfél hív a következő körben.";
+        } else {
+            resultText = "Döntetlen! Ugyanaz hív, mint előző körben.";
+        }
 
-            if (playerValue > enemyValue) {
-                playerScore++;
-                document.getElementById("player-score").textContent = playerScore;
-                resultText = "Győztél!";
-            } else if (playerValue < enemyValue) {
-                enemyScore++;
-                document.getElementById("enemy-score").textContent = enemyScore;
-                resultText = "Vesztettél!";
-            } else {
-                resultText = "Döntetlen!";
-            }
+        updateScoreboard();
+        showMessage(resultText);
 
-            showMessage(resultText);
+        // Kártyák eltávolítása
+        playerCards.splice(selectedCardIndex, 1);
+        enemyCards.splice(enemyIndex, 1);
 
-            // Kártyák eltávolítása
-            playerCards.splice(selectedCardIndex, 1);
-            enemyCards.splice(enemyIndex, 1);
-
-            // RESET BATTLE AREA
-            const playerBattle = document.getElementById("player-battle");
-            const enemyBattle = document.getElementById("enemy-battle");
-
-            playerBattle.className = "battle-card";
-            enemyBattle.className = "battle-card";
-
-            playerBattle.style.opacity = "0";
-            enemyBattle.style.opacity = "0";
-
-            setTimeout(() => {
-                playerBattle.innerHTML = "";
-                enemyBattle.innerHTML = "";
-            }, 400);
-
-            // Reset state
-            selectedCardIndex = null;
-            selectedStat = null;
-
-            document.querySelectorAll(".stat-buttons button")
-                .forEach(btn => btn.classList.remove("selected"));
-
-            renderHands();
-
-            phase = "chooseCard";
-
-            if (playerCards.length === 0) {
-                endGame();
-            }
-        }, 2200); // időzítés az animációkhoz igazítva
-    }
-
-
-    function showBattleCards(playerCard, enemyCard, selectedStat) 
-    {
-        const playerDiv = document.getElementById("player-battle");
-        const enemyDiv = document.getElementById("enemy-battle");
-
-        // Kezdő állapot
-        playerDiv.className = "battle-card player-start";
-        enemyDiv.className = "battle-card enemy-start";
-
-        // Kártya HTML
-        playerDiv.innerHTML = createBattleCardHTML(playerCard, selectedStat);
-        enemyDiv.innerHTML = createBattleCardHTML(enemyCard, selectedStat);
-
-        // KÖZÉPRE CSÚSZÁS
-        setTimeout(() => {
-            playerDiv.classList.add("battle-active");
-            enemyDiv.classList.add("battle-active");
-        }, 50);
-    }
-
-    function enemyChooseStat() 
-    {
-        const stats = ["attack", "controll", "defence"];
-        selectedStat = stats[Math.floor(Math.random() * stats.length)];
-
-        showMessage("Ellenfél kihívott erre: " + selectedStat.toUpperCase());
-        phase = "chooseCard";
-    }
-
-    function showMessage(text, duration = 2000) 
-    {
-        const msg = document.getElementById("game-message");
-        msg.textContent = text;
-
-        msg.classList.add("show");
+        resetBattleArea(false);
 
         setTimeout(() => {
-            msg.classList.remove("show");
-        }, duration);
+            startNextTurn();
+        }, 500);
+
+    }, 2200);
+}
+
+function showBattleCards(playerCard, enemyCard, selectedStat) {
+    const playerDiv = document.getElementById("player-battle");
+    const enemyDiv = document.getElementById("enemy-battle");
+
+    // régi inline stílusok törlése
+    playerDiv.style.opacity = "";
+    enemyDiv.style.opacity = "";
+    playerDiv.style.transform = "";
+    enemyDiv.style.transform = "";
+
+    playerDiv.className = "battle-card player-start";
+    enemyDiv.className = "battle-card enemy-start";
+
+    playerDiv.innerHTML = createBattleCardHTML(playerCard, selectedStat);
+    enemyDiv.innerHTML = createBattleCardHTML(enemyCard, selectedStat);
+
+    setTimeout(() => {
+        playerDiv.classList.add("battle-active");
+        enemyDiv.classList.add("battle-active");
+    }, 50);
+}
+
+function createBattleCardHTML(card, selectedStat) {
+    return `
+        <h3>${card.name ?? "Ismeretlen játékos"}</h3>
+        <div class="stat ${selectedStat === "attack" ? "selected-stat" : ""}">
+            Attack: <span class="stat-value attack">${safeStat(card.attack)}</span>
+        </div>
+        <div class="stat ${selectedStat === "controll" ? "selected-stat" : ""}">
+            Controll: <span class="stat-value controll">${safeStat(card.controll)}</span>
+        </div>
+        <div class="stat ${selectedStat === "defence" ? "selected-stat" : ""}">
+            Defence: <span class="stat-value defence">${safeStat(card.defence)}</span>
+        </div>
+    `;
+}
+
+function updateScoreboard() {
+    document.getElementById("player-score").textContent = playerScore;
+    document.getElementById("enemy-score").textContent = enemyScore;
+}
+
+function resetBattleArea(clearNow = false) {
+    const playerBattle = document.getElementById("player-battle");
+    const enemyBattle = document.getElementById("enemy-battle");
+
+    playerBattle.className = "battle-card";
+    enemyBattle.className = "battle-card";
+
+    // FONTOS: ne állíts inline opacity-t
+    playerBattle.style.opacity = "";
+    enemyBattle.style.opacity = "";
+    playerBattle.style.transform = "";
+    enemyBattle.style.transform = "";
+
+    if (clearNow) {
+        playerBattle.innerHTML = "";
+        enemyBattle.innerHTML = "";
+    } else {
+        setTimeout(() => {
+            playerBattle.innerHTML = "";
+            enemyBattle.innerHTML = "";
+        }, 300);
     }
-    function createBattleCardHTML(card, selectedStat) 
-    {
-        return `
-            <h3>${card.name}</h3>
-            <div class="stat ${selectedStat === 'attack' ? 'selected-stat' : ''}">
-                Attack: <span class="stat-value attack">${card.attack}</span>
-            </div>
-            <div class="stat ${selectedStat === 'controll' ? 'selected-stat' : ''}">
-                Controll: <span class="stat-value controll">${card.controll}</span>
-            </div>
-            <div class="stat ${selectedStat === 'defence' ? 'selected-stat' : ''}">
-                Defence: <span class="stat-value defence">${card.defence}</span>
-            </div>
-        `;
+}
+
+function endGame() {
+    roundLocked = true;
+    phase = "finished";
+
+    let message = "";
+
+    if (playerScore > enemyScore) {
+        message = "Vége a játéknak! Te nyertél!";
+    } else if (playerScore < enemyScore) {
+        message = "Vége a játéknak! Az ellenfél nyert!";
+    } else {
+        message = "Vége a játéknak! Döntetlen!";
     }
 
+    showMessage(message + " Kattints újra a paklira az új játékhoz!", 5000);
+}
 
+function showMessage(text, duration = 4000) {
+    const msg = document.getElementById("game-message");
+    msg.textContent = text;
+    msg.classList.add("show");
+
+    setTimeout(() => {
+        msg.classList.remove("show");
+    }, duration);
+}
+
+function safeStat(value) {
+    return value ?? 0;
+}
