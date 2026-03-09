@@ -7,6 +7,7 @@
   <title>Fizz Liga Draft</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+<<<<<<< HEAD:game.html
 .formation-container {
   margin-top: 40px;
   padding: 30px;
@@ -22,6 +23,29 @@
   box-shadow: 0 0 35px rgba(0, 255, 157, 0.15);
   border: 2px solid rgba(0, 255, 157, 0.2);
 }
+=======
+    .player.locked {
+        cursor: default;
+        border-color: #666;
+        box-shadow: none;
+        color: #ccc;
+        background: #1a1f26;
+      }
+
+      .player.locked:hover {
+        transform: none;
+        box-shadow: none;
+      }
+    :root {
+      --bg-main: #0b0f14;
+      --field-dark: #0e3b2e;
+      --field-light: #145c45;
+      --card: #121821;
+      --accent: #00ff9d;
+      --accent2: #00b3ff;
+      --text-main: #e6edf3;
+    }
+>>>>>>> d1e2d4339f413b2cf23935784d96372be9e2536e:foprogram/game.html
 
 .formation-row {
   margin-bottom: 18px;
@@ -414,17 +438,26 @@ else if (formation === "5-4-1") {
                   <strong>${player.name}</strong><br>
                   <small>${player.team}</small><br>
                   <small>${player.nationality}</small>
+                  <small>${player.position}</small>
                 `;
 
             button.onclick = function () {
-             selectedSlot.innerHTML = `
-            <div style="font-size:14px; line-height:1.2;">
-              <strong>${player.name}</strong><br>
-              ${player.nationality}<br>
-              ${player.team}
-            </div>
-            `;
+
+              selectedSlot.innerHTML = `
+              <div style="font-size:11px; line-height:1.2;">
+                <strong>${player.name}</strong><br>
+                ${player.nationality}<br>
+                ${player.team}<br>
+                ${player.position}
+              </div>
+              `;
+
               selectedSlot.dataset.playerId = player.id;
+
+              // SLOT LEZÁRÁSA
+              selectedSlot.classList.add("locked");
+              selectedSlot.onclick = null;
+
               const modalInstance = bootstrap.Modal.getInstance(document.getElementById("playerModal"));
               modalInstance.hide();
             };
