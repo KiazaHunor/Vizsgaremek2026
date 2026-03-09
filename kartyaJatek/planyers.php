@@ -50,8 +50,8 @@ $playersJson = json_encode($players);
     <div class="hand enemy-hand" id="enemy-hand"></div>
 
     <div class="battle-area">
-        <div id="player-battle"></div>
-        <div id="enemy-battle"></div>
+        <div id="player-battle" class="battle-card"></div>
+        <div id="enemy-battle" class="battle-card"></div>
     </div>
 
     <!-- Játékos lapjai -->
@@ -74,7 +74,7 @@ $playersJson = json_encode($players);
     const players = <?php echo $playersJson; ?>;
 </script>
 
-
+<div id="game-message" class="game-message"></div>
 <script src="script.js"></script>
 </body>
 </html>

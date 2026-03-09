@@ -32,11 +32,11 @@ let currentChallenger = null; // "player" | "enemy"
 
         if (currentChallenger === "player") 
         {
-            alert("Te kezdesz! Válassz egy statot!");
+            showMessage("Te kezdesz! Válassz egy statot!");
         } 
         else 
         {
-            alert("Az ellenfél kezd! Várd meg a kihívást!");
+            showMessage("Az ellenfél kezd! Várd meg a kihívást!");
             enemyChooseStat();
         }
     }
@@ -74,7 +74,7 @@ let currentChallenger = null; // "player" | "enemy"
             {
                 if (phase !== "chooseCard") 
                     {
-                        alert("Előbb statot kell választani!");
+                        showMessage("Előbb statot kell választani!");
                         return;
                     }
 
@@ -83,7 +83,7 @@ let currentChallenger = null; // "player" | "enemy"
                 selectedCardIndex = index;
                 allCards[index].classList.add("selected");
 
-                alert("Kártya kiválasztva. Kör lejátszható!");
+                showMessage("Kártya kiválasztva. Kör lejátszható!");
             }
 
         // Régi kijelölés törlése
@@ -102,7 +102,7 @@ let currentChallenger = null; // "player" | "enemy"
         if (phase !== "chooseStat") return;
 
         if (currentChallenger !== "player") {
-            alert("Most nem te hívsz ki!");
+            showMessage("Most nem te hívsz ki!");
             return;
         }
 
@@ -115,7 +115,7 @@ let currentChallenger = null; // "player" | "enemy"
 
         phase = "chooseCard";
 
-        alert("Stat kiválasztva: " + selectedStat + ". Most válassz kártyát!");
+        showMessage("Stat kiválasztva: " + selectedStat + ". Most válassz kártyát!");
         });
     });
 
@@ -125,115 +125,131 @@ let currentChallenger = null; // "player" | "enemy"
 
     function playRound() 
     {
-            if (phase !== "chooseCard") {
-                alert("Még nem tartunk ott!");
-                return;
+
+        // 1️⃣ Fázis ellenőrzés
+        if (phase !== "chooseCard") {
+            showMessage("Most nem tudsz játszani!");
+            return;
+        }
+
+        if (selectedCardIndex === null || !selectedStat) {
+            showMessage("Válassz kártyát és statot!");
+            return;
+        }
+
+        phase = "battle";
+
+        const enemyIndex = Math.floor(Math.random() * enemyCards.length);
+
+        const playerCard = playerCards[selectedCardIndex];
+        const enemyCard = enemyCards[enemyIndex];
+
+        const playerValue = playerCard[selectedStat];
+        const enemyValue = enemyCard[selectedStat];
+
+        // 2️⃣ Kártyák kirajzolása (beúsznak)
+        showBattleCards(playerCard, enemyCard, selectedStat);
+
+        // 3️⃣ STAT VILLOGÁS + WIN/LOSE ANIMÁCIÓ
+        setTimeout(() => {
+
+        const playerCardDiv = document.getElementById("player-battle");
+        const enemyCardDiv = document.getElementById("enemy-battle");
+
+        const playerStatRow = playerCardDiv.querySelector(`.${selectedStat}`).parentElement;
+        const enemyStatRow = enemyCardDiv.querySelector(`.${selectedStat}`).parentElement;
+
+        // Stat villogás
+        playerStatRow.classList.add("stat-highlight");
+        enemyStatRow.classList.add("stat-highlight");
+
+        setTimeout(() => 
+        {
+            if (playerValue > enemyValue) {
+                playerCardDiv.classList.add("winner");
+                enemyCardDiv.classList.add("loser");
+            } else if (playerValue < enemyValue) {
+                enemyCardDiv.classList.add("winner");
+                playerCardDiv.classList.add("loser");
             }
+        }, 700);
+    }, 700);
 
-            if (selectedCardIndex === null || !selectedStat) {
-                alert("Hiányzik a stat vagy a kártya!");
-                return;
-            }
 
-            phase = "battle";
-
-            const enemyIndex = Math.floor(Math.random() * enemyCards.length);
-
-            const playerCard = playerCards[selectedCardIndex];
-            const enemyCard = enemyCards[enemyIndex];
-
-            const playerValue = playerCard[selectedStat];
-            const enemyValue = enemyCard[selectedStat];
-
-            showBattleCards(playerCard, enemyCard, selectedStat);
-
-            let winner = null;
-            let result = "";
+    // 4️⃣ EREDMÉNY + PONTFRISSÍTÉS + KÖR LEZÁRÁS
+        setTimeout(() => 
+        {
+            let resultText = "";
 
             if (playerValue > enemyValue) {
-                result = "Győztél!";
-                winner = "player";
-            } 
-            else if (playerValue < enemyValue) {
-                result = "Vesztettél!";
-                winner = "enemy";
-            } 
-            else {
-                result = "Döntetlen!";
-                winner = "draw";
+                playerScore++;
+                document.getElementById("player-score").textContent = playerScore;
+                resultText = "Győztél!";
+            } else if (playerValue < enemyValue) {
+                enemyScore++;
+                document.getElementById("enemy-score").textContent = enemyScore;
+                resultText = "Vesztettél!";
+            } else {
+                resultText = "Döntetlen!";
             }
 
-            setTimeout(() => 
-            {
-                if (winner === "player") {
-                    playerScore++;
-                    document.getElementById("player-score").textContent = playerScore;
-                    currentChallenger = "player";
-                } 
-                else if (winner === "enemy") {
-                    enemyScore++;
-                    document.getElementById("enemy-score").textContent = enemyScore;
-                    currentChallenger = "enemy";
-                }
+            showMessage(resultText);
 
-                alert(result);
+            // Kártyák eltávolítása
+            playerCards.splice(selectedCardIndex, 1);
+            enemyCards.splice(enemyIndex, 1);
 
-                playerCards.splice(selectedCardIndex, 1);
-                enemyCards.splice(enemyIndex, 1);
+            // RESET BATTLE AREA
+            const playerBattle = document.getElementById("player-battle");
+            const enemyBattle = document.getElementById("enemy-battle");
 
-                selectedCardIndex = null;
-                selectedStat = null;
+            playerBattle.className = "battle-card";
+            enemyBattle.className = "battle-card";
 
-                document.querySelectorAll(".stat-buttons button")
-                    .forEach(btn => btn.classList.remove("selected"));
+            playerBattle.style.opacity = "0";
+            enemyBattle.style.opacity = "0";
 
-                document.getElementById("player-battle").innerHTML = "";
-                document.getElementById("enemy-battle").innerHTML = "";
+            setTimeout(() => {
+                playerBattle.innerHTML = "";
+                enemyBattle.innerHTML = "";
+            }, 400);
 
-                renderHands();
+            // Reset state
+            selectedCardIndex = null;
+            selectedStat = null;
 
-                if (playerCards.length === 0) {
-                    endGame();
-                    return;
-                }
+            document.querySelectorAll(".stat-buttons button")
+                .forEach(btn => btn.classList.remove("selected"));
 
-                // 🔥 EZ HIÁNYZOTT NÁLAD
-                phase = "chooseStat";
+            renderHands();
 
-                if (currentChallenger === "player") {
-                    alert("Te hívsz ki!");
-                } else {
-                    enemyChooseStat();
-                }
+            phase = "chooseCard";
 
-            }, 800);
+            if (playerCards.length === 0) {
+                endGame();
+            }
+        }, 2200); // időzítés az animációkhoz igazítva
     }
 
 
-    function showBattleCards(playerCard, enemyCard, stat) 
+    function showBattleCards(playerCard, enemyCard, selectedStat) 
     {
-        const playerBattle = document.getElementById("player-battle");
-        const enemyBattle = document.getElementById("enemy-battle");
+        const playerDiv = document.getElementById("player-battle");
+        const enemyDiv = document.getElementById("enemy-battle");
 
-        playerBattle.innerHTML = "";
-        enemyBattle.innerHTML = "";
+        // Kezdő állapot
+        playerDiv.className = "battle-card player-start";
+        enemyDiv.className = "battle-card enemy-start";
 
-        const pCard = document.createElement("div");
-        pCard.className = "card";
-        pCard.innerHTML = `
-            <strong>${playerCard.name}</strong><br><br>
-            ${stat.toUpperCase()}: ${playerCard[stat]}
-        `;
+        // Kártya HTML
+        playerDiv.innerHTML = createBattleCardHTML(playerCard, selectedStat);
+        enemyDiv.innerHTML = createBattleCardHTML(enemyCard, selectedStat);
 
-        const eCard = document.createElement("div");
-        eCard.className = "card";
-        eCard.innerHTML = `
-            <strong>${enemyCard.name}</strong><br><br>
-            ${stat.toUpperCase()}: ${enemyCard[stat]}
-        `;
-
-        playerBattle.appendChild(pCard);
-        enemyBattle.appendChild(eCard);
+        // KÖZÉPRE CSÚSZÁS
+        setTimeout(() => {
+            playerDiv.classList.add("battle-active");
+            enemyDiv.classList.add("battle-active");
+        }, 50);
     }
 
     function enemyChooseStat() 
@@ -241,8 +257,35 @@ let currentChallenger = null; // "player" | "enemy"
         const stats = ["attack", "controll", "defence"];
         selectedStat = stats[Math.floor(Math.random() * stats.length)];
 
-        alert("Ellenfél kihívott erre: " + selectedStat.toUpperCase());
+        showMessage("Ellenfél kihívott erre: " + selectedStat.toUpperCase());
         phase = "chooseCard";
+    }
+
+    function showMessage(text, duration = 2000) 
+    {
+        const msg = document.getElementById("game-message");
+        msg.textContent = text;
+
+        msg.classList.add("show");
+
+        setTimeout(() => {
+            msg.classList.remove("show");
+        }, duration);
+    }
+    function createBattleCardHTML(card, selectedStat) 
+    {
+        return `
+            <h3>${card.name}</h3>
+            <div class="stat ${selectedStat === 'attack' ? 'selected-stat' : ''}">
+                Attack: <span class="stat-value attack">${card.attack}</span>
+            </div>
+            <div class="stat ${selectedStat === 'controll' ? 'selected-stat' : ''}">
+                Controll: <span class="stat-value controll">${card.controll}</span>
+            </div>
+            <div class="stat ${selectedStat === 'defence' ? 'selected-stat' : ''}">
+                Defence: <span class="stat-value defence">${card.defence}</span>
+            </div>
+        `;
     }
 
 
