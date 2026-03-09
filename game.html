@@ -31,31 +31,6 @@
       font-weight: 700;
     }
 
-    /* ===== LOADER (neon glitch) ===== */
-    .loader {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: monospace;
-      font-size: 28px;
-      color: var(--accent);
-      text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent2);
-      animation: pulse 1s infinite alternate;
-      z-index: 9999;
-    }
-
-    @keyframes pulse {
-      from {
-        opacity: 0.5;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    /* ===== FORMATION FIELD ===== */
     .formation-container {
       margin-top: 40px;
       padding: 30px;
@@ -78,10 +53,10 @@
       flex-wrap: wrap;
     }
 
-    /* ===== PLAYER SLOTS ===== */
     .player {
-      width: 95px;
-      height: 75px;
+      width: 150px;
+      min-height: 100px;
+      padding: 8px;
       background: linear-gradient(145deg, #1a2430, #10161f);
       border: 1px solid #1f2a36;
       border-radius: 14px;
@@ -95,6 +70,9 @@
       transform: translateY(-25px);
       transition: all 0.35s ease;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.2;
     }
 
     .player.show {
@@ -108,7 +86,6 @@
       box-shadow: 0 0 15px var(--accent);
     }
 
-    /* ===== FORMATION BUTTONS ===== */
     .btn-formation {
       margin: 10px;
       padding: 10px 25px;
@@ -127,28 +104,17 @@
       transform: scale(1.05);
     }
 
-    /* ===== BACK BUTTON ===== */
-    .btn-back {
-      margin-top: 30px;
-      border-radius: 30px;
-      border: 1px solid var(--accent2);
-      color: var(--accent2);
-      padding: 8px 22px;
-    }
-
-    .btn-back:hover {
-      background: var(--accent2);
-      color: #000;
-      box-shadow: 0 0 12px var(--accent2);
+    .list-group-item {
+      cursor: pointer;
     }
   </style>
-
 </head>
 
 <body>
   <div id="main-content">
     <div class="container">
       <h1 id="cim">Válassz formációt</h1>
+
       <div id="formaciok">
         <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-3-3')">4-3-3</button>
         <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-4-2')">4-4-2</button>
@@ -158,98 +124,167 @@
       <div id="formation-container" class="formation-container"></div>
     </div>
   </div>
+
   <a href="szep.html" class="btn btn-outline-light mt-4">⬅ Vissza a főoldalra</a>
 
+  <div class="modal fade" id="playerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header">
+          <h5 class="modal-title">Válassz játékost</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="player-list" class="list-group"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
   <script>
+    let selectedSlot = null;
+
     function loadFormation(formation) {
       document.getElementById("cim").innerText = "Állítsd össze a csapatodat";
       document.getElementById("formaciok").style.display = "none";
 
-      const container = document.getElementById('formation-container');
-
+      const container = document.getElementById("formation-container");
       let html = "";
 
-      if (formation === '4-3-3') {
+      if (formation === "4-3-3") {
         html = `
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('LW')">LW</div>
-            <div class="player" onclick="loadPlayers('CF')">CF</div>
-            <div class="player" onclick="loadPlayers('RW')">RW</div>
+            <div class="player" onclick="loadPlayers('LW', this)">LW</div>
+            <div class="player" onclick="loadPlayers('CF', this)">CF</div>
+            <div class="player" onclick="loadPlayers('RW', this)">RW</div>
           </div>
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('CM')">CM</div>
-            <div class="player" onclick="loadPlayers('CAM')">CAM</div>
-            <div class="player" onclick="loadPlayers('CM')">CM</div>
+            <div class="player" onclick="loadPlayers('CM', this)">CM</div>
+            <div class="player" onclick="loadPlayers('CAM', this)">CAM</div>
+            <div class="player" onclick="loadPlayers('CM', this)">CM</div>
           </div>
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('LB')">LB</div>
-            <div class="player" onclick="loadPlayers('CB')">CB</div>
-            <div class="player" onclick="loadPlayers('CB')">CB</div>
-            <div class="player" onclick="loadPlayers('RB')">RB</div>
+            <div class="player" onclick="loadPlayers('LB', this)">LB</div>
+            <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+            <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+            <div class="player" onclick="loadPlayers('RB', this)">RB</div>
           </div>
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('GK')">GK</div>
+            <div class="player" onclick="loadPlayers('GK', this)">GK</div>
           </div>
         `;
-      } else if (formation === '4-4-2') {
+      } else if (formation === "4-4-2") {
         html = `
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('CF')">CF</div>
-            <div class="player" onclick="loadPlayers('CF')">CF</div>
+            <div class="player" onclick="loadPlayers('CF', this)">CF</div>
+            <div class="player" onclick="loadPlayers('CF', this)">CF</div>
           </div>
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('LM')">LM</div>
-            <div class="player" onclick="loadPlayers('CM')">CM</div>
-            <div class="player" onclick="loadPlayers('CM')">CM</div>
-            <div class="player" onclick="loadPlayers('RM')">RM</div>
+            <div class="player" onclick="loadPlayers('LM', this)">LM</div>
+            <div class="player" onclick="loadPlayers('CM', this)">CM</div>
+            <div class="player" onclick="loadPlayers('CM', this)">CM</div>
+            <div class="player" onclick="loadPlayers('RM', this)">RM</div>
           </div>
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('LB')">LB</div>
-            <div class="player" onclick="loadPlayers('CB')">CB</div>
-            <div class="player" onclick="loadPlayers('CB')">CB</div>
-            <div class="player" onclick="loadPlayers('RB')">RB</div>
+            <div class="player" onclick="loadPlayers('LB', this)">LB</div>
+            <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+            <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+            <div class="player" onclick="loadPlayers('RB', this)">RB</div>
           </div>
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('GK')">GK</div>
+            <div class="player" onclick="loadPlayers('GK', this)">GK</div>
           </div>
         `;
-      } else if (formation === '4-1-2-1-2') {
+      } else if (formation === "4-1-2-1-2") {
         html = `
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('CF')">CF</div>
-            <div class="player" onclick="loadPlayers('CF')">CF</div>
+            <div class="player" onclick="loadPlayers('CF', this)">CF</div>
+            <div class="player" onclick="loadPlayers('CF', this)">CF</div>
           </div>
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('CAM')">CAM</div>
+            <div class="player" onclick="loadPlayers('CAM', this)">CAM</div>
           </div>
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('CM')">CM</div>
-            <div class="player" onclick="loadPlayers('CM')">CM</div>
+            <div class="player" onclick="loadPlayers('CM', this)">CM</div>
+            <div class="player" onclick="loadPlayers('CM', this)">CM</div>
           </div>
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('CDM')">CDM</div>
+            <div class="player" onclick="loadPlayers('CDM', this)">CDM</div>
           </div>
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('LB')">LB</div>
-            <div class="player" onclick="loadPlayers('CB')">CB</div>
-            <div class="player" onclick="loadPlayers('CB')">CB</div>
-            <div class="player" onclick="loadPlayers('RB')">RB</div>
+            <div class="player" onclick="loadPlayers('LB', this)">LB</div>
+            <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+            <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+            <div class="player" onclick="loadPlayers('RB', this)">RB</div>
           </div>
           <div class="formation-row">
-            <div class="player" onclick="loadPlayers('GK')">GK</div>
+            <div class="player" onclick="loadPlayers('GK', this)">GK</div>
           </div>
         `;
       }
 
       container.innerHTML = html;
 
-      // Animáció minden gombra egymás után
-      const players = container.querySelectorAll('.player');
+      const players = container.querySelectorAll(".player");
       players.forEach((player, i) => {
         setTimeout(() => {
-          player.classList.add('show');
-        }, i * 250);
+          player.classList.add("show");
+        }, i * 150);
       });
+    }
+
+    async function loadPlayers(position, element) {
+      selectedSlot = element;
+
+      try {
+        const response = await fetch(`get_players.php?position=${encodeURIComponent(position)}`);
+        const text = await response.text();
+        const data = JSON.parse(text);
+
+        const playerList = document.getElementById("player-list");
+        playerList.innerHTML = "";
+
+        if (!data.success) {
+          playerList.innerHTML = `<div class="text-danger">${data.message}</div>`;
+        } else if (!data.players || data.players.length === 0) {
+          playerList.innerHTML = `<div class="text-warning">Nincs játékos erre a pozícióra.</div>`;
+        } else {
+          data.players.forEach(player => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "list-group-item list-group-item-action";
+            button.innerHTML = `
+                  <strong>${player.name}</strong><br>
+                  <small>${player.team}</small><br>
+                  <small>${player.nationality}</small>
+                `;
+
+            button.onclick = function () {
+             selectedSlot.innerHTML = `
+            <div style="font-size:14px; line-height:1.2;">
+              <strong>${player.name}</strong><br>
+              ${player.nationality}<br>
+              ${player.team}
+            </div>
+            `;
+              selectedSlot.dataset.playerId = player.id;
+              const modalInstance = bootstrap.Modal.getInstance(document.getElementById("playerModal"));
+              modalInstance.hide();
+            };
+
+            playerList.appendChild(button);
+          });
+        }
+
+        const modal = new bootstrap.Modal(document.getElementById("playerModal"));
+        modal.show();
+
+      } catch (error) {
+        console.error("Hiba:", error);
+        alert("Hiba történt a játékosok betöltése közben.");
+      }
     }
   </script>
 </body>

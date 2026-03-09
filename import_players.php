@@ -1,23 +1,5 @@
-
 <?php
-// Adatbázis beállítások
-$host = 'localhost';
-$db   = 'fizzliga_db';
-$user = 'root';
-$pass = '';
-$charset = 'utf8mb4';
-
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-];
-
-try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (\PDOException $e) {
-    die("DB kapcsolat hiba: " . $e->getMessage());
-}
+require_once 'db.php';
 
 // Segédfüggvény: cURL lekérés
 function fetchUrl($url) {
@@ -55,20 +37,16 @@ function scrapeTeamPlayers($url, $teamName) {
     $xpath = new DOMXPath($dom);
     $players = [];
 
-    // Csak a felnőtt keret sorai (odd/even class)
     $rows = $xpath->query("//table[contains(@class,'items')]/tbody/tr[contains(@class,'odd') or contains(@class,'even')]");
 
     foreach ($rows as $row) {
-        // Név
         $nameNode = $xpath->query(".//td[@class='hauptlink']//a[1]", $row)->item(0);
         $name = trim($nameNode->textContent ?? '');
         if (!$name) continue;
 
-        // Nemzetiség
         $natNode = $xpath->query(".//td[@class='zentriert']//img[@title]", $row)->item(0);
         $nationality = $natNode ? $natNode->getAttribute('title') : '';
 
-        // Pozíció
         $posrela = $xpath->query(".//td[contains(@class,'posrela')]", $row)->item(0);
         $position = '';
         if ($posrela) {
@@ -89,61 +67,63 @@ function scrapeTeamPlayers($url, $teamName) {
     return $players;
 }
 
-// Feldolgozás és adatbázisba mentés
 foreach ($teams as $teamName => $url) {
-
-    echo "Lekérdezés: $teamName\n";
+    echo "Lekérdezés: $teamName<br>";
 
     $players = scrapeTeamPlayers($url, $teamName);
 
     foreach ($players as $p) {
-
-        // TEAM
         $stmt = $pdo->prepare("
             INSERT INTO teams (name)
             VALUES (?)
-            ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)
+            ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)
         ");
         $stmt->execute([$p['team']]);
         $teamId = $pdo->lastInsertId();
 
-        // NATIONALITY
         if (!$p['nationality']) continue;
 
         $stmt = $pdo->prepare("
             INSERT INTO nationalities (name)
             VALUES (?)
-            ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)
+            ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)
         ");
         $stmt->execute([$p['nationality']]);
         $natId = $pdo->lastInsertId();
 
-        // POSITION
         if (!$p['position']) continue;
 
         $stmt = $pdo->prepare("
             INSERT INTO positions (name)
             VALUES (?)
-            ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)
+            ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)
         ");
         $stmt->execute([$p['position']]);
         $posId = $pdo->lastInsertId();
 
-        // PLAYER
-        $stmt = $pdo->prepare("
-            INSERT INTO players (name, team_id, nationality_id, position_id)
-            VALUES (?, ?, ?, ?)
+        // Ne duplikáljuk a játékosokat
+        $checkStmt = $pdo->prepare("
+            SELECT id FROM players
+            WHERE name = ? AND team_id = ? AND nationality_id = ? AND position_id = ?
+            LIMIT 1
         ");
-        $stmt->execute([
-            $p['name'],
-            $teamId,
-            $natId,
-            $posId
-        ]);
+        $checkStmt->execute([$p['name'], $teamId, $natId, $posId]);
+
+        if (!$checkStmt->fetch()) {
+            $stmt = $pdo->prepare("
+                INSERT INTO players (name, team_id, nationality_id, position_id)
+                VALUES (?, ?, ?, ?)
+            ");
+            $stmt->execute([
+                $p['name'],
+                $teamId,
+                $natId,
+                $posId
+            ]);
+        }
     }
 
-    echo "Hozzáadva: " . count($players) . " játékos a $teamName csapatból.\n";
+    echo "Hozzáadva: " . count($players) . " játékos a $teamName csapatból.<br>";
 }
 
-echo "Minden NB I játékos betöltve az adatbázisba.\n";
-?>
+echo "Minden NB I játékos betöltve az adatbázisba.";
