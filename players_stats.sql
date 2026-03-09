@@ -1,0 +1,15 @@
+CREATE TABLE player_stats (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    player_id INT(11) NOT NULL,
+    attack TINYINT UNSIGNED NOT NULL,
+    controll TINYINT UNSIGNED NOT NULL,
+    defence TINYINT UNSIGNED NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY uniq_player_id (player_id),
+    CONSTRAINT fk_player_stats_player
+        FOREIGN KEY (player_id) REFERENCES players(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
