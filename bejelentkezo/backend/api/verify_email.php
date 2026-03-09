@@ -60,7 +60,7 @@ try {
             countdownEl.textContent = countdown;
             if (countdown <= 0) {
                 clearInterval(interval);
-                window.location.href = '../login.php';
+                window.location.href = '../../frontend/index.html';
             }
         }, 1000);
     </script>

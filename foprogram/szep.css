@@ -1,0 +1,145 @@
+:root {
+      --bg-main: #0b0f14;
+      --bg-card: #121821;
+      --bg-soft: #0f141c;
+      --accent: #00ff9d;
+      --accent2: #00b3ff;
+      --text-main: #e6edf3;
+      --text-muted: #9aa7b2;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #0f1722, #0b0f14 70%);
+      color: var(--text-main);
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: linear-gradient(135deg, #0f2027, #203a43, #0f2027);
+      border-bottom: 2px solid var(--accent);
+      box-shadow: 0 0 25px rgba(0, 255, 157, 0.15);
+    }
+
+    header h1 {
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    #logo {
+      height: 55px;
+      margin-left: 15px;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.35) !important;
+      border-radius: 14px;
+    }
+
+    .nav-link {
+      color: var(--text-main) !important;
+      transition: all 0.25s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--accent) !important;
+      transform: translateY(-2px);
+    }
+
+    .dropdown-menu {
+      background-color: var(--bg-card);
+      border: 1px solid #1f2a36;
+    }
+
+    /* ===== HERO GAME SECTION ===== */
+    #section-game {
+      background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(../gamehat.jpg);
+      background-size: cover;
+      background-position: center;
+      border-radius: 18px;
+      padding: 60px 20px;
+      box-shadow: 0 0 30px rgba(0, 255, 157, 0.15);
+    }
+
+    #section-game h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    #jatekgomb svg {
+      color: var(--accent);
+      filter: drop-shadow(0 0 10px var(--accent));
+      transition: all 0.3s ease;
+    }
+
+    #jatekgomb svg:hover {
+      transform: scale(1.2) rotate(5deg);
+      color: var(--accent2);
+    }
+
+    /* ===== CONTENT CARDS ===== */
+    article,
+    aside {
+      background: rgba(18, 24, 33, 0.85);
+      border-radius: 16px;
+      padding: 25px;
+      backdrop-filter: blur(10px);
+      border: 1px solid #1f2a36;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    h3 {
+      color: var(--accent);
+    }
+
+    hr {
+      border-color: #1f2a36;
+    }
+
+    /* ===== TABLE ===== */
+    .table {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .table thead {
+      background: #16202c;
+      color: var(--accent);
+    }
+
+    .table-striped>tbody>tr:nth-of-type(odd) {
+      background-color: #111821;
+    }
+
+    /* ===== NEWS CARDS ===== */
+    .news-card {
+      background: linear-gradient(145deg, #141c26, #0e141c);
+      border: 1px solid #1f2a36;
+      border-radius: 14px;
+      transition: all 0.25s ease;
+    }
+
+    .news-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+    }
+
+    .card-title {
+      color: var(--accent2);
+    }
+
+    .card-text {
+      color: var(--text-muted);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      color: var(--text-muted);
+      border-top: 1px solid #1f2a36;
+    }

@@ -3,8 +3,10 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../db.php';
 require __DIR__ . '/../../../../vendor/autoload.php';
 
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 
 header('Content-Type: application/json');
 
@@ -93,7 +95,7 @@ try {
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
     $mail->Username   = 'probaa288@gmail.com';
-    $mail->Password   = 'lbgv ifzc jxyc lize'; 
+    $mail->Password   = 'gsru elku prue lbrl'; 
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
     $mail->CharSet    = 'UTF-8';
@@ -117,9 +119,11 @@ try {
 
 // Válasz a kliensnek
 $response = [
-    'success' => true,
+    'success' => $email_sent,
     'email_sent' => $email_sent,
-    'message' => $email_sent ? 'Sikeres regisztráció. Emailt küldtünk a megadott címre.' : 'Sikeres regisztráció, de az email nem lett elküldve.'
+    'message' => $email_sent
+        ? 'Sikeres regisztráció. Emailt küldtünk a megadott címre.'
+        : 'A regisztráció sikerült, de az email küldése nem sikerült.'
 ];
 
 echo json_encode($response);
