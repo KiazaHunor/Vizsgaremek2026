@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Bejelentkezés</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bejelentkezo.css">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row justify-content-center w-100">
+        <div class="col-md-4 col-sm-8">
+
+        <div class="card">
+
+            <div class="card-header text-white">
+                <h4 class="mb-0 h3">Bejelentkezés</h4>
+            </div>
+
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label class="form-label">Új jelszó: </label>
+                    <input type="password" id="newpass" class="form-control" placeholder="Új jelszó">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Új jelszó mégegyszer</label>
+                    <input type="password" id="pass" class="form-control" placeholder="Új jelszó mégegyszer">
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button class="btn" onclick="newpass()">Bejelentkezés</button>
+                    <a href="index.html">Vissza</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+<script src="auth.js"></script>
+
+</body>
+</html>
