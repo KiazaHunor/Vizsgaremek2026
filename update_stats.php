@@ -1,5 +1,5 @@
 <?php
-require_once 'playersdata.php';
+require_once 'import_players.php';
 
 try {
     // 1. Lekérjük az összes játékost a pozíciójával
