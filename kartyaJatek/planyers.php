@@ -8,9 +8,9 @@ $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
+    PDO::ATTR_EMULATE_PREPARES => false,
 ];
 
 try {
@@ -19,12 +19,29 @@ try {
     die("Database connection failed: " . $e->getMessage());
 }
 
-// 2. Lekérjük a játékosokat
-$sql = "SELECT * FROM players ORDER BY id";
+// 2. Játékosok lekérése az összes szükséges adattal
+$sql = "
+SELECT 
+    p.id,
+    p.name,
+    ps.attack,
+    ps.controll,
+    ps.defence,
+    t.name AS team,
+    pos.name AS position,
+    tk.image_path AS shirt_image
+FROM players p
+JOIN teams t ON p.team_id = t.id
+JOIN positions pos ON p.position_id = pos.id
+LEFT JOIN player_stats ps ON ps.player_id = p.id
+LEFT JOIN team_kits tk ON tk.team_id = t.id
+ORDER BY p.id
+";
+
 $stmt = $pdo->query($sql);
 $players = $stmt->fetchAll();
 
-// 3. JSON-ba konvertáljuk a JavaScripthez
+// 3. JSON a JavaScriptnek
 $playersJson = json_encode($players);
 ?>
 
