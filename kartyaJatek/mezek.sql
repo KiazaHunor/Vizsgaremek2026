@@ -8,14 +8,14 @@ CREATE TABLE team_kits (
 
 INSERT INTO team_kits (team_id, image_path) VALUES
 (1, 'hatternelkul/fradi.png'),
-(40, 'hatternelkul/ujpest.png'),
-(176, 'hatternelkul/paks.png'),
+(39, 'hatternelkul/ujpest.png'),
+(175, 'hatternelkul/paks.png'),
 (329, 'hatternelkul/barcika.png'),
-(147, 'hatternelkul/dvsc.png'),
-(237, 'hatternelkul/dvtk.png'),
-(94, 'hatternelkul/eto.png'),
-(122, 'hatternelkul/mtk.png'),
-(206, 'hatternelkul/nyiregy.png'),
-(68, 'hatternelkul/puskas.png'),
-(301, 'hatternelkul/varda.png'),
-(267, 'hatternelkul/zte.png');
+(145, 'hatternelkul/dvsc.png'),
+(236, 'hatternelkul/dvtk.png'),
+(92, 'hatternelkul/eto.png'),
+(120, 'hatternelkul/mtk.png'),
+(205, 'hatternelkul/nyiregy.png'),
+(67, 'hatternelkul/puskas.png'),
+(300, 'hatternelkul/varda.png'),
+(266, 'hatternelkul/zte.png');
