@@ -73,11 +73,11 @@ $playersJson = json_encode($players);
 
     <!-- Játékos lapjai -->
     <div class="hand player-hand" id="player-hand"></div>
-    <div class="stat-buttons">
+    <!---<div class="stat-buttons">
         <button data-stat="attack">Attack</button>
         <button data-stat="controll">Controll</button>
         <button data-stat="defence">Defence</button>        
-    </div>
+    </div> --->
     <button id="play-round" class="m-5">Kör lejátszása</button>
     <!-- Játékos pakli -->
     <div class="deck player-deck" id="player-deck">Játékos Pakli</div>

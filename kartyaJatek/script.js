@@ -26,31 +26,6 @@ playerDeck.addEventListener("click", () => {
 playRoundBtn.addEventListener("click", playRound);
 
 // Stat gombok
-document.querySelectorAll(".stat-buttons button").forEach(button => {
-    button.addEventListener("click", () => {
-        if (roundLocked) return;
-
-        if (phase !== "chooseStat") {
-            showMessage("Most nem választhatsz statot!");
-            return;
-        }
-
-        if (currentChallenger !== "player") {
-            showMessage("Ebben a körben az ellenfél hív ki!");
-            return;
-        }
-
-        selectedStat = button.dataset.stat;
-
-        document.querySelectorAll(".stat-buttons button")
-            .forEach(btn => btn.classList.remove("selected"));
-
-        button.classList.add("selected");
-
-        phase = "chooseCard";
-        showMessage("Stat kiválasztva: " + selectedStat.toUpperCase() + ". Most válassz egy kártyát!");
-    });
-});
 
 function shuffle(array) {
     return [...array].sort(() => Math.random() - 0.5);
@@ -100,7 +75,7 @@ function getKitImage(card) {
     return card.shirt_image || "hatternelkul/default.png";
 }
 
-function createCardHTML(card, selectedStat = null) {
+function createCardHTML(card, selectedStat = null, cardIndex = null, clickableStats = false) {
     return `
         <div class="card-top">
             <div class="card-rating">${getOverall(card)}</div>
@@ -115,15 +90,15 @@ function createCardHTML(card, selectedStat = null) {
         <div class="card-team">${getTeamLabel(card)}</div>
 
         <div class="card-stats">
-            <div class="stat-box ${selectedStat === "attack" ? "selected-stat" : ""}">
+            <div class="stat-box ${selectedStat === "attack" ? "selected-stat" : ""} ${clickableStats ? "stat-clickable" : ""}" data-stat="attack" data-card-index="${cardIndex ?? ""}">
                 <span>ATK</span>
                 <strong class="attack">${Number(card.attack) || 0}</strong>
             </div>
-            <div class="stat-box ${selectedStat === "controll" ? "selected-stat" : ""}">
+            <div class="stat-box ${selectedStat === "controll" ? "selected-stat" : ""} ${clickableStats ? "stat-clickable" : ""}" data-stat="controll" data-card-index="${cardIndex ?? ""}">
                 <span>CTRL</span>
                 <strong class="controll">${Number(card.controll) || 0}</strong>
             </div>
-            <div class="stat-box ${selectedStat === "defence" ? "selected-stat" : ""}">
+            <div class="stat-box ${selectedStat === "defence" ? "selected-stat" : ""} ${clickableStats ? "stat-clickable" : ""}" data-stat="defence" data-card-index="${cardIndex ?? ""}">
                 <span>DEF</span>
                 <strong class="defence">${Number(card.defence) || 0}</strong>
             </div>
@@ -135,33 +110,46 @@ function renderHands() {
     playerHand.innerHTML = "";
     enemyHand.innerHTML = "";
 
-    // Ellenfél lapjai - hátoldal
     enemyCards.forEach(() => {
         const card = document.createElement("div");
         card.className = "card back";
         enemyHand.appendChild(card);
     });
 
-    // Játékos lapjai
     playerCards.forEach((player, index) => {
         const card = document.createElement("div");
         card.className = "card";
-        card.innerHTML = createCardHTML(player);
 
-        card.addEventListener("click", () => {
-            selectCard(index);
-        });
+        const clickableStats = (phase === "chooseStat" && currentChallenger === "player");
+        const activeStat = selectedCardIndex === index ? selectedStat : null;
+
+        card.innerHTML = createCardHTML(player, activeStat, index, clickableStats);
+
+        // Ha az ellenfél hívott, akkor teljes lapra kattintva választasz
+        if (phase === "chooseCard" && currentChallenger === "enemy") {
+            card.addEventListener("click", () => {
+                selectCard(index);
+            });
+        }
+
+        if (selectedCardIndex === index) {
+            card.classList.add("selected");
+        }
 
         playerHand.appendChild(card);
     });
 
-    // kijelölt lap visszajelölése újrarender után
-    if (selectedCardIndex !== null) {
-        const allCards = document.querySelectorAll(".player-hand .card");
-        if (allCards[selectedCardIndex]) {
-            allCards[selectedCardIndex].classList.add("selected");
-        }
-    }
+    // Stat kattintások felrakása utólag
+    document.querySelectorAll(".player-hand .stat-clickable").forEach(statEl => {
+        statEl.addEventListener("click", (e) => {
+            e.stopPropagation();
+
+            const index = Number(statEl.dataset.cardIndex);
+            const statName = statEl.dataset.stat;
+
+            selectCardStat(index, statName);
+        });
+    });
 }
 
 function selectCard(index) {
@@ -294,13 +282,8 @@ function playRound() {
                 enemyCardDiv.classList.add("winner");
                 playerCardDiv.classList.add("loser");
             }
-<<<<<<< HEAD
         }, 1000);
     }, 1000);
-=======
-        }, 3000);
-    }, 3000);
->>>>>>> 9bba90546837bbfffbd2272bbc9b05a22e0c4ef4
 
     // Kör lezárása
     setTimeout(() => {
@@ -329,11 +312,7 @@ function playRound() {
 
         setTimeout(() => {
             startNextTurn();
-<<<<<<< HEAD
         }, 1000);
-=======
-        }, 3000);
->>>>>>> 9bba90546837bbfffbd2272bbc9b05a22e0c4ef4
 
     }, 3000);
 }
@@ -386,11 +365,7 @@ function resetBattleArea(clearNow = false) {
         setTimeout(() => {
             playerBattle.innerHTML = "";
             enemyBattle.innerHTML = "";
-<<<<<<< HEAD
         }, 500);
-=======
-        }, 3000);
->>>>>>> 9bba90546837bbfffbd2272bbc9b05a22e0c4ef4
     }
 }
 
@@ -425,3 +400,23 @@ function safeStat(value) {
     return value ?? 0;
 }
 
+function selectCardStat(index, statName) {
+    if (roundLocked) return;
+
+    if (phase !== "chooseStat") {
+        showMessage("Most nem választhatsz statot!");
+        return;
+    }
+
+    if (currentChallenger !== "player") {
+        showMessage("Ebben a körben az ellenfél hív ki!");
+        return;
+    }
+
+    selectedCardIndex = index;
+    selectedStat = statName;
+    phase = "chooseCard";
+
+    renderHands();
+    showMessage(`Kiválasztottad: ${statName.toUpperCase()}. Most játszd le a kört!`);
+}

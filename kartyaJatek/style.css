@@ -397,3 +397,18 @@ body {
                     animation: loserShake 0.4s ease 3;
                     border: 3px solid #e74c3c;
                 }
+                
+                .stat-clickable 
+                {
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    pointer-events: auto;
+                }
+
+                .stat-clickable:hover 
+                {
+                    transform: translateY(-2px);
+                    background: rgba(0,255,170,0.14);
+                    border-color: rgba(0,255,170,0.35);
+                    box-shadow: 0 0 10px rgba(0,255,170,0.18);
+                }
