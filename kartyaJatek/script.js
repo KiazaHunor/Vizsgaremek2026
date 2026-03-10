@@ -207,7 +207,11 @@ function startNextTurn() {
         showMessage("Az ellenfél gondolkodik...");
         setTimeout(() => {
             enemyChooseStat();
+<<<<<<< HEAD
         }, 3000);
+=======
+        }, 500);
+>>>>>>> c081b8410b2e1d39dd24d2913faa37232e0148cf
     }
 }
 
@@ -294,8 +298,13 @@ function playRound() {
                 enemyCardDiv.classList.add("winner");
                 playerCardDiv.classList.add("loser");
             }
-        }, 700);
-    }, 700);
+<<<<<<< HEAD
+        }, 1000);
+    }, 1000);
+=======
+        }, 3000);
+    }, 3000);
+>>>>>>> 9bba90546837bbfffbd2272bbc9b05a22e0c4ef4
 
     // Kör lezárása
     setTimeout(() => {
@@ -324,7 +333,15 @@ function playRound() {
 
         setTimeout(() => {
             startNextTurn();
+<<<<<<< HEAD
         }, 300);
+=======
+<<<<<<< HEAD
+        }, 1000);
+=======
+        }, 3000);
+>>>>>>> 9bba90546837bbfffbd2272bbc9b05a22e0c4ef4
+>>>>>>> c081b8410b2e1d39dd24d2913faa37232e0148cf
 
     }, 3000);
 }
@@ -377,7 +394,15 @@ function resetBattleArea(clearNow = false) {
         setTimeout(() => {
             playerBattle.innerHTML = "";
             enemyBattle.innerHTML = "";
+<<<<<<< HEAD
         }, 3000);
+=======
+<<<<<<< HEAD
+        }, 500);
+=======
+        }, 3000);
+>>>>>>> 9bba90546837bbfffbd2272bbc9b05a22e0c4ef4
+>>>>>>> c081b8410b2e1d39dd24d2913faa37232e0148cf
     }
 }
 
@@ -398,7 +423,7 @@ function endGame() {
     showMessage(message + " Kattints újra a paklira az új játékhoz!", 5000);
 }
 
-function showMessage(text, duration = 4000) {
+function showMessage(text, duration = 5000) {
     const msg = document.getElementById("game-message");
     msg.textContent = text;
     msg.classList.add("show");
