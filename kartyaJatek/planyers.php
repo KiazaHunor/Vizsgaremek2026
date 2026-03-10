@@ -82,36 +82,6 @@ $playersJson = json_encode($players);
     <!-- Játékos pakli -->
     <div class="deck player-deck" id="player-deck">Játékos Pakli</div>
 </div>
-
-<div class="card fut-card">
-    <div class="card-glow"></div>
-
-    <div class="card-top">
-        <div class="card-position">LW</div>
-    </div>
-    <div class="card-image">
-        <img src="hatternelkul/barcika.png" alt="Mez">
-    </div>
-
-    <div class="card-name">Varga Barnabás</div>
-    <div class="card-team">Ferencváros</div>
-
-    <div class="card-stats">
-        <div class="stat-box">
-            <span>ATK</span>
-            <span>95</span>
-        </div>
-        <div class="stat-box">
-            <span>CTR</span>
-            <span>82</span>
-        </div>
-        <div class="stat-box">
-            <span>DEF</span>
-            <span>40</span>
-        </div>
-    </div>
-</div>
-
 <script>
     const players = <?php echo $playersJson; ?>;
 </script>

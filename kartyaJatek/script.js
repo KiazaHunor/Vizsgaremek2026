@@ -207,7 +207,7 @@ function startNextTurn() {
         showMessage("Az ellenfél gondolkodik...");
         setTimeout(() => {
             enemyChooseStat();
-        }, 1200);
+        }, 500);
     }
 }
 
@@ -294,8 +294,8 @@ function playRound() {
                 enemyCardDiv.classList.add("winner");
                 playerCardDiv.classList.add("loser");
             }
-        }, 700);
-    }, 700);
+        }, 1000);
+    }, 1000);
 
     // Kör lezárása
     setTimeout(() => {
@@ -324,9 +324,9 @@ function playRound() {
 
         setTimeout(() => {
             startNextTurn();
-        }, 500);
+        }, 1000);
 
-    }, 2200);
+    }, 3000);
 }
 
 function showBattleCards(playerCard, enemyCard, selectedStat) {
@@ -377,7 +377,7 @@ function resetBattleArea(clearNow = false) {
         setTimeout(() => {
             playerBattle.innerHTML = "";
             enemyBattle.innerHTML = "";
-        }, 300);
+        }, 500);
     }
 }
 
@@ -398,7 +398,7 @@ function endGame() {
     showMessage(message + " Kattints újra a paklira az új játékhoz!", 5000);
 }
 
-function showMessage(text, duration = 4000) {
+function showMessage(text, duration = 5000) {
     const msg = document.getElementById("game-message");
     msg.textContent = text;
     msg.classList.add("show");
