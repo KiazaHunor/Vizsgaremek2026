@@ -97,7 +97,7 @@ function getTeamLabel(card) {
 }
 
 function getKitImage(card) {
-    return card.shirt_image || "mezek/default.png";
+    return card.shirt_image || "hatternelkul/default.png";
 }
 
 function createCardHTML(card, selectedStat = null) {
