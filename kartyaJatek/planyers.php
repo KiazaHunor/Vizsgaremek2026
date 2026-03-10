@@ -77,11 +77,21 @@ $playersJson = json_encode($players);
         <button data-stat="attack">Attack</button>
         <button data-stat="controll">Controll</button>
         <button data-stat="defence">Defence</button>        
+<<<<<<< HEAD
     </div> --->
     <button id="play-round" class="m-5">Kör lejátszása</button>
+=======
+    </div>
+    <button id="play-round">Kör lejátszása</button>
+>>>>>>> 63c57aabc0a72e5624ee338a9f24e4be9bc8c798
     <!-- Játékos pakli -->
     <div class="deck player-deck" id="player-deck">Játékos Pakli</div>
 </div>
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 86d2a72f73975f0fb4d926482bf146806cbb4cbe
 <script>
     const players = <?php echo $playersJson; ?>;
 </script>

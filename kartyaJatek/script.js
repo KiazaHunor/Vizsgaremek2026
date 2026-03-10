@@ -195,7 +195,11 @@ function startNextTurn() {
         showMessage("Az ellenfél gondolkodik...");
         setTimeout(() => {
             enemyChooseStat();
+<<<<<<< HEAD
+        }, 3000);
+=======
         }, 500);
+>>>>>>> c081b8410b2e1d39dd24d2913faa37232e0148cf
     }
 }
 
@@ -312,7 +316,19 @@ function playRound() {
 
         setTimeout(() => {
             startNextTurn();
+<<<<<<< HEAD
         }, 1000);
+=======
+<<<<<<< HEAD
+        }, 300);
+=======
+<<<<<<< HEAD
+        }, 1000);
+=======
+        }, 3000);
+>>>>>>> 9bba90546837bbfffbd2272bbc9b05a22e0c4ef4
+>>>>>>> c081b8410b2e1d39dd24d2913faa37232e0148cf
+>>>>>>> 63c57aabc0a72e5624ee338a9f24e4be9bc8c798
 
     }, 3000);
 }
@@ -365,7 +381,19 @@ function resetBattleArea(clearNow = false) {
         setTimeout(() => {
             playerBattle.innerHTML = "";
             enemyBattle.innerHTML = "";
+<<<<<<< HEAD
         }, 500);
+=======
+<<<<<<< HEAD
+        }, 3000);
+=======
+<<<<<<< HEAD
+        }, 500);
+=======
+        }, 3000);
+>>>>>>> 9bba90546837bbfffbd2272bbc9b05a22e0c4ef4
+>>>>>>> c081b8410b2e1d39dd24d2913faa37232e0148cf
+>>>>>>> 63c57aabc0a72e5624ee338a9f24e4be9bc8c798
     }
 }
 
