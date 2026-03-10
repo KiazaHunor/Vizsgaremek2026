@@ -1,5 +1,5 @@
 <?php
-require_once 'db.php';
+require_once 'foprogram/db.php';
 
 // Segédfüggvény: cURL lekérés
 function fetchUrl($url) {
