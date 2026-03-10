@@ -82,8 +82,11 @@ $playersJson = json_encode($players);
     <!-- Játékos pakli -->
     <div class="deck player-deck" id="player-deck">Játékos Pakli</div>
 </div>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 86d2a72f73975f0fb4d926482bf146806cbb4cbe
 <script>
     const players = <?php echo $playersJson; ?>;
 </script>

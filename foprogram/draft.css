@@ -27,7 +27,9 @@ header {
   padding-top: 10px;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: white;
   text-shadow: 0 0 10px rgba(0, 255, 157, 0.25);
 }
@@ -39,8 +41,8 @@ h1, h2, h3 {
   vertical-align: middle;
 }
 
-.navbar {
-  background-color: rgba(0, 0, 0, 0.25) !important;
+.main-nav {
+  background-color: rgba(0, 0, 0, 0.25);
   border-radius: 12px;
   backdrop-filter: blur(4px);
 }
@@ -59,9 +61,6 @@ h1, h2, h3 {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-#section-game,
-article,
-aside,
 .draft-section {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -72,50 +71,12 @@ aside,
   backdrop-filter: blur(6px);
 }
 
-#jatekgomb {
-  text-align: center;
-  margin-top: 20px;
-}
-
-#jatekgomb a {
-  color: var(--accent);
-  transition: 0.25s;
-}
-
-#jatekgomb a:hover {
-  color: white;
-  transform: scale(1.08);
-}
-
-#tabella,
-#news-container {
-  color: #fff;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #ddd;
-  background-color: rgba(0, 0, 0, 0.2);
-  margin-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-hr {
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-/* =========================
-   DRAFT OLDAL
-========================= */
-
 #cim {
   text-align: center;
   margin-bottom: 20px;
   font-weight: bold;
 }
 
-#formaciok,
 .formation-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -208,7 +169,6 @@ hr {
   margin-top: 25px;
 }
 
-.modal-content.custom-modal,
 .custom-modal {
   background: #10161f;
   border: 1px solid rgba(0, 255, 157, 0.18);
@@ -229,29 +189,24 @@ hr {
   border-color: var(--accent);
 }
 
-.list-group-item {
-  background-color: #18212b;
-  color: #e6edf3;
-  border: 1px solid #243140;
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #ddd;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.list-group-item:hover {
-  background-color: #223041;
-  color: var(--accent);
+hr {
+  border-color: rgba(255, 255, 255, 0.15);
 }
-
-/* =========================
-   RESZPONZÍV
-========================= */
 
 @media (max-width: 768px) {
   #logo {
     width: 50px;
   }
 
-  #section-game,
-  article,
-  aside,
   .draft-section {
     padding: 18px;
   }
