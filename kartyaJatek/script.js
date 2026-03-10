@@ -294,8 +294,13 @@ function playRound() {
                 enemyCardDiv.classList.add("winner");
                 playerCardDiv.classList.add("loser");
             }
+<<<<<<< HEAD
         }, 1000);
     }, 1000);
+=======
+        }, 3000);
+    }, 3000);
+>>>>>>> 9bba90546837bbfffbd2272bbc9b05a22e0c4ef4
 
     // Kör lezárása
     setTimeout(() => {
@@ -324,7 +329,11 @@ function playRound() {
 
         setTimeout(() => {
             startNextTurn();
+<<<<<<< HEAD
         }, 1000);
+=======
+        }, 3000);
+>>>>>>> 9bba90546837bbfffbd2272bbc9b05a22e0c4ef4
 
     }, 3000);
 }
@@ -377,7 +386,11 @@ function resetBattleArea(clearNow = false) {
         setTimeout(() => {
             playerBattle.innerHTML = "";
             enemyBattle.innerHTML = "";
+<<<<<<< HEAD
         }, 500);
+=======
+        }, 3000);
+>>>>>>> 9bba90546837bbfffbd2272bbc9b05a22e0c4ef4
     }
 }
 

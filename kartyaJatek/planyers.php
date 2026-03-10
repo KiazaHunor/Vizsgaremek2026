@@ -78,7 +78,7 @@ $playersJson = json_encode($players);
         <button data-stat="controll">Controll</button>
         <button data-stat="defence">Defence</button>        
     </div>
-    <button id="play-round">Kör lejátszása</button>
+    <button id="play-round" class="m-5">Kör lejátszása</button>
     <!-- Játékos pakli -->
     <div class="deck player-deck" id="player-deck">Játékos Pakli</div>
 </div>
