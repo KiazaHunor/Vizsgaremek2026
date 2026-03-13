@@ -86,3 +86,5 @@
 
     loadTabella();
     setInterval(loadTabella, 60000);
+
+    
