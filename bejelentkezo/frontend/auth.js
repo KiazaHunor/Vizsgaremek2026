@@ -18,7 +18,7 @@ function login() {
     .then(d => {
         if (d.success && d.token) {
             localStorage.setItem('token', d.token);
-            window.location.href = '../../szep.html';
+            window.location.href = '../../foprogram/szep.html';
         } else {
             alert(d.error || 'Hibás adatok');
         }
