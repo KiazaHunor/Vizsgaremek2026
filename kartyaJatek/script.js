@@ -196,7 +196,7 @@ function selectCard(index) {
                 showMessage("Az ellenfél gondolkodik...");
                 setTimeout(() => {
                     enemyChooseStat();
-                }, 700);
+                }, 5000);
             }
         }
 
@@ -283,8 +283,8 @@ function playRound() {
                 enemyCardDiv.classList.add("winner");
                 playerCardDiv.classList.add("loser");
             }
-        }, 1000);
-    }, 1000);
+        }, 5000);
+    }, 5000);
 
     // Kör lezárása
     setTimeout(() => {
@@ -314,11 +314,11 @@ function playRound() {
         setTimeout(() => {
             startNextTurn();
 
-        }, 1000);
+        }, 5000);
 
-        }, 300);
+        }, 5000);
 
-     } 1000;
+     }
 
       
 
@@ -343,7 +343,7 @@ function showBattleCards(playerCard, enemyCard, selectedStat) {
     setTimeout(() => {
         playerDiv.classList.add("battle-active");
         enemyDiv.classList.add("battle-active");
-    }, 50);
+    }, 5000);
 }
 
 
@@ -374,8 +374,8 @@ function resetBattleArea(clearNow = false)
         setTimeout(() => {
             playerBattle.innerHTML = "";
             enemyBattle.innerHTML = "";
-        }, 500);
-        } 3000;
+        }, 5000);
+        }
 }
 
 function endGame() {
