@@ -1,0 +1,126 @@
+:root {
+--bg-main: #0b0f14;
+--panel: rgba(18, 24, 33, 0.92);
+--accent: #00ff9d;
+--accent2: #00b3ff;
+--text-main: #e6edf3;
+--text-muted: #9aa7b2;
+}
+
+/* ===== BODY ===== */
+body {
+min-height: 100vh;
+background: radial-gradient(circle at top,#0f1722,#0b0f14 70%);
+font-family: 'Segoe UI', sans-serif;
+color: var(--text-main);
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+background: linear-gradient(135deg,#0f2027,#203a43);
+border-bottom: 1px solid #1f2a36;
+box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.navbar-brand {
+font-weight: 700;
+letter-spacing: 1px;
+color: var(--accent) !important;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+max-width: 600px;
+}
+
+/* ===== PROFILE PANEL ===== */
+#content > div {
+background: var(--panel);
+border-radius: 18px;
+border: 1px solid #1f2a36;
+padding: 35px;
+backdrop-filter: blur(14px);
+box-shadow: 0 0 35px rgba(0,0,0,0.45);
+position: relative;
+}
+
+/* glow effect */
+#content > div::before {
+content: "";
+position: absolute;
+inset: -2px;
+border-radius: 20px;
+background: linear-gradient(120deg, transparent, rgba(0,255,157,0.25), transparent);
+filter: blur(18px);
+opacity: 0.4;
+z-index: -1;
+}
+
+/* ===== TITLE ===== */
+h3 {
+color: var(--accent);
+font-weight: 700;
+}
+
+/* ===== TEXT ===== */
+p {
+color: var(--text-main);
+}
+
+/* ===== LABEL ===== */
+.form-label {
+color: var(--text-main);
+}
+
+/* ===== INPUT ===== */
+.form-control {
+background: #0f141c;
+border: 1px solid #1f2a36;
+color: var(--text-main);
+border-radius: 12px;
+padding: 10px 14px;
+}
+
+.form-control::placeholder {
+color: #6c7a86;
+}
+
+.form-control:focus {
+background: #0f141c;
+border-color: var(--accent);
+box-shadow: 0 0 12px rgba(0,255,157,0.3);
+color: var(--text-main);
+}
+
+/* ===== BUTTON ===== */
+.btn-primary {
+border-radius: 30px;
+padding: 11px 18px;
+font-weight: 600;
+background: var(--accent);
+border: none;
+color: #000;
+transition: 0.25s;
+}
+
+.btn-primary:hover {
+background: var(--accent2);
+box-shadow: 0 0 18px var(--accent2);
+transform: translateY(-1px);
+}
+
+/* logout button */
+.btn-danger {
+border-radius: 30px;
+}
+
+/* ===== SPINNER ===== */
+.spinner-border {
+color: var(--accent);
+}
+
+/* ===== HR ===== */
+hr {
+border-color: #1f2a36;
+opacity: 0.8;
+}

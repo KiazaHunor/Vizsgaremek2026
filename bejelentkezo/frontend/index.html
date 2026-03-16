@@ -36,6 +36,8 @@
                     <button class="btn" onclick="login()">Bejelentkezés</button>
                     <h6 style="color: #9aa7b2;">Nincs még fiókod? </h4><a href="regisztracio.html">Regisztrálj be</a>
                     <a href="ujjelszo.html">Elfelejtetted a jelszód?</a>
+                    <a href="../../foprogram/szep.html">Vissza a főoldalra</a>
+
                 </div>
 
             </div>
@@ -48,6 +50,12 @@
 </div>
 
 <script src="auth.js"></script>
+<script>
+  const token = localStorage.getItem('token');
+  if (token) {
+    window.location.href = 'dashboard.html';
+  }
+</script>
 
 </body>
 </html>
