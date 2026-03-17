@@ -22,16 +22,6 @@ try {
         'CF'  => 'Centre-Forward'
     ];
 
-    if (!isset($positionMap[$positionCode])) {
-        echo json_encode([
-            'success' => false,
-            'message' => 'Érvénytelen pozíció.'
-        ], JSON_UNESCAPED_UNICODE);
-        exit;
-    }
-
-    $positionName = $positionMap[$positionCode];
-
     $excludeIds = [];
     if (!empty($excludeRaw)) {
         $excludeIds = array_values(array_filter(array_map('intval', explode(',', $excludeRaw))));
@@ -41,6 +31,7 @@ try {
         SELECT 
             p.id,
             TRIM(p.name) AS name,
+            p.image_url,
             pos.name AS position,
             t.name AS team,
             n.name AS nationality
@@ -48,10 +39,25 @@ try {
         INNER JOIN positions pos ON p.position_id = pos.id
         INNER JOIN teams t ON p.team_id = t.id
         INNER JOIN nationalities n ON p.nationality_id = n.id
-        WHERE pos.name = ?
     ";
 
-    $params = [$positionName];
+    $params = [];
+
+    if ($positionCode === 'CSERE' || $positionCode === 'TART') {
+        $sql .= " WHERE 1=1 ";
+    } else {
+        if (!isset($positionMap[$positionCode])) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Érvénytelen pozíció.'
+            ], JSON_UNESCAPED_UNICODE);
+            exit;
+        }
+
+        $positionName = $positionMap[$positionCode];
+        $sql .= " WHERE pos.name = ? ";
+        $params[] = $positionName;
+    }
 
     if (!empty($excludeIds)) {
         $placeholders = implode(',', array_fill(0, count($excludeIds), '?'));

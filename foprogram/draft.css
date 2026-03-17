@@ -150,7 +150,6 @@ hr {
     0 0 20px rgba(0, 0, 0, 0.28);
 }
 
-/* pálya felezővonal */
 .formation-container::after {
   content: "";
   position: absolute;
@@ -162,7 +161,6 @@ hr {
   transform: translateY(-50%);
 }
 
-/* középkör */
 .formation-container::before {
   content: "";
   position: absolute;
@@ -183,7 +181,6 @@ hr {
   z-index: 2;
 }
 
-/* a bootstrap oszlopokban középre */
 .formation-row > div {
   display: flex;
   justify-content: center;
@@ -191,7 +188,8 @@ hr {
 
 /* ===== PLAYER CARDS ===== */
 
-.player {
+.player,
+.extra-player {
   width: 100%;
   max-width: 150px;
   min-height: 96px;
@@ -208,14 +206,19 @@ hr {
   cursor: pointer;
   transition: all 0.25s ease;
   box-shadow: 0 0 15px rgba(0, 255, 157, 0.22);
-  opacity: 0;
-  transform: translateY(20px);
   word-break: break-word;
   line-height: 1.2;
   font-size: 0.95rem;
+  overflow: hidden;
 }
 
-.player:hover {
+.player {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.player:hover,
+.extra-player:hover {
   transform: translateY(-4px) scale(1.03);
   box-shadow: 0 0 24px rgba(0, 255, 157, 0.35);
   border-color: #5fffc2;
@@ -226,24 +229,39 @@ hr {
   transform: translateY(0);
 }
 
-.player.locked {
+.player.locked,
+.extra-player.locked {
   border-color: var(--accent2);
   box-shadow: 0 0 20px rgba(0, 179, 255, 0.45);
   background: linear-gradient(145deg, #1a2633, #101923);
   color: var(--text-main);
-  padding: 10px 8px;
+  padding: 8px 6px;
 }
 
-.player.locked:hover {
-  transform: translateY(-2px);
-}
-
-/* ha a JS-ben innerHTML-ként beteszed az adatokat */
-.player.locked div {
+.player.locked div,
+.extra-player.locked div {
   width: 100%;
-  font-size: 11px;
-  line-height: 1.25;
+  font-size: 10px;
+  line-height: 1.15;
   text-align: center;
+}
+
+.player img,
+.extra-player img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* ===== EXTRAS ===== */
+
+.extras-container {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+  justify-items: center;
 }
 
 /* ===== BACK BUTTONS ===== */
@@ -313,10 +331,15 @@ footer {
     padding: 30px 14px;
   }
 
-  .player {
+  .player,
+  .extra-player {
     max-width: 135px;
     min-height: 90px;
     font-size: 0.9rem;
+  }
+
+  .extras-container {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -344,15 +367,22 @@ footer {
     height: 90px;
   }
 
-  .player {
+  .player,
+  .extra-player {
     max-width: 110px;
     min-height: 82px;
     padding: 10px 6px;
     font-size: 0.82rem;
   }
 
-  .player.locked div {
-    font-size: 10px;
+  .player.locked div,
+  .extra-player.locked div {
+    font-size: 9px;
+  }
+
+  .extras-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 }
 
@@ -370,20 +400,26 @@ footer {
     min-height: 420px;
   }
 
-  .player {
+  .player,
+  .extra-player {
     max-width: 92px;
     min-height: 74px;
     font-size: 0.72rem;
     border-radius: 12px;
   }
 
-  .player.locked div {
-    font-size: 9px;
-    line-height: 1.15;
+  .player.locked div,
+  .extra-player.locked div {
+    font-size: 8px;
+    line-height: 1.1;
   }
 
   .back-button-wrap .btn {
     width: 100%;
     max-width: 280px;
+  }
+
+  .extras-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

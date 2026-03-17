@@ -79,7 +79,7 @@ $playersJson = json_encode($players);
         <button data-stat="defence">Defence</button>        
 
     </div> --->
-    <button id="play-round" class="m-5">Kör lejátszása</button>
+     <!--<button id="play-round" class="m-5">Kör lejátszása</button>-->
 
     </div>
     <button id="play-round">Kör lejátszása</button>
