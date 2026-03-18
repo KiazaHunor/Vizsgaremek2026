@@ -1,12 +1,14 @@
     body {
-                        background-color: #00ff9d;
-                        background-size: cover;
-                        background-position: center;
-                        background-repeat: no-repeat;
-                        background-attachment: fixed;
-                        margin: 0;
-                        padding: 0;
-                        font-family: Arial, sans-serif;
+
+                background-image: url(hatter1.png);
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                        
                         
                     }
 
@@ -14,7 +16,7 @@
                         position: relative;
                         width: 100vw;
                         height: 100vh;
-                        background-color: #00ff9d;
+                        
                                         
                     }
 
@@ -84,6 +86,8 @@
                         padding: 10px;
                         box-sizing: border-box;
                         transition: transform 0.8s ease, box-shadow 0.8s ease;
+                     
+
                     }
                     .card:hover {
                         transform: translateY(-6px) scale(1.03);
@@ -347,6 +351,7 @@
                     .player-start 
                     {
                         transform: translateX(-300px);
+                        
                     }
                     .enemy-start 
                     {
@@ -411,3 +416,11 @@
                         border-color: rgba(0,255,170,0.35);
                         box-shadow: 0 0 10px rgba(0,255,170,0.18);
                     }
+                    .center-area {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    display: flex;
+                    gap: 50px;
+                }
