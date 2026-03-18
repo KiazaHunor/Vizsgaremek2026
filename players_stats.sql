@@ -13,3 +13,5 @@ CREATE TABLE player_stats (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+ALTER TABLE players ADD image_url VARCHAR(255) NULL;
