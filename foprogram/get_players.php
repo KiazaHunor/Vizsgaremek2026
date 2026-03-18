@@ -31,14 +31,15 @@ try {
         SELECT 
             p.id,
             TRIM(p.name) AS name,
-            p.image_url,
             pos.name AS position,
             t.name AS team,
-            n.name AS nationality
+            n.name AS nationality,
+            tk.image_path AS shirt_image
         FROM players p
         INNER JOIN positions pos ON p.position_id = pos.id
         INNER JOIN teams t ON p.team_id = t.id
         INNER JOIN nationalities n ON p.nationality_id = n.id
+        LEFT JOIN team_kits tk ON tk.team_id = t.id
     ";
 
     $params = [];
