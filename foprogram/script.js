@@ -127,3 +127,4 @@ fetch("../gollovolista.php")
   .catch(() => {
     document.getElementById("gollovolista").innerHTML = "Hiba történt a betöltés során";
   });
+  
