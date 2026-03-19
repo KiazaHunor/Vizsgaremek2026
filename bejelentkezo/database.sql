@@ -18,4 +18,5 @@ CREATE TABLE users (
   UNIQUE KEY uq_users_username (username),
   UNIQUE KEY uq_users_email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-ALTER TABLE players ADD image_url VARCHAR(255) NULL;
+
+ALTER TABLE users ADD profile_image VARCHAR(255) NULL;
