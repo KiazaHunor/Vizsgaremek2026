@@ -19,9 +19,78 @@
         <a href="szep.html"><img id="logo" src="../Fizz_Liga_NBI.png" alt="Fizz Liga"></a>
       </h1>
 
+<<<<<<< HEAD
       <div id="navbar-container"></div>
     </header>
        
+=======
+        <nav class="navbar navbar-expand-lg navbar-dark mt-2 main-nav">
+          <div class="container-fluid justify-content-center">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#fizzNav">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="fizzNav">
+              <ul class="navbar-nav text-center">
+                <li class="nav-item dropdown mx-2">
+                  <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">
+                    Meccsek
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-center">
+                    <li><a class="dropdown-item" href="#">📅 Következő forduló</a></li>
+                    <li><a class="dropdown-item" href="#">📊 Eredmények</a></li>
+                  </ul>
+                </li>
+
+                <li class="nav-item dropdown mx-2">
+                  <a class="nav-link dropdown-toggle fw-bold text-success" href="#" role="button"
+                    data-bs-toggle="dropdown">
+                    Játék
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-center">
+                    <li><a class="dropdown-item" href="#">🎯 Kvíz</a></li>
+                    <li><a class="dropdown-item active" href="game.html">🎮 Draft</a></li>
+                    <li><a class="dropdown-item" href="../kartyaJatek/planyers.php">🃏 Kártya játék</a></li>
+                  </ul>
+                </li>
+
+                <li class="nav-item dropdown mx-2">
+                  <a class="nav-link dropdown-toggle fw-bold text-info" href="#" role="button"
+                    data-bs-toggle="dropdown">
+                    Statisztika
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-center">
+                    <li><a class="dropdown-item" href="#">⭐ Tabella</a></li>
+                    <li><a class="dropdown-item" href="#">📈 Góllövő lista</a></li>
+                    <li><a class="dropdown-item" href="#">🧮 A te statisztikáid</a></li>
+                  </ul>
+                </li>
+
+                <li class="nav-item mx-2">
+                  <a class="nav-link fw-bold" href="#">Hírek</a>
+                </li>
+
+                <li class="nav-item dropdown mx-2">
+                  <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">
+                    Névjegy
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-center">
+                    <li><a class="dropdown-item" href="rolunk.html">💬 Rólunk</a></li>
+                    <li><a class="dropdown-item" href="kapcsolat.html">☎️ Kapcsolat</a></li>
+                  </ul>
+                </li>
+
+                <li class="nav-item mx-2">
+                  <a id="bejel" class="nav-link fw-bold text-warning" href="../bejelentkezo/frontend/index.html">
+                    👤 Profil / Bejelentkezés
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+>>>>>>> a7f6b031d3e14da0c301e10fb08498e16ceb13b6
     </div>
 
     <div class="row justify-content-center">
@@ -33,7 +102,8 @@
           <div id="formaciok" class="formation-buttons">
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-3-3')">4-3-3</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-4-2')">4-4-2</button>
-            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-1-2-1-2')">4-1-2-1-2</button>
+            <button class="btn btn-outline-success btn-formation"
+              onclick="loadFormation('4-1-2-1-2')">4-1-2-1-2</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-5-1')">4-5-1</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('3-4-3')">3-4-3</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('3-5-2')">3-5-2</button>
@@ -76,6 +146,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
+    let selectedSwapSlot = null;
     let selectedSlot = null;
 
     const formations = {
@@ -190,14 +261,13 @@
       return `
         <div class="draft-card">
           <div class="draft-card-top">
-            <span class="draft-card-pos">${player.position}</span>
-            <span class="draft-card-team">${player.team}</span>
+            <div class="draft-card-pos">${player.position}</div><br>
           </div>
-
+          <div class="draft-card-team">${player.team}</div>
           <div class="draft-card-image">
             <img src="${imageSrc}" alt="${player.team}">
           </div>
-
+          <div class="draft-card-nationality">${player.nationality}</div>
           <div class="draft-card-name">${player.name}</div>
         </div>
       `;
@@ -267,10 +337,12 @@
             `;
 
             button.onclick = function () {
-              selectedSlot.innerHTML = renderDraftCard(player, imageSrc);
-              selectedSlot.dataset.playerId = player.id;
-              selectedSlot.classList.add("locked");
-              selectedSlot.removeAttribute("onclick");
+              const slot = selectedSlot;
+
+              slot.innerHTML = renderDraftCard(player, imageSrc);
+              slot.dataset.playerId = player.id;
+              slot.classList.add("locked");
+              slot.onclick = () => handleSlotClick(slot);
 
               const modalInstance = bootstrap.Modal.getInstance(document.getElementById("playerModal"));
               modalInstance.hide();
@@ -288,6 +360,41 @@
         alert("Hiba történt a játékosok betöltése közben.");
       }
     }
+    function handleSlotClick(slot) {
+      if (!slot.dataset.playerId) return;
+
+      if (selectedSwapSlot === null) {
+        selectedSwapSlot = slot;
+        slot.classList.add("selected-swap");
+        return;
+      }
+
+      if (selectedSwapSlot === slot) {
+        slot.classList.remove("selected-swap");
+        selectedSwapSlot = null;
+        return;
+      }
+
+      const firstSlot = selectedSwapSlot;
+      firstSlot.classList.remove("selected-swap");
+
+      swapSlots(firstSlot, slot);
+
+      selectedSwapSlot = null;
+    }
+    function swapSlots(slot1, slot2) {
+      const tempHTML = slot1.innerHTML;
+      const tempId = slot1.dataset.playerId;
+
+      slot1.innerHTML = slot2.innerHTML;
+      slot1.dataset.playerId = slot2.dataset.playerId;
+
+      slot2.innerHTML = tempHTML;
+      slot2.dataset.playerId = tempId;
+
+      slot1.onclick = () => handleSlotClick(slot1);
+      slot2.onclick = () => handleSlotClick(slot2);
+    } 
   </script>
 </body>
 

@@ -7,9 +7,15 @@
   <title>Fizz Liga</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="szep.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
   <script src="script.js"></script>
   <script src="menu.js"></script>
+<<<<<<< HEAD
   <script src="navbar.js"></script>
+=======
+>>>>>>> a7f6b031d3e14da0c301e10fb08498e16ceb13b6
 </head>
 
 <body>
@@ -25,25 +31,31 @@
       </header>
     </div>
     <div class="row">
+      <!--FŐ JÁTÉK RÉSZ-->
       <div class="col-lg-8 col-md-8 col-12">
-        <section id="section-game">
-          <h3>Fizz Liga Draft Játék</h3>
-          <div id="jatekgomb">
-            <a class="navbar-brand" href="game.html"><svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"
-                fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+        <section class="game-card"
+          style="background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)), url('../gamehat.jpg');">
+          <div class="game-card-content">
+            <h3>Fizz Liga Draft Játék</h3>
+            <a class="game-card-btn" href="game.html">
+              <span>Játék indítása</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                 <path
-                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z" />
-              </svg></a>
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.5 5.5a.5.5 0 0 0 0 1h2.793L7.146 8.646a.5.5 0 1 0 .708.708L10 7.207V10a.5.5 0 0 0 1 0V5.5z" />
+              </svg>
+            </a>
           </div>
         </section>
 
-
+        <!--TABELLA-->
         <article>
-          <h3>Fizz Liga Tabella</h3>
+          <h3><i class="bi bi-table"></i> Fizz Liga Tabella</h3>
           <hr>
           <div id="tabella">Betöltés...</div>
         </article>
       </div>
+      <!--HÍREK-->
       <aside class="col-4 col-md-4 col-12">
         <h3>Aktuális hírek</h3>
         <hr>
@@ -52,24 +64,29 @@
 
 
     </div>
+    <!--GÓL LÖVŐ LISTA-->
     <div class="row mt-4 mb-4 g-4">
       <div class="col-12 col-lg-6">
-        <h3>Góllövőlista</h3>
-        <section id="gollovolista"></section>
-      </div>
-
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="article-box">
-          <h3>Valami id is</h3>
+        <article>
+          <h3><i class="bi bi-trophy"></i> Góllövőlista Fizz Liga</h3>
           <hr>
-        </div>
+          <div id="gollovolista">Betöltés...</div>
+        </article>
       </div>
 
+      <div class="col-12 col-lg-4">
+        <article>
+          <h3><i class="bi bi-question-circle"></i> Napi Quiz</h3>
+          <hr>
+        </article>
+      </div>
+      <!--KÁRTYA JÁTÉK-->
       <div class="col-12 col-md-6 col-lg-2">
-        <section id="card-game" class="promo-card-game">
-          <div class="card-game-overlay">
+        <section class="game-card"
+          style="background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)), url('../gerard.png');">
+          <div class="game-card-content">
             <h3>Kártya játék</h3>
-            <a class="card-game-btn" href="../kartyaJatek/planyers.php">
+            <a class="game-card-btn" href="../kartyaJatek/planyers.php">
               <span>Játék indítása</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                 class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
@@ -84,7 +101,7 @@
 
     <!--FOOTER -->
     <div class="row">
-      <footer>Készitették Mi</footer>
+      <footer>Készítette Fizz Liga Draft csapata <i class="bi bi-balloon-heart"></i></footer>
     </div>
 
 
