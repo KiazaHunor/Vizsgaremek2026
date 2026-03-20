@@ -1,3 +1,4 @@
+
 <?php
 require_once 'foprogram/db.php';
 
@@ -11,7 +12,6 @@ function fetchUrl($url) {
     return $html;
 }
 
-// NB I csapatok Transfermarkt URL-jei
 $teams = [
     "Ferencváros Budapest" => "https://www.transfermarkt.com/ferencvaros-budapest/startseite/verein/279/saison_id/2025",
     "Újpest FC" => "https://www.transfermarkt.com/ujpest-fc/startseite/verein/708/saison_id/2025",
@@ -27,7 +27,6 @@ $teams = [
     "Kazincbarcikai SC" => "https://www.transfermarkt.com/kazincbarcikai-sc/startseite/verein/24031/saison_id/2025"
 ];
 
-// Játékosok kigyűjtése csapatoldalról
 function scrapeTeamPlayers($url, $teamName) {
     $html = fetchUrl($url);
     if (!$html) return [];
@@ -73,53 +72,54 @@ foreach ($teams as $teamName => $url) {
     $players = scrapeTeamPlayers($url, $teamName);
 
     foreach ($players as $p) {
-        $stmt = $pdo->prepare("
-            INSERT INTO team (name)
-            VALUES (?)
-            ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)
-        ");
-        $stmt->execute([$p['team']]);
-        $teamId = $pdo->lastInsertId();
-
-        if (!$p['nationality']) continue;
-
-        $stmt = $pdo->prepare("
-            INSERT INTO nationalities (name)
-            VALUES (?)
-            ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)
-        ");
-        $stmt->execute([$p['nationality']]);
-        $natId = $pdo->lastInsertId();
-
-        if (!$p['position']) continue;
-
-        $stmt = $pdo->prepare("
-            INSERT INTO positions (name)
-            VALUES (?)
-            ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)
-        ");
-        $stmt->execute([$p['position']]);
-        $posId = $pdo->lastInsertId();
-
-        // Ne duplikáljuk a játékosokat
-        $checkStmt = $pdo->prepare("
-            SELECT id FROM players
-            WHERE name = ? AND team_id = ? AND nationality_id = ? AND position_id = ?
-            LIMIT 1
-        ");
-        $checkStmt->execute([$p['name'], $teamId, $natId, $posId]);
-
-        if (!$checkStmt->fetch()) {
+        try {
             $stmt = $pdo->prepare("
-                INSERT INTO players (name, team_id, nationality_id, position_id)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO teams (name)
+                VALUES (?)
+                ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)
             ");
-            $stmt->execute([
-                $p['name'],
-                $teamId,
-                $natId,
-                $posId
-            ]);
+            $stmt->execute([$p['team']]);
+            $teamId = $pdo->lastInsertId();
+
+            // Nemzetiségek
+            if ($p['nationality']) {
+                $stmt = $pdo->prepare("
+                    INSERT INTO nationalities (name)
+                    VALUES (?)
+                    ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)
+                ");
+                $stmt->execute([$p['nationality']]);
+                $natId = $pdo->lastInsertId();
+            }
+
+            // Pozíciók
+            if ($p['position']) {
+                $stmt = $pdo->prepare("
+                    INSERT INTO positions (name)
+                    VALUES (?)
+                    ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)
+                ");
+                $stmt->execute([$p['position']]);
+                $posId = $pdo->lastInsertId();
+            }
+
+            // Játékosok
+            $checkStmt = $pdo->prepare("
+                SELECT id FROM players
+                WHERE name = ? AND team_id = ? AND nationality_id = ? AND position_id = ?
+                LIMIT 1
+            ");
+            $checkStmt->execute([$p['name'], $teamId, $natId, $posId]);
+
+            if (!$checkStmt->fetch()) {
+                $stmt = $pdo->prepare("
+                    INSERT INTO players (name, team_id, nationality_id, position_id)
+                    VALUES (?, ?, ?, ?)
+                ");
+                $stmt->execute([$p['name'], $teamId, $natId, $posId]);
+            }
+        } catch (Exception $e) {
+            echo "Hiba: " . $e->getMessage();
         }
     }
 
@@ -127,3 +127,5 @@ foreach ($teams as $teamName => $url) {
 }
 
 echo "Minden NB I játékos betöltve az adatbázisba.";
+?>
+?>

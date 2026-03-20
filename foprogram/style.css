@@ -429,65 +429,82 @@ body.light-mode footer a {
 body.light-mode footer a:hover {
   color: #ffffff;
 }
-/* From Uiverse.io by Madflows */ 
-.toggle-switch {
+
+/* From Uiverse.io by AmIt-DasIT */ 
+/* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
   position: relative;
-  width: 100px;
-  height: 50px;
-  --light: #d8dbe0;
-  --dark: #28292c;
-  --link: rgb(27, 129, 112);
-  --link-hover: rgb(24, 94, 82);
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
 }
 
-.switch-label {
-  position: absolute;
-  width: 100%;
-  height: 50px;
-  background-color: var(--dark);
-  border-radius: 25px;
-  cursor: pointer;
-  border: 3px solid var(--dark);
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-.checkbox {
-  position: absolute;
-  display: none;
-}
-
+/* The slider */
 .slider {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 25px;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #223243;
+  transition: .4s;
+  border-radius: 30px;
 }
 
-.checkbox:checked ~ .slider {
-  background-color: var(--light);
-}
-
-.slider::before {
-  content: "";
+.slider:before {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  -webkit-box-shadow: inset 12px -4px 0px 0px var(--light);
-  box-shadow: inset 12px -4px 0px 0px var(--light);
-  background-color: var(--dark);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 20px;
+  left: 0.3em;
+  bottom: 0.3em;
+  background-color: #223243;
+  box-shadow: inset 2px -2px 0 1.8px #fff;
+  transition: .4s;
+  animation: anima1 0.3s linear;
 }
 
-.checkbox:checked ~ .slider::before {
-  -webkit-transform: translateX(50px);
-  -ms-transform: translateX(50px);
-  transform: translateX(50px);
-  background-color: var(--dark);
-  -webkit-box-shadow: none;
+@keyframes anima1 {
+  0% {
+    transform: translateX(1.5em);
+  }
+
+  80% {
+    transform: translateX(-0.3em);
+  }
+
+  100% {
+    transform: translateX(0em);
+  }
+}
+
+.switch input:checked + .slider:before {
+  background-color: yellow;
   box-shadow: none;
+  transform: translateX(1.5em);
+  animation: anima 0.3s linear;
+}
+
+@keyframes anima {
+  0% {
+    transform: translateX(0px)
+  }
+
+  80% {
+    transform: translateX(1.6em)
+  }
+
+  100% {
+    transform: translateX(1.4em)
+  }
 }
