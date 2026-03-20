@@ -46,6 +46,7 @@ try {
     foreach ($players as $player) {
         $pos = trim($player['position'] ?? '');
 
+        // A pozícióhoz tartozó statisztikai tartományok lekérése
         if (isset($positionRanges[$pos])) {
             $range = $positionRanges[$pos];
 
@@ -53,12 +54,13 @@ try {
             $controll = random_int($range['controll'][0], $range['controll'][1]);
             $defence  = random_int($range['defence'][0], $range['defence'][1]);
         } else {
-            // fallback ismeretlen pozícióra
+            // Ha ismeretlen pozíció, akkor véletlenszerű statisztikák
             $attack   = random_int(40, 60);
             $controll = random_int(40, 60);
             $defence  = random_int(40, 60);
         }
 
+        // A statisztikák frissítése vagy beszúrása a player_stats táblába
         $stmt->execute([
             ':player_id' => $player['player_id'],
             ':attack'    => $attack,
@@ -69,7 +71,7 @@ try {
 
     $pdo->commit();
 
-    echo "A player_stats tábla sikeresen feltöltve/frissítve lett.";
+    echo "A player_stats tábla sikeresen frissítve lett.";
 } catch (Exception $e) {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
@@ -77,3 +79,4 @@ try {
 
     echo "Hiba történt: " . $e->getMessage();
 }
+?>
