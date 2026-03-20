@@ -8,18 +8,18 @@ try {
     $excludeRaw = $_GET['exclude'] ?? '';
 
     $positionMap = [
-        'GK'  => 'Goalkeeper',
-        'CB'  => 'Centre-Back',
-        'LB'  => 'Left-Back',
-        'RB'  => 'Right-Back',
-        'CDM' => 'Defensive Midfield',
-        'CM'  => 'Central Midfield',
-        'CAM' => 'Attacking Midfield',
-        'LM'  => 'Left Midfield',
-        'RM'  => 'Right Midfield',
-        'LW'  => 'Left Winger',
-        'RW'  => 'Right Winger',
-        'CF'  => 'Centre-Forward'
+        'GK'   => 'Goalkeeper',
+        'CB'   => 'Centre-Back',
+        'LB'   => 'Left-Back',
+        'RB'   => 'Right-Back',
+        'CDM'  => 'Defensive Midfield',
+        'CM'   => 'Central Midfield',
+        'CAM'  => 'Attacking Midfield',
+        'LM'   => 'Left Midfield',
+        'RM'   => 'Right Midfield',
+        'LW'   => 'Left Winger',
+        'RW'   => 'Right Winger',
+        'CF'   => 'Centre-Forward'
     ];
 
     $excludeIds = [];
@@ -28,18 +28,22 @@ try {
     }
 
     $sql = "
-        SELECT 
+        SELECT
             p.id,
             TRIM(p.name) AS name,
             pos.name AS position,
             t.name AS team,
             n.name AS nationality,
-            tk.image_path AS shirt_image
+            (
+                SELECT tk.image_path
+                FROM team_kits tk
+                WHERE tk.team_id = t.id
+                LIMIT 1
+            ) AS shirt_image
         FROM players p
         INNER JOIN positions pos ON p.position_id = pos.id
         INNER JOIN teams t ON p.team_id = t.id
         INNER JOIN nationalities n ON p.nationality_id = n.id
-        LEFT JOIN team_kits tk ON tk.team_id = t.id
     ";
 
     $params = [];
@@ -55,14 +59,13 @@ try {
             exit;
         }
 
-        $positionName = $positionMap[$positionCode];
         $sql .= " WHERE pos.name = ? ";
-        $params[] = $positionName;
+        $params[] = $positionMap[$positionCode];
     }
 
     if (!empty($excludeIds)) {
         $placeholders = implode(',', array_fill(0, count($excludeIds), '?'));
-        $sql .= " AND p.id NOT IN ($placeholders)";
+        $sql .= " AND p.id NOT IN ($placeholders) ";
         $params = array_merge($params, $excludeIds);
     }
 
