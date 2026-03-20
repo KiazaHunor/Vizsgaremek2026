@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="style.css">
 <nav class="navbar navbar-expand-lg navbar-dark mt-2"
      style="background-color: rgba(0,0,0,0.25); border-radius: 12px;">
   <div class="container-fluid justify-content-center">
@@ -68,23 +69,12 @@
         </li>
 
         <li class="nav-item mx-2 d-flex align-items-center">
-        <label class="switch mb-0">
-          <input id="themeToggle" class="switch__input" type="checkbox" role="switch">
-          <span class="switch__icon">
-            <span class="switch__icon-part switch__icon-part--1"></span>
-            <span class="switch__icon-part switch__icon-part--2"></span>
-            <span class="switch__icon-part switch__icon-part--3"></span>
-            <span class="switch__icon-part switch__icon-part--4"></span>
-            <span class="switch__icon-part switch__icon-part--5"></span>
-            <span class="switch__icon-part switch__icon-part--6"></span>
-            <span class="switch__icon-part switch__icon-part--7"></span>
-            <span class="switch__icon-part switch__icon-part--8"></span>
-            <span class="switch__icon-part switch__icon-part--9"></span>
-            <span class="switch__icon-part switch__icon-part--10"></span>
-            <span class="switch__icon-part switch__icon-part--11"></span>
-          </span>
-          <span class="switch__sr">Világos mód</span>
-        </label>
+        <div class="toggle-switch">
+        <label class="switch-label">
+          <input type="checkbox" id="themeToggle" class="checkbox">
+          <span class="slider"></span>
+      </label>
+    </div>
       </li>
 
       </ul>

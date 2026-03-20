@@ -1,12 +1,13 @@
 function initThemeToggle() {
   const toggle = document.getElementById("themeToggle");
+
   if (!toggle) {
     console.log("Nincs themeToggle");
     return;
   }
 
+  // Előzőleg mentett téma betöltése
   const savedTheme = localStorage.getItem("theme");
-
   if (savedTheme === "light") {
     document.body.classList.add("light-mode");
     toggle.checked = true;
@@ -15,9 +16,8 @@ function initThemeToggle() {
     toggle.checked = false;
   }
 
+  // Módosítás a kapcsoló állapotának változásakor
   toggle.addEventListener("change", function () {
-    console.log("Kattintás működik", this.checked);
-
     if (this.checked) {
       document.body.classList.add("light-mode");
       localStorage.setItem("theme", "light");
@@ -30,10 +30,9 @@ function initThemeToggle() {
 
 document.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("theme");
-
   if (savedTheme === "light") {
     document.body.classList.add("light-mode");
-  } else {
-    document.body.classList.remove("light-mode");
   }
+
+  initThemeToggle();
 });

@@ -1,5 +1,5 @@
 <?php
-require_once 'foprogram/db.php';
+require_once '../foprogram/db.php';
 
 // Segédfüggvény: cURL lekérés
 function fetchUrl($url) {
@@ -57,73 +57,34 @@ function scrapeTeamPlayers($url, $teamName) {
         }
 
         $players[] = [
-            'team' => $teamName,
+            'teams' => $teamName,
             'name' => $name,
-            'position' => $position,
-            'nationality' => $nationality
+            'positions' => $position,
+            'nationalities' => $nationality
         ];
     }
 
     return $players;
 }
 
+// Csapatok, pozíciók, nemzetiségek és játékosok egyetlen táblában
 foreach ($teams as $teamName => $url) {
     echo "Lekérdezés: $teamName<br>";
 
     $players = scrapeTeamPlayers($url, $teamName);
 
     foreach ($players as $p) {
+        // Játékos adatainak hozzáadása egyetlen táblába
         $stmt = $pdo->prepare("
-            INSERT INTO team (name)
-            VALUES (?)
+            INSERT INTO players (name, teams, positions, nationalities)
+            VALUES (?, ?, ?, ?)
             ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)
         ");
-        $stmt->execute([$p['team']]);
-        $teamId = $pdo->lastInsertId();
-
-        if (!$p['nationality']) continue;
-
-        $stmt = $pdo->prepare("
-            INSERT INTO nationalities (name)
-            VALUES (?)
-            ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)
-        ");
-        $stmt->execute([$p['nationality']]);
-        $natId = $pdo->lastInsertId();
-
-        if (!$p['position']) continue;
-
-        $stmt = $pdo->prepare("
-            INSERT INTO positions (name)
-            VALUES (?)
-            ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)
-        ");
-        $stmt->execute([$p['position']]);
-        $posId = $pdo->lastInsertId();
-
-        // Ne duplikáljuk a játékosokat
-        $checkStmt = $pdo->prepare("
-            SELECT id FROM players
-            WHERE name = ? AND team_id = ? AND nationality_id = ? AND position_id = ?
-            LIMIT 1
-        ");
-        $checkStmt->execute([$p['name'], $teamId, $natId, $posId]);
-
-        if (!$checkStmt->fetch()) {
-            $stmt = $pdo->prepare("
-                INSERT INTO players (name, team_id, nationality_id, position_id)
-                VALUES (?, ?, ?, ?)
-            ");
-            $stmt->execute([
-                $p['name'],
-                $teamId,
-                $natId,
-                $posId
-            ]);
-        }
+        $stmt->execute([$p['name'], $p['teams'], $p['positions'], $p['nationalities']]);
     }
 
     echo "Hozzáadva: " . count($players) . " játékos a $teamName csapatból.<br>";
 }
 
 echo "Minden NB I játékos betöltve az adatbázisba.";
+?>
