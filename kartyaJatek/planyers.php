@@ -56,7 +56,7 @@ $playersJson = json_encode($players);
 <body>
 
 <div class="game-area">
-    <a href="../foprogram/html/szep.html" class="btn btn-back">⬅ Vissza a főoldalra</a>
+    <a href="../foprogram/szep.html" class="btn btn-back">⬅ Vissza a főoldalra</a>
     <div class="scoreboard">
         <div>Játékos: <span id="player-score">0</span></div>
         <div>Ellenfél: <span id="enemy-score">0</span></div>
