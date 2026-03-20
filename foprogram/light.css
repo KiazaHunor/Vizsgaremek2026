@@ -1,30 +1,31 @@
+/* light-mode.css */
 :root {
-  --bg-main: #0b0f14;
-  --bg-card: #121821;
-  --bg-soft: #0f141c;
-  --accent: #00ff9d;
-  --accent2: #00b3ff;
-  --text-main: #e6edf3;
-  --text-muted: #9aa7b2;
+  --bg-main: #f5f5f5; /* Világos háttér */
+  --bg-card: #ffffff; /* Világos kártyák */
+  --bg-soft: #e6e6e6; /* Világos szürke háttér */
+  --accent: #ff6f61; /* Meleg narancssárga */
+  --accent2: #00b3ff; /* Világoskék */
+  --text-main: #333333; /* Sötét szöveg */
+  --text-muted: #666666; /* Halvány szürke szöveg */
 }
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #0f1722, #0b0f14 70%);
+  background: #f5f5f5; /* Világos háttér */
   color: var(--text-main);
 }
 
-
 header {
-  background: linear-gradient(135deg, #0f2027, #203a43, #0f2027);
+  background: linear-gradient(135deg, #ffffff, #f1f1f1, #ffffff);
   border-bottom: 2px solid var(--accent);
-  box-shadow: 0 0 25px rgba(0, 255, 157, 0.15);
+  box-shadow: 0 0 25px rgba(0, 191, 255, 0.15);
 }
 
 header h1 {
   font-weight: 700;
   letter-spacing: 1px;
 }
+
 h1, h2, h3 {
   font-family: 'Oswald', sans-serif;
 }
@@ -34,10 +35,9 @@ h1, h2, h3 {
   margin-left: 15px;
 }
 
-
 .navbar {
   backdrop-filter: blur(8px);
-  background: rgba(0, 0, 0, 0.35) !important;
+  background: rgba(255, 255, 255, 0.9) !important; /* Világos háttér */
   border-radius: 14px;
 }
 
@@ -53,32 +53,25 @@ h1, h2, h3 {
 
 .dropdown-menu {
   background-color: var(--bg-card);
-  border: 1px solid #1f2a36;
+  border: 1px solid #ddd;
 }
 
-
-
-
-
-
-article,
-aside {
-  background: rgba(18, 24, 33, 0.85);
+article, aside {
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 16px;
   padding: 25px;
   backdrop-filter: blur(10px);
-  border: 1px solid #1f2a36;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid #ddd;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 h3 {
-  color: white
+  color: var(--text-main);
 }
 
 hr {
-  border-color: #1f2a36;
+  border-color: #ddd;
 }
-
 
 .table {
   border-radius: 12px;
@@ -86,18 +79,17 @@ hr {
 }
 
 .table thead {
-  background: #16202c;
+  background: #e6e6e6;
   color: var(--accent);
 }
 
 .table-striped>tbody>tr:nth-of-type(odd) {
-  background-color: #111821;
+  background-color: #f9f9f9;
 }
 
-
 .news-card {
-  background: linear-gradient(145deg, #141c26, #0e141c);
-  border: 1px solid #1f2a36;
+  background: linear-gradient(145deg, #ffffff, #f4f4f4);
+  border: 1px solid #ddd;
   border-radius: 14px;
   transition: all 0.25s ease;
 }
@@ -105,65 +97,59 @@ hr {
 .news-card:hover {
   transform: translateY(-6px);
   border-color: var(--accent);
-  box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
 }
 
 .card-title {
-  color: var(--accent2);
+  color: var(--accent);
 }
 
 .card-text {
   color: var(--text-muted);
 }
 
-
 footer {
   margin-top: 40px;
   padding: 20px;
   text-align: center;
   color: var(--text-muted);
-  border-top: 1px solid #1f2a36;
+  border-top: 1px solid #ddd;
 }
 
-
-
-
 .game-badge {
-  background: #2c3e50;
-  color: #fff;
+  background: #f1f1f1;
+  color: #333;
   padding: 4px 10px;
   border-radius: 12px;
   font-size: 0.75rem;
   margin-bottom: 10px;
 }
 
-
-
-
-
 .table tbody tr:first-child {
-  background: linear-gradient(90deg, #1f2a36, #2c3e50);
+  background: linear-gradient(90deg, #f9f9f9, #f1f1f1);
   font-weight: bold;
 }
 
 .table tbody tr:first-child td {
-  color: var(--accent)
+  color: var(--accent);
 }
+
 .gol-badge {
   background: var(--accent);
-  color: #000;
+  color: #fff;
   padding: 4px 10px;
   border-radius: 10px;
   font-weight: bold;
 }
+
 .game-card {
   min-height: 280px;
   border-radius: 18px;
   overflow: hidden;
   background-size: cover;
   background-position: top;
-  border: 1px solid #1f2a36;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid #ddd;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .game-card-content {
@@ -177,7 +163,7 @@ footer {
 .game-card h3 {
   font-size: 2rem;
   margin-bottom: 18px;
-  color: white;
+  color: #333;
 }
 
 .game-card-btn {
@@ -188,7 +174,7 @@ footer {
   padding: 10px 16px;
   border-radius: 8px;
   background-color: var(--accent);
-  color: #000;
+  color: #fff;
   font-weight: 600;
   text-decoration: none;
   transition: 0.2s;
@@ -196,7 +182,7 @@ footer {
 
 .game-card-btn:hover {
   background-color: var(--accent2);
-  color: #000;
+  color: #fff;
 }
 
 .game-card-btn svg {
