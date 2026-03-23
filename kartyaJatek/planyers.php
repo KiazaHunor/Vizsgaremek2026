@@ -1,5 +1,4 @@
 <?php
-// 1. Adatbázis kapcsolat
 $host = 'localhost';
 $db   = 'fizzliga_db';
 $user = 'root';
@@ -19,7 +18,6 @@ try {
     die("Database connection failed: " . $e->getMessage());
 }
 
-// 2. Játékosok lekérése az összes szükséges adattal
 $sql = "
 SELECT 
     p.id,
@@ -40,8 +38,6 @@ ORDER BY p.id
 
 $stmt = $pdo->query($sql);
 $players = $stmt->fetchAll();
-
-// 3. JSON a JavaScriptnek
 $playersJson = json_encode($players);
 ?>
 
@@ -49,21 +45,30 @@ $playersJson = json_encode($players);
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <title>Kártyajáték</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fizz Liga - Kártyajáték</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="game-area">
+    <a href="../foprogram/szep.html" class="btn-back">⬅ Vissza a főoldalra</a>
+
     <div class="scoreboard">
-        <div>Játékos: <span id="player-score">0</span></div>
-        <div>Ellenfél: <span id="enemy-score">0</span></div>
+        <div class="score-box">
+            <span class="score-label">Játékos</span>
+            <span id="player-score" class="score-value">0</span>
+        </div>
+        <div class="score-divider">:</div>
+        <div class="score-box">
+            <span class="score-label">Ellenfél</span>
+            <span id="enemy-score" class="score-value">0</span>
+        </div>
     </div>
 
-    <!-- Ellenfél pakli -->
-    <div class="deck enemy-deck">Ellenfél Pakli</div>
+    <div class="deck enemy-deck">Ellenfél pakli</div>
 
-    <!-- Ellenfél lapjai -->
     <div class="hand enemy-hand" id="enemy-hand"></div>
 
     <div class="battle-area">
@@ -71,28 +76,20 @@ $playersJson = json_encode($players);
         <div id="enemy-battle" class="battle-card"></div>
     </div>
 
-    <!-- Játékos lapjai -->
-    <div class="hand player-hand" id="player-hand"></div>
-    <!---<div class="stat-buttons">
-        <button data-stat="attack">Attack</button>
-        <button data-stat="controll">Controll</button>
-        <button data-stat="defence">Defence</button>        
-
-    </div> --->
-    <button id="play-round" class="m-5">Kör lejátszása</button>
-
+    <div class="center-controls">
+        <button id="play-round">Kör lejátszása</button>
     </div>
-    <button id="play-round">Kör lejátszása</button>
 
-    <!-- Játékos pakli -->
-    <div class="deck player-deck" id="player-deck">Játékos Pakli</div>
+    <div class="hand player-hand" id="player-hand"></div>
+
+    <div class="deck player-deck" id="player-deck">Játékos pakli</div>
 </div>
+
+<div id="game-message" class="game-message"></div>
 
 <script>
     const players = <?php echo $playersJson; ?>;
 </script>
-
-<div id="game-message" class="game-message"></div>
 <script src="script.js"></script>
 </body>
 </html>

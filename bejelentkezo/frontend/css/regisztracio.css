@@ -1,0 +1,107 @@
+:root {
+    --bg-main: #0b0f14;
+    --bg-card: rgba(18, 24, 33, 0.95);
+    --accent: #00ff9d;
+    --accent2: #00b3ff;
+    --text-main: #e6edf3;
+    --text-muted: #9aa7b2;
+    --border: #1f2a36;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #0f1722, #0b0f14 70%);
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--text-main);
+}
+
+/* KÖZÉPRE IGAZÍTÁS */
+.auth-page {
+    min-height: 100vh;
+}
+
+/* KÁRTYA - EZ A LÉNYEG */
+.auth-card {
+    width: 100%;
+    max-width: 450px; /* ez fixálja a desktop kinézetet */
+    margin: auto;
+    background: var(--bg-card);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+/* FEJLÉC */
+.card-header {
+    background: linear-gradient(135deg, #0f2027, #203a43);
+    border-bottom: 1px solid var(--border);
+}
+
+.card-header h1 {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* FORM */
+.form-label {
+    color: var(--text-main);
+}
+
+.form-control {
+    background: #0f141c;
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    border-radius: 12px;
+    padding: 12px;
+    min-height: 48px;
+}
+
+.form-control:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(0,255,157,0.3);
+    background: #0f141c;
+    color: var(--text-main);
+}
+
+/* GOMB */
+.btn-main {
+    background: var(--accent);
+    border: none;
+    border-radius: 999px;
+    padding: 12px;
+    font-weight: 700;
+    color: #000;
+    transition: 0.2s;
+}
+
+.btn-main:hover {
+    background: var(--accent2);
+}
+
+/* LINKEK */
+.auth-links a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.auth-links a:hover {
+    color: var(--accent2);
+    text-decoration: underline;
+}
+
+/* MOBIL FIX */
+@media (max-width: 576px) {
+    .card-body {
+        padding: 1.2rem !important;
+    }
+
+    .card-header {
+        padding: 1.2rem !important;
+    }
+
+    .card-header h1 {
+        font-size: 1.4rem;
+    }
+}

@@ -1,0 +1,117 @@
+:root {
+    --bg-main: #0b0f14;
+    --bg-card: rgba(18, 24, 33, 0.96);
+    --accent: #00ff9d;
+    --accent2: #00b3ff;
+    --text-main: #e6edf3;
+    --text-muted: #9aa7b2;
+    --border: #1f2a36;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #0f1722, #0b0f14 70%);
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--text-main);
+}
+
+.auth-page {
+    min-height: 100vh;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 460px;
+    margin: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.45);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #0f2027, #203a43);
+    border-bottom: 1px solid var(--border);
+}
+
+.card-header h1 {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.card-body {
+    background: transparent;
+    color: var(--text-main);
+}
+
+.form-label {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.form-control {
+    background: #0b1220;
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    border-radius: 14px;
+    min-height: 50px;
+    padding: 12px 14px;
+}
+
+.form-control::placeholder {
+    color: #6f7d89;
+}
+
+.form-control:focus {
+    background: #0b1220;
+    color: var(--text-main);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 0.2rem rgba(0, 255, 157, 0.15);
+}
+
+.btn-main {
+    background: var(--accent);
+    border: none;
+    color: #000;
+    font-weight: 700;
+    border-radius: 999px;
+    min-height: 48px;
+    padding: 12px 18px;
+    transition: 0.2s ease;
+}
+
+.btn-main:hover {
+    background: var(--accent2);
+    color: #000;
+}
+
+.auth-links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-links a:hover {
+    color: var(--accent2);
+    text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+    .card-header {
+        padding: 1.2rem !important;
+    }
+
+    .card-body {
+        padding: 1.2rem !important;
+    }
+
+    .card-header h1 {
+        font-size: 1.5rem;
+    }
+}

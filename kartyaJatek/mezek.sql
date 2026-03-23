@@ -1,4 +1,5 @@
-CREATE TABLE team_kits (
+
+CREATE TABLE IF NOT EXISTS team_kits (
     id INT AUTO_INCREMENT PRIMARY KEY,
     team_id INT NOT NULL UNIQUE,
     image_path VARCHAR(255) NOT NULL,
@@ -6,6 +7,7 @@ CREATE TABLE team_kits (
     FOREIGN KEY (team_id) REFERENCES teams(id)
 );
 
+-- Csapat mezének képei
 INSERT INTO team_kits (team_id, image_path) VALUES
 (1, 'hatternelkul/fradi.png'),
 (39, 'hatternelkul/ujpest.png'),

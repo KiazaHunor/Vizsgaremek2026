@@ -2,77 +2,228 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/fileupload.css">
 </head>
-<body class="bg-light">
-    <nav class="navbar navbar-dark bg-primary">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
         <div class="container">
-            <span class="navbar-brand">Dashboard</span>
-            <button class="btn btn-light btn-sm" onclick="logout()">Kijelentkezés</button>
-        </div>
-    </nav>
-    
-    <div class="container mt-4">
-        <div id="content">
-            <div class="text-center">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Betöltés...</span>
+            <a class="navbar-brand" href="#">Profil</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+                aria-controls="navbarMenu" aria-expanded="false" aria-label="Navigáció megnyitása">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse mt-3 mt-lg-0" id="navbarMenu">
+                <div class="ms-lg-auto d-flex flex-column flex-lg-row gap-2">
+                    <a href="../../foprogram/szep.html" class="btn btn-light btn-sm px-3">Főoldal</a>
+                    <button class="btn btn-danger btn-sm px-3" onclick="logout()">Kijelentkezés</button>
                 </div>
-                <p>Adatok betöltése...</p>
-                <button onclick="atlep()">Átlépés a főoldara</button>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <script>
-        const API_BASE_URL = 'http://localhost/oliverhtdoc/Vizsgaremek2026/bejelentkezo/backend/api';
-        const token = localStorage.getItem('token');
-        
-        if (!token) {
-            window.location.href = 'regisztracio.html';
-        }
-        
-        fetch(`${API_BASE_URL}/profile.php`, {
-            headers: { 'Authorization': 'Bearer ' + token }
-        })
-        .then(r => {
-            if (r.status === 200) {
-                return r.json();
-            } else {
-                localStorage.removeItem('token');
-                window.location.href = 'regisztracio.html';
-                return null;
-            }
-        })
-        .then(d => {
-            if (d && d.success) {
-                document.getElementById('content').innerHTML = `
-                    <div class="card">
-                        <div class="card-body">
-                            <h3>Üdvözöljük, ${d.user.username}!</h3>
-                            <p><strong>Regisztráció dátuma:</strong> ${d.user.formatted_date}</p>
-                            <p>${d.message}</p>
-                            <p><small>Token érvényes: ${d.timestamp}</small></p>
-                            
+    <main class="dashboard-page py-4 py-md-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8 col-xl-7">
+                    <div id="content">
+                        <div class="loading-box text-center">
+                            <div class="spinner-border mb-3" role="status"></div>
+                            <p class="mb-0">Adatok betöltése...</p>
                         </div>
                     </div>
-                `;
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    const API_BASE_URL = 'http://localhost/oliverhtdoc/Vizsgaremek2026/bejelentkezo/backend/api';
+    const BACKEND_BASE_URL = 'http://localhost/oliverhtdoc/Vizsgaremek2026/bejelentkezo/backend';
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        window.location.href = 'index.html';
+    }
+
+    function logout() {
+        localStorage.removeItem('token');
+        window.location.href = 'index.html';
+    }
+
+    function togglePassword() {
+        const input = document.getElementById('newPassword');
+        if (input) {
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+    }
+
+    function loadProfile() {
+        fetch(`${API_BASE_URL}/profile.php`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
             }
         })
-        .catch(error => {
-            localStorage.removeItem('token');
-            window.location.href = 'regisztracio.html';
-        });
-        
-        function logout() {
-            localStorage.removeItem('token');
+        .then(async r => {
+            const data = await r.json();
+            if (!r.ok || !data.success) {
+                throw new Error(data.error || 'Nem sikerült betölteni a profilt');
+            }
+            return data;
+        })
+        .then(d => {
+            document.getElementById('content').innerHTML = `
+                <div class="card profile-card shadow-lg border-0">
+                    <div class="card-body p-4 p-md-5">
+                        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+                            <div>
+                                <p class="text-uppercase small profile-label mb-1">Felhasználói profil</p>
+                                <h2 class="mb-0 welcome-title">Üdv, ${d.user.username}!</h2>
+                            </div>
+                            <span class="profile-badge">Aktív fiók</span>
+                        </div>
+
+                        <div class="info-box mb-4">
+                            <p class="mb-0 text-light">
+                                <strong>Regisztráció dátuma:</strong> ${d.user.formatted_date}
+                            </p>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <h3 class="h5 mb-3 text-light">Profil szerkesztése</h3>
+
+                            <div class="mb-3 text-center">
+                        <label class="form-label">Profilkép</label><br>
+
+                        ${
+                            d.user.profile_image
+                            ? `<img id="profilePreview"
+                                    src="${BACKEND_BASE_URL}/${d.user.profile_image}" 
+                                    alt="Profilkép" 
+                                    style="width:120px;height:120px;object-fit:cover;border-radius:50%;margin-bottom:10px;">`
+                            : `<p id="profilePreview" class="text-light mb-2">Nincs profilkép</p>`
+                        }
+
+                        <p class="text-muted" style="font-size:13px;">
+                            Itt tudsz új profilképet kiválasztani
+                        </p>
+
+                        <input type="file" id="picture" accept=".jpg,.jpeg,.png,.webp" style="display:none">
+                        <!-- From Uiverse.io by 3bdel3ziz-T --> 
+                        <div class="upload-box">
+                            <div class="upload-folder">
+                                <div class="front-side">
+                                    <div class="tip"></div>
+                                    <div class="cover"></div>
+                                </div>
+                                <div class="back-side cover"></div>
+                            </div>
+
+                            <label for="picture" class="custom-file-upload">
+                                Kép kiválasztása
+                            </label>
+                        </div>
+                    </div>
+                    
+                  
+
+                        <div class="mb-3">
+                            <label class="form-label" for="newUsername">Új felhasználónév</label>
+                            <input type="text" id="newUsername" class="form-control" placeholder="Csak ha módosítani akarod">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Új jelszó</label>
+                            <div class="position-relative">
+                                <input 
+                                    id="newPassword"
+                                    type="password" 
+                                    class="form-control pe-5" 
+                                    placeholder="Csak ha módosítani akarod"
+                                >
+                                <button 
+                                    type="button"
+                                    onclick="togglePassword()"
+                                    class="btn position-absolute top-50 end-0 translate-middle-y border-0 bg-transparent text-light"
+                                    style="z-index: 2;"
+                                >
+                                    👁
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="d-grid d-sm-flex gap-2">
+                            <button class="btn btn-main" onclick="updateProfile()">Mentés</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        })
+        .catch(err => {
+            console.error(err);
+            alert(err.message || 'Nem sikerült betölteni a profilt');
             window.location.href = 'index.html';
+        });
+    }
+    
+
+    function updateProfile() {
+        const username = document.getElementById('newUsername').value.trim();
+        const password = document.getElementById('newPassword').value.trim();
+        const imageFile = document.getElementById('picture').files[0];
+
+        const formData = new FormData();
+
+        if (username !== '') {
+            formData.append('username', username);
         }
 
-        function atlep(){
-            window.location.href="../../foprogram/szep.html";
+        if (password !== '') {
+            formData.append('password', password);
         }
-    </script>
+
+        if (imageFile) {
+            formData.append('profile_image', imageFile);
+        }
+
+        if (username === '' && password === '' && !imageFile) {
+            alert('Nincs módosítandó adat');
+            return;
+        }
+
+        fetch(`${API_BASE_URL}/profile.php`, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            body: formData
+        })
+        .then(async r => {
+            const data = await r.json();
+            if (!r.ok || !data.success) {
+                throw new Error(data.error || 'Nem sikerült a mentés');
+            }
+            return data;
+        })
+        .then(d => {
+            alert(d.message || 'Profil frissítve');
+            loadProfile();
+        })
+        .catch(err => {
+            console.error(err);
+            alert(err.message || 'Hiba történt a mentés közben');
+        });
+    }
+
+    loadProfile();
+</script>
 </body>
 </html>
