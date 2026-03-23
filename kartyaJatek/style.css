@@ -47,8 +47,11 @@ body {
                 /* Kezek */
                 .hand {
                     display: flex;
-                    gap: 15px;
+                    gap: 18px;
                     justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    z-index: 100;
                 }
 
                 .enemy-hand {
@@ -60,9 +63,10 @@ body {
 
                 .player-hand {
                     position: absolute;
-                    bottom: 80px;
+                    bottom: 120px;
                     left: 50%;
                     transform: translateX(-50%);
+                    z-index: 100;
                 }
 
                 /* Kártyák */
@@ -118,13 +122,9 @@ body {
                 }
                 .stat-buttons
                 {
-                    position: absolute;
-                    bottom: 20px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    display: flex;
-                    gap: 15px;
+                    display: none;
                 }
+                /*
                 .stat-buttons button 
                 {
                     padding: 10px 20px;
@@ -137,15 +137,18 @@ body {
                     background: black;
                     color: white;
                 }
+                */
                 #play-round 
                 {
                     position: absolute;
-                    bottom: 70px;
+                    bottom: 20px;
                     left: 50%;
                     transform: translateX(-50%);
                     padding: 12px 30px;
                     font-size: 18px;
                     cursor: pointer;
+                    z-index: 2000;
+                    pointer-events: auto;
                 }
                 .battle-area 
                 {
