@@ -37,7 +37,10 @@ playerDeck.addEventListener("click", () => {
 });
 
 // Kör lejátszása gomb
-playRoundBtn.addEventListener("click", playRound);
+playRoundBtn.addEventListener("click", () => {
+    console.log("PLAY BUTTON KATT");
+    playRound();
+});
 
 function shuffle(array) {
     return [...array].sort(() => Math.random() - 0.5);
@@ -172,10 +175,11 @@ function selectCard(index) {
         return;
     }
 
+    selectedCardIndex = index;
+
     const allCards = document.querySelectorAll(".player-hand .card");
     allCards.forEach(card => card.classList.remove("selected"));
 
-    selectedCardIndex = index;
     if (allCards[index]) {
         allCards[index].classList.add("selected");
     }
@@ -215,8 +219,9 @@ function enemyChooseStat() {
     const stats = ["attack", "controll", "defence"];
     selectedStat = stats[Math.floor(Math.random() * stats.length)];
 
+    selectedCardIndex = null;
+    roundLocked = false;
     phase = "chooseCard";
-    renderHands();
 
     showMessage(
         "Az ellenfél kihívott erre: " + selectedStat.toUpperCase() + ". Válassz egy kártyát!",
@@ -241,6 +246,13 @@ function getBestEnemyCardIndex(stat) {
 }
 
 function playRound() {
+    console.log("PLAY ROUND START");
+    console.log("phase:", phase);
+    console.log("roundLocked:", roundLocked);
+    console.log("selectedCardIndex:", selectedCardIndex);
+    console.log("selectedStat:", selectedStat);
+    console.log("currentChallenger:", currentChallenger);
+
     if (roundLocked) return;
 
     if (phase !== "chooseCard") {
@@ -367,10 +379,13 @@ function resetBattleArea(clearNow = false) {
     playerBattle.style.transform = "";
     enemyBattle.style.transform = "";
 
-    if (clearNow) {
+    if (clearNow) 
+    {
         playerBattle.innerHTML = "";
         enemyBattle.innerHTML = "";
-    } else {
+    }
+    else 
+    {
         setTimeout(() => {
             playerBattle.innerHTML = "";
             enemyBattle.innerHTML = "";
