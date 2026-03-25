@@ -39,6 +39,12 @@ h1, h2, h3 {
   backdrop-filter: blur(8px);
   background: rgba(0, 0, 0, 0.35) !important;
   border-radius: 14px;
+  position: relative;
+  z-index: 9999;
+}
+
+.dropdown-menu {
+  z-index: 10000 !important;
 }
 
 .nav-link {
@@ -116,13 +122,111 @@ hr {
   color: var(--text-muted);
 }
 
+/* ===== MODERN SPORT FOOTER ===== */
 
-footer {
-  margin-top: 40px;
-  padding: 20px;
-  text-align: center;
+.site-footer {
+  margin-top: 50px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background:
+    linear-gradient(135deg, rgba(10,15,22,0.96), rgba(15,25,38,0.96)),
+    radial-gradient(circle at top right, rgba(0,179,255,0.08), transparent 30%);
+  color: var(--text-main);
+  border-radius: 24px 24px 0 0;
+  overflow: hidden;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.18);
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 32px;
+  padding: 40px 32px 26px;
+}
+
+.footer-brand h3,
+.footer-links h4,
+.footer-social h4 {
+  margin-bottom: 14px;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.footer-brand h3 {
+  font-size: 1.8rem;
+  color: var(--accent);
+}
+
+.footer-brand p {
+  margin: 0;
+  max-width: 320px;
   color: var(--text-muted);
-  border-top: 1px solid #1f2a36;
+  line-height: 1.7;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a,
+.footer-social a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+  padding-left: 4px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.social-icons a {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 1.2rem;
+  color: var(--text-main);
+  transition: all 0.25s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-4px);
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(0,255,157,0.12);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  background: rgba(255,255,255,0.02);
+}
+
+.footer-separator {
+  opacity: 0.5;
 }
 
 
@@ -342,9 +446,43 @@ body.light-mode .gol-badge {
 }
 
 /* FOOTER */
-body.light-mode footer {
-  border-top: 1px solid var(--lm-border);
-  color: var(--lm-muted);
+body.light-mode .site-footer {
+  background:
+    linear-gradient(135deg, #dfe8f3, #cfdceb);
+  color: #243447;
+  border-top: 1px solid #bfd0e0;
+  box-shadow: 0 -8px 24px rgba(20, 40, 70, 0.08);
+}
+
+body.light-mode .footer-brand h3 {
+  color: #2f80ed;
+}
+
+body.light-mode .footer-brand p,
+body.light-mode .footer-links a,
+body.light-mode .footer-bottom {
+  color: #5f6f82;
+}
+
+body.light-mode .footer-links a:hover {
+  color: #2f80ed;
+}
+
+body.light-mode .social-icons a {
+  background: rgba(255,255,255,0.55);
+  border: 1px solid #c8d6e5;
+  color: #2a3441;
+}
+
+body.light-mode .social-icons a:hover {
+  color: #2f80ed;
+  border-color: #2f80ed;
+  box-shadow: 0 8px 20px rgba(47,128,237,0.12);
+}
+
+body.light-mode .footer-bottom {
+  border-top: 1px solid #c8d6e5;
+  background: rgba(255,255,255,0.35);
 }
 
 /* From Uiverse.io by AmIt-DasIT */ 
@@ -424,4 +562,124 @@ body.light-mode footer {
   100% {
     transform: translateX(1.4em)
   }
+}
+
+@media (max-width: 992px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    padding: 28px 20px 20px;
+    gap: 24px;
+  }
+
+  .footer-bottom {
+    padding: 14px 20px;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .footer-separator {
+    display: none;
+  }
+}
+
+.tabella-page-card {
+  min-height: 70vh;
+}
+
+.tabella-subtitle {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+}
+
+.table-page-wrapper {
+  border-radius: 18px;
+  overflow: visible;
+}
+
+/* hogy a betöltött tabella is szépen kitöltse */
+#tabella {
+  width: 100%;
+}
+
+/* ha a script egy bootstrap táblát tölt be */
+#tabella .table {
+  margin-bottom: 0;
+}
+
+/* light mode finomhangolás */
+body.light-mode .tabella-subtitle {
+  color: #6b7a8c;
+}
+
+/* GOLLOVOLISTA */
+/* TOP 3 KIEMELÉS */
+
+#gollovolista tr:nth-child(1) td {
+  background: linear-gradient(135deg, gold, #ffd700) !important;
+  color: #000 !important;
+  font-weight: bold;
+}
+
+#gollovolista tr:nth-child(2) td {
+  background: linear-gradient(135deg, #c0c0c0, #e0e0e0) !important;
+}
+
+#gollovolista tr:nth-child(3) td {
+  background: linear-gradient(135deg, #cd7f32, #e6a15c) !important;
+}
+
+/* hover */
+#gollovolista tr:hover {
+  transform: scale(1.01);
+  transition: 0.2s;
+}
+
+/* ===== GÓLLÖVŐLISTA – DARK TABLE ===== */
+
+#gollovolista .table {
+  background: #0f141c;
+  color: #e6edf3;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* fejléc */
+#gollovolista .table thead th {
+  background: #16202c !important;
+  color: #00ff9d !important;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* sorok */
+#gollovolista .table tbody tr td {
+  background: #111821 !important;
+  color: #e6edf3 !important;
+  border-color: #1f2a36 !important;
+}
+
+/* csíkos sor */
+#gollovolista .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background: #0d131b !important;
+}
+
+/* hover */
+#gollovolista .table tbody tr:hover td {
+  background: #16202c !important;
+  transition: 0.2s;
+}
+
+/* szám (gól badge) */
+.gol-badge {
+  background: #00ff9d;
+  color: #000;
+  font-weight: bold;
 }
