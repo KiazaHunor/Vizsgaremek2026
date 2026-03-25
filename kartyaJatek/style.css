@@ -62,6 +62,15 @@ body {
     right: 10%;
 }
 
+                /* Kezek */
+                .hand {
+                    display: flex;
+                    gap: 18px;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    z-index: 100;
+                }
 .game-area > * {
     position: relative;
     z-index: 1;
