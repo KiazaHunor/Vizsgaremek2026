@@ -9,6 +9,8 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace FizzLigaQuiz.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class QuizController : ControllerBase
     {
         private readonly QuizDbContext _context;
@@ -34,9 +36,17 @@ namespace FizzLigaQuiz.Controllers
             if (string.IsNullOrWhiteSpace(request.KerdesSzoveg))
                 return BadRequest("A kérdés szövege kötelező.");
 
-            var helyes = request.HelyesValasz.ToUpper();
+            if (string.IsNullOrWhiteSpace(request.ValaszA) ||
+                string.IsNullOrWhiteSpace(request.ValaszB) ||
+                string.IsNullOrWhiteSpace(request.ValaszC) ||
+                string.IsNullOrWhiteSpace(request.ValaszD))
+            {
+                return BadRequest("Mind a 4 válaszlehetőség megadása kötelező.");
+            }
 
-            if (helyes != "A" && helyes != "B" && helyes != "C" && helyes != "D")
+            var helyesValasz = request.HelyesValasz.Trim().ToUpper();
+
+            if (helyesValasz != "A" && helyesValasz != "B" && helyesValasz != "C" && helyesValasz != "D")
                 return BadRequest("A helyes válasz csak A, B, C vagy D lehet.");
 
             var kerdes = new Kerdes
@@ -46,7 +56,7 @@ namespace FizzLigaQuiz.Controllers
                 ValaszB = request.ValaszB,
                 ValaszC = request.ValaszC,
                 ValaszD = request.ValaszD,
-                HelyesValasz = helyes,
+                HelyesValasz = helyesValasz,
                 Kategoria = request.Kategoria,
                 Nehezseg = request.Nehezseg,
                 Aktiv = true,
@@ -56,7 +66,11 @@ namespace FizzLigaQuiz.Controllers
             _context.Kerdesek.Add(kerdes);
             await _context.SaveChangesAsync();
 
-            return Ok(kerdes);
+            return Ok(new
+            {
+                message = "Kérdés sikeresen létrehozva.",
+                kerdes
+            });
         }
 
         [HttpGet("today")]
@@ -69,7 +83,12 @@ namespace FizzLigaQuiz.Controllers
                 .FirstOrDefaultAsync(n => n.Datum.Date == today);
 
             if (napiQuiz == null || napiQuiz.Kerdes == null)
-                return NotFound(new { message = "Nincs beállítva mai quiz." });
+            {
+                return NotFound(new
+                {
+                    message = "Nincs beállítva mai quiz."
+                });
+            }
 
             return Ok(new
             {
@@ -83,34 +102,93 @@ namespace FizzLigaQuiz.Controllers
                 nehezseg = napiQuiz.Kerdes.Nehezseg
             });
         }
+
         [HttpPost("check-answer")]
-        public async Task<IActionResult> CheckAnswer([FromBody] CreateKerdesRequest request)
+        public async Task<IActionResult> CheckAnswer([FromBody] CheckAnswerRequest request)
         {
+            if (string.IsNullOrWhiteSpace(request.ValasztottValasz))
+                return BadRequest("A választott válasz kötelező.");
+
             var kerdes = await _context.Kerdesek.FindAsync(request.KerdesId);
 
             if (kerdes == null)
-                return NotFound("Kérdés nem található");
+                return NotFound("Kérdés nem található.");
 
-            var helyes = kerdes.HelyesValasz.ToUpper();
-            var valasz = request.ValasztottValasz.ToUpper();
+            var valasztott = request.ValasztottValasz.Trim().ToUpper();
+            var helyesValasz = kerdes.HelyesValasz.Trim().ToUpper();
 
-            bool helyesE = helyes == valasz;
+            if (valasztott != "A" && valasztott != "B" && valasztott != "C" && valasztott != "D")
+                return BadRequest("A választott válasz csak A, B, C vagy D lehet.");
 
-            // opcionális mentés adatbázisba
-            var valaszEntity = new QuizValasz
+            bool helyes = valasztott == helyesValasz;
+
+            var quizValasz = new QuizValasz
             {
                 KerdesId = kerdes.Id,
-                ValasztottValasz = valasz,
-                Helyes = helyesE,
+                ValasztottValasz = valasztott,
+                Helyes = helyes,
+                FelhasznaloNev = request.FelhasznaloNev,
                 ValaszDatuma = DateTime.Now
             };
 
-            _context.QuizValaszok.Add(valaszEntity);
+            _context.QuizValaszok.Add(quizValasz);
             await _context.SaveChangesAsync();
 
             return Ok(new
             {
-                helyes = helyesE
+                helyes = helyes,
+                helyesValasz = helyesValasz
+            });
+        }
+
+        [HttpPost("set-daily")]
+        public async Task<IActionResult> SetDailyQuiz([FromBody] SetDailyQuizRequest request)
+        {
+            var kerdes = await _context.Kerdesek.FindAsync(request.KerdesId);
+
+            if (kerdes == null)
+                return NotFound("Kérdés nem található.");
+
+            var datum = request.Datum.Date;
+
+            var letezoNapiQuiz = await _context.NapiQuizok
+                .FirstOrDefaultAsync(n => n.Datum.Date == datum);
+
+            if (letezoNapiQuiz != null)
+            {
+                letezoNapiQuiz.KerdesId = request.KerdesId;
+            }
+            else
+            {
+                var napiQuiz = new NapiQuiz
+                {
+                    Datum = datum,
+                    KerdesId = request.KerdesId
+                };
+
+                _context.NapiQuizok.Add(napiQuiz);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                message = "Napi quiz sikeresen beállítva."
+            });
+        }
+
+        [HttpGet("stats")]
+        public async Task<IActionResult> GetStats()
+        {
+            var osszesValasz = await _context.QuizValaszok.CountAsync();
+            var helyesValaszok = await _context.QuizValaszok.CountAsync(v => v.Helyes);
+            var helytelenValaszok = await _context.QuizValaszok.CountAsync(v => !v.Helyes);
+
+            return Ok(new
+            {
+                osszesValasz,
+                helyesValaszok,
+                helytelenValaszok
             });
         }
     }

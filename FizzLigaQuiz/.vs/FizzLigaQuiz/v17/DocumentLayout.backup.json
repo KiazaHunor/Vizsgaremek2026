@@ -3,28 +3,40 @@
   "WorkspaceRootPath": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\fizzligaquiz\\data\\quizdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|solutionrelative:data\\quizdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\fizzligaquiz\\models\\kerdes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|solutionrelative:models\\kerdes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\fizzligaquiz\\fizzligaquiz.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|solutionrelative:fizzligaquiz.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\fizzligaquiz\\models\\napiquiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|solutionrelative:models\\napiquiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\fizzligaquiz\\controllers\\quizcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|solutionrelative:controllers\\quizcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\fizzligaquiz\\dtos\\createkerdesrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|solutionrelative:dtos\\createkerdesrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\fizzligaquiz\\models\\kerdes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|solutionrelative:models\\kerdes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\fizzligaquiz\\models\\napiquiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|solutionrelative:models\\napiquiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\fizzligaquiz\\models\\quizvalasz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|solutionrelative:models\\quizvalasz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\fizzligaquiz\\data\\quizdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|solutionrelative:data\\quizdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\fizzligaquiz\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\fizzligaquiz\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\fizzligaquiz\\fizzligaquiz.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{25E4C104-399F-41AC-9F19-91F4059263D7}|FizzLigaQuiz.csproj|solutionrelative:fizzligaquiz.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,21 +46,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "QuizDbContext.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Data\\QuizDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\QuizDbContext.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Data\\QuizDbContext.cs",
-              "RelativeToolTip": "Data\\QuizDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T07:24:34.777Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 3,
@@ -59,51 +58,11 @@
               "RelativeToolTip": "Models\\NapiQuiz.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T09:37:49.324Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Kerdes.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Models\\Kerdes.cs",
-              "RelativeDocumentMoniker": "Models\\Kerdes.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Models\\Kerdes.cs",
-              "RelativeToolTip": "Models\\Kerdes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T09:36:23.107Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FizzLigaQuiz.csproj",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\FizzLigaQuiz.csproj",
-              "RelativeDocumentMoniker": "FizzLigaQuiz.csproj",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\FizzLigaQuiz.csproj",
-              "RelativeToolTip": "FizzLigaQuiz.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-03-23T09:34:40.503Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T09:37:49.324Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "CreateKerdesRequest.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Dtos\\CreateKerdesRequest.cs",
-              "RelativeDocumentMoniker": "Dtos\\CreateKerdesRequest.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Dtos\\CreateKerdesRequest.cs",
-              "RelativeToolTip": "Dtos\\CreateKerdesRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T09:41:32.812Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "QuizValasz.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Models\\QuizValasz.cs",
               "RelativeDocumentMoniker": "Models\\QuizValasz.cs",
@@ -112,6 +71,91 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-23T09:39:34.538Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CreateKerdesRequest.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Dtos\\CreateKerdesRequest.cs",
+              "RelativeDocumentMoniker": "Dtos\\CreateKerdesRequest.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Dtos\\CreateKerdesRequest.cs",
+              "RelativeToolTip": "Dtos\\CreateKerdesRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T09:41:32.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QuizController.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Controllers\\QuizController.cs",
+              "RelativeDocumentMoniker": "Controllers\\QuizController.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Controllers\\QuizController.cs",
+              "RelativeToolTip": "Controllers\\QuizController.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAQwFYAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T10:05:25.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Kerdes.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Models\\Kerdes.cs",
+              "RelativeDocumentMoniker": "Models\\Kerdes.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Models\\Kerdes.cs",
+              "RelativeToolTip": "Models\\Kerdes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T09:36:23.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "QuizDbContext.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Data\\QuizDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\QuizDbContext.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Data\\QuizDbContext.cs",
+              "RelativeToolTip": "Data\\QuizDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T07:24:34.777Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T07:36:13.605Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-24T07:37:55.309Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FizzLigaQuiz.csproj",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\FizzLigaQuiz.csproj",
+              "RelativeDocumentMoniker": "FizzLigaQuiz.csproj",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\FizzLigaQuiz.csproj",
+              "RelativeToolTip": "FizzLigaQuiz.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-23T09:34:40.503Z"
             }
           ]
         }

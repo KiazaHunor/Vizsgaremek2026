@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fizz Liga - Napi Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+        }
+
+        .question {
+            font-size: 22px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .answers button {
+            display: block;
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 14px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .answers button:hover {
+            background: #0056b3;
+        }
+
+        .info {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .top-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .top-links a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #eee;
+            color: #333;
+            padding: 6px 10px;
+            border-radius: 8px;
+            margin-right: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fizz Liga - Napi Quiz</h1>
+
+        <input type="text" id="felhasznaloNev" placeholder="Add meg a neved">
+
+        <div id="quizContainer">
+            <p>Betöltés...</p>
+        </div>
+
+        <div class="top-links">
+            <a href="/admin.html">Admin oldal</a> |
+            <a href="/swagger">Swagger</a>
+        </div>
+    </div>
+
+    <script>
+        let aktualisKerdesId = 0;
+
+        function loadTodayQuiz() {
+    const container = document.getElementById("quizContainer");
+
+    fetch("/api/quiz/today")
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => {
+                    throw err;
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            aktualisKerdesId = data.id;
+
+            container.innerHTML = `
+                <div class="question">${data.kerdesSzoveg}</div>
+
+                <button onclick="kuldes('A')">A: ${data.valaszA}</button>
+                <button onclick="kuldes('B')">B: ${data.valaszB}</button>
+                <button onclick="kuldes('C')">C: ${data.valaszC}</button>
+                <button onclick="kuldes('D')">D: ${data.valaszD}</button>
+
+                <div id="eredmeny"></div>
+            `;
+        })
+        .catch(error => {
+            container.innerHTML = "Hiba történt vagy nincs mai quiz.";
+        });
+}
+
+       function kuldes(valasz) {
+    const eredmenyDiv = document.getElementById("eredmeny");
+    const felhasznaloNev = document.getElementById("felhasznaloNev").value;
+
+    fetch("/api/quiz/check-answer", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            kerdesId: aktualisKerdesId,
+            valasztottValasz: valasz,
+            felhasznaloNev: felhasznaloNev
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.helyes) {
+            eredmenyDiv.innerHTML = "✅ Helyes!";
+        } else {
+            eredmenyDiv.innerHTML = "❌ Rossz! Helyes: " + data.helyesValasz;
+        }
+    })
+    .catch(() => {
+        eredmenyDiv.innerHTML = "Hiba történt.";
+    });
+}
+
+        loadTodayQuiz();
+    </script>
+</body>
+</html>

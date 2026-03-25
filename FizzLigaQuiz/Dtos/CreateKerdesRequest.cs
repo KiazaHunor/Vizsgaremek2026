@@ -3,8 +3,7 @@
     public class CreateKerdesRequest
     {
 
-        public int KerdesId { get; set; }
-        public string ValasztottValasz { get; set; } = "";
+        
         public string KerdesSzoveg { get; set; } = "";
         public string ValaszA { get; set; } = "";
         public string ValaszB { get; set; } = "";
