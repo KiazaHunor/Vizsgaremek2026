@@ -11,6 +11,7 @@
   <script src="theme.js"></script>
   <script src="menu.js"></script>
   <script src="navbar.js"></script>
+  <script src="footer.js"></script>
   <script src="menu.js"></script>
 </head>
 
@@ -34,7 +35,8 @@
           <div id="formaciok" class="formation-buttons">
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-3-3')">4-3-3</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-4-2')">4-4-2</button>
-            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-1-2-1-2')">4-1-2-1-2</button>
+            <button class="btn btn-outline-success btn-formation"
+              onclick="loadFormation('4-1-2-1-2')">4-1-2-1-2</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-5-1')">4-5-1</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('3-4-3')">3-4-3</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('3-5-2')">3-5-2</button>
@@ -55,8 +57,7 @@
       </div>
     </div>
 
-    <div class="row">
-      <footer class="col-12">Készítette Fizz Liga Draft csapata <i class="bi bi-balloon-heart"></i></footer>
+    <div id="footer-container">
     </div>
   </div>
 
@@ -65,7 +66,6 @@
       <div class="modal-content custom-modal">
         <div class="modal-header">
           <h5 class="modal-title">Válassz játékost</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <div id="player-list" class="list-group"></div>
@@ -331,7 +331,10 @@
           }
         }
 
-        const modal = new bootstrap.Modal(document.getElementById("playerModal"));
+        const modal = new bootstrap.Modal(document.getElementById("playerModal"), {
+          backdrop: 'static',
+          keyboard: false
+        });
         modal.show();
 
       } catch (error) {

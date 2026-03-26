@@ -39,6 +39,12 @@ h1, h2, h3 {
   backdrop-filter: blur(8px);
   background: rgba(0, 0, 0, 0.35) !important;
   border-radius: 14px;
+  position: relative;
+  z-index: 9999;
+}
+
+.dropdown-menu {
+  z-index: 10000 !important;
 }
 
 .nav-link {
@@ -116,13 +122,111 @@ hr {
   color: var(--text-muted);
 }
 
+/* ===== MODERN SPORT FOOTER ===== */
 
-footer {
-  margin-top: 40px;
-  padding: 20px;
-  text-align: center;
+.site-footer {
+  margin-top: 50px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background:
+    linear-gradient(135deg, rgba(10,15,22,0.96), rgba(15,25,38,0.96)),
+    radial-gradient(circle at top right, rgba(0,179,255,0.08), transparent 30%);
+  color: var(--text-main);
+  border-radius: 24px 24px 0 0;
+  overflow: hidden;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.18);
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 32px;
+  padding: 40px 32px 26px;
+}
+
+.footer-brand h3,
+.footer-links h4,
+.footer-social h4 {
+  margin-bottom: 14px;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.footer-brand h3 {
+  font-size: 1.8rem;
+  color: var(--accent);
+}
+
+.footer-brand p {
+  margin: 0;
+  max-width: 320px;
   color: var(--text-muted);
-  border-top: 1px solid #1f2a36;
+  line-height: 1.7;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a,
+.footer-social a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+  padding-left: 4px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.social-icons a {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 1.2rem;
+  color: var(--text-main);
+  transition: all 0.25s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-4px);
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(0,255,157,0.12);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  background: rgba(255,255,255,0.02);
+}
+
+.footer-separator {
+  opacity: 0.5;
 }
 
 
@@ -210,224 +314,175 @@ footer {
 
 /* ===== VILÁGOS MÓD – Fehér + Két kék ===== */
 
+/* ===== FIFA / SPORT UI LIGHT MODE ===== */
+/* ===== ZÖLDES LIGHT MODE (SPORTOS) ===== */
+
 body.light-mode {
-  background: #f8f9fb;
-  color: #333;
+  --lm-bg: #eef7f1;
+  --lm-bg-2: #e3f2e8;
+  --lm-card: rgba(255, 255, 255, 0.75);
+  --lm-border: #cfe5d6;
+  --lm-text: #1c2b22;
+  --lm-muted: #5f7a6b;
+
+  --lm-primary: #22c55e;       /* fő zöld */
+  --lm-primary-dark: #15803d;  /* sötétebb zöld */
+  --lm-accent: #4ade80;        /* világos zöld */
+
+  background: linear-gradient(180deg, var(--lm-bg), var(--lm-bg-2));
+  color: var(--lm-text);
 }
 
-/* HEADER – világosabb kék */
+/* HEADER */
 body.light-mode header {
-  background: #185FA5;
-  border-bottom: none;
-  box-shadow: 0 2px 12px rgba(24, 95, 165, 0.2);
+  background: linear-gradient(135deg, #1f7a3a, #22c55e);
+  border-bottom: 2px solid #4ade80;
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.25);
 }
 
 body.light-mode header h1 {
-  color: #ffffff;
+  color: white;
 }
 
-/* NAVBAR – sötétebb kék */
+/* NAVBAR */
 body.light-mode .navbar {
-  background: #0C447C !important;
-  border-radius: 14px;
+  background: rgba(34, 197, 94, 0.15) !important;
+  border: 1px solid var(--lm-border);
+  backdrop-filter: blur(10px);
 }
 
 body.light-mode .nav-link {
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: var(--lm-text) !important;
+  font-weight: 600;
 }
 
 body.light-mode .nav-link:hover {
-  color: #ffffff !important;
-  transform: translateY(-2px);
+  color: var(--lm-primary-dark) !important;
 }
 
-body.light-mode .dropdown-menu {
-  background-color: #fff;
-  border: 1px solid #c8d8ea;
-  box-shadow: 0 4px 12px rgba(12, 68, 124, 0.15);
-}
-
-body.light-mode .dropdown-item {
-  color: #333;
-}
-
-body.light-mode .dropdown-item:hover {
-  background-color: #eaf3fb;
-  color: #185FA5;
-}
-
-/* TARTALOM */
+/* KÁRTYÁK */
 body.light-mode article,
 body.light-mode aside {
-  background: #ffffff;
-  border: 1px solid #e0e5ec;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  background: var(--lm-card);
+  border: 1px solid var(--lm-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(20, 40, 30, 0.08);
+  backdrop-filter: blur(10px);
 }
 
+/* CÍMEK */
 body.light-mode h3 {
-  color: #0C447C;
+  color: var(--lm-primary-dark);
 }
 
-body.light-mode hr {
-  border-color: #e0e5ec;
+/* GAME CARD */
+body.light-mode .game-card {
+  border: 1px solid #bfe7cc;
+  box-shadow: 0 15px 35px rgba(34, 197, 94, 0.18);
 }
 
-/* HÍREK – kék háttér fehér szöveg */
-body.light-mode .news-card {
-  background: #185FA5;
-  border: none;
-  box-shadow: 0 2px 10px rgba(24, 95, 165, 0.2);
-}
-
-body.light-mode .news-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 20px rgba(24, 95, 165, 0.3);
-}
-
-body.light-mode .card-title {
+body.light-mode .game-card h3 {
   color: #ffffff;
 }
 
-body.light-mode .card-text {
-  color: rgba(255, 255, 255, 0.75);
-}
-
-body.light-mode .game-badge {
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-}
-
-/* AKTUÁLIS HÍREK szekció – kék keret */
-body.light-mode .hirek-cim,
-body.light-mode .section-title,
-body.light-mode h2 {
-  color: #0C447C;
-  border-bottom: 2px solid #185FA5;
-  padding-bottom: 6px;
-}
-
-/* TABELLA – Bootstrap változók felülírása */
-body.light-mode .table {
-  --bs-table-striped-bg: #378ADD;
-  --bs-table-bg: #185FA5;
-  --bs-table-striped-color: #ffffff;
-  --bs-table-color: #ffffff;
-  color: #ffffff;
-}
-
-body.light-mode .table tbody tr td {
-  background-color: #185FA5 !important;
-  color: #ffffff !important;
-}
-
-body.light-mode .table-striped > tbody > tr:nth-of-type(odd) > * {
-  --bs-table-accent-bg: #378ADD;
-  background-color: #378ADD !important;
-  color: #ffffff !important;
-}
-
-body.light-mode .table-striped > tbody > tr:nth-of-type(even) > * {
-  --bs-table-accent-bg: #185FA5;
-  background-color: #185FA5 !important;
-  color: #ffffff !important;
-}
-
-body.light-mode .table tbody tr:first-child td {
-  background-color: #0C447C !important;
-  color: #ffffff !important;
-  font-weight: 700;
-}
-
-body.light-mode .table thead tr th {
-  background-color: #0C447C !important;
-  color: #ffffff !important;
-}
-
-
-/* KERETEK – Vastag keret + árnyék */
-
-body.light-mode article,
-body.light-mode aside {
-  background: #ffffff;
-  border: 3px solid #185FA5;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(24, 95, 165, 0.15);
-  transition: box-shadow 0.25s ease;
-}
-
-body.light-mode article:hover,
-body.light-mode aside:hover {
-  box-shadow: 0 12px 32px rgba(24, 95, 165, 0.25);
-}
-
-/* Tabella keret */
-body.light-mode .table-responsive,
-body.light-mode .table-wrapper {
-  border: 3px solid #185FA5;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(24, 95, 165, 0.15);
-}
-
-body.light-mode .table {
-  border: 3px solid #185FA5;
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 0;
-}
-
-/* Hírek kártya */
-body.light-mode .news-card {
-  background: #185FA5;
-  border: 3px solid #0C447C;
-  border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(24, 95, 165, 0.15);
-  transition: all 0.25s ease;
-}
-
-body.light-mode .news-card:hover {
-  border-color: #378ADD;
-  box-shadow: 0 12px 32px rgba(24, 95, 165, 0.25);
-  transform: translateY(-6px);
-}
-
-/* Egyéb card elemek */
-body.light-mode .card {
-  border: 3px solid #185FA5 !important;
-  border-radius: 14px !important;
-  box-shadow: 0 8px 24px rgba(24, 95, 165, 0.15) !important;
-}
-
-/* BADGE-EK */
-body.light-mode .gol-badge {
-  background: #378ADD;
-  color: #fff;
-}
-
-/* GAME CARD GOMB */
+/* GOMB */
 body.light-mode .game-card-btn {
-  background-color: #185FA5;
-  color: #fff;
+  background: linear-gradient(135deg, #22c55e, #4ade80);
+  color: #0b1f14;
+  font-weight: 700;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.35);
 }
 
 body.light-mode .game-card-btn:hover {
-  background-color: #0C447C;
-  color: #fff;
+  background: linear-gradient(135deg, #15803d, #22c55e);
+  color: white;
 }
 
-/* FOOTER – sötétebb kék */
-body.light-mode footer {
-  background-color: #0C447C;
-  color: rgba(255, 255, 255, 0.7);
-  border-top: none;
+/* HÍREK */
+body.light-mode .news-card {
+  background: linear-gradient(180deg, #f3fbf6, #e6f7ed);
+  border: 1px solid var(--lm-border);
 }
 
-body.light-mode footer a {
-  color: rgba(255, 255, 255, 0.7);
+body.light-mode .card-title {
+  color: var(--lm-primary-dark);
 }
 
-body.light-mode footer a:hover {
-  color: #ffffff;
+body.light-mode .card-text {
+  color: var(--lm-muted);
+}
+
+/* TÁBLÁZAT */
+body.light-mode .table thead {
+  background: var(--lm-primary-dark);
+  color: white;
+}
+
+body.light-mode .table tbody td {
+  background: rgba(255,255,255,0.7);
+  color: var(--lm-text);
+}
+
+body.light-mode .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background: #f0faf4 !important;
+}
+
+body.light-mode .table tbody tr:first-child td {
+  background: linear-gradient(135deg, #22c55e, #4ade80) !important;
+  color: #063d1c !important;
+  font-weight: bold;
+}
+
+/* BADGE */
+body.light-mode .game-badge {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+body.light-mode .gol-badge {
+  background: #22c55e;
+  color: white;
+}
+
+/* FOOTER */
+body.light-mode .site-footer {
+  background:
+    linear-gradient(135deg, #dfe8f3, #cfdceb);
+  color: #243447;
+  border-top: 1px solid #bfd0e0;
+  box-shadow: 0 -8px 24px rgba(20, 40, 70, 0.08);
+}
+
+body.light-mode .footer-brand h3 {
+  color: #2f80ed;
+}
+
+body.light-mode .footer-brand p,
+body.light-mode .footer-links a,
+body.light-mode .footer-bottom {
+  color: #5f6f82;
+}
+
+body.light-mode .footer-links a:hover {
+  color: #2f80ed;
+}
+
+body.light-mode .social-icons a {
+  background: rgba(255,255,255,0.55);
+  border: 1px solid #c8d6e5;
+  color: #2a3441;
+}
+
+body.light-mode .social-icons a:hover {
+  color: #2f80ed;
+  border-color: #2f80ed;
+  box-shadow: 0 8px 20px rgba(47,128,237,0.12);
+}
+
+body.light-mode .footer-bottom {
+  border-top: 1px solid #c8d6e5;
+  background: rgba(255,255,255,0.35);
 }
 
 /* From Uiverse.io by AmIt-DasIT */ 
@@ -507,4 +562,124 @@ body.light-mode footer a:hover {
   100% {
     transform: translateX(1.4em)
   }
+}
+
+@media (max-width: 992px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    padding: 28px 20px 20px;
+    gap: 24px;
+  }
+
+  .footer-bottom {
+    padding: 14px 20px;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .footer-separator {
+    display: none;
+  }
+}
+
+.tabella-page-card {
+  min-height: 70vh;
+}
+
+.tabella-subtitle {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+}
+
+.table-page-wrapper {
+  border-radius: 18px;
+  overflow: visible;
+}
+
+/* hogy a betöltött tabella is szépen kitöltse */
+#tabella {
+  width: 100%;
+}
+
+/* ha a script egy bootstrap táblát tölt be */
+#tabella .table {
+  margin-bottom: 0;
+}
+
+/* light mode finomhangolás */
+body.light-mode .tabella-subtitle {
+  color: #6b7a8c;
+}
+
+/* GOLLOVOLISTA */
+/* TOP 3 KIEMELÉS */
+
+#gollovolista tr:nth-child(1) td {
+  background: linear-gradient(135deg, gold, #ffd700) !important;
+  color: #000 !important;
+  font-weight: bold;
+}
+
+#gollovolista tr:nth-child(2) td {
+  background: linear-gradient(135deg, #c0c0c0, #e0e0e0) !important;
+}
+
+#gollovolista tr:nth-child(3) td {
+  background: linear-gradient(135deg, #cd7f32, #e6a15c) !important;
+}
+
+/* hover */
+#gollovolista tr:hover {
+  transform: scale(1.01);
+  transition: 0.2s;
+}
+
+/* ===== GÓLLÖVŐLISTA – DARK TABLE ===== */
+
+#gollovolista .table {
+  background: #0f141c;
+  color: #e6edf3;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* fejléc */
+#gollovolista .table thead th {
+  background: #16202c !important;
+  color: #00ff9d !important;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* sorok */
+#gollovolista .table tbody tr td {
+  background: #111821 !important;
+  color: #e6edf3 !important;
+  border-color: #1f2a36 !important;
+}
+
+/* csíkos sor */
+#gollovolista .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background: #0d131b !important;
+}
+
+/* hover */
+#gollovolista .table tbody tr:hover td {
+  background: #16202c !important;
+  transition: 0.2s;
+}
+
+/* szám (gól badge) */
+.gol-badge {
+  background: #00ff9d;
+  color: #000;
+  font-weight: bold;
 }

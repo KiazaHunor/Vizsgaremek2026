@@ -37,13 +37,21 @@ playerDeck.addEventListener("click", () => {
 });
 
 // Kör lejátszása gomb
-playRoundBtn.addEventListener("click", playRound);
+playRoundBtn.addEventListener("click", () => {
+    console.log("PLAY BUTTON KATT");
+    playRound();
+});
 
 function shuffle(array) {
     return [...array].sort(() => Math.random() - 0.5);
 }
 
 function dealCards() {
+    if (!players || players.length < 10) {
+        showMessage("A játékosok még töltődnek vagy nincs elég adat!", 1500);
+        return;
+    }
+
     resetBattleArea(true);
 
     const shuffled = shuffle(players);
@@ -172,10 +180,11 @@ function selectCard(index) {
         return;
     }
 
+    selectedCardIndex = index;
+
     const allCards = document.querySelectorAll(".player-hand .card");
     allCards.forEach(card => card.classList.remove("selected"));
 
-    selectedCardIndex = index;
     if (allCards[index]) {
         allCards[index].classList.add("selected");
     }
@@ -215,8 +224,9 @@ function enemyChooseStat() {
     const stats = ["attack", "controll", "defence"];
     selectedStat = stats[Math.floor(Math.random() * stats.length)];
 
+    selectedCardIndex = null;
+    roundLocked = false;
     phase = "chooseCard";
-    renderHands();
 
     showMessage(
         "Az ellenfél kihívott erre: " + selectedStat.toUpperCase() + ". Válassz egy kártyát!",
@@ -224,7 +234,6 @@ function enemyChooseStat() {
     );
 }
 
-// Okosabb enemy lapválasztás: a kiválasztott statban legerősebb lapot játssza ki
 function getBestEnemyCardIndex(stat) {
     let bestIndex = 0;
     let bestValue = -Infinity;
@@ -241,6 +250,13 @@ function getBestEnemyCardIndex(stat) {
 }
 
 function playRound() {
+    console.log("PLAY ROUND START");
+    console.log("phase:", phase);
+    console.log("roundLocked:", roundLocked);
+    console.log("selectedCardIndex:", selectedCardIndex);
+    console.log("selectedStat:", selectedStat);
+    console.log("currentChallenger:", currentChallenger);
+
     if (roundLocked) return;
 
     if (phase !== "chooseCard") {
@@ -271,7 +287,6 @@ function playRound() {
 
     showBattleCards(playerCard, enemyCard, selectedStat);
 
-    // stat kiemelés lassabban
     setTimeout(() => {
         const playerCardDiv = document.getElementById("player-battle");
         const enemyCardDiv = document.getElementById("enemy-battle");
@@ -285,7 +300,6 @@ function playRound() {
         }
     }, TIMINGS.statHighlight);
 
-    // győztes / vesztes animáció később indul
     setTimeout(() => {
         const playerCardDiv = document.getElementById("player-battle");
         const enemyCardDiv = document.getElementById("enemy-battle");
@@ -299,7 +313,6 @@ function playRound() {
         }
     }, TIMINGS.winnerAnimation);
 
-    // kör lezárása később
     setTimeout(() => {
         let resultText = "";
 
@@ -367,10 +380,13 @@ function resetBattleArea(clearNow = false) {
     playerBattle.style.transform = "";
     enemyBattle.style.transform = "";
 
-    if (clearNow) {
+    if (clearNow) 
+    {
         playerBattle.innerHTML = "";
         enemyBattle.innerHTML = "";
-    } else {
+    }
+    else 
+    {
         setTimeout(() => {
             playerBattle.innerHTML = "";
             enemyBattle.innerHTML = "";

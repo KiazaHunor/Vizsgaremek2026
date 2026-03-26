@@ -8,23 +8,30 @@ try {
     $excludeRaw = $_GET['exclude'] ?? '';
 
     $positionMap = [
-        'GK'   => 'Goalkeeper',
-        'CB'   => 'Centre-Back',
-        'LB'   => 'Left-Back',
-        'RB'   => 'Right-Back',
-        'CDM'  => 'Defensive Midfield',
-        'CM'   => 'Central Midfield',
-        'CAM'  => 'Attacking Midfield',
-        'LM'   => 'Left Midfield',
-        'RM'   => 'Right Midfield',
-        'LW'   => 'Left Winger',
-        'RW'   => 'Right Winger',
-        'CF'   => 'Centre-Forward'
+        'GK'  => ['Goalkeeper'],
+        'CB'  => ['Centre-Back'],
+        'LB'  => ['Left-Back'],
+        'RB'  => ['Right-Back'],
+        'CDM' => ['Defensive Midfield'],
+        'CM'  => ['Central Midfield'],
+        'CAM' => ['Attacking Midfield'],
+
+        'LM'  => ['Left Midfield', 'Left Winger'],
+        'RM'  => ['Right Midfield', 'Right Winger'],
+
+        'LW'  => ['Left Winger', 'Left Midfield'],
+        'RW'  => ['Right Winger', 'Right Midfield'],
+
+        'CF'  => ['Centre-Forward']
     ];
 
     $excludeIds = [];
     if (!empty($excludeRaw)) {
-        $excludeIds = array_values(array_filter(array_map('intval', explode(',', $excludeRaw))));
+        $excludeIds = array_values(
+            array_filter(
+                array_map('intval', explode(',', $excludeRaw))
+            )
+        );
     }
 
     $sql = "
@@ -47,9 +54,10 @@ try {
     ";
 
     $params = [];
+    $conditions = [];
 
     if ($positionCode === 'CSERE' || $positionCode === 'TART') {
-        $sql .= " WHERE 1=1 ";
+        $conditions[] = "1=1";
     } else {
         if (!isset($positionMap[$positionCode])) {
             echo json_encode([
@@ -59,14 +67,20 @@ try {
             exit;
         }
 
-        $sql .= " WHERE pos.name = ? ";
-        $params[] = $positionMap[$positionCode];
+        $selectedPositions = $positionMap[$positionCode];
+        $positionPlaceholders = implode(',', array_fill(0, count($selectedPositions), '?'));
+        $conditions[] = "pos.name IN ($positionPlaceholders)";
+        $params = array_merge($params, $selectedPositions);
     }
 
     if (!empty($excludeIds)) {
-        $placeholders = implode(',', array_fill(0, count($excludeIds), '?'));
-        $sql .= " AND p.id NOT IN ($placeholders) ";
+        $excludePlaceholders = implode(',', array_fill(0, count($excludeIds), '?'));
+        $conditions[] = "p.id NOT IN ($excludePlaceholders)";
         $params = array_merge($params, $excludeIds);
+    }
+
+    if (!empty($conditions)) {
+        $sql .= " WHERE " . implode(" AND ", $conditions);
     }
 
     $sql .= " ORDER BY RAND() LIMIT 5";
