@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FizzLigaQuiz.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class InitQuiz : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,6 +33,11 @@ namespace FizzLigaQuiz.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     HelyesValasz = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    Kategoria = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Nehezseg = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    LetrehozasDatuma = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Aktiv = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>

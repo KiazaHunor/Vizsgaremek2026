@@ -37,8 +37,17 @@ namespace FizzLigaQuiz.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Kategoria")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("KerdesSzoveg")
                         .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("LetrehozasDatuma")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Nehezseg")
                         .HasColumnType("longtext");
 
                     b.Property<string>("ValaszA")

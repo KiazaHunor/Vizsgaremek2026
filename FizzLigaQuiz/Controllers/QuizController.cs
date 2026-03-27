@@ -1,10 +1,9 @@
 ﻿using FizzLigaQuiz.Data;
 using FizzLigaQuiz.Dtos;
-using FizzLigaQuiz.Migrations;
 using FizzLigaQuiz.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
 
 
 namespace FizzLigaQuiz.Controllers

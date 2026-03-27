@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FizzLigaQuiz.Migrations
 {
     [DbContext(typeof(QuizDbContext))]
-    [Migration("20260324100317_Init")]
-    partial class Init
+    [Migration("20260326073144_InitQuiz")]
+    partial class InitQuiz
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,8 +40,17 @@ namespace FizzLigaQuiz.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Kategoria")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("KerdesSzoveg")
                         .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("LetrehozasDatuma")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Nehezseg")
                         .HasColumnType("longtext");
 
                     b.Property<string>("ValaszA")
