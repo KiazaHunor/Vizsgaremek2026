@@ -2,7 +2,6 @@
 require_once 'import_players.php';
 
 try {
-    // 1. Lekérjük az összes játékost a pozíciójával
     $sql = "
         SELECT 
             p.id AS player_id,
@@ -13,7 +12,6 @@ try {
 
     $players = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-    // 2. Pozícióhoz tartozó stat tartományok
     $positionRanges = [
         'Goalkeeper'         => ['attack' => [5, 15],  'controll' => [15, 30], 'defence' => [75, 95]],
         'Left-Back'          => ['attack' => [45, 55], 'controll' => [55, 65], 'defence' => [65, 90]],
@@ -30,7 +28,6 @@ try {
         'Centre-Forward'     => ['attack' => [85, 95], 'controll' => [65, 75], 'defence' => [25, 35]],
     ];
 
-    // 3. Insert vagy update player_stats-ba
     $stmt = $pdo->prepare("
         INSERT INTO player_stats (player_id, attack, controll, defence)
         VALUES (:player_id, :attack, :controll, :defence)
@@ -41,37 +38,48 @@ try {
             updated_at = CURRENT_TIMESTAMP
     ");
 
+    $stmtRating = $pdo->prepare("
+        INSERT INTO player_ratings (player_id, rating)
+        VALUES (:player_id, :rating)
+        ON DUPLICATE KEY UPDATE
+            rating = VALUES(rating),
+            updated_at = CURRENT_TIMESTAMP
+    ");
+
     $pdo->beginTransaction();
 
     foreach ($players as $player) {
         $pos = trim($player['position'] ?? '');
 
-        // A pozícióhoz tartozó statisztikai tartományok lekérése
         if (isset($positionRanges[$pos])) {
             $range = $positionRanges[$pos];
-
             $attack   = random_int($range['attack'][0], $range['attack'][1]);
             $controll = random_int($range['controll'][0], $range['controll'][1]);
             $defence  = random_int($range['defence'][0], $range['defence'][1]);
         } else {
-            // Ha ismeretlen pozíció, akkor véletlenszerű statisztikák
             $attack   = random_int(40, 60);
             $controll = random_int(40, 60);
             $defence  = random_int(40, 60);
         }
 
-        // A statisztikák frissítése vagy beszúrása a player_stats táblába
         $stmt->execute([
             ':player_id' => $player['player_id'],
             ':attack'    => $attack,
             ':controll'  => $controll,
             ':defence'   => $defence,
         ]);
+
+        $rating = round(($attack + $controll + $defence) / 3, 2);
+
+        $stmtRating->execute([
+            ':player_id' => $player['player_id'],
+            ':rating'    => $rating
+        ]);
     }
 
     $pdo->commit();
 
-    echo "A player_stats tábla sikeresen frissítve lett.";
+    echo "A player_stats és player_ratings táblák sikeresen frissítve lettek.";
 } catch (Exception $e) {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();

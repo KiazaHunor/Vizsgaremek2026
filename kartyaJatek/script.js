@@ -74,10 +74,7 @@ function dealCards() {
 }
 
 function getOverall(card) {
-    const atk = Number(card.attack) || 0;
-    const ctrl = Number(card.controll) || 0;
-    const def = Number(card.defence) || 0;
-    return Math.round((atk + ctrl + def) / 3);
+    return Math.round(Number(card.rating) || 0);
 }
 
 function getPositionLabel(card) {

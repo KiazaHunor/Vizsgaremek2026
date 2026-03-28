@@ -25,20 +25,20 @@
       <p>Kérdésed, hibát találtál vagy ötleted van? Írj nekünk!</p>
       <p><strong>Email:</strong> <span class="email-highlight">fizzliga@gmail.com</span></p>
 
-      <form class="mt-4">
+      <form class="mt-4" action="kapcsolat_kuldes.php" method="POST">
         <div class="mb-3">
-          <label>Név</label>
-          <input type="text" class="form-control" placeholder="Neved">
+          <label for="nev">Név</label>
+          <input type="text" id="nev" name="nev" class="form-control" placeholder="Neved" required>
         </div>
 
         <div class="mb-3">
-          <label>Email cím</label>
-          <input type="email" class="form-control" placeholder="email@pelda.hu">
+          <label for="email">Email cím</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="email@pelda.hu" required>
         </div>
 
         <div class="mb-3">
-          <label>Üzenet</label>
-          <textarea class="form-control" rows="4" placeholder="Írd ide az üzeneted..."></textarea>
+          <label for="uzenet">Üzenet</label>
+          <textarea id="uzenet" name="uzenet" class="form-control" rows="4" placeholder="Írd ide az üzeneted..." required></textarea>
         </div>
 
         <button type="submit" class="btn btn-send">Üzenet küldése</button>
