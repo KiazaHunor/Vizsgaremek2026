@@ -43,7 +43,7 @@ $news = [];
 $i = 0;
 
 foreach ($rss->channel->item as $item) {
-    if ($i >= 6) break;
+    if ($i >= 18) break;
 
     $link = (string)$item->link;
     $image = "";

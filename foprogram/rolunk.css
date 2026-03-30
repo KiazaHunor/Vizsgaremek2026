@@ -88,11 +88,3 @@ ul li:last-child {
   border-radius: 10px;
   box-shadow: 0 0 12px var(--accent);
 }
-
-footer {
-  margin-top: 40px;
-  padding: 20px;
-  text-align: center;
-  color: var(--text-muted);
-  border-top: 1px solid #1f2a36;
-}
