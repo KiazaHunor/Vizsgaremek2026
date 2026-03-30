@@ -10,14 +10,14 @@
         "projectUniqueName": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\FizzLigaQuiz.csproj",
         "projectName": "FizzLigaQuiz",
         "projectPath": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\FizzLigaQuiz.csproj",
-        "packagesPath": "C:\\Users\\pcsongi\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\H_Hunor\\.nuget\\packages\\",
         "outputPath": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\FizzLigaQuiz\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\pcsongi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\H_Hunor\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

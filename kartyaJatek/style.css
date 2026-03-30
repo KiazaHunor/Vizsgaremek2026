@@ -24,7 +24,7 @@ body {
     color: var(--text-main);
     background:
         linear-gradient(rgba(5, 10, 18, 0.72), rgba(5, 10, 18, 0.82)),
-        url("kartyahatter.jpg") center/cover no-repeat fixed;
+        url("stadion2.jpg") center/cover no-repeat fixed;
     overflow: hidden;
 }
 
