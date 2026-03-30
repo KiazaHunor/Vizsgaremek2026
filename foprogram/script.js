@@ -1,5 +1,5 @@
 function loadNews() {
-  fetch("../hirek.php")
+  fetch("hirek.php")
     .then(r => r.json())
     .then(data => {
 

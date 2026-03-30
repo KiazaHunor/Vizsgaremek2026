@@ -1,101 +1,58 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Góllövőlista</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <script src="navbar.js"></script>
   <script src="theme.js"></script>
   <script src="menu.js"></script>
+  <script src="footer.js"></script>
 </head>
+
 <body>
 
-<div class="container-fluid">
-  <header class="col-12">
-        <h1 class="text-center p-3"><b>Fizz Liga</b>
-          <a href="szep.html"><img id="logo" src="../Fizz_Liga_NBI.png" alt="Fizz Liga"></a>
-        </h1>
+  <div class="container-fluid">
+    <header class="col-12">
+      <h1 class="text-center p-3"><b>Fizz Liga</b>
+        <a href="szep.html"><img id="logo" src="../Fizz_Liga_NBI.png" alt="Fizz Liga"></a>
+      </h1>
 
-        <div id="navbar-container"></div>
-  </header>
+      <div id="navbar-container"></div>
+    </header>
 
-  <div class="row justify-content-center mt-4 mb-4">
-    <div class="col-12 col-lg-10">
-      <article>
-        <h3><i class="bi bi-trophy"></i> Góllövőlista</h3>
-        <hr>
+    <div class="row justify-content-center mt-4 mb-4">
+      <div class="col-12 col-lg-10">
+        <article>
+          <h3><i class="bi bi-trophy"></i> Góllövőlista</h3>
+          <hr>
 
-        <div id="gollovolista">Betöltés...</div>
-      </article>
+          <div id="gollovolista">Betöltés...</div>
+        </article>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="footer-container"></div>
     </div>
   </div>
 
-  <div class="row">
-  <footer class="site-footer">
-    <div class="footer-top">
+  <script>
+    fetch("../gollovolista.php")
+      .then(res => res.json())
+      .then(data => {
 
-      <div class="footer-brand">
-        <h3>Fizz Liga</h3>
-        <p>
-          Magyar focis játékélmény, statisztikák és minijátékok
-          modern sport UI stílusban.
-        </p>
-      </div>
+        if (data.error) {
+          document.getElementById("gollovolista").innerHTML = data.error;
+          return;
+        }
 
-      <div class="footer-links">
-        <h4>Gyorslinkek</h4>
-        <ul>
-          <li><a href="szep.html">Főoldal</a></li>
-          <li><a href="tabella.html">Tabella</a></li>
-          <li><a href="game.html">Draft játék</a></li>
-          <li><a href="../kartyaJatek/planyers.php">Kártya játék</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-links">
-        <h4>Információ</h4>
-        <ul>
-          <li><a href="rolunk.html">Rólunk</a></li>
-          <li><a href="kapcsolat.html">Kapcsolat</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-social">
-        <h4>Kövess minket</h4>
-        <div class="social-icons">
-          <a href="#"><i class="bi bi-facebook"></i></a>
-          <a href="#"><i class="bi bi-instagram"></i></a>
-          <a href="#"><i class="bi bi-youtube"></i></a>
-          <a href="#"><i class="bi bi-discord"></i></a>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <span>© 2026 Fizz Liga Draft</span>
-      <span class="footer-separator">•</span>
-      <span>Készítette a Fizz Liga csapata</span>
-    </div>
-  </footer>
-</div>
-</div>
-
-<script>
-fetch("../gollovolista.php")
-  .then(res => res.json())
-  .then(data => {
-
-    if (data.error) {
-      document.getElementById("gollovolista").innerHTML = data.error;
-      return;
-    }
-
-    let html = `
+        let html = `
       <div class="table-responsive">
         <table class="table table-striped text-center align-middle">
           <thead>
@@ -109,8 +66,8 @@ fetch("../gollovolista.php")
           <tbody>
     `;
 
-    data.forEach(player => {
-      html += `
+        data.forEach(player => {
+          html += `
         <tr>
           <td>${player.hely}</td>
           <td class="fw-bold">${player.jatekos}</td>
@@ -118,16 +75,17 @@ fetch("../gollovolista.php")
           <td><span class="gol-badge">${player.gol}</span></td>
         </tr>
       `;
-    });
+        });
 
-    html += `</tbody></table></div>`;
+        html += `</tbody></table></div>`;
 
-    document.getElementById("gollovolista").innerHTML = html;
-  })
-  .catch(err => {
-    document.getElementById("gollovolista").innerHTML = "Hiba történt";
-  });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        document.getElementById("gollovolista").innerHTML = html;
+      })
+      .catch(err => {
+        document.getElementById("gollovolista").innerHTML = "Hiba történt";
+      });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
