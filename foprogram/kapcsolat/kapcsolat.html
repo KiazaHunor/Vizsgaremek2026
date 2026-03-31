@@ -21,7 +21,7 @@
     <div class="contact-card">
 
       <p>Kérdésed, hibát találtál vagy ötleted van? Írj nekünk!</p>
-      <p><strong>Email:</strong> <span class="email-highlight">fizzliga@gmail.com</span></p>
+      <p><strong>Email:</strong> <span class="email-highlight">fizzpro2026@gmail.com</span></p>
 
       <div id="login-warning" class="alert alert-warning d-none">
         Az üzenetküldéshez be kell jelentkezned.
@@ -134,14 +134,14 @@
   .then(res => res.json())
   .then(data => {
     if (data.success) {
-      formMessage.innerHTML = `<div class="alert alert-success">Elküldve!</div>`;
-      kapcsolatForm.reset();
-    } else {
-      formMessage.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
-    }
-  })
-  .catch(() => {
-    formMessage.innerHTML = `<div class="alert alert-danger">Szerverhiba történt.</div>`;
+    formMessage.innerHTML = `<div class="alert alert-success">Elküldve!</div>`;
+    document.getElementById("targy").value = "";
+    document.getElementById("uzenet").value = "";
+  } else {
+    formMessage.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+    }})
+    .catch(() => {
+      formMessage.innerHTML = `<div class="alert alert-danger">Szerverhiba történt.</div>`;
   });
 });
     
