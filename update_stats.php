@@ -13,7 +13,7 @@ try {
     $players = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
     $positionRanges = [
-        'Goalkeeper'         => ['attack' => [5, 15],  'controll' => [15, 30], 'defence' => [75, 95]],
+        'Goalkeeper'         => ['attack' => [5, 15],  'controll' => [15, 30], 'defence' => [80, 95]],
         'Left-Back'          => ['attack' => [45, 55], 'controll' => [55, 65], 'defence' => [65, 90]],
         'Right-Back'         => ['attack' => [45, 55], 'controll' => [55, 65], 'defence' => [65, 90]],
         'Centre-Back'        => ['attack' => [35, 45], 'controll' => [45, 55], 'defence' => [75, 90]],
