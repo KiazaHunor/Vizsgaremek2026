@@ -22,3 +22,6 @@ a döntetlenért 1 a vereségért 0
 Ez alapján a napi scoreod 3*3 2*1 és 1*0 azaz 11 ponttal zárod a napot és ez a szám az örökBajnoksághoz is hozzá fog adódni 
 Es a napi bajnokság végén lesz egy lista, aki a legtöbb pontot érte el az lesz az első és így lefelé.
 A napi bajnokság végén pedig eredményhírdetés.
+
+
+

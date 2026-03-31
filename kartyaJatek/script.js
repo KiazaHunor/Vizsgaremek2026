@@ -12,6 +12,7 @@ const playerDeck = document.getElementById("player-deck");
 const playerHand = document.getElementById("player-hand");
 const enemyHand = document.getElementById("enemy-hand");
 const playRoundBtn = document.getElementById("play-round");
+const restartBtn = document.getElementById("restart-game");
 
 let playerCards = [];
 let enemyCards = [];
@@ -190,6 +191,7 @@ function selectCard(index) {
 }
 
 function startNextTurn() {
+    document.getElementById("restart-game").style.display = "none";
     selectedCardIndex = null;
     selectedStat = null;
 
@@ -445,4 +447,74 @@ function selectCardStat(index, statName) {
 
     renderHands();
     showMessage(`Kiválasztottad: ${statName.toUpperCase()}. Most játszd le a kört!`, 1200);
+}
+restartBtn.addEventListener("click", () => {
+    restartGame();
+});
+
+function restartGame() {
+    document.getElementById("restart-game").style.display = "none";
+    // állapotok nullázása
+    playerScore = 0;
+    enemyScore = 0;
+
+    selectedCardIndex = null;
+    selectedStat = null;
+
+    currentChallenger = null;
+    phase = "waiting";
+    roundLocked = false;
+
+    updateScoreboard();
+
+    resetBattleArea(true);
+    dealCards();
+}
+function endGame() {
+    roundLocked = true;
+    phase = "finished";
+
+    let message = "";
+    let result = "";
+
+    if (playerScore > enemyScore) {
+        message = "Vége a játéknak! Te nyertél!";
+        result = "win";
+    } else if (playerScore < enemyScore) {
+        message = "Vége a játéknak! Az ellenfél nyert!";
+        result = "loss";
+    } else {
+        message = "Vége a játéknak! Döntetlen!";
+        result = "draw";
+    }
+
+    showMessage(message, TIMINGS.endMessage);
+
+    saveGameResult(result,playerScore, enemyScore);
+
+    const restartBtn = document.getElementById("restart-game");
+    if(restartBtn)
+    {
+        restartBtn.style.display = "inline-block";
+    }
+}
+function saveGameResult(result, playerScore, enemyScore) {
+    fetch("save_game_result.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            result: result,
+            player_score: playerScore,
+            enemy_score: enemyScore
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Mentés válasz:", data);
+    })
+    .catch(error => {
+        console.error("Hiba az eredmény mentése közben:", error);
+    });
 }

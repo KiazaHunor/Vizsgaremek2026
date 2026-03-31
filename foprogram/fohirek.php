@@ -48,7 +48,6 @@ foreach ($rss->channel->item as $item) {
     $link = (string)$item->link;
     $image = "";
 
-    // 1. enclosure
     if (isset($item->enclosure)) {
         $attrs = $item->enclosure->attributes();
         if (isset($attrs['url'])) {
@@ -56,7 +55,6 @@ foreach ($rss->channel->item as $item) {
         }
     }
 
-    // 2. media namespace
     if (empty($image)) {
         $media = $item->children('media', true);
 
@@ -75,15 +73,15 @@ foreach ($rss->channel->item as $item) {
         }
     }
 
-    // 3. fallback: cikkoldalból og:image
     if (empty($image)) {
         $image = getOgImage($link);
     }
 
     $news[] = [
         "title" => (string)$item->title,
-        "link"  => $link,
-        "desc"  => mb_substr(strip_tags((string)$item->description), 0, 150) . "...",
+        "link" => $link,
+        "description" => mb_substr(strip_tags((string)$item->description), 0, 150) . "...",
+        "pubDate" => (string)$item->pubDate,
         "image" => $image
     ];
 
