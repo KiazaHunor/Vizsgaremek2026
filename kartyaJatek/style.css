@@ -598,3 +598,22 @@ body {
         margin-bottom: 18px;
     }
 }
+#restart-game {
+    margin-left: 12px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #ff5f6d, #ff9966);
+    box-shadow: 0 12px 28px rgba(255, 95, 109, 0.3);
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: none;
+}
+
+#restart-game:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 34px rgba(255, 95, 109, 0.4);
+}
