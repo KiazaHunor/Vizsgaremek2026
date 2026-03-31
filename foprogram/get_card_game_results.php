@@ -39,6 +39,7 @@ while ($row = $result->fetch_assoc()) {
     if ($row["result"] === "draw") $draws++;
     if ($row["result"] === "loss") $losses++;
 }
+$recentFive = array_slice($results, 0, 5);
 
 echo json_encode([
     "success" => true,
@@ -48,6 +49,7 @@ echo json_encode([
         "draws" => $draws,
         "losses" => $losses
     ],
+    "recentFive" => $recentFive,
     "results" => $results
 ]);
 
