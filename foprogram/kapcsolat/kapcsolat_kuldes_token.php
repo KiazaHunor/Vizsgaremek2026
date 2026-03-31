@@ -11,26 +11,42 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
         "success" => false,
         "error" => "Csak POST kérés engedélyezett."
     ]);
-    exit();
+    exit;
 }
 
-$input = file_get_contents("php://input");
-$data = json_decode($input, true);
+$data = json_decode(file_get_contents("php://input"), true);
+
+if (!$data) {
+    http_response_code(400);
+    echo json_encode([
+        "success" => false,
+        "error" => "Hibás JSON"
+    ]);
+    exit;
+}
 
 $targy = trim($data["targy"] ?? "");
 $uzenet = trim($data["uzenet"] ?? "");
 
+if ($targy === "" || $uzenet === "") {
+    http_response_code(400);
+    echo json_encode([
+        "success" => false,
+        "error" => "Hiányzó adatok"
+    ]);
+    exit;
+}
 
-if ($GLOBALS['current_user_id'] <= 0) {
+if (($GLOBALS['current_user_id'] ?? 0) <= 0) {
     http_response_code(401);
     echo json_encode([
         "success" => false,
         "error" => "Nem vagy bejelentkezve."
     ]);
-    exit();
+    exit;
 }
 
-$stmt = $pdo->prepare("SELECT id, username, email FROM users WHERE id = ? LIMIT 1");
+$stmt = $pdo->prepare("SELECT username, email FROM users WHERE id = ? LIMIT 1");
 $stmt->execute([$GLOBALS['current_user_id']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -40,11 +56,11 @@ if (!$user) {
         "success" => false,
         "error" => "Felhasználó nem található."
     ]);
-    exit();
+    exit;
 }
 
-$nev = trim($user["username"]);
-$email = trim($user["email"]);
+$nev = trim($user["username"] ?? "");
+$email = trim($user["email"] ?? "");
 
 try {
     sendKapcsolatEmail($nev, $email, $targy, $uzenet);
@@ -54,11 +70,9 @@ try {
         "message" => "Az üzenet sikeresen elküldve."
     ]);
 } catch (Exception $e) {
-    error_log("Kapcsolat tokenes email hiba: " . $e->getMessage());
-
     http_response_code(500);
     echo json_encode([
         "success" => false,
-        "error" => "Hiba történt az email küldése közben."
+        "error" => $e->getMessage()
     ]);
 }
