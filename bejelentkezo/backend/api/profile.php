@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         'user' => [
             'id' => $user['id'],
             'username' => $user['username'],
-            'email'=>$user['email'],
+            'email' => $user['email'],
             'created_at' => $user['created_at'],
             'formatted_date' => date('Y. m. d. H:i', strtotime($user['created_at'])),
             'profile_image' => $user['profile_image']
@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $update = $pdo->prepare($sql);
     $update->execute($values);
 
-    $stmt = $pdo->prepare("SELECT id, username, created_at, profile_image FROM users WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT id, username, email, created_at, profile_image FROM users WHERE id = ?");
     $stmt->execute([$currentUserId]);
     $updatedUser = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -157,12 +157,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'user' => [
             'id' => $updatedUser['id'],
             'username' => $updatedUser['username'],
+            'email' => $updatedUser['email'],
             'created_at' => $updatedUser['created_at'],
             'formatted_date' => date('Y. m. d. H:i', strtotime($updatedUser['created_at'])),
             'profile_image' => $updatedUser['profile_image']
         ]
     ]);
     exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    try {
+        if (!empty($user['profile_image'])) {
+            $oldPath = dirname(__DIR__) . '/' . $user['profile_image'];
+            if (file_exists($oldPath)) {
+                unlink($oldPath);
+            }
+        }
+
+        $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
+        $stmt->execute([$currentUserId]);
+
+        echo json_encode([
+            'success' => true,
+            'message' => 'A profil sikeresen törölve lett.'
+        ]);
+        exit();
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode([
+            'success' => false,
+            'error' => 'Nem sikerült törölni a profilt.'
+        ]);
+        exit();
+    }
 }
 
 http_response_code(405);
