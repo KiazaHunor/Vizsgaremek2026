@@ -1,0 +1,25 @@
+Főprogram terve
+Feltétel: chemistry legyen megcsinálva, működjön a program. Ez csak az eredmények és a scoreok eltárolása.
+Ha egy játékos összerak egy csapatot és a rating és chemistry értéke elér pl:100
+Akkor utána ezt a jatekos profiljában el kell tárolni.
+Minden elkészített csapat scoreját el kell tárolni és a felhasználó profilján meglehessen nézni az összerakott csapatjainak a scorejait
+ez egyenlőre nem csinál mást csak elmenti az összerakott csapatok scorejait.
+Ez az alap játékmód ahol csak így magában játszik az ember és a scorejait tudja nővelni.
+
+De lesz egy másik játékmód is a bajnokság *
+
+
+
+
+
+
+
+
+
+
+
+Bajnokság: működése az lesz hogy minden nap lesz egy bajnokság mi általunk lesz meghatározva hogy hány óráig lesz a bajnoság aktiv
+pl: hetfo hajnali 2 től ejszaka 11 ig
+A bajnokság úgy fog kinézni hogy be lehet nevezni értsd simán rákattintasz egy gombra. Ha a bajnokságban játszol akkor az általad összerakott csapat nem a saját 
+profilodban fog megjelenni hanem lesz egy allandó bajnokság scoreboard is ahol az adott bajnokságban résztvevők fognak szerepeli.
+Úgy szeretnénk ezt hogy a aki a bajnokságban 

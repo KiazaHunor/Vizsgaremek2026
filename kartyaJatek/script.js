@@ -193,7 +193,7 @@ function startNextTurn() {
     selectedCardIndex = null;
     selectedStat = null;
 
-    renderHands();
+    //renderHands();
 
     if (playerCards.length === 0 || enemyCards.length === 0) {
         endGame();
@@ -204,10 +204,12 @@ function startNextTurn() {
 
     if (currentChallenger === "player") {
         phase = "chooseStat";
-        showMessage("Te hívsz! Kattints egy statra a kiválasztott kártyán!", TIMINGS.challengerMessage);
         renderHands();
+        showMessage("Te hívsz! Kattints egy statra a kiválasztott kártyán!", TIMINGS.challengerMessage);
+        
     } else {
         phase = "enemyThinking";
+        renderHands();
         showMessage("Az ellenfél gondolkodik...", TIMINGS.enemyThinking);
         setTimeout(() => {
             enemyChooseStat();
@@ -224,7 +226,9 @@ function enemyChooseStat() {
     selectedCardIndex = null;
     roundLocked = false;
     phase = "chooseCard";
-
+    
+    renderHands();
+    
     showMessage(
         "Az ellenfél kihívott erre: " + selectedStat.toUpperCase() + ". Válassz egy kártyát!",
         TIMINGS.challengerMessage

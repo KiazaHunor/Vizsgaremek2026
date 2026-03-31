@@ -24,7 +24,7 @@ function loadNews() {
                             <h5 class="card-title">${item.title}</h5>
                             <p class="card-text">${item.description ? item.description : "Nincs leírás."}</p>
                             <div class="mt-auto pt-2">
-                                <small class="text-muted">${item.pubDate ? item.pubDate : ""}</small>
+                                <small class="text-white">${item.pubDate ? item.pubDate : ""}</small>
                             </div>
                         </div>
                     </div>
