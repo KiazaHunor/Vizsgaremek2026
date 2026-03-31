@@ -8,12 +8,10 @@
   <link rel="stylesheet" href="../kapcsolat.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <script src="../footer.js"></script>
-  
 </head>
 
 <body>
 
-  <!-- HERO -->
   <section class="contact-hero">
     <h1>📬 Kapcsolat</h1>
     <div class="accent-line"></div>
@@ -25,30 +23,49 @@
       <p>Kérdésed, hibát találtál vagy ötleted van? Írj nekünk!</p>
       <p><strong>Email:</strong> <span class="email-highlight">fizzliga@gmail.com</span></p>
 
-      <form class="mt-4" action="kapcsolat_kuldes.php" method="POST">
-        <div class="mb-3">
-          <label for="kapcsolatnev">Név</label>
-          <input type="text" id="kapcsolatnev" name="kapcsolatnev" class="form-control" placeholder="Neved" required>
-        </div>
+      <div id="login-warning" class="alert alert-warning d-none">
+        Az üzenetküldéshez be kell jelentkezned.
+      </div>
 
-        <div class="mb-3">
-          <label for="kapcsolatemail">Email cím</label>
-          <input type="email" id="kapcsolatemail" name="kapcsolatemail" class="form-control" placeholder="email@pelda.hu" required>
-        </div>
+      <div id="form-message"></div>
 
-        <div class="mb-3">
-          <label for="uzenet">Üzenet</label>
-          <textarea id="uzenet" name="uzenet" class="form-control" rows="4" placeholder="Írd ide az üzeneted..." required></textarea>
-        </div>
+      <div id="form-wrapper" class="d-none">
 
-        <button type="submit" class="btn btn-send">Üzenet küldése</button>
-      </form>
+        <form id="kapcsolat-form" class="mt-4">
+
+          <div class="mb-3">
+            <label for="logged-user">Felhasználónév</label>
+            <input type="text" id="logged-user" name="username" class="form-control" readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="logged-email">Email cím</label>
+            <input type="email" id="logged-email" name="email" class="form-control" readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="targy">Tárgy</label>
+            <input type="text" id="targy" name="targy" class="form-control" placeholder="Tárgy..." required>
+          </div>
+
+          <div class="mb-3">
+            <label for="uzenet">Üzenet</label>
+            <textarea id="uzenet" name="uzenet" class="form-control" rows="4" placeholder="Írd ide az üzeneted..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-send">Üzenet küldése</button>
+        </form>
+
+      </div>
 
       <a href="../szep.html" class="btn btn-back">⬅ Vissza a főoldalra</a>
 
     </div>
   </div>
+
   <div id="footer-container"></div>
+
+
    <script>
     const PROFILE_API = "http://localhost/oliverhtdoc/Vizsgaremek2026/bejelentkezo/backend/api/profile.php";
     const SEND_API = "kapcsolat_kuldes_token.php";
@@ -97,27 +114,44 @@
   }
 
     
-         fetch(SEND_API, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + token
-          },
-          body: JSON.stringify({ targy, uzenet })
-        }).then(response=>response.json())
-          .then(data=>{
-            if (data.success) {
-          formMessage.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
-          kapcsolatForm.reset();
-        } else {
-          formMessage.innerHTML = `<div class="alert alert-danger">${data.error || "Hiba történt."}</div>`;
-        }
-          })
-        .catch(error=>{ 
-        console.error(error);
-        formMessage.innerHTML = `<div class="alert alert-danger">Szerverhiba történt az üzenet küldése közben.</div>`;
-      });
+       kapcsolatForm.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const targy = document.getElementById("targy").value.trim();
+  const uzenet = document.getElementById("uzenet").value.trim();
+
+  fetch("kapcsolat_kuldes_token.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + token
+    },
+    body: JSON.stringify({
+      targy: targy,
+      uzenet: uzenet
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      formMessage.innerHTML = `<div class="alert alert-success">Elküldve!</div>`;
+      kapcsolatForm.reset();
+    } else {
+      formMessage.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+    }
+  })
+  .catch(() => {
+    formMessage.innerHTML = `<div class="alert alert-danger">Szerverhiba történt.</div>`;
+  });
+});
     
+      fetch("../footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer-container").innerHTML = data;
+  });
+
+  checkLogin();
   
 </script>
 </body>
