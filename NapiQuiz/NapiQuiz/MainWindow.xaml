@@ -11,5 +11,9 @@
         <Button Content="Admin felület"
                 Height="35"
                 Click="AdminButton_Click"/>
+		<Button Content="Toplista"
+            Height="35"
+            Margin="0,10,0,0"
+            Click="LeaderboardButton_Click"/>
     </StackPanel>
 </Window>

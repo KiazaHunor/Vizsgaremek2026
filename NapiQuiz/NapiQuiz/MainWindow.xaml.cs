@@ -28,5 +28,9 @@ namespace NapiQuiz
         {
             new AdminLoginWindow().ShowDialog();
         }
+        private void LeaderboardButton_Click(object sender, RoutedEventArgs e)
+        {
+            new LeaderboardWindow().ShowDialog();
+        }
     }
 }

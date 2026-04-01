@@ -10,7 +10,12 @@ namespace NapiQuiz.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=quiz.db");
+            string connectionString = "server=localhost;database=napiquiz;user=root;password=;";
+
+            optionsBuilder.UseMySql(
+                connectionString,
+                ServerVersion.AutoDetect(connectionString)
+            );
         }
     }
 }
