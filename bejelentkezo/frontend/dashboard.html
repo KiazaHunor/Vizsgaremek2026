@@ -163,6 +163,13 @@
                         <div class="d-grid d-sm-flex gap-2">
                             <button class="btn btn-main" onclick="updateProfile()">Mentés</button>
                         </div>
+
+                        <div class="d-grid d-sm-flex gap-2">
+
+                        <div class="d-grid d-sm-flex gap-2 mt-3">
+
+                            <button type="button" class="btn btn-main" onclick="deleteProfile()">Profil törlése</button>
+                        </div>
                     </div>
                 </div>
             `;
@@ -222,6 +229,38 @@
             alert(err.message || 'Hiba történt a mentés közben');
         });
     }
+ 
+    function deleteProfile() {
+    const biztos = confirm("Biztosan törölni szeretnéd a profilodat? Ez nem vonható vissza.");
+
+    if (!biztos) {
+        return;
+    }
+
+    fetch(`${API_BASE_URL}/profile.php`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        if (!data.success) {
+            alert(data.error || "Nem sikerült törölni a profilt.");
+            return;
+        }
+
+        alert(data.message || "A profil sikeresen törölve lett.");
+        localStorage.removeItem("token");
+        window.location.href = "index.html";
+    })
+    .catch(function(error) {
+        console.error(error);
+        alert("Hiba történt a profil törlése közben.");
+    });
+}
 
     loadProfile();
 </script>

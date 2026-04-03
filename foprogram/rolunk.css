@@ -88,11 +88,103 @@ ul li:last-child {
   border-radius: 10px;
   box-shadow: 0 0 12px var(--accent);
 }
+.site-footer {
+  margin-top: 50px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background:
+    linear-gradient(135deg, rgba(10,15,22,0.96), rgba(15,25,38,0.96)),
+    radial-gradient(circle at top right, rgba(0,179,255,0.08), transparent 30%);
+  color: var(--text-main);
+  border-radius: 24px 24px 0 0;
+  overflow: hidden;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.18);
+}
 
-footer {
-  margin-top: 40px;
-  padding: 20px;
-  text-align: center;
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 32px;
+  padding: 40px 32px 26px;
+}
+
+.footer-brand h3,
+.footer-links h4,
+.footer-social h4 {
+  margin-bottom: 14px;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.footer-brand h3 {
+  font-size: 1.8rem;
+  color: var(--accent);
+}
+
+.footer-brand p {
+  margin: 0;
+  max-width: 320px;
   color: var(--text-muted);
-  border-top: 1px solid #1f2a36;
+  line-height: 1.7;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a,
+.footer-social a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+  padding-left: 4px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.social-icons a {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 1.2rem;
+  color: var(--text-main);
+  transition: all 0.25s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-4px);
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(0,255,157,0.12);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  background: rgba(255,255,255,0.02);
 }

@@ -1,0 +1,27 @@
+A bajnokság logikája
+Feltételezzük hogy a bajnokságba 10 jatekos csinalt csapatot 
+Akkor lesz 10 csapat, minden csapat jástszik mindegyik csapattal egy meccset. 
+Szoval ha a te csapatot scoreja 75 akkor te az 5. vagy a jatekosok közül aki elötted van annak magasabb a scoreja aki mögötted annak kevesebb 
+Szóval te 5.ként a 10ből játszasz 9 meccset. Itt a meccsek lényegében összehasonlítások. szóval ha te jástszasz azokkal akik nalad előrébb vannak pl 1. 2. 3. 
+akkor kissebb az esélyed nyerni és nagyobb esélyel vesztesz. Ez forditva történik a kisebb ellen játszol.
+
+Az eredmény úgy fog eldőlni hogy oddsok alapján lesz egy százalékos esély a véeredményre. értsd nagyobb az esélyed nyerni a 4. ellen mint az első ellen
+A program generálni fog neked egy eséyt 1-100 között és a program vissza fog adni egy szamot pl 66 de lehet 10 vagy 99 is
+A százalék úgy lesz megcsinalva hogy ha a gép 66ot ad vissza akkor az 1. ellen valószínűleg kikapsz mert a 1. az hogy te  nyersz a 100. az hogy kikapsz 
+Ezt egy csuszkaként kell elképzelni így a 66 abba a zónába esik ahol valszeg kikapsz. értelemszerűen ha gyengébb csapat ellen játszol a 66 valszeg a döntetlen zónába vagy peddig abba fog beleesni hogy te nyersz.
+Ezután jön a meccsnek az eredménye hány gólt rúgsz és kapsz. ez is a csapatok alapján lesz eldőntve szóval ha te nyertél 5.ként a 10. ellen akkor a program úgy lesz megírva hogy rughatsz akár 6 gólt is
+De pl ha a 6. ellen játszasz akkor valszeg 2-3 gólt rúghatsz, de a logika az ha a csuszkán te nyertél akkor fix nyersz és az ellenfél kevesebbet fog rugni nálad
+De ha vesztes akkor ugyan ez a forma ha 5.ként játszasz az első ellen akkor 2-6 ra is kikaphatsz de ha a 4. ellen játszasz akkor  1-2 re. Ez a logika
+Szóval ha a csuszkán nyersz vagy vesztesz akkor a két csapat helyezésének a különbsége dönti el a gólkülönbséget.
+Ha a csuszkán döntetlen lesz a meccse ugyan így csak akkor pl ha 3. és a 4. döntetlent játszik akkor az lehet akár 4-4 is. De ha az 1. és a 10. jatszik döntetlent akkor valszeg 1-1 vagy 0-0 mert feltételezzük hogy
+a jobb csapat nem tudott elég gólt lőni.
+
+Ezek a meccsek erdeménye el lesz mentve.
+lesz egy napi bajnokság és lesz egy Örökbajnokság, ezekhez úgy lesz hozzáadva az eredményed hogy lejátszod az összes meccset. és ha nyertel 3 meccset, 2 döntetlen és 1 vereség akkor a nyerésért meccsenként 3 pont jár
+a döntetlenért 1 a vereségért 0
+Ez alapján a napi scoreod 3*3 2*1 és 1*0 azaz 11 ponttal zárod a napot és ez a szám az örökBajnoksághoz is hozzá fog adódni 
+Es a napi bajnokság végén lesz egy lista, aki a legtöbb pontot érte el az lesz az első és így lefelé.
+A napi bajnokság végén pedig eredményhírdetés.
+
+
+

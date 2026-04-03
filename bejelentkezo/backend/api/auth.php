@@ -24,8 +24,12 @@ if ($authHeader === '' || strpos($authHeader, 'Bearer ') !== 0) {
 
 $token = trim(substr($authHeader, 7));
 
-$sql = "SELECT id, username, created_at, profile_image FROM users WHERE token = ? AND token_expiry > NOW() LIMIT 1";
-$stmt = $pdo->prepare($sql);
+$stmt = $pdo->prepare("
+    SELECT id, username, email, created_at, profile_image 
+    FROM users 
+    WHERE token = ? AND token_expiry > NOW() 
+    LIMIT 1
+");
 $stmt->execute([$token]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 

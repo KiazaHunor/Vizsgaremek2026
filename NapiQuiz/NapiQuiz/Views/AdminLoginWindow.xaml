@@ -1,0 +1,10 @@
+﻿<Window x:Class="NapiQuiz.Views.AdminLoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Admin belépés" Height="200" Width="300">
+    <StackPanel Margin="20">
+        <TextBlock Text="Admin jelszó:" Margin="0,0,0,10"/>
+        <PasswordBox x:Name="AdminPasswordBox" Margin="0,0,0,10"/>
+        <Button Content="Belépés" Click="Login_Click"/>
+    </StackPanel>
+</Window>
