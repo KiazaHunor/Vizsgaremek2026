@@ -89,5 +89,9 @@ namespace NapiQuiz.Views
 
             MessageBox.Show("A legutolsó kérdés lett a mai kérdés.");
         }
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

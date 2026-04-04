@@ -18,7 +18,7 @@ namespace NapiQuiz.Views
 
             var top = db.UserAnswers
                 .Where(a => a.IsCorrect)
-                .GroupBy(a => a.UserName)
+                .GroupBy(a => a.UserId)
                 .Select(g => new
                 {
                     User = g.Key,

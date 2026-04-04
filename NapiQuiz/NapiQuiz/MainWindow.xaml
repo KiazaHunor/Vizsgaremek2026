@@ -1,7 +1,7 @@
 ﻿<Window x:Class="NapiQuiz.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Napi Quiz" Height="250" Width="400">
+        Title="Napi Quiz" Height="300" Width="400">
     <StackPanel Margin="20">
         <TextBlock Text="Napi Quiz" FontSize="24" Margin="0,0,0,20"/>
         <Button Content="Felhasználói felület"
