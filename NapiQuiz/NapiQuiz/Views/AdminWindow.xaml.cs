@@ -25,27 +25,50 @@ namespace NapiQuiz.Views
 
         private void SaveQuestion_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(QuestionTextBox.Text) ||
-                string.IsNullOrWhiteSpace(AnswerATextBox.Text) ||
-                string.IsNullOrWhiteSpace(AnswerBTextBox.Text) ||
-                string.IsNullOrWhiteSpace(AnswerCTextBox.Text) ||
-                string.IsNullOrWhiteSpace(AnswerDTextBox.Text) ||
-                string.IsNullOrWhiteSpace(CorrectAnswerTextBox.Text))
+            string questionText = QuestionTextBox.Text.Trim();
+            string answerA = AnswerATextBox.Text.Trim();
+            string answerB = AnswerBTextBox.Text.Trim();
+            string answerC = AnswerCTextBox.Text.Trim();
+            string answerD = AnswerDTextBox.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(questionText) ||
+                string.IsNullOrWhiteSpace(answerA) ||
+                string.IsNullOrWhiteSpace(answerB) ||
+                string.IsNullOrWhiteSpace(answerC) ||
+                string.IsNullOrWhiteSpace(answerD) ||
+                CorrectAnswerComboBox.SelectedItem == null)
             {
                 MessageBox.Show("Minden mezőt tölts ki.");
                 return;
             }
 
+            var answers = new[] { answerA, answerB, answerC, answerD };
+            if (answers.Distinct(StringComparer.OrdinalIgnoreCase).Count() < 4)
+            {
+                MessageBox.Show("Az A, B, C és D válaszok legyenek különbözőek.");
+                return;
+            }
+
+            string selectedLetter = ((ComboBoxItem)CorrectAnswerComboBox.SelectedItem).Content.ToString()!;
+            string correctAnswer = selectedLetter switch
+            {
+                "A" => answerA,
+                "B" => answerB,
+                "C" => answerC,
+                "D" => answerD,
+                _ => ""
+            };
+
             using var db = new QuizDbContext();
 
             var question = new Question
             {
-                Text = QuestionTextBox.Text,
-                AnswerA = AnswerATextBox.Text,
-                AnswerB = AnswerBTextBox.Text,
-                AnswerC = AnswerCTextBox.Text,
-                AnswerD = AnswerDTextBox.Text,
-                CorrectAnswer = CorrectAnswerTextBox.Text
+                Text = questionText,
+                AnswerA = answerA,
+                AnswerB = answerB,
+                AnswerC = answerC,
+                AnswerD = answerD,
+                CorrectAnswer = correctAnswer
             };
 
             db.Questions.Add(question);
@@ -58,8 +81,10 @@ namespace NapiQuiz.Views
             AnswerBTextBox.Clear();
             AnswerCTextBox.Clear();
             AnswerDTextBox.Clear();
-            CorrectAnswerTextBox.Clear();
+            CorrectAnswerComboBox.SelectedIndex = -1;
         }
+
+
 
         private void SetTodayQuestion_Click(object sender, RoutedEventArgs e)
         {

@@ -7,10 +7,8 @@ namespace NapiQuiz
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            using (var db = new Data.QuizDbContext())
-            {
-                db.Database.EnsureCreated();
-            }
+            ShutdownMode = ShutdownMode.OnExplicitShutdown;
+            base.OnStartup(e);
 
             var loginWindow = new LoginWindow();
             bool? result = loginWindow.ShowDialog();
@@ -18,14 +16,15 @@ namespace NapiQuiz
             if (result == true && loginWindow.LoggedInUser != null)
             {
                 var mainWindow = new MainWindow(loginWindow.LoggedInUser);
+                MainWindow = mainWindow;
+
+                ShutdownMode = ShutdownMode.OnMainWindowClose;
                 mainWindow.Show();
             }
             else
             {
                 Shutdown();
             }
-
-            base.OnStartup(e);
         }
     }
 }

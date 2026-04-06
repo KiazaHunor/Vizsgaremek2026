@@ -18,10 +18,14 @@ namespace NapiQuiz.Views
 
             var top = db.UserAnswers
                 .Where(a => a.IsCorrect)
-                .GroupBy(a => a.UserId)
+                .Join(db.Users,
+                      answer => answer.UserId,
+                      user => user.Id,
+                      (answer, user) => new { answer, user })
+                .GroupBy(x => new { x.user.Id, x.user.Username })
                 .Select(g => new
                 {
-                    User = g.Key,
+                    Username = g.Key.Username,
                     Score = g.Count()
                 })
                 .OrderByDescending(x => x.Score)
@@ -29,10 +33,17 @@ namespace NapiQuiz.Views
 
             LeaderboardListBox.Items.Clear();
 
+            int rank = 1;
+
             foreach (var item in top)
             {
-                LeaderboardListBox.Items.Add($"{item.User} - {item.Score} pont");
+                LeaderboardListBox.Items.Add($"{rank}. {item.Username} - {item.Score} pont");
+                rank++;
             }
+        }
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
