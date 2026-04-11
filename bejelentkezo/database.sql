@@ -14,6 +14,8 @@ CREATE TABLE users (
   created_at timestamp NOT NULL DEFAULT current_timestamp(),
   email_token varchar(64) DEFAULT NULL,
   email_verified tinyint(1) NOT NULL DEFAULT 0,
+  current_streak int NOT NULL DEFAULT 0,
+  best_streak int NOT NULL DEFAULT 0,
   PRIMARY KEY (id),
   UNIQUE KEY uq_users_username (username),
   UNIQUE KEY uq_users_email (email)

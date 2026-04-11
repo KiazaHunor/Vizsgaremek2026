@@ -112,4 +112,7 @@ C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-w
 C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\Views\LoginWindow.baml
 C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\Views\LoginWindow.g.cs
 C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\bin\Debug\net8.0-windows\BCrypt.Net-Next.dll
+<<<<<<< HEAD
 C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\App.baml
+=======
+>>>>>>> 2ea7f1e8ff4af9d717e7f52583a06bd206d5b9c7

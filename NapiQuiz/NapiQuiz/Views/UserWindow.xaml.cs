@@ -79,6 +79,30 @@ namespace NapiQuiz.Views
                 };
 
                 db.UserAnswers.Add(userAnswer);
+
+                var user = db.Users.FirstOrDefault(u => u.Id == _loggedInUser.Id);
+
+                if (user != null)
+                {
+                    if (isCorrect)
+                    {
+                        user.CurrentStreak++;
+
+                        if (user.CurrentStreak > user.BestStreak)
+                        {
+                            user.BestStreak = user.CurrentStreak;
+                        }
+
+                        _loggedInUser.CurrentStreak = user.CurrentStreak;
+                        _loggedInUser.BestStreak = user.BestStreak;
+                    }
+                    else
+                    {
+                        user.CurrentStreak = 0;
+                        _loggedInUser.CurrentStreak = 0;
+                    }
+                }
+
                 db.SaveChanges();
 
                 HighlightSelectedButton(clickedButton, isCorrect);
@@ -86,7 +110,14 @@ namespace NapiQuiz.Views
 
                 if (isCorrect)
                 {
-                    ShowResult("Helyes válasz!", true);
+                    if (_loggedInUser.CurrentStreak >= 3)
+                    {
+                        ShowResult($"Helyes válasz! Streak: 🔥 {_loggedInUser.CurrentStreak}", true);
+                    }
+                    else
+                    {
+                        ShowResult("Helyes válasz!", true);
+                    }
                 }
                 else
                 {

@@ -41,5 +41,11 @@ namespace NapiQuiz.Models
 
         [Column("profile_image")]
         public string? ProfileImage { get; set; }
+
+        [Column("current_streak")]
+        public int CurrentStreak { get; set; }
+
+        [Column("best_streak")]
+        public int BestStreak { get; set; }
     }
 }
