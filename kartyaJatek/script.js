@@ -8,6 +8,8 @@ let enemyScore = 0;
 let selectedCardIndex = null;
 let selectedStat = null;
 
+let deckLocked = false;
+
 const playerDeck = document.getElementById("player-deck");
 const playerHand = document.getElementById("player-hand");
 const enemyHand = document.getElementById("enemy-hand");
@@ -33,8 +35,10 @@ const TIMINGS = {
 
 // Paklira kattintás
 playerDeck.addEventListener("click", () => {
-    if (phase === "battle" || roundLocked) return;
+    if (phase === "battle" || roundLocked || deckLocked) return;
+
     dealCards();
+    deckLocked = true;
 });
 
 // Kör lejátszása gomb
@@ -48,6 +52,8 @@ function shuffle(array) {
 }
 
 function dealCards() {
+    if (deckLocked) return;
+
     if (!players || players.length < 10) {
         showMessage("A játékosok még töltődnek vagy nincs elég adat!", 1500);
         return;
@@ -454,7 +460,7 @@ restartBtn.addEventListener("click", () => {
 
 function restartGame() {
     document.getElementById("restart-game").style.display = "none";
-    // állapotok nullázása
+
     playerScore = 0;
     enemyScore = 0;
 
@@ -464,11 +470,13 @@ function restartGame() {
     currentChallenger = null;
     phase = "waiting";
     roundLocked = false;
+    deckLocked = false;
 
     updateScoreboard();
 
     resetBattleArea(true);
     dealCards();
+    deckLocked = true;
 }
 function endGame() {
     roundLocked = true;

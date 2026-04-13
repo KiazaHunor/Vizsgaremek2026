@@ -50,23 +50,27 @@ function loadTabella() {
         return;
       }
 
-      let html = `<table class="table table-dark table-striped">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Csapat</th>
-          <th>M</th>
-          <th>Gy</th>
-          <th>D</th>
-          <th>V</th>
-          <th>Pont</th>
-        </tr>
-      </thead><tbody>`;
+      let html = `
+        <div class="table-responsive">
+          <table class="table table-dark table-striped table-sm align-middle mb-0">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Csapat</th>
+                <th>M</th>
+                <th>Gy</th>
+                <th>D</th>
+                <th>V</th>
+                <th>Pont</th>
+              </tr>
+            </thead>
+            <tbody>
+      `;
 
       data.forEach(r => {
         html += `<tr>
           <td>${r.hely}</td>
-          <td>${r.csapat}</td>
+          <td class="text-nowrap">${r.csapat}</td>
           <td>${r.meccs}</td>
           <td>${r.gy}</td>
           <td>${r.d}</td>
@@ -75,7 +79,12 @@ function loadTabella() {
         </tr>`;
       });
 
-      html += "</tbody></table>";
+      html += `
+            </tbody>
+          </table>
+        </div>
+      `;
+
       document.getElementById("tabella").innerHTML = html;
     })
     .catch(() => {
@@ -98,33 +107,38 @@ fetch("../gollovolista.php")
     }
 
     let html = `
-      <table class="table table-striped table-dark">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Játékos</th>
-            <th>Csapat</th>
-            <th>Gól</th>
-          </tr>
-        </thead>
-        <tbody>
+      <div class="table-responsive">
+        <table class="table table-striped table-dark table-sm align-middle mb-0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Játékos</th>
+              <th>Csapat</th>
+              <th>Gól</th>
+            </tr>
+          </thead>
+          <tbody>
     `;
 
     data.forEach(item => {
       html += `
         <tr>
           <td>${item.hely}</td>
-          <td>${item.jatekos}</td>
-          <td>${item.csapat}</td>
+          <td class="text-nowrap">${item.jatekos}</td>
+          <td class="text-nowrap">${item.csapat}</td>
           <td>${item.gol}</td>
         </tr>
       `;
     });
 
-    html += "</tbody></table>";
+    html += `
+          </tbody>
+        </table>
+      </div>
+    `;
+
     container.innerHTML = html;
   })
   .catch(() => {
     document.getElementById("gollovolista").innerHTML = "Hiba történt a betöltés során";
   });
-  

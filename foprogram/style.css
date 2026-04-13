@@ -27,13 +27,14 @@ header h1 {
 }
 h1, h2, h3 {
   font-family: 'Oswald', sans-serif;
+  color: #00ff9d;
 }
 
 #logo {
-  height: 55px;
+  height: 100px;
   margin-left: 15px;
+  margin-bottom: 0px;
 }
-
 
 .navbar {
   backdrop-filter: blur(8px);
