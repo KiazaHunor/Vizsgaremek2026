@@ -100,6 +100,7 @@ try {
     $mail->Port       = 587;
     $mail->CharSet    = 'UTF-8';
 
+
     $mail->setFrom('probaa288@gmail.com', 'Weboldal');
     $mail->addAddress($email, $username);
     $mail->isHTML(true);
@@ -112,9 +113,16 @@ try {
     $mail->send();
     $email_sent = true;
     
-} catch (Exception $e) {
-    error_log("Email küldési hiba: " . $e->getMessage());
+}  catch (Exception $e) {
+    error_log("Email kuldesi hiba: " . $e->getMessage());
     $email_sent = false;
+
+    echo json_encode([
+        'success' => false,
+        'error' => 'Email kuldesi hiba: ' . $e->getMessage()
+    ]);
+    exit();
+
 }
 
 // Válasz a kliensnek

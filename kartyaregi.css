@@ -1,0 +1,701 @@
+:root {
+    --bg-dark: #07111f;
+    --bg-mid: #0d1b2f;
+    --bg-card: rgba(10, 18, 30, 0.88);
+    --line: rgba(255, 255, 255, 0.10);
+    --text-main: #eef6ff;
+    --text-soft: #9db0c5;
+    --accent: #05810b;
+    --accent-2: #1e4408;
+    --gold: #ffd76a;
+    --danger: #ff5f6d;
+    --success: #35e38a;
+    --shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: var(--text-main);
+    background:
+        linear-gradient(rgba(5, 10, 18, 0.72), rgba(5, 10, 18, 0.82)),
+        url("stadion2.jpg") center/cover no-repeat fixed;
+    overflow: hidden;
+}
+
+.game-area {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    padding: 20px 24px;
+}
+
+/* háttér glow */
+.game-area::before,
+.game-area::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.game-area::before {
+    width: 320px;
+    height: 320px;
+    background: rgba(0, 255, 174, 0.10);
+    top: 8%;
+    left: 10%;
+}
+
+.game-area::after {
+    width: 320px;
+    height: 320px;
+    background: rgba(0, 207, 255, 0.10);
+    bottom: 8%;
+    right: 10%;
+}
+
+                /* Kezek */
+                .hand {
+                    display: flex;
+                    gap: 18px;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    z-index: 100;
+                }
+.game-area > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* vissza gomb */
+.btn-back {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #08131f;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow: 0 10px 25px rgba(0, 255, 174, 0.20);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-back:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px rgba(0, 255, 174, 0.28);
+    color: white
+}
+
+/* scoreboard */
+.scoreboard {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 12px 20px;
+    border-radius: 18px;
+    background: rgba(6, 12, 22, 0.72);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+}
+
+.score-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 110px;
+}
+
+.score-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-soft);
+    margin-bottom: 4px;
+}
+
+.score-value {
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+}
+
+.score-divider {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+    opacity: 0.9;
+}
+
+/* paklik */
+.deck {
+    width: 150px;
+    height: 215px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 174, 0.25);
+    background:
+        linear-gradient(160deg, rgba(9, 18, 30, 0.94), rgba(17, 30, 50, 0.92)),
+        url("kartyahatter.jpg") center/cover no-repeat;
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow:
+        0 16px 30px rgba(0, 0, 0, 0.45),
+        0 0 20px rgba(0, 255, 174, 0.10);
+}
+
+.player-deck {
+    position: absolute;
+    left: 34px;
+    bottom: 34px;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.player-deck:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow:
+        0 20px 34px rgba(0, 0, 0, 0.50),
+        0 0 24px rgba(0, 255, 174, 0.18);
+}
+
+.enemy-deck {
+    position: absolute;
+    right: 34px;
+    top: 90px;
+}
+
+/* kezek */
+.hand {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.enemy-hand {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.player-hand {
+    position: absolute;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* középső rész */
+.battle-area {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -54%);
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.center-controls {
+    position: absolute;
+    left: 50%;
+    bottom: 26px;
+    transform: translateX(-50%);    
+}
+
+/* kör gomb */
+#play-round {
+    padding: 14px 34px;
+    border: none;
+    border-radius: 16px;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #07111f;
+    background: linear-gradient(135deg, var(--gold), #ffb347);
+    box-shadow: 0 12px 28px rgba(255, 183, 71, 0.28);
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#play-round:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 16px 34px rgba(255, 183, 71, 0.38);
+}
+
+#play-round:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* kártyák */
+.card,
+.battle-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    color: var(--text-main);
+    background: linear-gradient(160deg, #111827 0%, #0b1220 55%, #05070d 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 16px 30px rgba(0, 0, 0, 0.55),
+        0 0 20px rgba(0, 255, 170, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.card::before,
+.battle-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        130deg,
+        transparent 12%,
+        rgba(255,255,255,0.07) 36%,
+        transparent 62%
+    );
+    pointer-events: none;
+}
+
+.card {
+    width: 165px;
+    height: 275px;
+    padding: 12px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.035);
+    box-shadow:
+        0 22px 36px rgba(0, 0, 0, 0.60),
+        0 0 24px rgba(0, 255, 170, 0.24),
+        inset 0 1px 0 rgba(255,255,255,0.07);
+}
+
+.card.back {
+    background: linear-gradient(160deg, #0a0f18 0%, #111827 50%, #0a0f18 100%);
+    border: 1px solid rgba(0,255,170,0.25);
+}
+
+.card.back::after {
+    content: "FIZZ LIGA";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.09);
+}
+
+.card.selected {
+    border: 1px solid var(--accent);
+    box-shadow:
+        0 0 24px rgba(0,255,174,0.55),
+        0 20px 35px rgba(0,0,0,0.65);
+    transform: translateY(-8px) scale(1.05);
+}
+
+/* battle card */
+.battle-card {
+    width: 220px;
+    min-height: 295px;
+    padding: 14px;
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+/* felső rész */
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.card-rating {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--gold);
+    text-shadow: 0 0 12px rgba(255, 215, 106, 0.22);
+    line-height: 1;
+}
+
+.card-position {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(0,255,170,0.12);
+    border: 1px solid rgba(0,255,170,0.28);
+    color: #7affd8;
+    letter-spacing: 0.5px;
+}
+
+/* kép */
+.card-image {
+    height: 95px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.card-image img {
+    max-width: 90px;
+    max-height: 90px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 14px rgba(0,0,0,0.45));
+}
+
+/* szövegek */
+.card-name {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-team {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-soft);
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* statok */
+.card-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    margin-top: 8px;
+}
+
+.stat-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 8px 4px;
+    text-align: center;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    transition: all 0.2s ease;
+}
+
+.stat-box span {
+    display: block;
+    font-size: 10px;
+    color: #8ea2b6;
+    margin-bottom: 4px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.stat-box strong {
+    display: block;
+    font-size: 18px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.stat-clickable {
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.stat-clickable:hover {
+    transform: translateY(-2px);
+    background: rgba(0,255,170,0.14);
+    border-color: rgba(0,255,170,0.35);
+    box-shadow: 0 0 12px rgba(0,255,170,0.18);
+}
+
+.selected-stat {
+    border: 1px solid rgba(255,215,106,0.55);
+    background: rgba(255,215,106,0.12);
+    box-shadow: 0 0 14px rgba(255,215,106,0.18);
+}
+
+/* animációk */
+.player-start {
+    transform: translateX(-300px);
+}
+
+.enemy-start {
+    transform: translateX(300px);
+}
+
+.battle-active {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+@keyframes flashStat {
+    0% { background: rgba(255,255,255,0.05); }
+    50% { background: rgba(255,224,102,0.55); }
+    100% { background: rgba(255,255,255,0.05); }
+}
+
+.stat-highlight {
+    animation: flashStat 0.6s ease 2;
+}
+
+@keyframes winnerPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+.winner {
+    animation: winnerPulse 0.6s ease 3;
+    border: 2px solid var(--success);
+    box-shadow:
+        0 0 25px rgba(53, 227, 138, 0.30),
+        0 18px 35px rgba(0,0,0,0.60);
+}
+
+@keyframes loserShake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    50% { transform: translateX(6px); }
+    75% { transform: translateX(-6px); }
+    100% { transform: translateX(0); }
+}
+
+.loser {
+    animation: loserShake 0.4s ease 3;
+    border: 2px solid var(--danger);
+}
+
+/* üzenet */
+.game-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    min-width: 280px;
+    padding: 22px 34px;
+    border-radius: 18px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    color: white;
+    background: rgba(6, 12, 22, 0.92);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,255,174,0.25);
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.55),
+        0 0 30px rgba(0,255,174,0.15);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+@keyframes popIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0.75);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.game-message.show {
+    animation: popIn 0.5s ease forwards;
+}
+
+/* reszponzív */
+@media (max-width: 1200px) {
+    .card {
+        width: 145px;
+        height: 250px;
+    }
+
+    .battle-card {
+        width: 190px;
+        min-height: 270px;
+    }
+
+    .battle-area {
+        gap: 50px;
+    }
+}
+
+@media (max-width: 992px) {
+    body {
+        overflow: auto;
+    }
+
+    .game-area {
+        min-height: 100vh;
+        height: auto;
+        padding-bottom: 220px;
+    }
+
+    .enemy-hand,
+    .player-hand,
+    .battle-area,
+    .player-deck,
+    .enemy-deck,
+    .scoreboard,
+    .center-controls {
+        position: static;
+        transform: none;
+        margin: 20px auto;
+    }
+
+    .battle-area {
+        justify-content: center;
+    }
+
+    .hand {
+        flex-wrap: wrap;
+    }
+
+    .player-deck,
+    .enemy-deck {
+        margin: 16px auto;
+    }
+
+    .btn-back {
+        position: static;
+        margin-bottom: 18px;
+    }
+}
+#restart-game {
+    margin-left: 12px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #ff5f6d, #ff9966);
+    box-shadow: 0 12px 28px rgba(255, 95, 109, 0.3);
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: none;
+}
+
+#restart-game:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 34px rgba(255, 95, 109, 0.4);
+}
+.recent-form-card {
+  background: rgba(18, 24, 33, 0.85);
+  border: 1px solid #1f2a36;
+  border-radius: 16px;
+  padding: 20px 24px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.recent-form-title {
+  margin-bottom: 14px;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.recent-form-list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.form-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16px;
+  color: white;
+  opacity: 0;
+  transform: scale(0.6);
+  animation: formPop 0.4s ease forwards;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.form-badge.win {
+  background: linear-gradient(135deg, #22c55e, #15803d);
+}
+
+.form-badge.loss {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+
+.form-badge.draw {
+  background: linear-gradient(135deg, #9ca3af, #6b7280);
+}
+
+@keyframes formPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(8px);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.08) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* kis késleltetett animáció */
+.form-badge.delay-1 { animation-delay: 0.05s; }
+.form-badge.delay-2 { animation-delay: 0.12s; }
+.form-badge.delay-3 { animation-delay: 0.19s; }
+.form-badge.delay-4 { animation-delay: 0.26s; }
+.form-badge.delay-5 { animation-delay: 0.33s; }
+
+/* light mode */
+body.light-mode .recent-form-card {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid #cfe5d6;
+  box-shadow: 0 8px 25px rgba(20, 40, 30, 0.08);
+}
+
+body.light-mode .recent-form-title {
+  color: #15803d;
+}

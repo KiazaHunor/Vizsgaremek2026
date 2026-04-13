@@ -16,23 +16,53 @@ namespace NapiQuiz.Views
         {
             using var db = new QuizDbContext();
 
-            var top = db.UserAnswers
-                .Where(a => a.IsCorrect)
-                .GroupBy(a => a.UserName)
-                .Select(g => new
+            var top = db.Users
+                .Select(user => new
                 {
-                    User = g.Key,
-                    Score = g.Count()
+                    Username = user.Username,
+                    Score = db.UserAnswers.Count(a => a.UserId == user.Id && a.IsCorrect),
+                    CurrentStreak = user.CurrentStreak
                 })
                 .OrderByDescending(x => x.Score)
+                .ThenBy(x => x.Username)
                 .ToList();
 
             LeaderboardListBox.Items.Clear();
 
+            int rank = 1;
+
             foreach (var item in top)
             {
-                LeaderboardListBox.Items.Add($"{item.User} - {item.Score} pont");
+                string rankDisplay = rank + ".";
+
+                if (rank == 1)
+                {
+                    rankDisplay = "🥇";
+                }
+                else if (rank == 2)
+                {
+                    rankDisplay = "🥈";
+                }
+                else if (rank == 3)
+                {
+                    rankDisplay = "🥉";
+                }
+
+                string streakText = "";
+
+                if (item.CurrentStreak >= 2)
+                {
+                    streakText = "  🔥 " + item.CurrentStreak;
+                }
+
+                LeaderboardListBox.Items.Add($"{rankDisplay} {item.Username} - {item.Score} kredit{streakText}");
+                rank++;
             }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

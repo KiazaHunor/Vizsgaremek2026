@@ -91,10 +91,25 @@
                         </div>
 
                         <div class="info-box mb-4">
-                            <p class="mb-0 text-light">
-                                <strong>Regisztráció dátuma:</strong> ${d.user.formatted_date}
-                            </p>
+                        <p class="mb-0 text-light">
+                            <strong>Regisztráció dátuma:</strong> ${d.user.formatted_date}
+                        </p>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-12 col-md-6">
+                            <div class="info-box h-100">
+                                <p class="text-uppercase small profile-label mb-1">NapiQuiz pontok</p>
+                                <h4 class="mb-0 text-light">${d.user.quiz_points ?? 0}</h4>
+                            </div>
                         </div>
+                        <div class="col-12 col-md-6">
+                            <div class="info-box h-100">
+                                <p class="text-uppercase small profile-label mb-1">Kreditek</p>
+                                <h4 class="mb-0 text-light">${d.user.quiz_credits ?? 0}</h4>
+                            </div>
+                        </div>
+                    </div>
 
                         <hr class="my-4">
 

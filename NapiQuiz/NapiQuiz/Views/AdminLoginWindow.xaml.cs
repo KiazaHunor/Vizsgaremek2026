@@ -34,6 +34,11 @@ namespace NapiQuiz.Views
             {
                 MessageBox.Show("Hibás jelszó!");
             }
+
+        }
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

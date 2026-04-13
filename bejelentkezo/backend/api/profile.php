@@ -7,6 +7,17 @@ $user = $GLOBALS['current_user'];
 $currentUserId = (int)$GLOBALS['current_user_id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $quizStmt = $pdo->prepare("
+        SELECT COUNT(*) AS quiz_points
+        FROM user_answers
+        WHERE user_id = ? AND is_correct = 1
+    ");
+    $quizStmt->execute([$currentUserId]);
+    $quizData = $quizStmt->fetch(PDO::FETCH_ASSOC);
+
+    $quizPoints = (int)($quizData['quiz_points'] ?? 0);
+    $quizCredits = $quizPoints;
+
     echo json_encode([
         'success' => true,
         'user' => [
@@ -15,7 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             'email' => $user['email'],
             'created_at' => $user['created_at'],
             'formatted_date' => date('Y. m. d. H:i', strtotime($user['created_at'])),
-            'profile_image' => $user['profile_image']
+            'profile_image' => $user['profile_image'],
+            'quiz_points' => $quizPoints,
+            'quiz_credits' => $quizCredits
         ]
     ]);
     exit();

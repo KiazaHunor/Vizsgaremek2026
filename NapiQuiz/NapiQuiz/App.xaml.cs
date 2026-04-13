@@ -1,23 +1,30 @@
-﻿using NapiQuiz.Data;
-using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
+using NapiQuiz.Views;
 
 namespace NapiQuiz
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            using var db = new QuizDbContext();
-            db.Database.EnsureCreated();
-
+            ShutdownMode = ShutdownMode.OnExplicitShutdown;
             base.OnStartup(e);
 
-        }
+            var loginWindow = new LoginWindow();
+            bool? result = loginWindow.ShowDialog();
 
+            if (result == true && loginWindow.LoggedInUser != null)
+            {
+                var mainWindow = new MainWindow(loginWindow.LoggedInUser);
+                MainWindow = mainWindow;
+
+                ShutdownMode = ShutdownMode.OnMainWindowClose;
+                mainWindow.Show();
+            }
+            else
+            {
+                Shutdown();
+            }
+        }
     }
 }
