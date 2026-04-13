@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\NapiQuiz",
+    "\\NapiQuiz\\Data",
+    "\\NapiQuiz\\Models",
+    "\\NapiQuiz\\Views"
+  ],
+  "SelectedNode": "\\NapiQuiz\\Views\\LeaderBoardWindow.xaml.cs",
+  "PreviewInSolutionExplorer": false
+}

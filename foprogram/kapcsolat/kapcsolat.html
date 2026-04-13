@@ -31,7 +31,6 @@
       <div id="form-message"></div>
 
       <div id="form-wrapper" class="d-none">
-
         <form id="kapcsolat-form" class="mt-4">
 
           <div class="mb-3">
@@ -51,25 +50,21 @@
 
           <div class="mb-3">
             <label for="uzenet">Üzenet</label>
-            <textarea id="uzenet" name="uzenet" class="form-control" rows="4" placeholder="Írd ide az üzeneted..."
-              required></textarea>
+            <textarea id="uzenet" name="uzenet" class="form-control" rows="4"
+              placeholder="Írd ide az üzeneted..." required></textarea>
           </div>
 
           <button type="submit" class="btn btn-send">Üzenet küldése</button>
         </form>
-
       </div>
 
       <a href="../szep.html" class="btn btn-back">⬅ Vissza a főoldalra</a>
-
     </div>
+
     <div class="row">
       <div id="footer-container"></div>
     </div>
   </div>
-
-
-
 
   <script>
     const PROFILE_API = "http://localhost/oliverhtdoc/Vizsgaremek2026/bejelentkezo/backend/api/profile.php";
@@ -117,7 +112,10 @@
           formWrapper.classList.add("d-none");
         });
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 15c0b20f9642134ed4ed5da212a2168e35ce11db
 
     kapcsolatForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -125,7 +123,7 @@
       const targy = document.getElementById("targy").value.trim();
       const uzenet = document.getElementById("uzenet").value.trim();
 
-      fetch("kapcsolat_kuldes_token.php", {
+      fetch(SEND_API, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -140,7 +138,8 @@
         .then(data => {
           if (data.success) {
             formMessage.innerHTML = `<div class="alert alert-success">Elküldve!</div>`;
-            kapcsolatForm.reset();
+            document.getElementById("targy").value = "";
+            document.getElementById("uzenet").value = "";
           } else {
             formMessage.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
           }
@@ -157,8 +156,8 @@
       });
 
     checkLogin();
-
   </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
