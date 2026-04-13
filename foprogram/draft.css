@@ -351,3 +351,39 @@ hr {
   border: 2px solid yellow !important;
   box-shadow: 0 0 12px yellow !important;
 }
+.draft-card-nationality {
+  width: 100%;
+  font-size: 11px;
+  line-height: 1.05;
+  color: #dffef1;
+  padding: 0 3px;
+  overflow: hidden;
+}
+
+#chemistry-box {
+  background: linear-gradient(145deg, rgba(18, 24, 33, 0.95), rgba(15, 20, 28, 0.95));
+  border: 1px solid rgba(0, 255, 157, 0.35);
+  color: #e6edf3;
+  box-shadow: 0 0 16px rgba(0, 255, 157, 0.12);
+  border-radius: 14px;
+}
+.chem-dots {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  gap: 4px;
+}
+
+.chem-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #555;
+  box-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
+
+.chem-dot.active {
+  background: #00ff9d;
+  box-shadow: 0 0 6px rgba(0,255,157,0.8);
+}

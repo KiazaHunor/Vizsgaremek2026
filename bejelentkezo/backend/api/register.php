@@ -100,6 +100,10 @@ try {
     $mail->Port       = 587;
     $mail->CharSet    = 'UTF-8';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 476c00c903ba2be89228b06844ffd0b93caeccad
 
     $mail->setFrom('probaa288@gmail.com', 'Weboldal');
     $mail->addAddress($email, $username);
