@@ -100,13 +100,7 @@ try {
     $mail->Port       = 587;
     $mail->CharSet    = 'UTF-8';
 
-    $mail->SMTPOptions = [
-    'ssl' => [
-        'verify_peer' => false,
-        'verify_peer_name' => false,
-        'allow_self_signed' => true
-    ]
-];
+
 
     $mail->setFrom('probaa288@gmail.com', 'Weboldal');
     $mail->addAddress($email, $username);
