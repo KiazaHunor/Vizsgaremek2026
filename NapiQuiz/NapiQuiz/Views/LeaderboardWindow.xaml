@@ -2,39 +2,38 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Toplista"
-        Height="420" Width="360"
+        Height="420"
+        Width="360"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="#f5f7fb">
+        Background="#F5F7FB">
 
-	<Grid>
-		<Border Background="White"
+    <Grid>
+        <Border Background="White"
                 CornerRadius="15"
                 Padding="25"
                 Margin="20">
-
-			<Grid>
-				<Button Content="Vissza"
-                        Width="80"
-                        Height="35"
+            <Grid>
+                <Button Content="Vissza"
+                        Width="90"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
-                        Background="#ef4444"
+                        Style="{StaticResource DangerButtonStyle}"
                         Click="BackButton_Click"/>
 
-				<StackPanel Margin="0,45,0,0">
-					<TextBlock Text="Toplista"
+                <StackPanel Margin="0,58,0,0">
+                    <TextBlock Text="Toplista"
                                FontSize="24"
                                FontWeight="Bold"
                                HorizontalAlignment="Center"
                                Margin="0,0,0,20"/>
 
-					<ListBox x:Name="LeaderboardListBox"
+                    <ListBox x:Name="LeaderboardListBox"
                              BorderThickness="0"
                              Background="Transparent"
                              FontSize="16"/>
-				</StackPanel>
-			</Grid>
-		</Border>
-	</Grid>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
 </Window>
