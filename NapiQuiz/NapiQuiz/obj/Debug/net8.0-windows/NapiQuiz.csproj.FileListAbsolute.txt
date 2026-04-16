@@ -92,6 +92,7 @@ C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-w
 C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\Views\LeaderboardWindow.baml
 C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\Views\LoginWindow.baml
 C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\Views\UserWindow.baml
+C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\App.baml
 C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\MainWindow.g.cs
 C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\Views\AdminLoginWindow.g.cs
 C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\Views\AdminWindow.g.cs
@@ -112,4 +113,3 @@ C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-w
 C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\NapiQuiz.pdb
 C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\NapiQuiz.genruntimeconfig.cache
 C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\ref\NapiQuiz.dll
-C:\xampp\htdocs\oliverhtdoc\Vizsgaremek2026\NapiQuiz\NapiQuiz\obj\Debug\net8.0-windows\App.baml

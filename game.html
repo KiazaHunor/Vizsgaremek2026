@@ -1,3 +1,5 @@
+<!--
+
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -107,7 +109,7 @@
 
       <div id="formaciok">
         <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-3-3')">4-3-3</button>
-        <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-4-2')">4-4-2</button>
+        <button class="btn btn-outline-success btn-QAformation" onclick="loadFormation('4-4-2')">4-4-2</button>
         <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-1-2-1-2')">4-1-2-1-2</button>
          <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-5-1')">4-5-1</button>
         <button class="btn btn-outline-success btn-formation" onclick="loadFormation('3-4-3')">3-4-3</button>
@@ -219,6 +221,30 @@
             <div class="player" onclick="loadPlayers('GK', this)">GK</div>
           </div>
         `;
+        } else if (formation === "4-3-1-2") {
+        html = `
+          <div class="formation-row">
+            <div class="player" onclick="loadPlayers('CF', this)">CF</div>
+            <div class="player" onclick="loadPlayers('CF', this)">CF</div>
+          </div>
+          <div class="formation-row">
+            <div class="player" onclick="loadPlayers("CAM"),this">CAM</div>
+          </div>
+          <div class="formation-row">
+            <div class="player" onclick="loadPlayers('CM', this)">LM</div>
+            <div class="player" onclick="loadPlayers('CM', this)">CM</div>
+            <div class="player" onclick="loadPlayers('CM', this)">CM</div>
+          </div>
+          <div class="formation-row">
+            <div class="player" onclick="loadPlayers('LB', this)">LB</div>
+            <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+            <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+            <div class="player" onclick="loadPlayers('RB', this)">RB</div>
+          </div>
+          <div class="formation-row">
+            <div class="player" onclick="loadPlayers('GK', this)">GK</div>
+          </div>
+        `;
       } else if (formation === "4-1-2-1-2") {
         html = `
           <div class="formation-row">
@@ -275,6 +301,60 @@
     </div>
   `;
 }
+else if (formation === "4-2-4") {
+  html = `
+    <div class="formation-row">
+      <div class="player" onclick="loadPlayers('LM', this)">LM</div>
+      <div class="player" onclick="loadPlayers('CF', this)">CF</div>
+      <div class="player" onclick="loadPlayers('CF', this)">CF</div>
+      <div class="player" onclick="loadPlayers('RM', this)">RM</div>
+    </div>
+
+    <div class="formation-row">
+      <div class="player" onclick="loadPlayers('CDM', this)">CDM</div>
+      <div class="player" onclick="loadPlayers('CDM', this)">CDM</div>
+    </div>
+
+    <div class="formation-row">
+      <div class="player" onclick="loadPlayers('LB', this)">LB</div>
+      <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+      <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+      <div class="player" onclick="loadPlayers('RB', this)">RB</div>
+    </div>
+
+    <div class="formation-row">
+      <div class="player" onclick="loadPlayers('GK', this)">GK</div>
+    </div>
+  `;
+}
+else if (formation === "4-1-4-1") {
+  html = `
+  <div class="formation-row">
+      <div class="player" onclick="loadPlayers('CF', this)">CF</div>
+    </div>
+    <div class="formation-row">
+      <div class="player" onclick="loadPlayers('LM', this)">LM</div>
+      <div class="player" onclick="loadPlayers('CAM', this)">CAM</div>
+      <div class="player" onclick="loadPlayers('CAM', this)">CAM</div>
+      <div class="player" onclick="loadPlayers('RM', this)">RM</div>
+    </div>
+
+    <div class="formation-row">
+      <div class="player" onclick="loadPlayers('CDM', this)">CDM</div>
+    </div>
+
+    <div class="formation-row">
+      <div class="player" onclick="loadPlayers('LB', this)">LB</div>
+      <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+      <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+      <div class="player" onclick="loadPlayers('RB', this)">RB</div>
+    </div>
+
+    <div class="formation-row">
+      <div class="player" onclick="loadPlayers('GK', this)">GK</div>
+    </div>
+  `;
+}
 else if (formation === "3-4-3") {
   html = `
     <div class="formation-row">
@@ -308,6 +388,34 @@ else if (formation === "3-4-2-1") {
     </div>
     <div class="formation-row">
       <div class="player" onclick="loadPlayers('CAM', this)">CAM</div>
+      <div class="player" onclick="loadPlayers('CAM', this)">CAM</div>
+    </div>
+
+    <div class="formation-row">
+      <div class="player" onclick="loadPlayers('LM', this)">LM</div>
+      <div class="player" onclick="loadPlayers('CM', this)">CM</div>
+      <div class="player" onclick="loadPlayers('CM', this)">CM</div>
+      <div class="player" onclick="loadPlayers('RM', this)">RM</div>
+    </div>
+
+    <div class="formation-row">
+      <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+      <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+      <div class="player" onclick="loadPlayers('CB', this)">CB</div>
+    </div>
+
+    <div class="formation-row">
+      <div class="player" onclick="loadPlayers('GK', this)">GK</div>
+    </div>
+  `;
+}
+else if (formation === "3-4-1-2") {
+  html = `
+    <div class="formation-row">
+      <div class="player" onclick="loadPlayers('CF', this)">CF</div>
+      <div class="player" onclick="loadPlayers('CF', this)">CF</div>
+    </div>
+    <div class="formation-row">
       <div class="player" onclick="loadPlayers('CAM', this)">CAM</div>
     </div>
 

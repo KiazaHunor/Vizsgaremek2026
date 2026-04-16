@@ -1,7 +1,7 @@
 <?php
 // Adatbázis kapcsolat
 $host = "localhost";
-$dbname = "user_auth";
+$dbname = "fizzliga_db";
 $dbuser = "root";
 $dbpass = "";
 

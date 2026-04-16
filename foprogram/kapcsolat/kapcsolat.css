@@ -11,6 +11,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: radial-gradient(circle at top, #0f1722, #0b0f14 70%);
   color: var(--text-main);
+  user-select: none;
 }
 
 /* ===== HERO ===== */

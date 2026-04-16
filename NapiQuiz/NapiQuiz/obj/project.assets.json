@@ -2342,7 +2342,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pinte\\.nuget\\packages\\": {},
+    "C:\\Users\\pcsongi\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
@@ -2351,14 +2351,14 @@
       "projectUniqueName": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\NapiQuiz.csproj",
       "projectName": "NapiQuiz",
       "projectPath": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\NapiQuiz.csproj",
-      "packagesPath": "C:\\Users\\pinte\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\pcsongi\\.nuget\\packages\\",
       "outputPath": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\pinte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pcsongi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2367,6 +2367,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
