@@ -3,95 +3,76 @@
   "WorkspaceRootPath": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\views\\leaderboardwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\views\\leaderboardwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\MainWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\MainWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\views\\adminwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\views\\adminwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\UserWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Views\\UserWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\views\\userwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\views\\userwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\UserWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Views\\UserWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\LeaderBoardWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Views\\LeaderBoardWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\views\\adminloginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\views\\adminloginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\LeaderboardWindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Views\\LeaderboardWindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\views\\adminloginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\views\\adminloginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Views\\AdminWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Views\\AdminWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminLoginWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Views\\AdminLoginWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminLoginWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Views\\AdminLoginWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\views\\userwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\views\\userwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Models\\UserAnswer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Models\\UserAnswer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\views\\leaderboardwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\views\\leaderboardwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Models\\Question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Models\\Question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\views\\adminwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\views\\adminwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Data\\QuizDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Data\\QuizDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\NapiQuiz.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\NapiQuiz.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\models\\useranswer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\models\\useranswer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\NapiQuiz.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\NapiQuiz.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\napiquiz.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\napiquiz.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\AssemblyInfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\AssemblyInfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\App.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\App.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\models\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\models\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\data\\quizdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\data\\quizdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|c:\\xampp\\htdocs\\oliverhtdoc\\vizsgaremek2026\\napiquiz\\napiquiz\\views\\leaderboardwindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:napiquiz\\views\\leaderboardwindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\NapiQuiz.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{245C8AE6-18F9-499E-B12A-6C1711BEDF6E}|NapiQuiz\\NapiQuiz.csproj|solutionrelative:NapiQuiz\\NapiQuiz.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\App.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\App.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -101,258 +82,72 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "UserWindow.xaml.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\UserWindow.xaml.cs",
-              "RelativeDocumentMoniker": "NapiQuiz\\Views\\UserWindow.xaml.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\UserWindow.xaml.cs",
-              "RelativeToolTip": "NapiQuiz\\Views\\UserWindow.xaml.cs",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAAwL0AAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T20:01:53.557Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AdminLoginWindow.xaml.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminLoginWindow.xaml.cs",
-              "RelativeDocumentMoniker": "NapiQuiz\\Views\\AdminLoginWindow.xaml.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminLoginWindow.xaml.cs",
-              "RelativeToolTip": "NapiQuiz\\Views\\AdminLoginWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T20:01:15.82Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\App.xaml.cs",
-              "RelativeDocumentMoniker": "NapiQuiz\\App.xaml.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\App.xaml.cs",
-              "RelativeToolTip": "NapiQuiz\\App.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T19:50:58.042Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "NapiQuiz\\MainWindow.xaml",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\MainWindow.xaml",
-              "RelativeToolTip": "NapiQuiz\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-03-31T19:43:34.194Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LoginWindow.xaml",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\LoginWindow.xaml",
-              "RelativeDocumentMoniker": "NapiQuiz\\Views\\LoginWindow.xaml",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\LoginWindow.xaml",
-              "RelativeToolTip": "NapiQuiz\\Views\\LoginWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-02T13:51:44.431Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LeaderboardWindow.xaml",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\LeaderboardWindow.xaml",
-              "RelativeDocumentMoniker": "NapiQuiz\\Views\\LeaderboardWindow.xaml",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\LeaderboardWindow.xaml",
-              "RelativeToolTip": "NapiQuiz\\Views\\LeaderboardWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-02T13:54:39.049Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\App.xaml",
-              "RelativeDocumentMoniker": "NapiQuiz\\App.xaml",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\App.xaml",
-              "RelativeToolTip": "NapiQuiz\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-03-31T19:49:54.01Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AdminLoginWindow.xaml",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminLoginWindow.xaml",
-              "RelativeDocumentMoniker": "NapiQuiz\\Views\\AdminLoginWindow.xaml",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminLoginWindow.xaml",
-              "RelativeToolTip": "NapiQuiz\\Views\\AdminLoginWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-03-31T20:00:51.264Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AdminWindow.xaml",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminWindow.xaml",
-              "RelativeDocumentMoniker": "NapiQuiz\\Views\\AdminWindow.xaml",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminWindow.xaml",
-              "RelativeToolTip": "NapiQuiz\\Views\\AdminWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-03-31T20:04:31.488Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserWindow.xaml",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\UserWindow.xaml",
-              "RelativeDocumentMoniker": "NapiQuiz\\Views\\UserWindow.xaml",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\UserWindow.xaml",
-              "RelativeToolTip": "NapiQuiz\\Views\\UserWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-01T16:37:26.558Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "LoginWindow.xaml.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\LoginWindow.xaml.cs",
-              "RelativeDocumentMoniker": "NapiQuiz\\Views\\LoginWindow.xaml.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\LoginWindow.xaml.cs",
-              "RelativeToolTip": "NapiQuiz\\Views\\LoginWindow.xaml.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAACcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T13:52:14.699Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "AdminWindow.xaml.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminWindow.xaml.cs",
-              "RelativeDocumentMoniker": "NapiQuiz\\Views\\AdminWindow.xaml.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminWindow.xaml.cs",
-              "RelativeToolTip": "NapiQuiz\\Views\\AdminWindow.xaml.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAowF4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T20:04:42.885Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "LeaderBoardWindow.xaml.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\LeaderBoardWindow.xaml.cs",
               "RelativeDocumentMoniker": "NapiQuiz\\Views\\LeaderBoardWindow.xaml.cs",
               "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\LeaderBoardWindow.xaml.cs",
               "RelativeToolTip": "NapiQuiz\\Views\\LeaderBoardWindow.xaml.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-01T09:16:05.336Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "UserAnswer.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Models\\UserAnswer.cs",
-              "RelativeDocumentMoniker": "NapiQuiz\\Models\\UserAnswer.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Models\\UserAnswer.cs",
-              "RelativeToolTip": "NapiQuiz\\Models\\UserAnswer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAQwBoAAAABAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UserWindow.xaml",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\UserWindow.xaml",
+              "RelativeDocumentMoniker": "NapiQuiz\\Views\\UserWindow.xaml",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\UserWindow.xaml",
+              "RelativeToolTip": "NapiQuiz\\Views\\UserWindow.xaml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-31T20:01:42.385Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserWindow.xaml.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\UserWindow.xaml.cs",
+              "RelativeDocumentMoniker": "NapiQuiz\\Views\\UserWindow.xaml.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\UserWindow.xaml.cs",
+              "RelativeToolTip": "NapiQuiz\\Views\\UserWindow.xaml.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAqwE0AAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T19:53:59.957Z"
+              "WhenOpened": "2026-03-31T20:01:53.557Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "NapiQuiz.csproj",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\NapiQuiz.csproj",
-              "RelativeDocumentMoniker": "NapiQuiz\\NapiQuiz.csproj",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\NapiQuiz.csproj",
-              "RelativeToolTip": "NapiQuiz\\NapiQuiz.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-03-31T19:52:19.441Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 4,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "NapiQuiz\\MainWindow.xaml.cs",
               "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\MainWindow.xaml.cs",
               "RelativeToolTip": "NapiQuiz\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAIwD0AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABwAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-31T19:43:32.121Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Models\\User.cs",
-              "RelativeDocumentMoniker": "NapiQuiz\\Models\\User.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Models\\User.cs",
-              "RelativeToolTip": "NapiQuiz\\Models\\User.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAgwBIAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T13:04:21.096Z"
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "NapiQuiz\\MainWindow.xaml",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\MainWindow.xaml",
+              "RelativeToolTip": "NapiQuiz\\MainWindow.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-31T19:43:34.194Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "AssemblyInfo.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\AssemblyInfo.cs",
-              "RelativeDocumentMoniker": "NapiQuiz\\AssemblyInfo.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\AssemblyInfo.cs",
-              "RelativeToolTip": "NapiQuiz\\AssemblyInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-01T07:20:19.419Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Question.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Models\\Question.cs",
-              "RelativeDocumentMoniker": "NapiQuiz\\Models\\Question.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Models\\Question.cs",
-              "RelativeToolTip": "NapiQuiz\\Models\\Question.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T19:53:42.058Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "QuizDbContext.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Data\\QuizDbContext.cs",
-              "RelativeDocumentMoniker": "NapiQuiz\\Data\\QuizDbContext.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Data\\QuizDbContext.cs",
-              "RelativeToolTip": "NapiQuiz\\Data\\QuizDbContext.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T19:52:51.136Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Microsoft.Common.CurrentVersion.targets",
-              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "ViewState": "AgIAACQWAAAAAAAAAAAqwEsWAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2026-04-12T10:46:03.358Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 5,
               "Title": "LeaderboardWindow.xaml",
               "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\LeaderboardWindow.xaml",
               "RelativeDocumentMoniker": "NapiQuiz\\Views\\LeaderboardWindow.xaml",
@@ -364,7 +159,103 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 11,
+              "Title": "Question.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Models\\Question.cs",
+              "RelativeDocumentMoniker": "NapiQuiz\\Models\\Question.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Models\\Question.cs",
+              "RelativeToolTip": "NapiQuiz\\Models\\Question.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T19:53:42.058Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserAnswer.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Models\\UserAnswer.cs",
+              "RelativeDocumentMoniker": "NapiQuiz\\Models\\UserAnswer.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Models\\UserAnswer.cs",
+              "RelativeToolTip": "NapiQuiz\\Models\\UserAnswer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T19:53:59.957Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AdminLoginWindow.xaml",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminLoginWindow.xaml",
+              "RelativeDocumentMoniker": "NapiQuiz\\Views\\AdminLoginWindow.xaml",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminLoginWindow.xaml",
+              "RelativeToolTip": "NapiQuiz\\Views\\AdminLoginWindow.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-31T20:00:51.264Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AdminLoginWindow.xaml.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminLoginWindow.xaml.cs",
+              "RelativeDocumentMoniker": "NapiQuiz\\Views\\AdminLoginWindow.xaml.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminLoginWindow.xaml.cs",
+              "RelativeToolTip": "NapiQuiz\\Views\\AdminLoginWindow.xaml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABkAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T20:01:15.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AdminWindow.xaml",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminWindow.xaml",
+              "RelativeDocumentMoniker": "NapiQuiz\\Views\\AdminWindow.xaml",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminWindow.xaml",
+              "RelativeToolTip": "NapiQuiz\\Views\\AdminWindow.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-31T20:04:31.488Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AdminWindow.xaml.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminWindow.xaml.cs",
+              "RelativeDocumentMoniker": "NapiQuiz\\Views\\AdminWindow.xaml.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\AdminWindow.xaml.cs",
+              "RelativeToolTip": "NapiQuiz\\Views\\AdminWindow.xaml.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAAwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T20:04:42.885Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "QuizDbContext.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Data\\QuizDbContext.cs",
+              "RelativeDocumentMoniker": "NapiQuiz\\Data\\QuizDbContext.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Data\\QuizDbContext.cs",
+              "RelativeToolTip": "NapiQuiz\\Data\\QuizDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T19:52:51.136Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "NapiQuiz\\AssemblyInfo.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\AssemblyInfo.cs",
+              "RelativeToolTip": "NapiQuiz\\AssemblyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-01T07:20:19.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "NapiQuiz.csproj.user",
               "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\NapiQuiz.csproj.user",
               "RelativeDocumentMoniker": "NapiQuiz\\NapiQuiz.csproj.user",
@@ -373,6 +264,41 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003464|",
               "WhenOpened": "2026-04-01T07:20:26.178Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "NapiQuiz.csproj",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\NapiQuiz.csproj",
+              "RelativeDocumentMoniker": "NapiQuiz\\NapiQuiz.csproj",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\NapiQuiz.csproj",
+              "RelativeToolTip": "NapiQuiz\\NapiQuiz.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-31T19:52:19.441Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\App.xaml.cs",
+              "RelativeDocumentMoniker": "NapiQuiz\\App.xaml.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\App.xaml.cs",
+              "RelativeToolTip": "NapiQuiz\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T19:50:58.042Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\App.xaml",
+              "RelativeDocumentMoniker": "NapiQuiz\\App.xaml",
+              "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\App.xaml",
+              "RelativeToolTip": "NapiQuiz\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-31T19:49:54.01Z"
             }
           ]
         }

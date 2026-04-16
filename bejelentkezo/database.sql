@@ -42,3 +42,5 @@ CREATE TABLE user_answers (
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (question_id) REFERENCES questions(id)
 );
+
+
