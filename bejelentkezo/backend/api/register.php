@@ -112,9 +112,16 @@ try {
     $mail->send();
     $email_sent = true;
     
-} catch (Exception $e) {
-    error_log("Email küldési hiba: " . $e->getMessage());
+}  catch (Exception $e) {
+    error_log("Email kuldesi hiba: " . $e->getMessage());
     $email_sent = false;
+
+    echo json_encode([
+        'success' => false,
+        'error' => 'Email kuldesi hiba: ' . $e->getMessage()
+    ]);
+    exit();
+
 }
 
 // Válasz a kliensnek

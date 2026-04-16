@@ -1,36 +1,92 @@
-﻿using NapiQuiz.Views;
-using System.Text;
+﻿using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using NapiQuiz.Models;
+using NapiQuiz.Views;
 
 namespace NapiQuiz
 {
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private User _loggedInUser;
+
+        public MainWindow(User loggedInUser)
         {
             InitializeComponent();
+            _loggedInUser = loggedInUser;
         }
 
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
-            new UserWindow().ShowDialog();
+            try
+            {
+                this.Hide();
+
+                var userWindow = new UserWindow(_loggedInUser);
+                userWindow.Owner = this;
+                userWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba a felhasználói ablak megnyitásakor:\n" + ex.Message);
+            }
+            finally
+            {
+                this.Show();
+            }
         }
 
         private void AdminButton_Click(object sender, RoutedEventArgs e)
         {
-            new AdminLoginWindow().ShowDialog();
+            try
+            {
+                this.Hide();
+
+                var adminLoginWindow = new AdminLoginWindow();
+                adminLoginWindow.Owner = this;
+                adminLoginWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba az admin ablak megnyitásakor:\n" + ex.Message);
+            }
+            finally
+            {
+                this.Show();
+            }
         }
+
         private void LeaderboardButton_Click(object sender, RoutedEventArgs e)
         {
-            new LeaderboardWindow().ShowDialog();
+            try
+            {
+                this.Hide();
+
+                var leaderboardWindow = new LeaderboardWindow();
+                leaderboardWindow.Owner = this;
+                leaderboardWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba a toplista megnyitásakor:\n" + ex.Message);
+            }
+            finally
+            {
+                this.Show();
+            }
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            var loginWindow = new LoginWindow();
+
+            if (loginWindow.ShowDialog() == true)
+            {
+                _loggedInUser = loginWindow.LoggedInUser!;
+            }
+            else
+            {
+                Application.Current.Shutdown();
+            }
         }
     }
 }
