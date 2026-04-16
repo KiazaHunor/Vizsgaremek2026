@@ -55,8 +55,6 @@ ul {
 }
 
 ul li {
-  padding: 10px 0;
-  border-bottom: 1px solid #1f2a36;
   color: var(--text-main);
 }
 

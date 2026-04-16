@@ -52,7 +52,7 @@ function loadTabella() {
 
       let html = `
         <div class="table-responsive">
-          <table class="table table-dark table-striped table-sm align-middle mb-0">
+          <table class="table table-striped table-sm align-middle mb-0">
             <thead>
               <tr>
                 <th>#</th>
@@ -108,7 +108,7 @@ fetch("../gollovolista.php")
 
     let html = `
       <div class="table-responsive">
-        <table class="table table-striped table-dark table-sm align-middle mb-0">
+        <table class="table table-striped table-sm align-middle mb-0">
           <thead>
             <tr>
               <th>#</th>

@@ -15,58 +15,206 @@ body {
   user-select: none;
 }
 
+/* ===== NAVBAR / HEADER FIX ===== */
 
 header {
   background: linear-gradient(135deg, #0f2027, #203a43, #0f2027);
   border-bottom: 2px solid var(--accent);
   box-shadow: 0 0 25px rgba(0, 255, 157, 0.15);
+  position: relative;
+  overflow: visible;
+  padding-bottom: 10px;
 }
 
 header h1 {
   font-weight: 700;
   letter-spacing: 1px;
+  margin-bottom: 0;
+  text-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
 }
+
 h1, h2, h3 {
   font-family: 'Oswald', sans-serif;
   color: #00ff9d;
 }
 
 #logo {
-  height: 100px;
+  height: 90px;
   margin-left: 15px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  vertical-align: middle;
+}
+
+#logo:hover {
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 10px rgba(0, 255, 157, 0.35));
 }
 
 .navbar {
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   background: rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
   position: relative;
   z-index: 9999;
+  overflow: visible;
+  padding: 8px 14px;
 }
 
-.dropdown-menu {
-  z-index: 10000 !important;
+.navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12px;
+  right: 12px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,157,0.8), transparent);
+  pointer-events: none;
+}
+
+.navbar-nav {
+  gap: 6px;
+}
+
+.nav-item {
+  position: relative;
 }
 
 .nav-link {
   color: var(--text-main) !important;
-  transition: all 0.25s ease;
+  border-radius: 12px;
+  padding: 10px 16px !important;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.nav-link:hover {
-  color: var(--accent) !important;
+.nav-link:hover,
+.nav-link:focus {
+  color: #00ff9d !important;
+  background: rgba(0, 255, 157, 0.08);
   transform: translateY(-2px);
+  box-shadow: inset 0 0 0 1px rgba(0, 255, 157, 0.18);
+}
+
+.nav-link.dropdown-toggle.show {
+  color: #00ff9d !important;
+  background: rgba(0, 255, 157, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(0, 255, 157, 0.22);
 }
 
 .dropdown-menu {
-  background-color: var(--bg-card);
-  border: 1px solid #1f2a36;
+  background: rgba(15, 24, 33, 0.98);
+  border: 1px solid rgba(0, 255, 157, 0.16);
+  border-radius: 14px;
+  padding: 8px;
+  margin-top: 10px !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  z-index: 10000 !important;
+  min-width: 220px;
 }
 
+.dropdown-item {
+  color: #e6edf3;
+  border-radius: 10px;
+  padding: 10px 14px;
+  transition: background 0.22s ease, color 0.22s ease, padding 0.22s ease;
+}
 
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background: rgba(0, 255, 157, 0.12);
+  color: #00ff9d;
+  padding-left: 18px;
+}
 
+.dropdown-divider {
+  border-color: rgba(255, 255, 255, 0.08);
+}
 
+.navbar-toggler {
+  border: 1px solid rgba(0, 255, 157, 0.25);
+  border-radius: 10px;
+  padding: 7px 11px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.navbar-toggler:hover {
+  box-shadow: 0 0 12px rgba(0, 255, 157, 0.15);
+  transform: scale(1.03);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 255, 157, 0.16);
+}
+
+#bejel {
+  color: #ffc107 !important;
+  background: rgba(255, 193, 7, 0.08);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px rgba(255, 193, 7, 0.16);
+}
+
+#bejel:hover {
+  color: #ffda57 !important;
+  background: rgba(255, 193, 7, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(255, 193, 7, 0.28);
+}
+
+/* theme switch ne csússzon szét */
+.switch {
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+}
+
+/* mobil */
+@media (max-width: 991.98px) {
+  header {
+    padding-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  #logo {
+    height: 68px;
+    margin-left: 8px;
+  }
+
+  .navbar {
+    padding: 10px;
+  }
+
+  .navbar-nav {
+    gap: 8px;
+    padding-top: 10px;
+    align-items: stretch !important;
+  }
+
+  .nav-link {
+    text-align: center;
+    padding: 12px 14px !important;
+  }
+
+  .dropdown-menu {
+    margin-top: 6px !important;
+    min-width: 100%;
+  }
+
+  #bejel {
+    display: block;
+    text-align: center;
+  }
+
+  .switch {
+    justify-content: center;
+    margin: 10px auto 0 auto;
+  }
+}
 
 
 article,
@@ -87,19 +235,34 @@ hr {
   border-color: #1f2a36;
 }
 
-
 .table {
   border-radius: 12px;
   overflow: hidden;
 }
 
-.table thead {
+body:not(.light-mode) .table thead th {
   background: #16202c;
   color: var(--accent);
+  border: none;
 }
 
-.table-striped>tbody>tr:nth-of-type(odd) {
+body:not(.light-mode) .table-striped > tbody > tr:nth-of-type(odd) > * {
   background-color: #111821;
+}
+
+body:not(.light-mode) .table-striped > tbody > tr:nth-of-type(even) > * {
+  background-color: #0f141c;
+}
+
+body:not(.light-mode) .table tbody tr td {
+  color: var(--text-main);
+  border-color: #1f2a36;
+}
+
+body:not(.light-mode) .table tbody tr:first-child td {
+  background: linear-gradient(90deg, #1f2a36, #2c3e50);
+  color: var(--accent);
+  font-weight: bold;
 }
 
 
@@ -247,14 +410,6 @@ hr {
 
 
 
-.table tbody tr:first-child {
-  background: linear-gradient(90deg, #1f2a36, #2c3e50);
-  font-weight: bold;
-}
-
-.table tbody tr:first-child td {
-  color: var(--accent)
-}
 .gol-badge {
   background: var(--accent);
   color: #000;
@@ -318,174 +473,6 @@ hr {
 
 /* ===== FIFA / SPORT UI LIGHT MODE ===== */
 /* ===== ZÖLDES LIGHT MODE (SPORTOS) ===== */
-
-body.light-mode {
-  --lm-bg: #eef7f1;
-  --lm-bg-2: #e3f2e8;
-  --lm-card: rgba(255, 255, 255, 0.75);
-  --lm-border: #cfe5d6;
-  --lm-text: #1c2b22;
-  --lm-muted: #5f7a6b;
-
-  --lm-primary: #22c55e;       /* fő zöld */
-  --lm-primary-dark: #15803d;  /* sötétebb zöld */
-  --lm-accent: #4ade80;        /* világos zöld */
-
-  background: linear-gradient(180deg, var(--lm-bg), var(--lm-bg-2));
-  color: var(--lm-text);
-}
-
-/* HEADER */
-body.light-mode header {
-  background: linear-gradient(135deg, #1f7a3a, #22c55e);
-  border-bottom: 2px solid #4ade80;
-  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.25);
-}
-
-body.light-mode header h1 {
-  color: white;
-}
-
-/* NAVBAR */
-body.light-mode .navbar {
-  background: rgba(34, 197, 94, 0.15) !important;
-  border: 1px solid var(--lm-border);
-  backdrop-filter: blur(10px);
-}
-
-body.light-mode .nav-link {
-  color: var(--lm-text) !important;
-  font-weight: 600;
-}
-
-body.light-mode .nav-link:hover {
-  color: var(--lm-primary-dark) !important;
-}
-
-/* KÁRTYÁK */
-body.light-mode article,
-body.light-mode aside {
-  background: var(--lm-card);
-  border: 1px solid var(--lm-border);
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(20, 40, 30, 0.08);
-  backdrop-filter: blur(10px);
-}
-
-/* CÍMEK */
-body.light-mode h3 {
-  color: var(--lm-primary-dark);
-}
-
-/* GAME CARD */
-body.light-mode .game-card {
-  border: 1px solid #bfe7cc;
-  box-shadow: 0 15px 35px rgba(34, 197, 94, 0.18);
-}
-
-body.light-mode .game-card h3 {
-  color: #ffffff;
-}
-
-/* GOMB */
-body.light-mode .game-card-btn {
-  background: linear-gradient(135deg, #22c55e, #4ade80);
-  color: #0b1f14;
-  font-weight: 700;
-  border-radius: 999px;
-  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.35);
-}
-
-body.light-mode .game-card-btn:hover {
-  background: linear-gradient(135deg, #15803d, #22c55e);
-  color: white;
-}
-
-/* HÍREK */
-body.light-mode .news-card {
-  background: linear-gradient(180deg, #f3fbf6, #e6f7ed);
-  border: 1px solid var(--lm-border);
-}
-
-body.light-mode .card-title {
-  color: var(--lm-primary-dark);
-}
-
-body.light-mode .card-text {
-  color: var(--lm-muted);
-}
-
-/* TÁBLÁZAT */
-body.light-mode .table thead {
-  background: var(--lm-primary-dark);
-  color: white;
-}
-
-body.light-mode .table tbody td {
-  background: rgba(255,255,255,0.7);
-  color: var(--lm-text);
-}
-
-body.light-mode .table-striped > tbody > tr:nth-of-type(odd) > * {
-  background: #f0faf4 !important;
-}
-
-body.light-mode .table tbody tr:first-child td {
-  background: linear-gradient(135deg, #22c55e, #4ade80) !important;
-  color: #063d1c !important;
-  font-weight: bold;
-}
-
-/* BADGE */
-body.light-mode .game-badge {
-  background: #d1fae5;
-  color: #065f46;
-}
-
-body.light-mode .gol-badge {
-  background: #22c55e;
-  color: white;
-}
-
-/* FOOTER */
-body.light-mode .site-footer {
-  background:
-    linear-gradient(135deg, #dfe8f3, #cfdceb);
-  color: #243447;
-  border-top: 1px solid #bfd0e0;
-  box-shadow: 0 -8px 24px rgba(20, 40, 70, 0.08);
-}
-
-body.light-mode .footer-brand h3 {
-  color: #2f80ed;
-}
-
-body.light-mode .footer-brand p,
-body.light-mode .footer-links a,
-body.light-mode .footer-bottom {
-  color: #5f6f82;
-}
-
-body.light-mode .footer-links a:hover {
-  color: #2f80ed;
-}
-
-body.light-mode .social-icons a {
-  background: rgba(255,255,255,0.55);
-  border: 1px solid #c8d6e5;
-  color: #2a3441;
-}
-
-body.light-mode .social-icons a:hover {
-  color: #2f80ed;
-  border-color: #2f80ed;
-  box-shadow: 0 8px 20px rgba(47,128,237,0.12);
-}
-
-body.light-mode .footer-bottom {
-  border-top: 1px solid #c8d6e5;
-  background: rgba(255,255,255,0.35);
-}
 
 /* From Uiverse.io by AmIt-DasIT */ 
 /* The switch - the box around the slider */
@@ -615,11 +602,6 @@ body.light-mode .footer-bottom {
   margin-bottom: 0;
 }
 
-/* light mode finomhangolás */
-body.light-mode .tabella-subtitle {
-  color: #6b7a8c;
-}
-
 /* GOLLOVOLISTA */
 /* TOP 3 KIEMELÉS */
 
@@ -645,37 +627,35 @@ body.light-mode .tabella-subtitle {
 
 /* ===== GÓLLÖVŐLISTA – DARK TABLE ===== */
 
-#gollovolista .table {
+/* ===== GÓLLÖVŐLISTA - CSAK DARK MODE ===== */
+
+body:not(.light-mode) #gollovolista .table {
   background: #0f141c;
   color: #e6edf3;
   border-radius: 14px;
   overflow: hidden;
 }
 
-/* fejléc */
-#gollovolista .table thead th {
-  background: #16202c !important;
-  color: #00ff9d !important;
+body:not(.light-mode) #gollovolista .table thead th {
+  background: #16202c;
+  color: #00ff9d;
   border: none;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-/* sorok */
-#gollovolista .table tbody tr td {
-  background: #111821 !important;
-  color: #e6edf3 !important;
-  border-color: #1f2a36 !important;
+body:not(.light-mode) #gollovolista .table tbody tr td {
+  background: #111821;
+  color: #e6edf3;
+  border-color: #1f2a36;
 }
 
-/* csíkos sor */
-#gollovolista .table-striped > tbody > tr:nth-of-type(odd) > * {
-  background: #0d131b !important;
+body:not(.light-mode) #gollovolista .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background: #0d131b;
 }
 
-/* hover */
-#gollovolista .table tbody tr:hover td {
-  background: #16202c !important;
+body:not(.light-mode) #gollovolista .table tbody tr:hover td {
+  background: #16202c;
   transition: 0.2s;
 }
 
@@ -888,4 +868,431 @@ body.light-mode .tabella-subtitle {
   .leaderboard-credit-value {
     font-size: 1.1rem;
   }
+}
+
+
+
+
+
+
+/* =========================================================
+   TELJESEN ÚJ LIGHT MODE
+   ========================================================= */
+
+body.light-mode {
+  --lm-bg: #eef4f0;
+  --lm-bg-2: #ddebe3;
+  --lm-surface: rgba(255, 255, 255, 0.72);
+  --lm-surface-strong: rgba(255, 255, 255, 0.9);
+  --lm-border: rgba(31, 72, 52, 0.12);
+  --lm-shadow: rgba(27, 52, 39, 0.08);
+
+  --lm-text: #183024;
+  --lm-text-soft: #587062;
+
+  --lm-primary: #1fb86a;
+  --lm-primary-dark: #15824b;
+  --lm-primary-soft: #d9f5e7;
+
+  --lm-secondary: #2fa7d8;
+  --lm-secondary-soft: #dff4fb;
+
+  --lm-gold: #f4c95d;
+  --lm-silver: #d8dee6;
+  --lm-bronze: #d9a679;
+
+  background:
+    radial-gradient(circle at top left, #f8fffb 0%, transparent 30%),
+    radial-gradient(circle at top right, #e2f8ee 0%, transparent 25%),
+    linear-gradient(180deg, var(--lm-bg), var(--lm-bg-2));
+  color: var(--lm-text);
+}
+
+/* ALAP SZÖVEGEK */
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3 {
+  color: var(--lm-primary-dark);
+}
+
+body.light-mode p,
+body.light-mode span,
+body.light-mode li,
+body.light-mode label {
+  color: var(--lm-text);
+}
+
+/* HEADER */
+body.light-mode header {
+  background:
+    linear-gradient(135deg, rgba(28, 120, 70, 0.92), rgba(47, 167, 216, 0.78)),
+    linear-gradient(135deg, #1aa15d, #51c98e);
+  border-bottom: 2px solid rgba(255,255,255,0.35);
+  box-shadow: 0 10px 30px rgba(22, 93, 58, 0.18);
+}
+
+body.light-mode header h1 {
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.12);
+}
+
+body.light-mode #logo {
+  filter: drop-shadow(0 4px 10px rgba(255,255,255,0.18));
+}
+
+/* NAVBAR */
+body.light-mode .navbar {
+  background: rgba(255, 255, 255, 0.35) !important;
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: 0 10px 30px rgba(25, 60, 42, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+body.light-mode .navbar::before {
+  background: linear-gradient(90deg, transparent, rgba(31,184,106,0.55), transparent);
+}
+
+body.light-mode .nav-link {
+  color: #163427 !important;
+  font-weight: 600;
+}
+
+body.light-mode .nav-link:hover,
+body.light-mode .nav-link:focus {
+  color: var(--lm-primary-dark) !important;
+  background: rgba(31, 184, 106, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(31, 184, 106, 0.15);
+}
+
+body.light-mode .nav-link.dropdown-toggle.show {
+  color: var(--lm-primary-dark) !important;
+  background: rgba(31, 184, 106, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(31, 184, 106, 0.18);
+}
+
+body.light-mode .dropdown-menu {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(31, 72, 52, 0.1);
+  box-shadow: 0 18px 35px rgba(23, 41, 31, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+body.light-mode .dropdown-item {
+  color: var(--lm-text);
+}
+
+body.light-mode .dropdown-item:hover,
+body.light-mode .dropdown-item:focus {
+  background: linear-gradient(90deg, rgba(31,184,106,0.12), rgba(47,167,216,0.08));
+  color: var(--lm-primary-dark);
+}
+
+body.light-mode .navbar-toggler {
+  border-color: rgba(21, 130, 75, 0.22);
+}
+
+body.light-mode .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(31, 184, 106, 0.14);
+}
+
+body.light-mode #bejel {
+  color: #8a5b00 !important;
+  background: rgba(244, 201, 93, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(244, 201, 93, 0.24);
+}
+
+body.light-mode #bejel:hover {
+  color: #6f4900 !important;
+  background: rgba(244, 201, 93, 0.28);
+}
+
+/* KÁRTYÁK / DOBOZOK */
+body.light-mode article,
+body.light-mode aside,
+body.light-mode .leaderboard-card {
+  background: var(--lm-surface);
+  border: 1px solid var(--lm-border);
+  box-shadow: 0 12px 30px var(--lm-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+body.light-mode hr {
+  border-color: rgba(24, 48, 36, 0.1);
+}
+
+/* NEWS CARD */
+body.light-mode .news-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(243,251,246,0.92));
+  border: 1px solid rgba(31, 72, 52, 0.1);
+  box-shadow: 0 10px 28px rgba(20, 45, 31, 0.06);
+}
+
+body.light-mode .news-card:hover {
+  border-color: rgba(31, 184, 106, 0.22);
+  box-shadow: 0 14px 30px rgba(31, 184, 106, 0.12);
+}
+
+body.light-mode .card-title {
+  color: var(--lm-secondary);
+}
+
+body.light-mode .card-text {
+  color: var(--lm-text-soft);
+}
+
+/* ===== LIGHT MODE - TÁBLÁZATOK ===== */
+
+body.light-mode .table {
+  border-radius: 14px;
+  overflow: hidden;
+  color: #183024;
+  background: transparent;
+}
+
+body.light-mode .table thead th {
+  background: linear-gradient(135deg, #18b36b, #35d39a);
+  color: #ffffff;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 700;
+}
+
+body.light-mode .table tbody tr td {
+  background: #ffffff;
+  color: #183024;
+  border-color: #dce9e1;
+}
+
+body.light-mode .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background: #f3faf6;
+}
+
+body.light-mode .table-striped > tbody > tr:nth-of-type(even) > * {
+  background: #ffffff;
+}
+
+body.light-mode .table tbody tr:hover td {
+  background: #e7f8ee;
+}
+
+body.light-mode .table tbody tr:first-child td {
+  background: linear-gradient(135deg, #d7f5e3, #bceecf);
+  color: #114227;
+  font-weight: 700;
+}
+
+
+
+/* ===== LIGHT MODE - GÓLLÖVŐLISTA ===== */
+
+body.light-mode #gollovolista .table {
+  background: transparent;
+  color: #183024;
+}
+
+body.light-mode #gollovolista .table thead th {
+  background: linear-gradient(135deg, #2aa5e8, #59c7f5);
+  color: #ffffff;
+  border: none;
+}
+
+body.light-mode #gollovolista .table tbody tr td {
+  background: #ffffff;
+  color: #183024;
+  border-color: #d9e8ef;
+}
+
+body.light-mode #gollovolista .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background: #f2f9fd;
+}
+
+body.light-mode #gollovolista .table-striped > tbody > tr:nth-of-type(even) > * {
+  background: #ffffff;
+}
+
+body.light-mode #gollovolista .table tbody tr:hover td {
+  background: #e8f6fc;
+}
+
+#gollovolista tbody tr:nth-child(1) > td {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.5)) !important;
+  color: black;
+  font-weight: 700;
+}
+
+#gollovolista tbody tr:nth-child(2) > td {
+  background: linear-gradient(90deg, rgba(200, 210, 220, 0.5)) !important;
+  color: black
+}
+
+#gollovolista tbody tr:nth-child(3) > td {
+  background: linear-gradient(90deg, rgba(205, 127, 50, 0.5)) !important;
+  color: black
+}
+
+
+
+/* ===== TOP 3 - DARK ===== */
+
+body:not(.light-mode) #gollovolista tr:nth-child(1) td {
+  background: linear-gradient(135deg, gold, #ffd700);
+  color: #000;
+  font-weight: bold;
+}
+
+body:not(.light-mode) #gollovolista tr:nth-child(2) td {
+  background: linear-gradient(135deg, #c0c0c0, #e0e0e0);
+  color: #1c1c1c;
+}
+
+body:not(.light-mode) #gollovolista tr:nth-child(3) td {
+  background: linear-gradient(135deg, #cd7f32, #e6a15c);
+  color: #1c1c1c;
+}
+/* TABELLA / SEGÉDSZÖVEG */
+body.light-mode .tabella-subtitle,
+body.light-mode .leaderboard-subtitle,
+body.light-mode .footer-brand p,
+body.light-mode .footer-bottom,
+body.light-mode .leaderboard-credit-label {
+  color: var(--lm-text-soft);
+}
+
+/* BADGE */
+body.light-mode .game-badge {
+  background: #d7f5e5;
+  color: #13673d;
+}
+
+body.light-mode .gol-badge {
+  background: var(--lm-primary);
+  color: #ffffff;
+}
+
+/* GAME CARD */
+body.light-mode .game-card {
+  border: 1px solid rgba(31, 72, 52, 0.12);
+  box-shadow: 0 15px 35px rgba(24, 48, 36, 0.08);
+}
+
+body.light-mode .game-card-btn {
+  background: linear-gradient(135deg, var(--lm-primary), #41c98d);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(31, 184, 106, 0.18);
+}
+
+body.light-mode .game-card-btn:hover {
+  background: linear-gradient(135deg, var(--lm-secondary), #54c3ec);
+  color: #ffffff;
+}
+
+/* LEADERBOARD */
+body.light-mode .leaderboard-header {
+  background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(230,247,238,0.88));
+  border-bottom: 1px solid rgba(31, 72, 52, 0.08);
+}
+
+body.light-mode .leaderboard-header h2 {
+  color: var(--lm-primary-dark);
+}
+
+body.light-mode .leaderboard-row {
+  border-bottom: 1px solid rgba(24, 48, 36, 0.07);
+}
+
+body.light-mode .leaderboard-row:hover {
+  background: rgba(31, 184, 106, 0.05);
+}
+
+body.light-mode .leaderboard-rank {
+  background: #ecf8f1;
+  color: var(--lm-primary-dark);
+}
+
+body.light-mode .leaderboard-name {
+  color: var(--lm-text);
+}
+
+body.light-mode .leaderboard-credit-value {
+  color: var(--lm-secondary);
+}
+
+body.light-mode .leaderboard-streak {
+  color: #d97c2b;
+}
+
+body.light-mode .leaderboard-row.top1 {
+  background: linear-gradient(90deg, rgba(244, 201, 93, 0.14), transparent);
+}
+
+body.light-mode .leaderboard-row.top2 {
+  background: linear-gradient(90deg, rgba(216, 222, 230, 0.22), transparent);
+}
+
+body.light-mode .leaderboard-row.top3 {
+  background: linear-gradient(90deg, rgba(217, 166, 121, 0.18), transparent);
+}
+
+/* FORM BADGE */
+body.light-mode .form-badge {
+  box-shadow:
+    0 6px 14px rgba(0,0,0,0.08),
+    inset 0 1px 2px rgba(255,255,255,0.35);
+}
+
+body.light-mode .form-badge.win {
+  background: linear-gradient(135deg, #36c777, #1f9d58);
+}
+
+body.light-mode .form-badge.loss {
+  background: linear-gradient(135deg, #f87171, #dc2626);
+}
+
+body.light-mode .form-badge.draw {
+  background: linear-gradient(135deg, #b8c0c8, #7a8793);
+}
+
+/* FOOTER */
+body.light-mode .site-footer {
+  background:
+    linear-gradient(135deg, rgba(246,251,248,0.95), rgba(227,242,234,0.92)),
+    radial-gradient(circle at top right, rgba(47,167,216,0.09), transparent 30%);
+  color: var(--lm-text);
+  border-top: 1px solid rgba(24, 48, 36, 0.08);
+  box-shadow: 0 -10px 28px rgba(24, 48, 36, 0.05);
+}
+
+body.light-mode .footer-brand h3 {
+  color: var(--lm-primary-dark);
+}
+
+body.light-mode .footer-links a,
+body.light-mode .footer-social a,
+body.light-mode .footer-bottom {
+  color: var(--lm-text-soft);
+}
+
+body.light-mode .footer-links a:hover {
+  color: var(--lm-primary-dark);
+}
+
+body.light-mode .social-icons a {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(24, 48, 36, 0.08);
+  color: var(--lm-text);
+}
+
+body.light-mode .social-icons a:hover {
+  color: var(--lm-primary-dark);
+  border-color: rgba(31, 184, 106, 0.25);
+  box-shadow: 0 8px 20px rgba(31, 184, 106, 0.1);
+}
+
+body.light-mode .footer-bottom {
+  border-top: 1px solid rgba(24, 48, 36, 0.08);
+  background: rgba(255,255,255,0.35);
 }
