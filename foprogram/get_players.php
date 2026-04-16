@@ -41,10 +41,18 @@ try {
             pos.name AS position,
             t.name AS team,
             n.name AS nationality,
+            COALESCE((
+                SELECT pr.rating
+                FROM player_ratings pr
+                WHERE pr.player_id = p.id
+                ORDER BY pr.updated_at DESC, pr.id DESC
+                LIMIT 1
+            ), 0) AS rating,
             (
                 SELECT tk.image_path
                 FROM team_kits tk
                 WHERE tk.team_id = t.id
+                ORDER BY tk.id DESC
                 LIMIT 1
             ) AS shirt_image
         FROM players p
@@ -89,6 +97,11 @@ try {
     $stmt->execute($params);
 
     $players = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($players as &$player) {
+        $player['rating'] = (float)$player['rating'];
+    }
+    unset($player);
 
     echo json_encode([
         'success' => true,
