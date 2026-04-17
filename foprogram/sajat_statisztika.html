@@ -50,6 +50,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="recent-form-card mb-4">
                 <h4 class="recent-form-title">Utolsó öt meccs eredménye:</h4>
                 <div id="recent-five" class="recent-form-list"></div>
@@ -60,109 +61,153 @@
     </main>
 
     <script>
+    const token = localStorage.getItem("token");
+    const statsTable = document.getElementById("stats-table");
+    const recentFiveContainer = document.getElementById("recent-five");
 
-        fetch("get_card_game_results.php")
-            .then(res => res.json())
-            .then(data => {
-                if (!data.success) {
-                    document.getElementById("stats-table").innerHTML =
-                        `<div class="alert alert-danger">${data.message}</div>`;
-                    return;
-                }
+    function formatResult(result) {
+        if (result === "win") return "Győzelem";
+        if (result === "draw") return "Döntetlen";
+        if (result === "loss") return "Vereség";
+        return result;
+    }
 
-                document.getElementById("total-games").textContent = data.summary.total;
-                document.getElementById("wins").textContent = data.summary.wins;
-                document.getElementById("draws").textContent = data.summary.draws;
-                document.getElementById("losses").textContent = data.summary.losses;
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        if (isNaN(date)) return dateString;
 
-                let html = `
-            <div class="table-responsive">
-                <table class="table table-striped table-dark align-middle">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Eredmény</th>
-                            <th>Játékos pont</th>
-                            <th>Ellenfél pont</th>
-                            <th>Dátum</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-        `;
+        return date.toLocaleString("hu-HU", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    }
 
-                if (data.results.length === 0) {
-                    html += `
-                <tr>
-                    <td colspan="5" class="text-center">Még nincs elmentett eredmény.</td>
-                </tr>
-            `;
-                } else {
-                    data.results.forEach((row, index) => {
-                        let resultText = "";
-                        if (row.result === "win") resultText = "Győzelem";
-                        else if (row.result === "draw") resultText = "Döntetlen";
-                        else if (row.result === "loss") resultText = "Vereség";
-
-                        html += `
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td>${resultText}</td>
-                        <td>${row.player_score}</td>
-                        <td>${row.enemy_score}</td>
-                        <td>${row.played_at}</td>
-                    </tr>
-                `;
-                    });
-                }
-
-                html += `
-                    </tbody>
-                </table>
+    if (!token) {
+        statsTable.innerHTML = `
+            <div class="alert alert-warning">
+                A statisztikák megtekintéséhez jelentkezz be.
             </div>
         `;
+        recentFiveContainer.innerHTML = `
+            <span class="text-muted">Bejelentkezés után jelennek meg az adataid.</span>
+        `;
+    } else {
+        fetch("get_card_game_results.php", {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (!data.success) {
+                statsTable.innerHTML = `
+                    <div class="alert alert-danger">${data.message}</div>
+                `;
+                return;
+            }
 
-                document.getElementById("stats-table").innerHTML = html;
-                const recentFiveContainer = document.getElementById("recent-five");
+            document.getElementById("total-games").textContent = data.summary.total;
+            document.getElementById("wins").textContent = data.summary.wins;
+            document.getElementById("draws").textContent = data.summary.draws;
+            document.getElementById("losses").textContent = data.summary.losses;
 
-                if (data.recentFive && data.recentFive.length > 0) {
-                    let recentHtml = "";
+            const lastFive = data.recentFive || [];
 
-                    data.recentFive.forEach((match, index) => {
-                        let cls = "";
-                        let symbol = "";
+            if (lastFive.length > 0) {
+                let recentHtml = "";
 
-                        if (match.result === "win") {
-                            cls = "win";
-                            symbol = "✓";
-                        } else if (match.result === "loss") {
-                            cls = "loss";
-                            symbol = "✕";
-                        } else {
-                            cls = "draw";
-                            symbol = "–";
-                        }
+                lastFive.forEach((match, index) => {
+                    let cls = "";
+                    let symbol = "";
 
-                        recentHtml += `
-                <div class="form-badge ${cls} delay-${index + 1}" 
-                    title="${match.result} | ${match.player_score}-${match.enemy_score}">
-                    ${symbol}
+                    if (match.result === "win") {
+                        cls = "win";
+                        symbol = "✓";
+                    } else if (match.result === "loss") {
+                        cls = "loss";
+                        symbol = "✕";
+                    } else {
+                        cls = "draw";
+                        symbol = "–";
+                    }
+
+                    recentHtml += `
+                        <div class="form-badge ${cls} delay-${index + 1}"
+                            title="${formatResult(match.result)} | ${match.player_score}-${match.enemy_score} | ${formatDate(match.played_at)}">
+                            ${symbol}
+                        </div>
+                    `;
+                });
+
+                recentFiveContainer.innerHTML = recentHtml;
+            } else {
+                recentFiveContainer.innerHTML = `
+                    <span class="text-muted">Még nincs lejátszott meccsed.</span>
+                `;
+            }
+
+            let html = `
+                <div class="table-responsive">
+                    <table class="table table-striped table-dark align-middle">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Eredmény</th>
+                                <th>Állás</th>
+                                <th>Játékos pont</th>
+                                <th>Ellenfél pont</th>
+                                <th>Mikor játszottál</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            if (lastFive.length === 0) {
+                html += `
+                    <tr>
+                        <td colspan="6" class="text-center">Még nincs elmentett meccsed.</td>
+                    </tr>
+                `;
+            } else {
+                lastFive.forEach((row, index) => {
+                    let badgeClass = "secondary";
+
+                    if (row.result === "win") badgeClass = "success";
+                    else if (row.result === "loss") badgeClass = "danger";
+                    else if (row.result === "draw") badgeClass = "warning";
+
+                    html += `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td><span class="badge bg-${badgeClass}">${formatResult(row.result)}</span></td>
+                            <td>${row.player_score} - ${row.enemy_score}</td>
+                            <td>${row.player_score}</td>
+                            <td>${row.enemy_score}</td>
+                            <td>${formatDate(row.played_at)}</td>
+                        </tr>
+                    `;
+                });
+            }
+
+            html += `
+                        </tbody>
+                    </table>
                 </div>
             `;
-                    });
 
-                    recentFiveContainer.innerHTML = recentHtml;
-                } else {
-                    recentFiveContainer.innerHTML = `<span class="text-muted">Még nincs 5 lejátszott meccs.</span>`;
-                }
-            })
-            .catch(error => {
-                document.getElementById("stats-table").innerHTML =
-                    `<div class="alert alert-danger">Hiba a statisztikák betöltése közben.</div>`;
-                console.error(error);
-            })
-            ;
-
-    </script>
+            statsTable.innerHTML = html;
+        })
+        .catch(error => {
+            statsTable.innerHTML = `
+                <div class="alert alert-danger">Hiba a statisztikák betöltése közben.</div>
+            `;
+            console.error(error);
+        });
+    }
+</script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="navbar.js"></script>

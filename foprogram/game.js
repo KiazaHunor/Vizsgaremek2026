@@ -1,14 +1,12 @@
-<<<<<<< HEAD
-    let activeTournament = null;
-=======
+
 const token = localStorage.getItem("token");
+let activeTournament = null;
 
 if (!token) {
   alert("A draft használatához be kell jelentkezned!");
   window.location.href = "../bejelentkezo/frontend/index.html";
 }
 
->>>>>>> acaf28c9176780ebc460df4bcc99a95de6c19a18
     let selectedSwapSlot = null;
     let selectedSlot = null;
 
@@ -300,22 +298,20 @@ if (!token) {
       return ids;
     }
 
-    async function loadPlayers(position, element) {
-      selectedSlot = element;
+    function loadPlayers(position, element) {
+    selectedSlot = element;
+    const excludeIds = getSelectedPlayerIds(element);
 
-      try {
-        const excludeIds = getSelectedPlayerIds(element);
-
-        const response = await fetch(
-        `get_players.php?position=${encodeURIComponent(position)}&exclude=${encodeURIComponent(excludeIds.join(","))}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token
-          }
+    fetch(
+      `get_players.php?position=${encodeURIComponent(position)}&exclude=${encodeURIComponent(excludeIds.join(","))}`,
+      {
+        headers: {
+          Authorization: "Bearer " + token
         }
-      );
-
-        const text = await response.text();
+      }
+    )
+      .then(response => response.text())
+      .then(text => {
         const data = JSON.parse(text);
 
         const playerList = document.getElementById("player-list");
@@ -405,12 +401,12 @@ if (!token) {
           keyboard: false
         });
         modal.show();
-
-      } catch (error) {
+      })
+      .catch(error => {
         console.error("Hiba:", error);
         alert("Hiba történt a játékosok betöltése közben.");
-      }
-    }
+      });
+}
 
     function handleSlotClick(slot) {
       if (!slot.dataset.playerId) return;

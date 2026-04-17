@@ -507,10 +507,18 @@ function endGame() {
     }
 }
 function saveGameResult(result, playerScore, enemyScore) {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        console.log("Nincs bejelentkezett felhasználó, a statisztika nem kerül mentésre.");
+        return;
+    }
+
     fetch("save_game_result.php", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
         },
         body: JSON.stringify({
             result: result,
