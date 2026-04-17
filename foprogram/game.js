@@ -1,3 +1,9 @@
+const token = localStorage.getItem("token");
+
+if (!token) {
+  alert("A draft használatához be kell jelentkezned!");
+  window.location.href = "../bejelentkezo/frontend/index.html";
+}
 
     let selectedSwapSlot = null;
     let selectedSlot = null;
@@ -297,8 +303,13 @@
         const excludeIds = getSelectedPlayerIds(element);
 
         const response = await fetch(
-          `get_players.php?position=${encodeURIComponent(position)}&exclude=${encodeURIComponent(excludeIds.join(","))}`
-        );
+        `get_players.php?position=${encodeURIComponent(position)}&exclude=${encodeURIComponent(excludeIds.join(","))}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        }
+      );
 
         const text = await response.text();
         const data = JSON.parse(text);
