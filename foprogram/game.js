@@ -1,4 +1,4 @@
-
+    let activeTournament = null;
     let selectedSwapSlot = null;
     let selectedSlot = null;
 
@@ -623,6 +623,7 @@
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+
+document.addEventListener("DOMContentLoaded", function () {
   showRandomFormationButtons(5);
 });
