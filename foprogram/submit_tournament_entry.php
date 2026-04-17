@@ -1,15 +1,39 @@
 <?php
 require_once 'db.php';
-session_start();
 
 header('Content-Type: application/json; charset=utf-8');
 
 try {
-    if (!isset($_SESSION['user_id'])) {
+    $headers = getallheaders();
+    $authHeader = $headers['Authorization'] ?? $headers['authorization'] ?? '';
+
+    if (!$authHeader || strpos($authHeader, 'Bearer ') !== 0) {
         throw new Exception('Be kell jelentkezni.');
     }
 
-    $userId = (int)$_SESSION['user_id'];
+    $token = trim(substr($authHeader, 7));
+
+    if ($token === '') {
+        throw new Exception('Be kell jelentkezni.');
+    }
+
+    $stmtUser = $pdo->prepare("
+        SELECT id, username
+        FROM users
+        WHERE token = ?
+          AND token_expiry IS NOT NULL
+          AND token_expiry > NOW()
+        LIMIT 1
+    ");
+    $stmtUser->execute([$token]);
+    $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user) {
+        throw new Exception('Be kell jelentkezni.');
+    }
+
+    $userId = (int)$user['id'];
+
     $data = json_decode(file_get_contents('php://input'), true);
 
     if (!$data) {
@@ -21,14 +45,9 @@ try {
     $chemistryScore = (int)($data['chemistry_score'] ?? 0);
     $ratingAvgScore = (int)($data['rating_avg_score'] ?? 0);
     $finalScore = (int)($data['final_score'] ?? 0);
-    $players = $data['players'] ?? [];
 
     if ($tournamentId <= 0) {
         throw new Exception('Hiányzó bajnokság.');
-    }
-
-    if (count($players) < 11) {
-        throw new Exception('Legalább 11 kezdő kell.');
     }
 
     $stmt = $pdo->prepare("
@@ -58,8 +77,6 @@ try {
         throw new Exception('Erre a bajnokságra már neveztél.');
     }
 
-    $pdo->beginTransaction();
-
     $stmt = $pdo->prepare("
         INSERT INTO tournament_entries
         (tournament_id, user_id, team_name, chemistry_score, rating_avg_score, final_score, submitted_at, is_locked)
@@ -74,45 +91,12 @@ try {
         $finalScore
     ]);
 
-    $entryId = (int)$pdo->lastInsertId();
-
-    $stmtPlayer = $pdo->prepare("
-        INSERT INTO tournament_entry_players
-        (entry_id, player_id, slot_code, is_starter, chemistry_points)
-        VALUES (?, ?, ?, ?, ?)
-    ");
-
-    foreach ($players as $player) {
-        $playerId = (int)($player['player_id'] ?? 0);
-        $slotCode = trim($player['slot_code'] ?? '');
-        $isStarter = (int)($player['is_starter'] ?? 1);
-        $chemistryPoints = (int)($player['chemistry_points'] ?? 0);
-
-        if ($playerId <= 0 || $slotCode === '') {
-            throw new Exception('Hibás játékos adat.');
-        }
-
-        $stmtPlayer->execute([
-            $entryId,
-            $playerId,
-            $slotCode,
-            $isStarter,
-            $chemistryPoints
-        ]);
-    }
-
-    $pdo->commit();
-
     echo json_encode([
         'success' => true,
         'message' => 'Sikeres nevezés.'
     ], JSON_UNESCAPED_UNICODE);
 
 } catch (Throwable $e) {
-    if (isset($pdo) && $pdo->inTransaction()) {
-        $pdo->rollBack();
-    }
-
     echo json_encode([
         'success' => false,
         'message' => $e->getMessage()
