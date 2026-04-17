@@ -54,6 +54,12 @@
           </div>
           <div id="extras-container" class="extras-container container-fluid px-0 mt-4"></div>
 
+          <div class="draft-action-wrap text-center mt-4">
+            <button id="draft-finish-btn" class="btn btn-success btn-lg px-5" onclick="handleDraftSummary()">
+              Összesítés
+            </button>
+          </div>
+
           <div class="back-button-wrap">
             <a href="szep.html" class="btn btn-outline-light mt-4">⬅ Vissza a főoldalra</a>
             <a href="game.html" class="btn btn-outline-light mt-4">⬅ Vissza a formációkhoz</a>
@@ -63,6 +69,32 @@
     </div>
 
     <div id="footer-container"></div>
+  </div>
+
+  <div id="draft-summary-overlay" class="draft-summary-overlay d-none">
+    <div class="draft-summary-card">
+      <h3 class="mb-3">Csapat összesítés</h3>
+
+      <div class="summary-line">
+        <span>Chemistry</span>
+        <strong id="summary-chemistry">0 / 3300</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>Rating</span>
+        <strong id="summary-rating">0</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>Fő pont</span>
+        <strong id="summary-final">0</strong>
+      </div>
+
+      <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+        <button class="btn btn-outline-light px-4" onclick="closeSummaryCard()">Bezárás</button>
+        <button class="btn btn-success px-4" onclick="startGame()">Játék</button>
+      </div>
+    </div>
   </div>
 
   <div class="modal fade" id="playerModal" tabindex="-1" aria-hidden="true">

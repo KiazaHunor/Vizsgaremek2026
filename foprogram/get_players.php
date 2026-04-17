@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../bejelentkezo/backend/api/auth.php';
 require_once 'db.php';
 
 header('Content-Type: application/json; charset=utf-8');

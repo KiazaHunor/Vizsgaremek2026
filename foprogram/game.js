@@ -1,4 +1,14 @@
+<<<<<<< HEAD
     let activeTournament = null;
+=======
+const token = localStorage.getItem("token");
+
+if (!token) {
+  alert("A draft használatához be kell jelentkezned!");
+  window.location.href = "../bejelentkezo/frontend/index.html";
+}
+
+>>>>>>> acaf28c9176780ebc460df4bcc99a95de6c19a18
     let selectedSwapSlot = null;
     let selectedSlot = null;
 
@@ -297,8 +307,13 @@
         const excludeIds = getSelectedPlayerIds(element);
 
         const response = await fetch(
-          `get_players.php?position=${encodeURIComponent(position)}&exclude=${encodeURIComponent(excludeIds.join(","))}`
-        );
+        `get_players.php?position=${encodeURIComponent(position)}&exclude=${encodeURIComponent(excludeIds.join(","))}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        }
+      );
 
         const text = await response.text();
         const data = JSON.parse(text);
@@ -627,3 +642,50 @@
 document.addEventListener("DOMContentLoaded", function () {
   showRandomFormationButtons(5);
 });
+function getAllMainSlots() {
+  return Array.from(document.querySelectorAll(".formation-container .player"));
+}
+
+function isDraftComplete() {
+  const mainSlots = getAllMainSlots();
+  if (mainSlots.length === 0) return false;
+
+  return mainSlots.every(slot => slot.dataset.playerId);
+}
+
+function handleDraftSummary() {
+  if (!isDraftComplete()) {
+    alert("Még nem választottál ki minden slotra játékost!");
+    return;
+  }
+
+  showSummaryCard();
+}
+
+function showSummaryCard() {
+  const result = calculateTeamScore();
+
+  const chemistryEl = document.getElementById("summary-chemistry");
+  const ratingEl = document.getElementById("summary-rating");
+  const finalEl = document.getElementById("summary-final");
+  const overlay = document.getElementById("draft-summary-overlay");
+
+  if (!chemistryEl || !ratingEl || !finalEl || !overlay) return;
+
+  chemistryEl.textContent = `${result.chemistryScore} / 3300`;
+  ratingEl.textContent = result.averageRatingScore;
+  finalEl.textContent = result.finalScore;
+
+  overlay.classList.remove("d-none");
+}
+
+function closeSummaryCard() {
+  const overlay = document.getElementById("draft-summary-overlay");
+  if (!overlay) return;
+
+  overlay.classList.add("d-none");
+}
+
+function startGame() {
+  
+}
