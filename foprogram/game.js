@@ -1,6 +1,6 @@
-<<<<<<< HEAD
+
     let activeTournament = null;
-=======
+
 const token = localStorage.getItem("token");
 
 if (!token) {
@@ -8,9 +8,11 @@ if (!token) {
   window.location.href = "../bejelentkezo/frontend/index.html";
 }
 
->>>>>>> acaf28c9176780ebc460df4bcc99a95de6c19a18
+
     let selectedSwapSlot = null;
     let selectedSlot = null;
+
+
 
     const formations = {
       "4-3-3": [
@@ -639,9 +641,7 @@ if (!token) {
 }
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  showRandomFormationButtons(5);
-});
+
 function getAllMainSlots() {
   return Array.from(document.querySelectorAll(".formation-container .player"));
 }
@@ -689,3 +689,105 @@ function closeSummaryCard() {
 function startGame() {
   
 }
+
+
+
+
+function loadActiveTournament() {
+  fetch("get_active_tournament.php", {
+    headers: {
+      Authorization: "Bearer " + token
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      const box = document.getElementById("tournament-box");
+      const info = document.getElementById("tournament-info");
+      const btn = document.getElementById("join-tournament-btn");
+
+      if (!box || !info || !btn) return;
+
+      box.classList.remove("d-none");
+
+      if (!data.success || !data.tournament) {
+        activeTournament = null;
+        info.innerHTML = "Jelenleg nincs aktív bajnokság.";
+        btn.disabled = true;
+        return;
+      }
+
+      activeTournament = data.tournament;
+
+      info.innerHTML = `
+        <strong>${data.tournament.name}</strong><br>
+        Nevezési határidő: ${data.tournament.entry_deadline}
+      `;
+
+      btn.disabled = false;
+    })
+    .catch(error => {
+      console.error("Aktív bajnokság betöltési hiba:", error);
+    });
+}
+
+function joinTournament() {
+  if (!activeTournament) {
+    alert("Nincs aktív bajnokság.");
+    return;
+  }
+
+  const teamNameInput = document.getElementById("team-name-input");
+  const teamName = (teamNameInput.value || "").trim();
+
+  if (teamName.length < 3) {
+    alert("Adj meg egy csapatnevet!");
+    return;
+  }
+
+  const slots = getStartingSlots();
+  if (slots.length < 11) {
+    alert("Előbb rakd össze a kezdő 11-et.");
+    return;
+  }
+
+  const result = calculateTeamScore();
+
+  const payload = {
+    tournament_id: Number(activeTournament.id),
+    team_name: teamName,
+    chemistry_score: result.chemistryScore,
+    rating_avg_score: result.averageRatingScore,
+    final_score: result.finalScore
+  };
+
+  fetch("submit_tournament_entry.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+    body: JSON.stringify(payload)
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert("Sikeres nevezés!");
+        document.getElementById("join-tournament-btn").disabled = true;
+
+        document.getElementById("team-name-input").value = "";
+      } else {
+        alert(data.message || "Hiba történt.");
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      alert("Hiba történt a nevezés közben.");
+    });
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  showRandomFormationButtons(5);
+  loadActiveTournament();
+});
