@@ -169,6 +169,7 @@ function renderHands() {
             selectCardStat(index, statName);
         });
     });
+    updateHandLayout();
 }
 
 function selectCard(index) {
@@ -343,6 +344,7 @@ function playRound() {
         playerCards.splice(selectedCardIndex, 1);
         enemyCards.splice(enemyIndex, 1);
 
+        renderHands();
         resetBattleArea(false);
 
         setTimeout(() => {
@@ -403,23 +405,6 @@ function resetBattleArea(clearNow = false) {
     }
 }
 
-function endGame() {
-    roundLocked = true;
-    phase = "finished";
-
-    let message = "";
-
-    if (playerScore > enemyScore) {
-        message = "Vége a játéknak! Te nyertél!";
-    } else if (playerScore < enemyScore) {
-        message = "Vége a játéknak! Az ellenfél nyert!";
-    } else {
-        message = "Vége a játéknak! Döntetlen!";
-    }
-
-    showMessage(message, TIMINGS.endMessage);
-}
-
 function showMessage(text, duration = TIMINGS.normalMessage) {
     const msg = document.getElementById("game-message");
     msg.textContent = text;
@@ -461,6 +446,7 @@ restartBtn.addEventListener("click", () => {
 function restartGame() {
     document.getElementById("restart-game").style.display = "none";
 
+    playRoundBtn.style.display = "inline-block";
     playerScore = 0;
     enemyScore = 0;
 
@@ -500,11 +486,32 @@ function endGame() {
 
     saveGameResult(result,playerScore, enemyScore);
 
-    const restartBtn = document.getElementById("restart-game");
-    if(restartBtn)
-    {
+    playRoundBtn.style.display = "none";
+
+    if(restartBtn){
         restartBtn.style.display = "inline-block";
     }
+}
+function updateHandLayout() {
+    if (window.innerWidth > 992) {
+        playerHand.classList.remove("centered-hand");
+        enemyHand.classList.remove("centered-hand");
+        return;
+    }
+
+    requestAnimationFrame(() => {
+        if (playerHand.scrollWidth <= playerHand.clientWidth) {
+            playerHand.classList.add("centered-hand");
+        } else {
+            playerHand.classList.remove("centered-hand");
+        }
+
+        if (enemyHand.scrollWidth <= enemyHand.clientWidth) {
+            enemyHand.classList.add("centered-hand");
+        } else {
+            enemyHand.classList.remove("centered-hand");
+        }
+    });
 }
 function saveGameResult(result, playerScore, enemyScore) {
     const token = localStorage.getItem("token");
@@ -534,3 +541,4 @@ function saveGameResult(result, playerScore, enemyScore) {
         console.error("Hiba az eredmény mentése közben:", error);
     });
 }
+window.addEventListener("resize", updateHandLayout);
