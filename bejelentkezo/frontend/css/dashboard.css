@@ -90,7 +90,7 @@ body {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 1rem 1rem;
+    padding: 1rem;
 }
 
 .form-label {
@@ -149,6 +149,71 @@ hr {
     opacity: 0.8;
 }
 
+.profile-image-picker {
+    position: relative;
+    display: inline-block;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.18);
+    transition: 0.25s ease;
+    background: #0f141c;
+}
+
+.profile-image-picker:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 24px rgba(0, 255, 157, 0.35);
+}
+
+.profile-image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+}
+
+.profile-image-empty {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 3rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.profile-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: 0.25s ease;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.profile-image-picker:hover .profile-image-overlay {
+    opacity: 1;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
 @media (max-width: 991.98px) {
     .navbar .btn {
         width: 100%;
@@ -171,33 +236,9 @@ hr {
     .loading-box {
         padding: 2rem 1rem;
     }
-}
 
-/* From Uiverse.io by vinodjangid07 */ 
-.cssbuttons-io-button {
-  display: flex;
-  align-items: center;
-  font-family: inherit;
-  font-weight: 500;
-  font-size: 17px;
-  padding: 0.8em 1.5em 0.8em 1.2em;
-  color: white;
-  background: #ad5389;
-  background: linear-gradient(0deg, rgb(120, 47, 255) 0%, rgb(185, 132, 255) 100%);
-  border: none;
-  box-shadow: 0 0.7em 1.5em -0.5em rgb(184, 146, 255);
-  letter-spacing: 0.05em;
-  border-radius: 20em;
-}
-
-.cssbuttons-io-button svg {
-  margin-right: 8px;
-}
-
-.cssbuttons-io-button:hover {
-  box-shadow: 0 0.5em 1.5em -0.5em rgb(149, 91, 255);
-}
-
-.cssbuttons-io-button:active {
-  box-shadow: 0 0.3em 1em -0.5em rgb(160, 109, 255);
+    .profile-image-picker {
+        width: 120px;
+        height: 120px;
+    }
 }

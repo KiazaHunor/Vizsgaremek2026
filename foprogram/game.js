@@ -782,9 +782,38 @@ function joinTournament() {
     });
 }
 
+function checkIfAlreadyJoined() {
+  fetch("check_tournament_entry.php", {
+    headers: {
+      Authorization: "Bearer " + token
+    }
+  })
+    .then(r => r.json())
+    .then(data => {
+      if (!data.success) return;
+
+      if (data.joined) {
+        const btn = document.getElementById("join-tournament-btn");
+        const info = document.getElementById("tournament-info");
+
+        if (btn) btn.disabled = true;
+
+        
+        btn.textContent = "Már neveztél";
+
+        if (info) {
+          info.innerHTML += "<br><span style='color:#00ff9d;'>✔ Már neveztél erre a bajnokságra</span>";
+        }
+      }
+    })
+    .catch(err => console.error(err));
+}
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
   showRandomFormationButtons(5);
   loadActiveTournament();
+
+  checkIfAlreadyJoined();
 });

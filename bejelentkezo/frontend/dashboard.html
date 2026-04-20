@@ -115,40 +115,31 @@
 
                         <h3 class="h5 mb-3 text-light">Profil szerkesztése</h3>
 
-                            <div class="mb-3 text-center">
-                        <label class="form-label">Profilkép</label><br>
+                           <div class="mb-4 text-center">
+                            <label class="form-label d-block mb-3">Profilkép</label>
 
-                        ${
-                            d.user.profile_image
-                            ? `<img id="profilePreview"
-                                    src="${BACKEND_BASE_URL}/${d.user.profile_image}" 
-                                    alt="Profilkép" 
-                                    style="width:120px;height:120px;object-fit:cover;border-radius:50%;margin-bottom:10px;">`
-                            : `<p id="profilePreview" class="text-light mb-2">Nincs profilkép</p>`
-                        }
+                            <label for="picture" class="profile-image-picker">
+                                ${
+                                    d.user.profile_image
+                                    ? `<img id="profilePreview"
+                                            src="${BACKEND_BASE_URL}/${d.user.profile_image}" 
+                                            alt="Profilkép"
+                                            class="profile-image-preview">`
+                                    : `<div id="profilePreview" class="profile-image-preview profile-image-empty">
+                                            <span>+</span>
+                                    </div>`
+                                }
 
-                        <p class="text-muted" style="font-size:13px;">
-                            Itt tudsz új profilképet kiválasztani
-                        </p>
-
-                        <input type="file" id="picture" accept=".jpg,.jpeg,.png,.webp" style="display:none">
-                        <!-- From Uiverse.io by 3bdel3ziz-T --> 
-                        <div class="upload-box">
-                            <div class="upload-folder">
-                                <div class="front-side">
-                                    <div class="tip"></div>
-                                    <div class="cover"></div>
-                                </div>
-                                <div class="back-side cover"></div>
-                            </div>
-
-                            <label for="picture" class="custom-file-upload">
-                                Kép kiválasztása
+                                <div class="profile-image-overlay">Kép módosítása</div>
                             </label>
+
+                            <input type="file" id="picture" accept=".jpg,.jpeg,.png,.webp" hidden>
+
+                            <p class="text-muted mt-2 mb-0" style="font-size:13px;">
+                                Kattints a profilképre a módosításhoz
+                            </p>
                         </div>
-                    </div>
-                    
-                  
+                                        
 
                         <div class="mb-3">
                             <label class="form-label" for="newUsername">Új felhasználónév</label>
