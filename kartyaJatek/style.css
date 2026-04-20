@@ -86,23 +86,21 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 18px;
-    border-radius: 14px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background-color: #026e45;
+    color: #000;
+    font-weight: 800;
     text-decoration: none;
-    color: #08131f;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    box-shadow: 0 10px 25px rgba(0, 255, 174, 0.20);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
-    white-space: nowrap;
+    transition: 0.2s;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
 .btn-back:hover {
+    background-color: #00b3ff;
+    color: #000;
     transform: translateY(-2px);
-    box-shadow: 0 16px 30px rgba(0, 255, 174, 0.28);
-    color: white;
 }
-
 /* ===== scoreboard ===== */
 
 .scoreboard {
@@ -203,7 +201,9 @@ body {
     gap: 16px;
     z-index: 2;
 }
-
+.enemy-hand {
+    display: none;
+}
 /* desktopon ne törjön több sorba */
 .enemy-hand,
 .player-hand {
@@ -212,12 +212,10 @@ body {
     transform: translateX(-50%);
     width: min(920px, calc(100vw - 260px));
     max-width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: visible;
     flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 10px 6px;
-    scrollbar-width: thin;
 }
 
 .enemy-hand::-webkit-scrollbar,
@@ -341,7 +339,7 @@ body {
 }
 
 .card {
-    width: 165px;
+    width: 180px;
     height: 275px;
     padding: 12px;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -397,6 +395,7 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 10px;
+    min-height: 44px;
 }
 
 .card-rating {
@@ -416,6 +415,13 @@ body {
     border: 1px solid rgba(0,255,170,0.28);
     color: #7affd8;
     letter-spacing: 0.5px;
+    min-height: 34px;
+    max-width: 86px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.1;
 }
 
 .card-image {
@@ -773,15 +779,21 @@ body {
 
     .enemy-hand,
     .player-hand {
-        width: 100%;
+         width: 100%;
         max-width: 100%;
         padding: 8px 2px 12px;
         justify-content: flex-start;
         overflow-x: auto;
         overflow-y: hidden;
         flex-wrap: nowrap;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
     }
-
+    .player-hand.centered-hand,
+    .enemy-hand.centered-hand {
+        overflow-x: visible;
+        justify-content: center;
+    }
     .battle-area {
         width: 100%;
         min-height: auto;
@@ -805,6 +817,11 @@ body {
     .battle-card {
         width: 185px;
         min-height: 265px;
+    }
+    #player-battle,
+    #enemy-battle {
+        animation: none !important;
+        transform: none !important;
     }
 }
 
