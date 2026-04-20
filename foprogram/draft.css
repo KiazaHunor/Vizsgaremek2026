@@ -566,3 +566,38 @@ hr {
   color: #777;
   height: 100%;
 }
+
+
+
+
+.tournament-side-box {
+  background: rgba(15, 20, 28, 0.95);
+  border: 1px solid #00ff9d;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 20px;
+  box-shadow: 0 0 15px rgba(0,255,157,0.2);
+}
+
+#leaderboard-list {
+  font-size: 14px;
+}
+
+.leaderboard-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.leaderboard-item span {
+  color: #00ff9d;
+  font-weight: bold;
+}
+
+#countdown {
+  font-size: 18px;
+  font-weight: bold;
+  color: #00ff9d;
+  text-align: center;
+}

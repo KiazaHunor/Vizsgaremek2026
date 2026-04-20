@@ -11,9 +11,10 @@
 </head>
 
 <body>
-  <div class="container-fluid  mb-4">
+  <div class="container-fluid mb-4">
     <div class="row justify-content-center">
       <div class="col-12 col-xl-10">
+
         <section class="draft-section">
           <h2 id="cim">Válassz formációt</h2>
           <hr>
@@ -22,8 +23,7 @@
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-3-3')">4-3-3</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-4-2')">4-4-2</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-3-1-2')">4-3-1-2</button>
-            <button class="btn btn-outline-success btn-formation"
-              onclick="loadFormation('4-1-2-1-2')">4-1-2-1-2</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-1-2-1-2')">4-1-2-1-2</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-5-1')">4-5-1</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-2-4')">4-2-4</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-1-4-1')">4-1-4-1</button>
@@ -36,17 +36,15 @@
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('5-3-2')">5-3-2</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('5-2-2-1')">5-2-2-1</button>
             <button class="btn btn-outline-success btn-formation" onclick="loadFormation('5-2-1-2')">5-2-1-2</button>
-
-
           </div>
 
           <div id="formation-container" class="formation-container"></div>
           <div id="extras-container" class="extras-container container-fluid px-0 mt-4"></div>
+
           <div class="row mt-4 g-3 align-items-stretch">
 
-            <!-- BAL: SCORE -->
             <div class="col-12 col-lg-4">
-              <div id="score-box" class="score-card d-none">
+              <div id="score-box" class="score-card">
                 Chemistry: 0 / 3300
                 <br>
                 <small>Rating átlag pont: 0</small>
@@ -55,10 +53,8 @@
               </div>
             </div>
 
-            <!-- KÖZÉP: TOURNAMENT -->
             <div class="col-12 col-lg-4">
               <div id="tournament-box" class="tournament-card d-none">
-
                 <div class="tournament-header">
                   🏆 Napi bajnokság
                 </div>
@@ -67,30 +63,48 @@
                   Betöltés...
                 </div>
 
-                <input type="text" id="team-name-input" class="form-control tournament-input"
-                  placeholder="Csapatnév...">
+                <input
+                  type="text"
+                  id="team-name-input"
+                  class="form-control tournament-input"
+                  placeholder="Csapatnév..."
+                >
 
-                <button id="join-tournament-btn" class="btn tournament-btn" onclick="joinTournament()">
+                <button
+                  id="join-tournament-btn"
+                  class="btn tournament-btn"
+                  onclick="joinTournament()">
                   Nevezés
                 </button>
-
               </div>
-              <a href="leardboard.html" class="btn btn-outline-light mt-2">Leaderboard megnyitása</a>
+
+              <a href="leardboard.html" class="btn btn-outline-light mt-2 w-100">
+                Leaderboard megnyitása
+              </a>
             </div>
 
-            <!-- JOBB: HELY (később leaderboardnak) -->
             <div class="col-12 col-lg-4">
-              <div class="placeholder-card">
-                🔥 Hamarosan leaderboard
+              <div class="tournament-side-box h-100">
+                <h5>🏆 TOP 5</h5>
+                <div id="leaderboard-list">
+                  Betöltés...
+                </div>
+
+                <hr>
+
+                <h6>⏳ Nevezés zár:</h6>
+                <div id="countdown">--:--</div>
               </div>
             </div>
 
           </div>
+
           <div class="back-button-wrap">
             <a href="szep.html" class="btn btn-outline-light mt-4">⬅ Vissza a főoldalra</a>
             <a href="game.html" class="btn btn-outline-light mt-4">⬅ Vissza a formációkhoz</a>
           </div>
         </section>
+
       </div>
     </div>
   </div>
@@ -133,9 +147,6 @@
       </div>
     </div>
   </div>
-
-
-
 
   <script src="game.js"></script>
   <script src="theme.js"></script>
