@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Új jelszó beállítása</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/ujjelszo.css">
+</head>
+<body>
+    <main class="auth-page">
+        <div class="container">
+            <div class="row justify-content-center align-items-center min-vh-100 py-4">
+                <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card auth-card shadow-lg">
+
+                        <div class="card-header text-center py-4">
+                            <h1 class="mb-0 h3">Új jelszó beállítása</h1>
+                        </div>
+
+                        <div class="card-body p-4 p-md-4">
+                            <input type="hidden" id="resetToken">
+
+                            <div class="mb-3">
+                                <label for="pass" class="form-label">Új jelszó</label>
+                                <input type="password" id="pass" class="form-control" placeholder="Új jelszó">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="passconf" class="form-label">Új jelszó újra</label>
+                                <input type="password" id="passconf" class="form-control" placeholder="Új jelszó újra">
+                            </div>
+
+                            <div class="d-grid mb-3">
+                                <button type="button" class="btn btn-main" onclick="resetPassword()">
+                                    Jelszó módosítása
+                                </button>
+                            </div>
+
+                            <div class="auth-links text-center">
+                                <a href="index.html">Vissza a bejelentkezéshez</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script>
+        fillResetTokenFromUrl();
+    </script>
+</body>
+</html>
