@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Data\\QuizDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Data\\QuizDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\UserWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Views\\UserWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Data\\QuizDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\Data\\QuizDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\LoginWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\NapiQuiz.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\NapiQuiz.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NapiQuiz\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\MainWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -86,11 +86,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "LoginWindow.xaml.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\LoginWindow.xaml.cs",
               "RelativeDocumentMoniker": "NapiQuiz\\Views\\LoginWindow.xaml.cs",
@@ -102,27 +102,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "UserWindow.xaml.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\UserWindow.xaml.cs",
               "RelativeDocumentMoniker": "NapiQuiz\\Views\\UserWindow.xaml.cs",
               "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Views\\UserWindow.xaml.cs",
               "RelativeToolTip": "NapiQuiz\\Views\\UserWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB4AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T20:01:53.557Z"
+              "WhenOpened": "2026-03-31T20:01:53.557Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "NapiQuiz\\MainWindow.xaml.cs",
               "ToolTip": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\MainWindow.xaml.cs",
               "RelativeToolTip": "NapiQuiz\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAAABwAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T19:43:32.121Z"
+              "WhenOpened": "2026-03-31T19:43:32.121Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -186,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "QuizDbContext.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\Data\\QuizDbContext.cs",
               "RelativeDocumentMoniker": "NapiQuiz\\Data\\QuizDbContext.cs",
@@ -211,7 +213,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "NapiQuiz.csproj",
               "DocumentMoniker": "C:\\xampp\\htdocs\\oliverhtdoc\\Vizsgaremek2026\\NapiQuiz\\NapiQuiz\\NapiQuiz.csproj",
               "RelativeDocumentMoniker": "NapiQuiz\\NapiQuiz.csproj",

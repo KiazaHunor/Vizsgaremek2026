@@ -6,6 +6,6 @@
     "\\NapiQuiz\\Models",
     "\\NapiQuiz\\Views"
   ],
-  "SelectedNode": "\\NapiQuiz\\Data\\QuizDbContext.cs",
+  "SelectedNode": "\\NapiQuiz\\Views\\UserWindow.xaml.cs",
   "PreviewInSolutionExplorer": false
 }

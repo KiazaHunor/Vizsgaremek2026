@@ -1,7 +1,7 @@
 <?php
 // Adatbázis kapcsolat
 $host = "localhost";
-$dbname = "fizzliga_db";
+$dbname = "draftn-fizz_ady_pepa_hu";
 $dbuser = "root";
 $dbpass = "";
 

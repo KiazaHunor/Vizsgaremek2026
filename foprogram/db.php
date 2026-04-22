@@ -1,7 +1,7 @@
 <?php
 
 $host = 'localhost';
-$db   = 'fizzliga_db';
+$db   = 'draftn-fizz_ady_pepa_hu';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
