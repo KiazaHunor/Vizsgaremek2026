@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fizz Liga – Tabella</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+        <div id="navbar-container"></div>
+    </div>
+
+    <div class="row justify-content-center mt-4 mb-4">
+      <div class="col-12 col-lg-10">
+        <article class="tabella-page-card">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
+            <div>
+              <h3 class="mb-1"><i class="bi bi-table"></i> Fizz Liga Tabella</h3>
+              <p class="tabella-subtitle mb-0">
+                Aktuális állás, pontok és helyezések egy sportos felületen.
+              </p>
+            </div>
+
+            <a class="game-card-btn" href="index.html">
+              <span>Vissza a főoldalra</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.354 5.146a.5.5 0 0 0-.708.708L9.293 7.5H5.5a.5.5 0 0 0 0 1h3.793L7.646 10.146a.5.5 0 0 0 .708.708l2.5-2.5a.5.5 0 0 0 0-.708z" />
+              </svg>
+            </a>
+          </div>
+
+          <hr>
+          <div class="table-page-wrapper">
+            <div id="tabella">Betöltés...</div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="footer-container"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script src="menu.js"></script>
+  <script src="navbar.js"></script>
+  <script src="footer.js"></script>
+  <script src="theme.js"></script>
+</body>
+
+</html>

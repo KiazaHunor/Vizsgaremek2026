@@ -50,23 +50,20 @@ foreach ($tournaments as $t) {
 
     foreach ($entries as $entry) {
 
-        // 🏆 REWARD
         if ($rank == 1) $credits = 100;
         else if ($rank == 2) $credits = 50;
         else if ($rank == 3) $credits = 25;
         else $credits = 5;
 
-        // 🔹 entry frissítés
         $pdo->prepare("
             UPDATE tournament_entries
             SET rank_position = ?, credits_awarded = ?
             WHERE id = ?
         ")->execute([$rank, $credits, $entry['id']]);
 
-        // 🔹 user credit
         $pdo->prepare("
             UPDATE users
-            SET credits = credits + ?
+            SET credit = credit + ?
             WHERE id = ?
         ")->execute([$credits, $entry['user_id']]);
 
