@@ -1,10 +1,15 @@
 <?php
 require_once 'auth.php';
 
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(E_ALL);
+
 header('Content-Type: application/json; charset=utf-8');
 
 $user = $GLOBALS['current_user'];
 $currentUserId = (int)$GLOBALS['current_user_id'];
+$pdo = $GLOBALS['pdo'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $quizStmt = $pdo->prepare("
@@ -42,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $values = [];
 
     if ($newUsername !== '') {
-        if (mb_strlen($newUsername) < 3) {
+        if (strlen($newUsername) < 3) {
             http_response_code(400);
             echo json_encode([
                 'success' => false,
@@ -51,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
 
-        if (mb_strlen($newUsername) > 50) {
+        if (strlen($newUsername) > 50) {
             http_response_code(400);
             echo json_encode([
                 'success' => false,
@@ -77,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($newPassword !== '') {
-        if (mb_strlen($newPassword) < 6) {
+        if (strlen($newPassword) < 6) {
             http_response_code(400);
             echo json_encode([
                 'success' => false,
@@ -97,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileTmp = $_FILES['profile_image']['tmp_name'];
         $extension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-        if (!in_array($extension, $allowedExtensions)) {
+        if (!in_array($extension, $allowedExtensions, true)) {
             http_response_code(400);
             echo json_encode([
                 'success' => false,
@@ -118,11 +123,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $uploadDir = dirname(__DIR__) . '/uploads/profile_images/';
 
         if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
+            if (!mkdir($uploadDir, 0755, true)) {
+                http_response_code(500);
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'Nem sikerült létrehozni a képfeltöltési mappát'
+                ]);
+                exit();
+            }
+        }
+
+        if (!is_writable($uploadDir)) {
+            http_response_code(500);
+            echo json_encode([
+                'success' => false,
+                'error' => 'A feltöltési mappa nem írható'
+            ]);
+            exit();
         }
 
         $newFileName = 'user_' . $currentUserId . '_' . time() . '.' . $extension;
         $targetPath = $uploadDir . $newFileName;
+
+        // FONTOS: relatív útvonal az adatbázisba
         $dbPath = 'uploads/profile_images/' . $newFileName;
 
         if (!move_uploaded_file($fileTmp, $targetPath)) {
@@ -134,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
 
-        if (!empty($user['profile_image'])) {
+        if (!empty($user['profile_image']) && strpos($user['profile_image'], 'uploads/profile_images/') === 0) {
             $oldPath = dirname(__DIR__) . '/' . $user['profile_image'];
             if (file_exists($oldPath)) {
                 unlink($oldPath);
@@ -181,26 +204,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     try {
-        if (!empty($user['profile_image'])) {
+        if (!empty($user['profile_image']) && strpos($user['profile_image'], 'uploads/profile_images/') === 0) {
             $oldPath = dirname(__DIR__) . '/' . $user['profile_image'];
             if (file_exists($oldPath)) {
                 unlink($oldPath);
             }
         }
 
-        $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
+        $stmt = $pdo->prepare("UPDATE users SET profile_image = NULL WHERE id = ?");
         $stmt->execute([$currentUserId]);
 
         echo json_encode([
             'success' => true,
-            'message' => 'A profil sikeresen törölve lett.'
+            'message' => 'A profilkép sikeresen törölve lett.'
         ]);
         exit();
     } catch (Exception $e) {
         http_response_code(500);
         echo json_encode([
             'success' => false,
-            'error' => 'Nem sikerült törölni a profilt.'
+            'error' => 'Nem sikerült törölni a profilképet.'
         ]);
         exit();
     }

@@ -63,7 +63,7 @@ if ($action === 'request') {
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'probaa288@gmail.com';
-        $mail->Password   ='gsru elku prue lbrl'; 
+        $mail->Password   = 'gsru elku prue lbrl';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         $mail->CharSet    = 'UTF-8';
@@ -72,7 +72,8 @@ if ($action === 'request') {
         $mail->addAddress($email, $user['username']);
         $mail->isHTML(true);
 
-        $resetLink = 'http://localhost/oliverhtdoc/Vizsgaremek2026/bejelentkezo/frontend/reset_jelszo.html?token=' . urlencode($resetToken);
+        $resetLink = 'https://draftn-fizz.local.pepa.hu/bejelentkezo/frontend/reset_jelszo.html?token=' . urlencode($resetToken);
+
         $mail->Subject = 'Jelszó visszaállítás';
         $mail->Body = "Szia {$user['username']}!<br><br>Kattints az alábbi linkre az új jelszó beállításához:<br><a href='$resetLink'>$resetLink</a><br><br>A link 1 óráig érvényes.";
 
@@ -93,6 +94,7 @@ if ($action === 'reset') {
     $password = trim($data['password'] ?? '');
     $password_conf = trim($data['password_conf'] ?? '');
 
+
     if (!$token || !$password || !$password_conf) {
         http_response_code(400);
         echo json_encode(['success' => false, 'error' => 'Hiányzó adatok']);
@@ -111,13 +113,38 @@ if ($action === 'reset') {
         exit();
     }
 
-    $stmt = $pdo->prepare('SELECT id FROM users WHERE password_reset_token = ? AND password_reset_expiry > NOW() LIMIT 1');
+    $stmt = $pdo->prepare('SELECT id, password_reset_token, password_reset_expiry FROM users WHERE password_reset_token = ? LIMIT 1');
     $stmt->execute([$token]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+
     if (!$user) {
         http_response_code(400);
-        echo json_encode(['success' => false, 'error' => 'Érvénytelen vagy lejárt token']);
+        echo json_encode([
+            'success' => false,
+            'error' => 'Nincs ilyen token az adatbázisban',
+            'debug_token' => $token
+        ]);
+        exit();
+    }
+
+    if (!$user['password_reset_expiry']) {
+        http_response_code(400);
+        echo json_encode([
+            'success' => false,
+            'error' => 'A tokenhez nincs lejárati idő mentve'
+        ]);
+        exit();
+    }
+
+    if (strtotime($user['password_reset_expiry']) <= time()) {
+        http_response_code(400);
+        echo json_encode([
+            'success' => false,
+            'error' => 'A token lejárt',
+            'expiry' => $user['password_reset_expiry'],
+            'now' => date('Y-m-d H:i:s')
+        ]);
         exit();
     }
 

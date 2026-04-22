@@ -27,8 +27,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         'credits' => (int)$row['credits'],
         'current_streak' => (int)$row['current_streak'],
         'profile_image' => !empty($row['profile_image'])
-            ? 'http://localhost/oliverhtdoc/Vizsgaremek2026/bejelentkezo/backend/' . $row['profile_image']
-            : 'https://via.placeholder.com/50'
+                ? $row['profile_image']
+                : 'https://via.placeholder.com/50'
     ];
 }
 

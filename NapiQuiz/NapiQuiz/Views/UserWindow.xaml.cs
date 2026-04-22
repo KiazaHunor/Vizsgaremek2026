@@ -53,7 +53,7 @@ namespace NapiQuiz.Views
             try
             {
                 using var db = new QuizDbContext();
-
+                
                 bool alreadyAnswered = db.UserAnswers.Any(a =>
                     a.UserId == _loggedInUser.Id &&
                     a.AnswerDate.Date == DateTime.Today);
