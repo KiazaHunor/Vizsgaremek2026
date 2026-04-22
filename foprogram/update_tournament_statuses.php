@@ -50,10 +50,12 @@ foreach ($tournaments as $t) {
 
     foreach ($entries as $entry) {
 
-        if ($rank == 1) $credits = 100;
-        else if ($rank == 2) $credits = 50;
-        else if ($rank == 3) $credits = 25;
-        else $credits = 5;
+        if ($rank == 1) $credits = 1000;
+        else if ($rank == 2) $credits = 850;
+        else if ($rank == 3) $credits = 750;
+        else if ($rank == 4) $credits = 650;
+        else if ($rank == 5) $credits = 500;
+        else $credits = 200;
 
         $pdo->prepare("
             UPDATE tournament_entries

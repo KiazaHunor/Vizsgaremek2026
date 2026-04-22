@@ -201,3 +201,19 @@ hr {
     font-size: 0.9rem;
   }
 }
+
+body.light-mode {
+  background: linear-gradient(180deg, #e8f5e9, #c8e6c9);
+  color: #1f2937;
+}
+
+body.light-mode .news-card {
+  background: rgba(255,255,255,0.92);
+  color: #1f2937;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+body.light-mode .card-title,
+body.light-mode .card-text {
+  color: #1f2937;
+}

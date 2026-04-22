@@ -87,3 +87,16 @@ ul li:last-child {
   border-radius: 10px;
   box-shadow: 0 0 12px var(--accent);
 }
+body.light-mode .about-card {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1f2937;
+  border: 1px solid #d6e4d8;
+}
+
+body.light-mode p {
+  color: #4b5563;
+}
+
+body.light-mode ul li {
+  color: #1f2937;
+}

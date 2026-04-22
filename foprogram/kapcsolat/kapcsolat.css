@@ -107,3 +107,22 @@ label {
   font-weight: 600;
 }
 
+body.light-mode .contact-card {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1f2937;
+  border: 1px solid #d6e4d8;
+}
+
+body.light-mode .form-control {
+  background: #ffffff;
+  color: #1f2937;
+  border: 1px solid #cfe0d1;
+}
+
+body.light-mode .form-control::placeholder {
+  color: #6b7280;
+}
+
+body.light-mode label {
+  color: #374151;
+}

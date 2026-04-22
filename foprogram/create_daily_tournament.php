@@ -7,9 +7,9 @@ try {
     $today = date('Y-m-d');
 
     $name = 'Napi bajnokság - ' . $today;
-    $startAt = $today . ' 19:35:00';
-    $entryDeadline = $today . ' 19:40:00';
-    $resultAt = $today . ' 19:45:00';
+    $startAt = $today . ' 11:45:00';
+    $entryDeadline = $today . ' 12:00:00';
+    $resultAt = $today . ' 12:01:00';
 
     $stmt = $pdo->prepare("
         SELECT id
