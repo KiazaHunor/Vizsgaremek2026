@@ -2,7 +2,7 @@
 
 $host = 'localhost';
 $db   = 'draftn-fizz_ady_pepa_hu';
-$user = ' draftn-fizz_ady_pepa_hu_usr';
+$user = 'draftn-fizz_ady_pepa_hu_usr';
 $pass = 'QkRyx16QP4LnhEYCkGEUEg';
 $charset = 'utf8mb4';
 

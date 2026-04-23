@@ -11,7 +11,7 @@ namespace NapiQuiz.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = "server=localhost;database=fizzliga_db;user=root;password=;";
+            string connectionString = "host=localhost;database=draftn-fizz_ady_pepa_hu;user=draftn-fizz_ady_pepa_hu_usr;password=QkRyx16QP4LnhEYCkGEUEg;";
 
             optionsBuilder.UseMySql(
                 connectionString,

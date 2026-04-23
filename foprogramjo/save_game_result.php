@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 
-require_once __DIR__ . '/../bejelentkezo/backend/api/auth.php';
+require_once __DIR__ . '/bejelentkezo/backend/api/auth.php';
 
 $data = json_decode(file_get_contents("php://input"), true);
 

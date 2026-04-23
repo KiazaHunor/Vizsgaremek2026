@@ -2,8 +2,8 @@
 header('Content-Type: application/json; charset=utf-8');
 
 require_once __DIR__ . '/mail_kuldes.php';
-require_once __DIR__ . '/../../bejelentkezo/backend/api/auth.php';
-require_once __DIR__ . '/../../bejelentkezo/backend/db.php';
+require_once __DIR__ . '/../bejelentkezo/backend/api/auth.php';
+require_once __DIR__ . '/../bejelentkezo/backend/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     http_response_code(405);
