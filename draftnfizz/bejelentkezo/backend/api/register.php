@@ -1,0 +1,144 @@
+<?php
+require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../db.php';
+require __DIR__ . '/../../../vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+/*
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
+header('Content-Type: application/json; charset=utf-8');
+$data = json_decode(file_get_contents("php://input"), true);
+
+if (!$data) {
+    echo json_encode([
+        "success" => false,
+        "error" => "Hibas vagy ures JSON adat"
+    ]);
+    exit;
+}
+
+
+header('Content-Type: application/json');
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['success' => false, 'error' => 'Csak POST kérés engedélyezett']);
+    exit();
+}
+
+$input = file_get_contents('php://input');
+$data = json_decode($input, true);
+
+if (!$data || !isset($data['username'], $data['password'], $data['password_conf'], $data['email'])) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'Hiányzó adatok (felhasználónév, jelszó, email)']);
+    exit();
+}
+
+$username = trim($data['username']);
+$email = trim($data['email']);
+$password = trim($data['password']);
+$password_conf = trim($data['password_conf']);
+
+if (empty($username) || empty($password) || empty($password_conf) || empty($email)) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'Minden mező kitöltése kötelező']);
+    exit();
+}
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'Érvénytelen email cím formátum']);
+    exit();
+}
+
+if (strlen($username) < 3) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'A felhasználónév legalább 3 karakter']);
+    exit();
+}
+
+if (strlen($password) < 6) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'A jelszó legalább 6 karakter']);
+    exit();
+}
+
+if ($password !== $password_conf) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'A jelszavak nem egyeznek']);
+    exit();
+}
+
+$stmt = $pdo->prepare("SELECT id FROM users WHERE  email = ?");
+$stmt->execute([ $email]);
+if ($stmt->rowCount() > 0) {
+    http_response_code(409);
+    echo json_encode(['success' => false, 'error' => 'Ezzel az email címmel már regisztráltál!']);
+    exit();
+}
+$stmt = $pdo->prepare("SELECT id FROM users WHERE  username = ?");
+$stmt->execute([$username]);
+if ($stmt->rowCount() > 0) {
+    http_response_code(409);
+    echo json_encode(['success' => false, 'error' => 'Ez a felhasznalónév foglalt!']);
+    exit();
+}
+
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+$email_token = bin2hex(random_bytes(32));
+
+try {
+    $stmt = $pdo->prepare("INSERT INTO users (username, password, email, email_token, email_verified) VALUES (?, ?, ?, ?, 0)");
+    $stmt->execute([$username, $hashed_password, $email, $email_token]);
+
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host       = 'smtp.gmail.com';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'probaa288@gmail.com';
+    $mail->Password   = 'gsru elku prue lbrl'; 
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;
+    $mail->CharSet    = 'UTF-8';
+
+    $mail->setFrom('probaa288@gmail.com', 'Weboldal');
+    $mail->addAddress($email, $username);
+    $mail->isHTML(true);
+
+    $verify_link = get_base_url_for_email() . "/bejelentkezo/backend/api/verify_email.php?token=" . urlencode($email_token);
+    $mail->Subject = "Email megerősítés";
+    $mail->Body    = "Szia $username!<br><br>Kattints a linkre a fiókod aktiválásához:<br>
+                      <a href='$verify_link'>$verify_link</a><br><br>Köszönjük!";
+    
+    $mail->send();
+    $email_sent = true;
+    
+}  catch (Exception $e) {
+    error_log("Email kuldesi hiba: " . $e->getMessage());
+    $email_sent = false;
+
+    echo json_encode([
+        'success' => false,
+        'error' => 'Email kuldesi hiba: ' . $e->getMessage()
+    ]);
+    exit();
+
+}
+
+// Válasz a kliensnek
+$response = [
+    'success' => $email_sent,
+    'email_sent' => $email_sent,
+    'message' => $email_sent
+        ? 'Sikeres regisztráció. Emailt küldtünk a megadott címre.'
+        : 'A regisztráció sikerült, de az email küldése nem sikerült.'
+];
+
+echo json_encode($response);

@@ -1,0 +1,144 @@
+function loadNews() {
+  fetch("hirek.php")
+    .then(r => r.json())
+    .then(data => {
+
+      const newsContainer = document.getElementById("news-container");
+      newsContainer.innerHTML = "";
+
+      if (data.error) {
+        newsContainer.innerHTML =
+          `<div class="alert alert-danger">${data.error}</div>`;
+        return;
+      }
+
+      data.forEach(item => {
+        const col = document.createElement("div");
+        col.className = "col-12 mb-4";
+        col.innerHTML = `
+          <div class="card news-card h-100" onclick="window.open('${item.link}', '_blank')">
+            <div class="card-body">
+              <h5 class="card-title">${item.title}</h5>
+              <p class="card-text">${item.desc}</p>
+            </div>
+          </div>
+        `;
+        newsContainer.appendChild(col);
+      });
+
+    })
+    .catch(() => {
+      document.getElementById("news-container").innerHTML =
+        `<div class="alert alert-danger">Hiba a hírek betöltésénél</div>`;
+    });
+}
+
+loadNews();
+setInterval(loadNews, 60000);
+
+//TABELLA
+
+
+
+function loadTabella() {
+  fetch("../tabella.php")
+    .then(r => r.json())
+    .then(data => {
+      if (data.error) {
+        document.getElementById("tabella").innerHTML =
+          `<div class="alert alert-danger">${data.error}</div>`;
+        return;
+      }
+
+      let html = `
+        <div class="table-responsive">
+          <table class="table table-striped table-sm align-middle mb-0">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Csapat</th>
+                <th>M</th>
+                <th>Gy</th>
+                <th>D</th>
+                <th>V</th>
+                <th>Pont</th>
+              </tr>
+            </thead>
+            <tbody>
+      `;
+
+      data.forEach(r => {
+        html += `<tr>
+          <td>${r.hely}</td>
+          <td class="text-nowrap">${r.csapat}</td>
+          <td>${r.meccs}</td>
+          <td>${r.gy}</td>
+          <td>${r.d}</td>
+          <td>${r.v}</td>
+          <td>${r.pont}</td>
+        </tr>`;
+      });
+
+      html += `
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      document.getElementById("tabella").innerHTML = html;
+    })
+    .catch(() => {
+      document.getElementById("tabella").innerHTML =
+        `<div class="alert alert-danger">Betöltési hiba</div>`;
+    });
+}
+
+loadTabella();
+setInterval(loadTabella, 60000);
+
+fetch("../gollovolista.php")
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById("gollovolista");
+
+    if (data.error) {
+      container.innerHTML = data.error;
+      return;
+    }
+
+    let html = `
+      <div class="table-responsive">
+        <table class="table table-striped table-sm align-middle mb-0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Játékos</th>
+              <th>Csapat</th>
+              <th>Gól</th>
+            </tr>
+          </thead>
+          <tbody>
+    `;
+
+    data.forEach(item => {
+      html += `
+        <tr>
+          <td>${item.hely}</td>
+          <td class="text-nowrap">${item.jatekos}</td>
+          <td class="text-nowrap">${item.csapat}</td>
+          <td>${item.gol}</td>
+        </tr>
+      `;
+    });
+
+    html += `
+          </tbody>
+        </table>
+      </div>
+    `;
+
+    container.innerHTML = html;
+  })
+  .catch(() => {
+    document.getElementById("gollovolista").innerHTML = "Hiba történt a betöltés során";
+  });
