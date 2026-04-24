@@ -72,7 +72,7 @@ if ($action === 'request') {
         $mail->addAddress($email, $user['username']);
         $mail->isHTML(true);
 
-        $resetLink = 'https://draftn-fizz.local.pepa.hu/bejelentkezo/frontend/reset_jelszo.html?token=' . urlencode($resetToken);
+        $resetLink = get_base_url_for_email() . "/bejelentkezo/frontend/reset_jelszo.html?token=" . urlencode($resetToken);
 
         $mail->Subject = 'Jelszó visszaállítás';
         $mail->Body = "Szia {$user['username']}!<br><br>Kattints az alábbi linkre az új jelszó beállításához:<br><a href='$resetLink'>$resetLink</a><br><br>A link 1 óráig érvényes.";

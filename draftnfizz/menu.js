@@ -5,14 +5,14 @@ function updateMenuAuth() {
   if (!bejelLink) return;
 
   if (!token) {
-    bejelLink.href = "bejelentkezo/frontend/index.html";
+    bejelLink.href = "/bejelentkezo/frontend/index.html";
     bejelLink.textContent = "👤 Bejelentkezés / Regisztráció";
     bejelLink.classList.remove("text-success");
     bejelLink.classList.add("text-warning");
     return;
   }
 
-  fetch('bejelentkezo/backend/api/profile.php', {
+  fetch('/bejelentkezo/backend/api/profile.php', {
   headers: {
     Authorization: 'Bearer ' + localStorage.getItem('token')
   }
@@ -26,10 +26,10 @@ function updateMenuAuth() {
     .then((d) => {
       const user = d.user;
 
-      bejelLink.href = "bejelentkezo/frontend/dashboard.html";
+      bejelLink.href = "/bejelentkezo/frontend/dashboard.html";
 
       if (user.profile_image) {
-        const imageUrl = "bejelentkezo/backend/" + user.profile_image;
+        const imageUrl = "/bejelentkezo/backend/" + user.profile_image;
         bejelLink.innerHTML = `
           <img src="${imageUrl}"
                style="width:30px;height:30px;border-radius:50%;object-fit:cover;margin-right:6px;">
@@ -45,7 +45,7 @@ function updateMenuAuth() {
     .catch((error) => {
       console.error("Profil lekérési hiba:", error);
 
-      bejelLink.href = "bejelentkezo/frontend/index.html";
+      bejelLink.href = "/bejelentkezo/frontend/index.html";
       bejelLink.textContent = "👤 Bejelentkezés / Regisztráció";
       bejelLink.classList.remove("text-success");
       bejelLink.classList.add("text-warning");

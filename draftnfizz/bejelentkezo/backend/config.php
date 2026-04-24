@@ -16,7 +16,7 @@ define("JWS_SECRET", "nagyon_titkos_kulcs_123_13C_bejelentkezo");
 define('PUBLIC_BASE_URL', 'https://draftn-fizz.ady.pepa.hu');
 define('LOCAL_BASE_URL', 'https://draftn-fizz.local.pepa.hu');
 
-function get_base_url_for_email() {
+function get_base_url() {
     $host = $_SERVER['HTTP_HOST'] ?? '';
 
     if ($host === 'draftn-fizz.local.pepa.hu') {

@@ -112,7 +112,7 @@ try {
     $mail->addAddress($email, $username);
     $mail->isHTML(true);
 
-    $verify_link = get_base_url_for_email() . "/bejelentkezo/backend/api/verify_email.php?token=" . urlencode($email_token);
+    $verify_link = get_base_url() . "/bejelentkezo/backend/api/verify_email.php?token=" . urlencode($email_token);
     $mail->Subject = "Email megerősítés";
     $mail->Body    = "Szia $username!<br><br>Kattints a linkre a fiókod aktiválásához:<br>
                       <a href='$verify_link'>$verify_link</a><br><br>Köszönjük!";
