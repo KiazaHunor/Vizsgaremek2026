@@ -48,3 +48,7 @@
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  ALTER TABLE users 
+MODIFY username VARCHAR(255) 
+CHARACTER SET utf8mb4 
+COLLATE utf8mb4_bin NOT NULL;

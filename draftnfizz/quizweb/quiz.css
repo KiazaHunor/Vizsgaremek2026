@@ -1,13 +1,66 @@
-body {
-  font-family: Arial;
-  text-align: center;
+.quiz-box {
+  max-width: 700px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 18px;
+  padding: 30px;
+  color: white;
 }
 
-#quiz-container {
-  margin-top: 50px;
+/* 🔙 vissza gomb */
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  text-decoration: none;
+  background: #198754;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  z-index: 999;
 }
 
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
+.back-btn:hover {
+  background: #157347;
+  color: white;
+}
+
+.answer-btn {
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,0.1);
+  color: white;
+  transition: 0.2s;
+}
+
+.answer-btn:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+.answer-btn.selected {
+  border: 2px solid #198754;
+  background-color: #198754;
+  color: white;
+}
+
+
+body.light-mode .quiz-box {
+  background: #ffffff;
+  color: #222;
+}
+
+body.light-mode .answer-btn {
+  background-color: #f1f1f1;
+  color: #222;
+  border: 2px solid #ccc;
+}
+
+body.light-mode .answer-btn:hover {
+  background-color: #e0e0e0;
+}
+
+body.light-mode .answer-btn.selected {
+  background-color: #198754;
+  color: white;
 }

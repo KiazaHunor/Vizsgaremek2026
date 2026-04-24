@@ -29,7 +29,7 @@ namespace NapiQuiz.Views
 
                 int rank = 1;
 
-                foreach (var item in result.leaderboard)
+                foreach (var item in result.leaderboard.Where(x => x.Score > 0))
                 {
                     string rankDisplay = rank switch
                     {

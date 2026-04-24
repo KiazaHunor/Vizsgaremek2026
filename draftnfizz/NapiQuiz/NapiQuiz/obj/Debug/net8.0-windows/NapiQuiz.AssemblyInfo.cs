@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NapiQuiz")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+557653b44fe6e1397051b89dd82b5d008e2c54ff")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18a89100feba3702aa3fa5dbc19acceef30b08bd")]
 [assembly: System.Reflection.AssemblyProductAttribute("NapiQuiz")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NapiQuiz")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

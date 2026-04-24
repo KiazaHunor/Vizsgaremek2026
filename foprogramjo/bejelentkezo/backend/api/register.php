@@ -31,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-// JSON input feldolgozása
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
@@ -46,7 +45,6 @@ $email = trim($data['email']);
 $password = trim($data['password']);
 $password_conf = trim($data['password_conf']);
 
-// Validálás
 if (empty($username) || empty($password) || empty($password_conf) || empty($email)) {
     http_response_code(400);
     echo json_encode(['success' => false, 'error' => 'Minden mező kitöltése kötelező']);
@@ -77,7 +75,6 @@ if ($password !== $password_conf) {
     exit();
 }
 
-// Ellenőrzés, hogy létezik-e már username vagy email
 $stmt = $pdo->prepare("SELECT id FROM users WHERE  email = ?");
 $stmt->execute([ $email]);
 if ($stmt->rowCount() > 0) {
@@ -93,18 +90,14 @@ if ($stmt->rowCount() > 0) {
     exit();
 }
 
-// Hash a jelszóhoz
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-// Email token generálása
 $email_token = bin2hex(random_bytes(32));
 
 try {
-    // Beszúrás az adatbázisba
     $stmt = $pdo->prepare("INSERT INTO users (username, password, email, email_token, email_verified) VALUES (?, ?, ?, ?, 0)");
     $stmt->execute([$username, $hashed_password, $email, $email_token]);
 
-    // PHPMailer
     $mail = new PHPMailer(true);
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
@@ -119,7 +112,7 @@ try {
     $mail->addAddress($email, $username);
     $mail->isHTML(true);
 
-    $verify_link = "https://draftn-fizz.local.pepa.hu/bejelentkezo/backend/api/verify_email.php?token=$email_token";
+    $verify_link = get_base_url_for_email() . "/bejelentkezo/backend/api/verify_email.php?token=" . urlencode($email_token);
     $mail->Subject = "Email megerősítés";
     $mail->Body    = "Szia $username!<br><br>Kattints a linkre a fiókod aktiválásához:<br>
                       <a href='$verify_link'>$verify_link</a><br><br>Köszönjük!";

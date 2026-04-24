@@ -30,7 +30,7 @@ function getNavbarPath() {
     return "../navbar.html";
   }
 
-  return "navbar.html";
+  return "/navbar.html";
 }
 
 function loadCredits() {
@@ -38,7 +38,7 @@ function loadCredits() {
 
   if (!token) return;
 
-  fetch("get_user_credits.php", {
+  fetch("/get_user_credits.php", {
     headers: {
       Authorization: "Bearer " + token
     }
@@ -53,12 +53,10 @@ function loadCredits() {
     }
   });
 }
-fetch("navbar.html")
+fetch("/navbar.html")
   .then(res => res.text())
   .then(data => {
     document.getElementById("navbar-container").innerHTML = data;
-
-    // 👇 EZ A LÉNYEG
     loadCredits();
   });
 document.addEventListener("DOMContentLoaded", loadCredits);
