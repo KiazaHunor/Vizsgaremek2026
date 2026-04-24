@@ -1,5 +1,5 @@
-let currentChallenger = null; // "player" | "enemy"
-let phase = "waiting"; // waiting | chooseStat | chooseCard | battle | enemyThinking | finished
+let currentChallenger = null;
+let phase = "waiting"; 
 let roundLocked = false;
 
 let playerScore = 0;

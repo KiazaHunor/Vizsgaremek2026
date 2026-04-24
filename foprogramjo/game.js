@@ -4,7 +4,6 @@ const token = localStorage.getItem("token");
 let activeTournament = null;
 
 if (!token) {
-  alert("A draft használatához be kell jelentkezned!");
   window.location.href = "../bejelentkezo/frontend/index.html";
 }
 

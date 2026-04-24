@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 
-require_once __DIR__ . '/../bejelentkezo/backend/api/auth.php';
+require_once __DIR__ . '/bejelentkezo/backend/api/auth.php';
 
 $currentUserId = (int)($GLOBALS['current_user_id'] ?? 0);
 
