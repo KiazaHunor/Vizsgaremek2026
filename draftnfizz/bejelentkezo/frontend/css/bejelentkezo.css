@@ -141,3 +141,55 @@ body {
         font-size: 0.95rem;
     }
 }
+
+
+
+
+
+/* ===== LIGHT MODE FIX ===== */
+body.light-mode {
+    background: linear-gradient(135deg, #dff5e3, #f4fff6) !important;
+    color: #132018 !important;
+}
+
+body.light-mode .auth-card {
+    background: #ffffff !important;
+    border: 1px solid #b7dfbf !important;
+    box-shadow: 0 0 25px rgba(0, 100, 45, 0.18);
+}
+
+body.light-mode .card-header {
+    background: linear-gradient(135deg, #b9efc5, #e8fff0) !important;
+    border-bottom: 1px solid #b7dfbf !important;
+}
+
+body.light-mode .card-header h1,
+body.light-mode .card-header h4 {
+    color: #008f4c !important;
+}
+
+body.light-mode .card-body,
+body.light-mode .form-label,
+body.light-mode .helper-text,
+body.light-mode .text-secondary-custom,
+body.light-mode p {
+    color: #132018 !important;
+}
+
+body.light-mode .form-control {
+    background: #f3fff5 !important;
+    color: #132018 !important;
+    border: 1px solid #8fd69d !important;
+}
+
+body.light-mode .form-control::placeholder {
+    color: #5f8068 !important;
+}
+
+body.light-mode .auth-links a {
+    color: #008f4c !important;
+}
+
+body.light-mode .auth-links a:hover {
+    color: #00b765 !important;
+}

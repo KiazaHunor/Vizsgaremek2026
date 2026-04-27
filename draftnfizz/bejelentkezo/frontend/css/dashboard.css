@@ -242,3 +242,86 @@ hr {
         height: 120px;
     }
 }
+
+
+
+
+
+
+
+
+
+/* ===== LIGHT MODE FIX ===== */
+body.light-mode {
+    background: linear-gradient(135deg, #dff5e3, #f4fff6) !important;
+    color: #132018 !important;
+}
+
+body.light-mode .custom-navbar {
+    background: linear-gradient(135deg, #b9efc5, #e8fff0) !important;
+    border-bottom: 1px solid #9bd7a7;
+}
+
+body.light-mode .navbar-brand {
+    color: #008f4c !important;
+}
+
+body.light-mode .profile-card {
+    background: #ffffff !important;
+    border: 1px solid #b7dfbf !important;
+    box-shadow: 0 0 25px rgba(0, 100, 45, 0.18);
+}
+
+body.light-mode .welcome-title,
+body.light-mode .profile-label,
+body.light-mode .form-label,
+body.light-mode .card-body,
+body.light-mode p,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode strong {
+    color: #132018 !important;
+}
+
+body.light-mode .text-light {
+    color: #132018 !important;
+}
+
+body.light-mode .text-muted {
+    color: #5f8068 !important;
+}
+
+body.light-mode .info-box {
+    background: #f3fff5 !important;
+    border: 1px solid #b7dfbf !important;
+}
+
+body.light-mode .profile-badge {
+    background: #d8f8df !important;
+    color: #008f4c !important;
+}
+
+body.light-mode .form-control {
+    background: #f3fff5 !important;
+    color: #132018 !important;
+    border: 1px solid #8fd69d !important;
+}
+
+body.light-mode .form-control::placeholder {
+    color: #5f8068 !important;
+}
+
+body.light-mode .btn.bg-transparent.text-light {
+    color: #132018 !important;
+}
+
+body.light-mode hr {
+    border-color: #b7dfbf !important;
+    opacity: 1;
+}
+
+body.light-mode .profile-image-picker {
+    background: #f3fff5 !important;
+    border-color: #8fd69d !important;
+}

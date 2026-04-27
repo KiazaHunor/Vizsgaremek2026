@@ -1320,3 +1320,38 @@ body.light-mode .footer-bottom {
   border-top: 1px solid rgba(24, 48, 36, 0.08);
   background: rgba(255,255,255,0.35);
 }
+
+
+
+.tagline-container {
+  position: relative;
+}
+
+.header-quote {
+  position: absolute;
+  right: 15px;
+  top: 0;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .tagline-container {
+    position: static;
+    text-align: center;
+  }
+
+  .header-quote {
+    position: static;
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    white-space: normal;
+    text-align: center;
+  }
+}

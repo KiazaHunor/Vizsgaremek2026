@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="kovetkezoFordulo.css">
+</head>
+
+<body>
+
+    <div class="page-header">
+        <a href="/index.html" class="back-btn">⬅ Vissza</a>
+         <img src="ember.gif" class="gif-icon">
+    </div>
+    <div class="next-round-box text-center mt-4">
+        <h1>⏳ Következő forduló</h1>
+        <div id="next-round-time" class="small mb-2"></div>
+        <div id="countdown" class="countdown"></div>
+    </div>
+
+    <script>
+        const tournaments = [
+            ["08:00", "09:00"],
+            ["10:00", "11:00"],
+            ["12:00", "13:00"],
+            ["14:00", "15:00"],
+            ["16:00", "17:00"],
+            ["18:00", "19:00"],
+            ["20:00", "21:00"],
+            ["22:00", "23:00"],
+        ];
+
+        function getTournamentState() {
+            const now = new Date();
+
+            for (const [start, end] of tournaments) {
+                const [sh, sm] = start.split(":").map(Number);
+                const [eh, em] = end.split(":").map(Number);
+
+                const startTime = new Date();
+                startTime.setHours(sh, sm, 0, 0);
+
+                const endTime = new Date();
+                endTime.setHours(eh, em, 0, 0);
+
+                if (now >= startTime && now < endTime) {
+                    return {
+                        status: "running",
+                        currentEnd: endTime
+                    };
+                }
+
+                if (now < startTime) {
+                    return {
+                        status: "break",
+                        nextStart: startTime
+                    };
+                }
+            }
+
+            const tomorrowStart = new Date();
+            tomorrowStart.setDate(tomorrowStart.getDate() + 1);
+            tomorrowStart.setHours(8, 0, 0, 0);
+
+            return {
+                status: "break",
+                nextStart: tomorrowStart
+            };
+        }
+
+        function startNextRoundTimer() {
+            const countdownEl = document.getElementById("countdown");
+            const textEl = document.getElementById("next-round-time");
+
+            if (!countdownEl || !textEl) return;
+
+            function updateTimer() {
+                const state = getTournamentState();
+                const now = new Date();
+
+                if (state.status === "running") {
+                    const diff = state.currentEnd - now;
+
+                    textEl.textContent = "🔥 Jelenleg bajnokság van!";
+                    countdownEl.textContent = "Nevezési idő vége: " + formatTime(diff);
+                    return;
+                }
+
+                const diff = state.nextStart - now;
+
+                textEl.textContent =
+                    "⏳ Szünet van. Következő bajnokság: " +
+                    state.nextStart.toLocaleTimeString("hu-HU", {
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    });
+
+                countdownEl.textContent = formatTime(diff);
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        function formatTime(ms) {
+            if (ms <= 0) return "00:00:00";
+
+            const h = Math.floor(ms / (1000 * 60 * 60));
+            const m = Math.floor((ms / (1000 * 60)) % 60);
+            const s = Math.floor((ms / 1000) % 60);
+
+            return (
+                String(h).padStart(2, "0") +
+                ":" +
+                String(m).padStart(2, "0") +
+                ":" +
+                String(s).padStart(2, "0")
+            );
+        }
+
+        document.addEventListener("DOMContentLoaded", startNextRoundTimer);
+
+    </script>
+    <script src="theme.js"></script>
+</body>
+
+</html>
