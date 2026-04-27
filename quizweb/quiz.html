@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Napi kvíz</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+
+  <div id="navbar-container"></div>
+
+  
+
+  <main class="container py-5">
+    <div class="quiz-box mx-auto">
+      <h1 class="text-center mb-4">❓ Napi kvíz</h1>
+
+      <div id="quiz-message" class="text-center mb-3"></div>
+
+      <h3 id="question-text" class="text-center mb-4">Kérdés betöltése...</h3>
+
+      <div id="answers" class="d-grid gap-3"></div>
+
+      <button id="submit-btn" class="btn btn-success mt-4 w-100" onclick="submitAnswer()">
+        Válasz elküldése
+      </button>
+
+      <div id="result" class="text-center mt-4">
+        <a href="../index.html" class="btn-back">⬅ Vissza a főoldalra</a>
+      </div>
+    </div>
+  </main>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../theme.js"></script>
+  <script src="../menu.js"></script>
+  <script src="../navbar.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

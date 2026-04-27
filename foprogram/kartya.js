@@ -1,3 +1,11 @@
+const token = localStorage.getItem("token");
+let activeTournament = null;
+
+if (!token) {
+  alert("A kártyajáték használatához be kell jelentkezned!");
+  window.location.href = "../bejelentkezo/frontend/index.html";
+}
+
 let currentChallenger = null; // "player" | "enemy"
 let phase = "waiting"; // waiting | chooseStat | chooseCard | battle | enemyThinking | finished
 let roundLocked = false;
@@ -516,6 +524,12 @@ function updateHandLayout() {
 function saveGameResult(result, playerScore, enemyScore) {
     const token = localStorage.getItem("token");
 
+    console.log("saveGameResult meghívva");
+    console.log("token:", token);
+    console.log("result:", result);
+    console.log("playerScore:", playerScore);
+    console.log("enemyScore:", enemyScore);
+
     if (!token) {
         console.log("Nincs bejelentkezett felhasználó, a statisztika nem kerül mentésre.");
         return;
@@ -533,7 +547,17 @@ function saveGameResult(result, playerScore, enemyScore) {
             enemy_score: enemyScore
         })
     })
-    .then(response => response.json())
+    .then(async response => {
+        console.log("HTTP státusz:", response.status);
+        const text = await response.text();
+        console.log("RAW válasz:", text);
+
+        try {
+            return JSON.parse(text);
+        } catch (e) {
+            throw new Error("Nem JSON válasz jött vissza: " + text);
+        }
+    })
     .then(data => {
         console.log("Mentés válasz:", data);
     })

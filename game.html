@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fizz Liga Draft</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="draft.css">
+</head>
+
+<body>
+  <div class="container-fluid mb-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+
+        <section class="draft-section">
+          <div class="draft-title-wrap">
+            <h2 id="cim">Válassz formációt</h2>
+            <button type="button" class="info-btn" data-bs-toggle="modal" data-bs-target="#draftInfoModal">
+              <i class="bi bi-info-lg"></i>
+            </button>
+          </div>
+          <hr>
+
+          <div id="formaciok" class="formation-buttons">
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-3-3')">4-3-3</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-4-2')">4-4-2</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-3-1-2')">4-3-1-2</button>
+            <button class="btn btn-outline-success btn-formation"
+              onclick="loadFormation('4-1-2-1-2')">4-1-2-1-2</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-5-1')">4-5-1</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-2-4')">4-2-4</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('4-1-4-1')">4-1-4-1</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('3-4-3')">3-4-3</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('3-4-2-1')">3-4-2-1</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('3-4-1-2')">3-4-1-2</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('3-1-4-2')">3-1-4-2</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('3-5-2')">3-5-2</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('5-4-1')">5-4-1</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('5-3-2')">5-3-2</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('5-2-2-1')">5-2-2-1</button>
+            <button class="btn btn-outline-success btn-formation" onclick="loadFormation('5-2-1-2')">5-2-1-2</button>
+          </div>
+
+          <div id="formation-container" class="formation-container"></div>
+          <div id="extras-container" class="extras-container container-fluid px-0 mt-4"></div>
+
+          <div class="row mt-4 g-3 align-items-stretch">
+
+            <div class="col-12 col-lg-4">
+              <div id="score-box" class="score-card">
+                Chemistry: 0 / 3300
+                <br>
+                <small>Rating átlag pont: 0</small>
+                <br>
+                <span>Fő pont: 0</span>
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+              <div id="tournament-box" class="tournament-card d-none">
+                <div class="tournament-header">
+                  🏆 Napi bajnokság
+                </div>
+
+                <div id="tournament-info" class="tournament-info">
+                  Betöltés...
+                </div>
+
+                <input type="text" id="team-name-input" class="form-control tournament-input"
+                  placeholder="Csapatnév...">
+
+                <button id="join-tournament-btn" class="btn tournament-btn" onclick="joinTournament()">
+                  Nevezés
+                </button>
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+              <div class="tournament-side-box h-100">
+                <h6>⏳ Nevezés zár:</h6>
+                <hr>
+                <div id="countdown">--:--</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="back-button-wrap">
+            <a href="index.html" class="btn btn-outline-light mt-4">⬅ Vissza a főoldalra</a>
+            <a href="game.html" class="btn btn-outline-light mt-4">⬅ Vissza a formációkhoz</a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="draft-summary-overlay" class="draft-summary-overlay d-none">
+    <div class="draft-summary-card">
+      <h3 class="mb-3">Csapat összesítés</h3>
+
+      <div class="summary-line">
+        <span>Chemistry</span>
+        <strong id="summary-chemistry">0 / 3300</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>Rating</span>
+        <strong id="summary-rating">0</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>Fő pont</span>
+        <strong id="summary-final">0</strong>
+      </div>
+
+      <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+        <button class="btn btn-outline-light px-4" onclick="closeSummaryCard()">Bezárás</button>
+        <button class="btn btn-success px-4" onclick="startGame()">Játék</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="playerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content custom-modal">
+        <div class="modal-header">
+          <h5 class="modal-title">Válassz játékost</h5>
+        </div>
+        <div class="modal-body">
+          <div id="player-list" class="list-group"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="draftInfoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content custom-modal info-modal">
+        <div class="modal-header">
+          <h5 class="modal-title">Draft információk</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="info-section">
+            <h6>🎮 Hogyan működik a draft?</h6>
+            <p>
+              Válassz egy formációt, majd rakd össze a kezdő 11-et a megadott posztokra.
+              A rendszer minden játékosnál figyeli a csapatot, a nemzetiséget és azt is,
+              hogy a saját posztján vagy egy ahhoz közeli helyen játszik-e.
+            </p>
+          </div>
+
+          <div class="info-section">
+            <h6>🧪 Hogyan számolódik a chemistry?</h6>
+            <p>
+              A chemistry három fő dologból áll:
+            </p>
+            <ul>
+              <li><strong>Csapat:</strong> ha több játékos ugyanabból a klubból van, chemistry pontot kapnak.</li>
+              <li><strong>Nemzetiség:</strong> ha több játékos ugyanabból az országból van, az is plusz chemistryt ad.
+              </li>
+              <li><strong>Poszt:</strong> ha a játékos nem a saját posztján játszik, a chemistry csökkenhet.</li>
+            </ul>
+            <p>
+              Egy játékos maximum <strong>3 chemistry pontot</strong> kaphat.
+              A teljes csapat maximuma <strong>33 chemistry pont</strong>, ami <strong>3300 chemistry score</strong>.
+            </p>
+          </div>
+
+          <div class="info-section">
+            <h6>📊 Hogyan számolódik a fő pont?</h6>
+            <p>
+              A fő pont két részből áll:
+            </p>
+            <ul>
+              <li><strong>Chemistry score</strong></li>
+              <li><strong>Rating átlag pont</strong></li>
+            </ul>
+            <p>
+              A rating pont úgy számolódik, hogy a kezdő 11 játékos ratingje szorozva van 10-zel,
+              majd ebből a rendszer átlagot számol.
+            </p>
+            <p>
+              A végső képlet:
+            </p>
+            <div class="info-formula">
+              Fő pont = Chemistry score + Rating átlag pont
+            </div>
+          </div>
+
+          <div class="info-section">
+            <h6>🏆 Bajnokság és helyezések</h6>
+            <p>
+              A bajnokságban a csapatok a fő pont alapján rangsorolódnak.
+              Pontegyenlőség esetén először a chemistry, majd a rating dönthet.
+            </p>
+            <p>
+              A jelenlegi jutalmazás:
+            </p>
+            <ul>
+              <li><strong>1. hely:</strong> 1000 credit</li>
+              <li><strong>2. hely:</strong> 850 credit</li>
+              <li><strong>3. hely:</strong> 750 credit</li>
+              <li><strong>4. hely:</strong> 650 credit</li>
+              <li><strong>5. hely:</strong> 500 credit</li>
+              <li><strong>Minden további helyezett:</strong> 200 credit</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h6>💡 Tipp</h6>
+            <p>
+              Érdemes olyan csapatot építeni, ahol sok azonos klubból vagy nemzetből érkező játékos van,
+              és lehetőleg mindenki a saját posztján játszik.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+  <script src="theme.js"></script>
+  <script src="menu.js"></script>
+  <script src="footer.js"></script>
+  <script src="menu.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
