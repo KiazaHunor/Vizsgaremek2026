@@ -213,3 +213,27 @@ body.light-mode .result-table tbody tr {
     font-size: 1.7rem;
   }
 }
+.result-table tbody tr td {
+  background: rgba(255,255,255,0.035) !important;
+  color: var(--text-main) !important;
+}
+
+.result-table tbody tr:nth-child(even) td {
+  background: rgba(15, 20, 28, 0.95) !important;
+}
+
+.result-table tbody tr:nth-child(odd) td {
+  background: rgba(18, 24, 33, 0.95) !important;
+}
+
+.result-table tbody tr:nth-child(1) td {
+  background: rgba(255, 215, 0, 0.15) !important;
+}
+
+.result-table tbody tr:nth-child(2) td {
+  background: rgba(192, 192, 192, 0.15) !important;
+}
+
+.result-table tbody tr:nth-child(3) td {
+  background: rgba(205, 127, 50, 0.15) !important;
+}

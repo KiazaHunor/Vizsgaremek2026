@@ -81,6 +81,7 @@
                 });
         }
 
+
         function loadTournamentResult(id, name) {
             fetch("get_tournament_result.php?id=" + id)
                 .then(r => r.json())
@@ -97,29 +98,25 @@
                         return;
                     }
 
-                    box.innerHTML = data.tournaments.map(t => `
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="tournament-result-card p-3 text-center">
-
-                        <h5 class="card-title mb-2">${t.name}</h5>
-
-                        <p class="card-text small mb-3">
-                            ${t.start_at}<br>
-                            ${t.entry_deadline}
-                        </p>
-
-                        <button class="btn result-open-btn w-100"
-                            onclick="loadTournamentResult(${t.id}, '${t.name}')">
-                            Ranglista
-                        </button>
-
-                        </div>
-                    </div>
-                    `).join("");
+                    body.innerHTML = data.results.map(r => `
+                <tr>
+                    <td>${r.rank_position ?? "-"}</td>
+                    <td>${r.username}</td>
+                    <td>${r.team_name}</td>
+                    <td>${r.chemistry_score}</td>
+                    <td>${r.rating_avg_score}</td>
+                    <td>${r.final_score}</td>
+                    <td>${r.credits_awarded ?? 0}</td>
+                </tr>
+            `).join("");
 
                     panel.scrollIntoView({ behavior: "smooth" });
+                })
+                .catch(err => {
+                    console.error("Ranglista hiba:", err);
                 });
         }
+
 
         document.addEventListener("DOMContentLoaded", loadFinishedTournaments);
     </script>
